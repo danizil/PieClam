@@ -15,7 +15,6 @@ import time
 from transformation import train_prior
 from datasets.import_dataset import import_dataset, transform_attributes
 import clamiter as ci
-import community_allocation as ca
 from utils.plotting import plot_optimization_stage, plot_2dgraph
 from utils.printing_utils import printd
 from utils import utils

@@ -1,3 +1,7 @@
 tests/tests_distance_big.ipynb filter=lfs diff=lfs merge=lfs -text
 tests/tests_distance_sbm.ipynb filter=lfs diff=lfs merge=lfs -text
 tests/tests_distance_sbm2.ipynb filter=lfs diff=lfs merge=lfs -text
+datasets/anomaly_detection/GGAD_datasets/Amazon.mat filter=lfs diff=lfs merge=lfs -text
+datasets/anomaly_detection/GGAD_datasets/dgraphfin_adj_list filter=lfs diff=lfs merge=lfs -text
+datasets/anomaly_detection/GGAD_datasets/drive-download-20240707T124655Z-001.zip filter=lfs diff=lfs merge=lfs -text
+datasets/anomaly_detection/GGAD_datasets/tfFinance.mat filter=lfs diff=lfs merge=lfs -text
