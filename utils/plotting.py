@@ -198,7 +198,7 @@ def plot_prob(log_prob_fn, device, zz=None, ax=None, figsize=(3,3), x_fig_lim=[0
     ax.set_aspect('equal')
     return im
 
-def plot_normflows_dist(dist, device,shift, scale, zz=None, ax=None, figsize=(2,2), x_fig_lim=[0, 2], y_fig_lim=None, title=''):
+def plot_normflows_dist(dist, lorenz, zz=None, ax=None, figsize=(2,2), x_fig_lim=[0, 2], y_fig_lim=None, title=''):
     '''since we shift the distribution for sampling, we need to shift the plot as well'''
     if ax is None:
         _, ax = plt.subplots(figsize=figsize)
@@ -206,11 +206,14 @@ def plot_normflows_dist(dist, device,shift, scale, zz=None, ax=None, figsize=(2,
     if zz is None:
         grid_size = 200
         xx, yy = torch.meshgrid(torch.linspace(-2, 2, grid_size), torch.linspace(-2, 2, grid_size))
-        xx = xx - 0.5
-        zz = torch.cat([xx.unsqueeze(2), yy.unsqueeze(2)], 2).view(-1, 2).to(device)
+        xx = xx + 1
+        zz = torch.cat([xx.unsqueeze(2), yy.unsqueeze(2)], 2).view(-1, 2)
     
     if y_fig_lim is None:
-        y_fig_lim = x_fig_lim
+        if lorenz:
+            y_fig_lim = [-x_fig_lim[1], x_fig_lim[1]]
+        else:
+            y_fig_lim = x_fig_lim
 
     else:
         grid_size = int(np.sqrt(zz.shape[0]))
@@ -218,11 +221,15 @@ def plot_normflows_dist(dist, device,shift, scale, zz=None, ax=None, figsize=(2,
         yy = zz[:,1].view(grid_size, grid_size).cpu().detach().numpy()
     # Calculate the values of the distribution function on zz
     #! i don't understand, the output changes depending on what i put there?
-    rotation_matrix = torch.tensor([[-1, 1], [-1, -1]]).float().to(zz.device)
-
-    zz = torch.matmul(zz, rotation_matrix)
-    log_prob = dist.log_prob(((zz)))
+    if lorenz:
+        rotation_matrix = torch.tensor([[1, 1], [-1,1]]).float()
+        zz = 1/2*torch.matmul(zz, rotation_matrix)
+        zz = zz*3 - 1/2*torch.tensor([4.5,4.5])
+    else:
+        zz = zz*5 - 2.5
     
+    log_prob = dist.log_prob(((zz)))
+        
     # log_prob = log_prob_fn(zz, sum=False)
     prob = torch.exp(log_prob.to('cpu').view(*xx.shape)).detach().numpy()
     # prob[torch.isnan(prob)] = 0
@@ -230,10 +237,12 @@ def plot_normflows_dist(dist, device,shift, scale, zz=None, ax=None, figsize=(2,
     im = ax.pcolormesh(xx, yy, prob, cmap='viridis')
     ax.set_xlim(x_fig_lim[0], x_fig_lim[1])
     ax.set_ylim(y_fig_lim[0], y_fig_lim[1])
+    plot_relu_lines(lorenz=lorenz, ax=ax)
     ax.set_aspect('equal', 'box')
     ax.set_title(title)
     ax.set_aspect('equal')
     return im
+
 
 
 def plot_auc_dict(auc_dict):
@@ -458,39 +467,6 @@ def plot_optimization_stage(
     if prior:
         prior.model.train()   
 
-# def plot_test_accuracies(acc_test, n_iter_feats, n_iter_prior, n_back_forth, figsize=(9,3)):
-#     n_iter_total = n_iter_feats + n_iter_prior
-#     feat_stops = [n_iter_feats - 1 + i*n_iter_total for i in range(n_back_forth)]
-#     prior_stops = [n_iter_total*i - 1 for i in range(1, n_back_forth+1)]
-
-#     _, axes = plt.subplots(1, 3, figsize=figsize)
-    
-#     # Plot for 'vanilla_star'
-#     axes[0].plot(acc_test['vanilla_star'])
-#     for stop in feat_stops:
-#         axes[0].axvline(x=stop, color='blue', linestyle='--', linewidth=1, alpha=0.5)
-#     for stop in prior_stops:
-#         axes[0].axvline(x=stop, color='red', linestyle='--', linewidth=1, alpha=0.5)
-#     axes[0].set_title('vanilla')
-
-#     # Plot for 'prior'
-#     axes[1].plot(acc_test['prior'])
-#     for stop in feat_stops:
-#         axes[1].axvline(x=stop, color='blue', linestyle='--', linewidth=1, alpha=0.5)
-#     for stop in prior_stops:
-#         axes[1].axvline(x=stop, color='red', linestyle='--', linewidth=1, alpha=0.5)
-#     axes[1].set_title('prior')
-
-#     # Plot for 'prior_star'
-#     axes[2].plot(acc_test['prior_star'], label='test')
-#     for stop in feat_stops:
-#         axes[2].axvline(x=stop, color='blue', linestyle='--', linewidth=1, alpha=0.5)
-#     for stop in prior_stops:
-#         axes[2].axvline(x=stop, color='red', linestyle='--', linewidth=1, alpha=0.5)
-#     axes[2].set_title('prior_star')
-
-#     plt.show()
-
 
 
 def plot_test_accuracies(
@@ -499,26 +475,27 @@ def plot_test_accuracies(
                 n_iter_2nd, 
                 n_back_forth, 
                 figsize=3):
-    
+
     n_lists = len(acc_test)
     figsize = (figsize * n_lists, figsize)  # Make the figure wider if there are more lists
-    n_iter_total = n_iter_1st + n_iter_2nd
-    feat_stops = [n_iter_1st - 1 + i*n_iter_total for i in range(n_back_forth)]
-    prior_stops = [n_iter_total*i - 1 for i in range(n_back_forth+1)]
-
-
     _, axes = plt.subplots(1, n_lists, figsize=figsize)
+    if n_lists == 1:
+        axes = [axes]
     for i, (key, value) in enumerate(acc_test.items()):
         axes[i].plot(value)
-        for stop in feat_stops:
-            axes[i].axvline(x=stop, color='blue', linestyle='--', linewidth=1, alpha=0.5)
-            # axes[i].plot(stop, acc_test[key][stop], 'bo', markersize=7)  
-        for stop in prior_stops:
-            axes[i].axvline(x=stop, color='red', linestyle='--', linewidth=1, alpha=0.5)
-            # axes[i].plot(stop, acc_test[key][stop], 'ro', markersize=7)  
-
         axes[i].set_title(f'{key}')
     
+        if n_iter_1st is not None and n_iter_2nd is not None:
+            n_iter_total = n_iter_1st + n_iter_2nd
+            feat_stops = [n_iter_1st - 1 + i*n_iter_total for i in range(n_back_forth)]
+            prior_stops = [n_iter_total*i - 1 for i in range(n_back_forth+1)]
+            for stop in feat_stops:
+                axes[i].axvline(x=stop, color='blue', linestyle='--', linewidth=1, alpha=0.5)
+                # axes[i].plot(stop, acc_test[key][stop], 'bo', markersize=7)  
+            for stop in prior_stops:
+                axes[i].axvline(x=stop, color='red', linestyle='--', linewidth=1, alpha=0.5)
+                # axes[i].plot(stop, acc_test[key][stop], 'ro', markersize=7)  
+
     plt.tight_layout()
     plt.show()
 

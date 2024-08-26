@@ -652,8 +652,9 @@ class PCLAMIter(MessagePassing):
             if scheduler_updated:
                 a=0
 
-            if verbose and not verbose_in_funcs and (i+1)%plot_every == 0:
-               acc_tracker.plot_intermediate(num_blanks_second, num_blanks_first, i+1)
+            if (i+1)%plot_every == 0:
+                printd(f'\nfit, plotting state at iter {i+1}')
+                acc_tracker.plot_intermediate(num_blanks_second, num_blanks_first, i+1)
         # ========= end fit loop ================
 
        
