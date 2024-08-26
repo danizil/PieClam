@@ -17,8 +17,6 @@ from sklearn.cluster import KMeans
 import time
 import os
 import json
-import glob
-import copy
 
 from transformation import  RealNVP, relu_lightcone, relu_transform, uv_from_xt
 from utils.plotting import *

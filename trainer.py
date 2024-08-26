@@ -1,9 +1,7 @@
 import torch
-from torch_geometric.data import Data
 from torch_geometric.utils import dropout_edge, sort_edge_index, is_undirected, to_dense_adj
 import torch_geometric
 from torch_geometric.transforms import RemoveDuplicatedEdges, TwoHop
-import numpy as np
 from collections import OrderedDict
 import os
 import random
@@ -18,7 +16,7 @@ import clamiter as ci
 from utils.plotting import plot_optimization_stage, plot_2dgraph
 from utils.printing_utils import printd
 from utils import utils
-# from tests import tests
+
 import json
 import yaml
 from copy import deepcopy
