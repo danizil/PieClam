@@ -1327,15 +1327,21 @@ class AccTrack:
 
 
     def plot_intermediate(self, n_iter_first=None, n_iter_second=None, n_back_forth=None):
-    
-        plot_test_accuracies(self.accuracies_test, n_iter_first, n_iter_second, n_back_forth)
+        
+        if self.accuracies_test.keys() != ['losses']:
+            plot_test_accuracies(self.accuracies_test, n_iter_first, n_iter_second, n_back_forth)
+            
+        things_to_plot = []
         if self.graph.x.shape[1] <= 6:
-            self.clamiter.plot_state(
-                    self.graph, 
-                    things_to_plot=['adj', '2dgraphs'],
-                    community_affiliation=self.graph.y, 
-                    calling_function_name='fit_feats')
-                
+            things_to_plot.append('2dgraphs')
+        if self.task == 'distance':
+            things_to_plot.append('adj')
+        self.clamiter.plot_state(
+                self.graph, 
+                things_to_plot=things_to_plot,
+                community_affiliation=self.graph.y, 
+                calling_function_name='fit_feats')
+            
 
 # 888888    db    88""Yb 88     Yb  dP .dP"Y8 888888  dP"Yb  88""Yb 
 # 88__     dPYb   88__dP 88      YbdP  `Ybo."   88   dP   Yb 88__dP 

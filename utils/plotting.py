@@ -425,7 +425,7 @@ def plot_optimization_stage(
             if prior: 
                 if lorenz:
                     x_fig_lim = [-0.01, 2.7]
-                    y_fig_lim = [-1.5, 2]
+                    y_fig_lim = [-1.7, 1.7]
                 else:
                     x_fig_lim = [-0.1, 2]
                     y_fig_lim = [-0.1, 2]   
@@ -445,7 +445,7 @@ def plot_optimization_stage(
                 
                 im_prob = plot_prob(prior.forward_ll, device=next(prior.model.parameters()).device, ax=axes[1], title='prior', x_fig_lim=x_fig_lim, y_fig_lim=y_fig_lim)
                 
-                my_colorbar(im_opt, ax=axes[1])
+                my_colorbar(im_prob, ax=axes[1])
                 plot_xy_axes(axes[1], line_range=2)
 
             else:
