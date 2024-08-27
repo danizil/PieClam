@@ -209,7 +209,6 @@ class Trainer():
         self = deepcopy(another_trainer)
         self.add_prior(prior) 
         return self
-    
 
 
     def configs_dict_from_top_list(self, config_triplets=None):
@@ -219,33 +218,25 @@ class Trainer():
         with open(self.configs_path, 'r') as file:
             params_dict = yaml.safe_load(file)
         
-        
-        configs_ds = deepcopy(params_dict[self.dataset_name+'_'+self.model_name])
-        config_triplets_ds = [[outer_key, inner_key, inner_value] for outer_key, outer_value in configs_ds.items() for inner_key, inner_value in outer_value.items()]
+        # turn dataset config yaml into config triplets
+        config_triplets_ds = []
+        dict_key = self.dataset_name + '_' + self.model_name
+        if dict_key in params_dict:
+            configs_ds = deepcopy(params_dict[self.dataset_name+'_'+self.model_name])
+            if configs_ds:
+               for outer_key in configs_ds.keys(): 
+                     if configs_ds[outer_key]:
+                          for inner_key in configs_ds[outer_key].keys():
+                            if configs_ds[outer_key][inner_key] is not None:
+                                config_triplets_ds.append([outer_key, inner_key, configs_ds[outer_key][inner_key]])
+                                
+
+        # config_triplets_ds = [[outer_key, inner_key, inner_value] for outer_key, outer_value in configs_ds.items() for inner_key, inner_value in outer_value.items() if outer_key is not None and inner_key is not None]
         self.get_mighty_configs_dict(config_triplets=config_triplets_ds)
         
         if config_triplets:
             self.set_multiple_configs(config_triplets)
-
-
-        # if self.vanilla:
-        #     clamiter_config = deepcopy(params_dict['clamiter_params_dict'][self.params_name])
-        #     feat_opt_config = deepcopy(params_dict['feat_opt_params_dict'][self.params_name])
-        #     self.configs_dict = {'clamiter_init': clamiter_config, 
-        #                     'feat_opt': feat_opt_config}
-        # else:
-        #     feat_opt_config = deepcopy(params_dict['feat_opt_params_dict'][self.params_name])
-        #     clamiter_config = deepcopy(params_dict['clamiter_params_dict'][self.params_name])
-        #     prior_config = deepcopy(params_dict['prior_opt_params_dict'][self.params_name])
-        #     back_forth_config = deepcopy(params_dict['back_forth_params_dict'][self.params_name])
-
-
-        #     self.configs_dict = {'clamiter_init': clamiter_config, 
-        #                     'feat_opt': feat_opt_config, 
-        #                     'prior_opt': prior_config, 
-        #                     'back_forth': back_forth_config}
-        # if config_triplets:
-        #     self.set_multiple_configs(config_triplets)     
+ 
     
     def get_mighty_configs_dict(self, config_triplets=None):
         '''in hypers.yaml there are four mighty config dictionaries for each model in unsupervised learning.'''
