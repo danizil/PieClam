@@ -312,7 +312,7 @@ class PCLAMIter(MessagePassing):
                                 task=task, 
                                 acc_every=acc_every,
                                 calling_function_name=which_fit,
-                                kwargs=kwargs)
+                                **kwargs)
                  
             # ======== end init early stop ======
             
@@ -406,7 +406,7 @@ class PCLAMIter(MessagePassing):
                   verbose=False,
                   acc_every=10, 
                   plot_every=100000,
-                  ):
+                  **kwargs):
         
         '''optimize the features using iterations of clamiter.
         param: node_mask: a mask for the nodes to optimize, the rest should stay unchanged'''
@@ -423,7 +423,8 @@ class PCLAMIter(MessagePassing):
                                 cutoff=cutoff, 
                                 verbose=verbose,
                                 acc_every=acc_every, 
-                                plot_every=plot_every
+                                plot_every=plot_every,
+                                **kwargs
                                 )
         
       
@@ -446,6 +447,7 @@ class PCLAMIter(MessagePassing):
                   verbose=False,
                   lr=None, # this is not used, but it's needed for the configs dict...
                   plot_every=100000, 
+                  **kwargs
                   ):
         '''
         this function optimizes the model. 
@@ -465,8 +467,9 @@ class PCLAMIter(MessagePassing):
                                 cutoff=0.0, 
                                 verbose=verbose,
                                 acc_every=acc_every, 
-                                plot_every=plot_every
-                                )
+                                plot_every=plot_every,
+                                kwargs=kwargs)
+                                
         
 
             # 888888 88 888888 
@@ -489,7 +492,8 @@ class PCLAMIter(MessagePassing):
             task='anomaly',
             verbose_in_funcs=False,
             verbose=False,
-            **params):
+            **params,
+            ):
         '''train the features and the prior back and forth.
         should have two modes'''
             
@@ -522,7 +526,8 @@ class PCLAMIter(MessagePassing):
                             task=task,
                             acc_every=acc_every,
                             performance_metric=performance_metric,
-                            **feat_params)
+                            **feat_params,
+                            kwargs=params)
         
         fit_prior_func = lambda: self.fit_prior(
                             graph=graph, 
@@ -532,7 +537,8 @@ class PCLAMIter(MessagePassing):
                             acc_every=acc_every,
                             performance_metric=performance_metric,
                             verbose=verbose_in_funcs, 
-                            **prior_params)
+                            **prior_params,
+                            kwargs=params)
         
         # FIRST AND SECOND PARAMS
     
@@ -567,7 +573,7 @@ class PCLAMIter(MessagePassing):
         
         # BACK FORTH 0 -> RUN FIRST FUNCTION
         if n_back_forth == 0:
-            #! thinking to deprecate this by saying just run one of the functions. maybe move the whole thing to fit wrapper?
+            
             if first_func_in_fit == 'fit_prior':
                 printd(f'\n\nWARNING\n\WARNING: n_back_forth = 0, starting {first_func_in_fit} this is only optimizing prior, you should do "fit prior"\nWARNIING\n')
 
@@ -1060,10 +1066,10 @@ class AccTrack:
         elif task == 'distance':
             self.d = kwargs.get('d', None)
             self.calculate_cut = kwargs.get('calculate_cut', False)
-            self.metric_log_cut = lambda data : utils.cut_log_data(data, self.lorenz, d=d, return_d=True)
+            self.metric_log_cut = lambda data : utils.cut_log_data(data, self.clamiter.lorenz, d=self.d, return_d=True)
             
             if self.calculate_cut:
-                self.metric_cut = lambda data : utils.cut_distance_data(data, self.lorenz)
+                self.metric_cut = lambda data : utils.cut_distance_data(data, self.clamiter.lorenz)
             
             self.accuracies_test = {'cut': [], 'log_cut': []}
             self.accuracies_val = []
@@ -1163,13 +1169,13 @@ class AccTrack:
             self.accuracies.append(auc_score)
 
         elif self.task == 'distance':
-            l2_norm = utils.relative_l2_distance_data(self.graph, self.lorenz, verbose=False).cpu().item()
+            l2_norm = utils.relative_l2_distance_data(self.graph, self.clamiter.lorenz, verbose=False).cpu().item()
             self.accuracies_val.append(l2_norm)
-            if l2_norm < self.best_distance:
-                self.best_distance = l2_norm
-                self.patiance_steps = max(self.patiance_steps - 1, 0)
-            else:
-                self.patiance_steps += 1
+            # if l2_norm < self.best_distance:
+            #     self.best_distance = l2_norm
+            #     self.patiance_steps = max(self.patiance_steps - 1, 0)
+            # else:
+            #     self.patiance_steps += 1
                 
                 # if early_stop!=0:
                 #     if patiance >= early_stop:
@@ -1179,9 +1185,11 @@ class AccTrack:
             
             # estimation on what has been
             log_cut = self.metric_log_cut(self.graph)
-            cut = self.metric_cut(self.graph)
-            self.accuracies_test['cut'] += [cut]*measurement_interval
             self.accuracies_test['log_cut'] += [log_cut]*measurement_interval
+            
+            if self.calculate_cut:
+                cut = self.metric_cut(self.graph)
+                self.accuracies_test['cut'] += [cut]*measurement_interval
 
         else:
             self.accuracies_test = {'losses': self.losses}
@@ -1330,7 +1338,7 @@ class AccTrack:
         
         if self.accuracies_test.keys() != ['losses']:
             plot_test_accuracies(self.accuracies_test, n_iter_first, n_iter_second, n_back_forth)
-            
+
         things_to_plot = []
         if self.graph.x.shape[1] <= 6:
             things_to_plot.append('2dgraphs')

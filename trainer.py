@@ -16,113 +16,10 @@ import clamiter as ci
 from utils.plotting import plot_optimization_stage, plot_2dgraph
 from utils.printing_utils import printd
 from utils import utils
-
+# from tests import tests
 import json
 import yaml
 from copy import deepcopy
-
-
-
-
-#  dP""b8 888888 88b 88 888888 88""Yb    db    888888  dP"Yb  88""Yb .dP"Y8 
-# dP   `" 88__   88Yb88 88__   88__dP   dPYb     88   dP   Yb 88__dP `Ybo." 
-# Yb  "88 88""   88 Y88 88""   88"Yb   dP__Yb    88   Yb   dP 88"Yb  o.`Y8b 
-#  YboodP 888888 88  Y8 888888 88  Yb dP""""Yb   88    YbodP  88  Yb 8bodP'
-
-#* clamiter parameters
-#! we should make a different parameter set for iegam and bigclam, also, if the iegam dim feats is odd, add 1 to it so it's even. or multiply by 2 to compare them... 
-dim_feats_list = [6, 8, 10, 12, 14, 16, 18, 20]
-s_reg_list = [0.0, 0.5, 1, 10, 50]
-l1_regs_list = [0.0, 0.01, 0.05, 0.1]
-num_coupling_blocks_list = [8, 16, 32, 64]
-hidden_dims_list = [8, 16, 32, 64] 
-
-#TODO: check to see how many 
-
-#* feat optimization params
-lr_feats_list = [0.00001, 0.00002, 0.00005]
-n_iter_feats_list = [20000]
-dropout_edge_list = [0.0]
-dropout_node_list = [0.0,0.0]
-
-
-#* prior params
-#TODO: change network parameters
-weight_decay_list = [1e-2, 1e-3, 1e-4, 1e-5]
-n_iters_prior_list = [500, 700, 1000, 2000]
-lr_prior_list = [0.000001, 0.000002, 0.000005]
-noise_amps_list = [0.01, 0.05, 0.1, 0.2]
-
-#* fit params
-n_back_forths = [40, 50, 60]
-scheduler_step_sizes = [8, 16, 32]
-scheduler_gammas = [0.5, 0.2, 0.1, 0.05]
-
-clamiter_params_od = OrderedDict([('dim_feat', dim_feats_list), 
-                                  ('s_reg', s_reg_list), 
-                                  ('l1_reg', l1_regs_list), 
-                                  ('num_coupling_blocks', num_coupling_blocks_list), 
-                                  ('hidden_dim', hidden_dims_list)])
-feat_opt_params_od = OrderedDict([('lr', lr_feats_list), 
-                              ('n_iter', n_iter_feats_list), 
-                              ('dropout_edge', dropout_edge_list), 
-                              ('dropout_node', dropout_node_list)])
-
-prior_opt_params_od = OrderedDict([('weight_decay', weight_decay_list), 
-                                   ('noise_amp', noise_amps_list),
-                                    ('n_iter', n_iters_prior_list), 
-                                    ('lr', lr_prior_list)])
-
-fit_params_od = OrderedDict([('n_back_forth', n_back_forths), 
-                             ('scheduler_step_size', scheduler_step_sizes),
-                             ('scheduler_gamma', scheduler_gammas)])
-
-
-
-param_od_list = [clamiter_params_od, feat_opt_params_od, prior_opt_params_od, fit_params_od]
-
-
-#* VANILLA param ordered dict
-clamiter_params_od_vanilla = OrderedDict([('dim_feat', dim_feats_list), 
-                                  ('s_reg', s_reg_list), 
-                                  ('l1_reg', l1_regs_list)])
-feat_opt_params_od_vanilla = OrderedDict([('lr', lr_feats_list), 
-                              ('n_iter', n_iter_feats_list), 
-                              ('dropout_edge', dropout_edge_list), 
-                              ('dropout_node', dropout_node_list)])
-
-param_od_list_vanilla = [clamiter_params_od_vanilla, feat_opt_params_od_vanilla]
-                                 
-
-
-
-
-def coarse_grid_search_generator(param_od_list, use_extremes):
-    
-    if use_extremes:
-        # Modify each list to only use extremes
-        param_od_list = [OrderedDict((k, utils.extremes(v)) for k, v in od.items()) for od in param_od_list]
-
-    all_params_combinations = [product(*params_od.values()) for params_od in param_od_list]
-    for combination in product(*all_params_combinations):
-        config_list = [dict(zip(params_od.keys(), values)) for params_od, values in zip(param_od_list, combination)]
-        yield config_list
-#todo: i want the config dict to be initialized somehow but for the values to be changed: set [parent][child][value]
-def random_config_generator(use_extremes, vanilla):
-    if vanilla:
-        param_od_list = [clamiter_params_od, feat_opt_params_od]
-    else:
-        param_od_list = [clamiter_params_od, feat_opt_params_od, prior_opt_params_od, fit_params_od]
-    if use_extremes:
-        # Modify each list to only use extremes
-        param_od_list = [OrderedDict((k, utils.extremes(v)) for k, v in od.items()) for od in param_od_list]
-
-    while True:
-        config_list = []
-        for params_od in param_od_list:
-            config = {key: random.choice(value) for key, value in params_od.items()}
-            config_list.append(config)
-        yield config_list
 
 
 
@@ -385,7 +282,8 @@ class Trainer():
             plot_every=1000, 
             verbose=True, 
             verbose_in_funcs=False,
-            node_feats_for_init=None):
+            node_feats_for_init=None,
+            **kwargs):
         
         '''train one of the 4 models (bool vanilla, bool lorenz) on the given parameters. 
         You can chose to omit dyads from the calculation, dyads are a tuple (edges_to_omit, non_edges_to_omit).
@@ -447,7 +345,8 @@ class Trainer():
                         performance_metric=performance_metric,
                         plot_every=plot_every,
                         **self.configs_dict['feat_opt'], 
-                        verbose=verbose_in_funcs or verbose)
+                        verbose=verbose_in_funcs or verbose,
+                        **kwargs)
                 if verbose:
                     printd(f'\n train: finished vanilla fit feats')
                                    
@@ -493,7 +392,9 @@ class Trainer():
                                         plot_every=plot_every,
                                         verbose=verbose,
                                         verbose_in_funcs=verbose_in_funcs,
-                                        **fit_opt_params)
+                                        **fit_opt_params,
+                                        
+                                        **kwargs)
                
                 
                 if verbose:
