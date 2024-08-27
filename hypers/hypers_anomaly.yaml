@@ -181,12 +181,7 @@ ellipticGGAD_pclam:
        
 
 ellipticGGAD_piegam:
-#     clamiter_init:
-#        s_reg: 3 
-#        T : 20
-    prior_opt:
-        noise_amp: 13
-#     back_forth:
+# the configuration is the same as the global
         
 
 
