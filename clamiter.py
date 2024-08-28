@@ -659,7 +659,7 @@ class PCLAMIter(MessagePassing):
                 a=0
 
             if (i+1)%plot_every == 0:
-                printd(f'\nfit, plotting state at iter {i+1}')
+                printd(f'\nfit, plotting state at iter {i+1}.\ndataset: {graph.name}, ,model: {self.model_name}')
                 acc_tracker.plot_intermediate(num_blanks_second, num_blanks_first, i+1)
         # ========= end fit loop ================
 
