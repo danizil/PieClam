@@ -352,7 +352,7 @@ def plot_optimization_stage(
     else:
         community_affiliation_cpu = None
 
-    printd(f'\n{calling_function_name= } : iter {i+1}/{n_iter}')
+    # printd(f'\n{calling_function_name= } : iter {i+1}/{n_iter}')
     if prior:
         prior.model.eval()
     

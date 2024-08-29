@@ -249,29 +249,29 @@ def import_dataset(dataset_name, remove_data_feats=True, verbose=False):
         data.edge_index = to_undirected(data.edge_index)  
         data.x = None  
     
-    elif dataset_name == 'amazonGGAD':
-        data = load_data_GGAD('Amazon')
+    elif dataset_name == 'amazon':
+        data = load_data_('Amazon')
         data.edge_index = remove_self_loops(data.edge_index)[0]
         data.edge_index = to_undirected(data.edge_index)
 
-    elif dataset_name == 'redditGGAD':
-        data = load_data_GGAD('reddit')
+    elif dataset_name == 'reddit':
+        data = load_data_('reddit')
         data.edge_index = remove_self_loops(data.edge_index)[0]
         data.edge_index = to_undirected(data.edge_index)
 
-    elif dataset_name == 'ellipticGGAD':
-        data = load_data_GGAD('elliptic')
+    elif dataset_name == 'elliptic':
+        data = load_data_('elliptic')
         data.edge_index = remove_self_loops(data.edge_index)[0]
         data.edge_index = to_undirected(data.edge_index)
     
-    elif dataset_name == 'tfFinanceGGAD':
-        data = load_data_GGAD('tfFinance')
+    elif dataset_name == 'tfFinance':
+        data = load_data_('tfFinance')
         data.edge_index = remove_self_loops(data.edge_index)[0]
         data.edge_index = to_undirected(data.edge_index)
     
 
-    elif dataset_name == 'photoGGAD':
-        data = load_data_GGAD('photo')
+    elif dataset_name == 'photo':
+        data = load_data_('photo')
         data.edge_index = remove_self_loops(data.edge_index)[0]
         data.edge_index = to_undirected(data.edge_index)
 
@@ -361,7 +361,7 @@ def import_dataset(dataset_name, remove_data_feats=True, verbose=False):
     return data
 
 
-def load_data_GGAD(dataset, train_rate=0.3, val_rate=0.1):
+def load_data_(dataset, train_rate=0.3, val_rate=0.1):
     return load_data_matlab_format('anomaly_detection/GGAD_datasets', dataset, train_rate, val_rate)
 
 
@@ -423,7 +423,7 @@ def load_data_matlab_format(path_in_datasets, dataset, train_rate=0.3, val_rate=
     test_normal_mask[test_normal_idx] = True
     test_anomalies_mask[test_anomalies_idx] = True
 
-    #! there is a thing they did in ggad which was to take the train index and the train normal index as diffree
+    #! there is a thing they did in  which was to take the train index and the train normal index as diffree
     raw_attr = feat
     
     data = Data(edge_index=edge_index, 

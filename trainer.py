@@ -86,7 +86,7 @@ class Trainer():
         # ================================
         # GET DATA
         if dataset is not None:
-            self.data = dataset
+            self.data = dataset.clone().to(self.device)
             self.dataset_name = self.data.name
             if hasattr(self.data, 'x'):
                 if self.data.x is not None:
@@ -265,13 +265,12 @@ class Trainer():
     def train(self,
             init_type='small_gaus', 
             dyads_to_omit = None, 
-            task_params=None,
             init_feats=False, 
             acc_every=20, 
             performance_metric=None,
             prior_fit_mask=None, 
-            plot_every=1000, 
-            verbose=True, 
+            plot_every=-1, 
+            verbose=False, 
             verbose_in_funcs=False,
             node_feats_for_init=None,
             **kwargs):
@@ -282,7 +281,7 @@ class Trainer():
         If both params_name and params_dicts are given, train on the given parameters.
         
         Args:  
-        :prior_fit_mask: a subset of the nodes on which to train the prior. for GGAD setting.
+        :prior_fit_mask: a subset of the nodes on which to train the prior. for  setting.
         
         
         ===============
@@ -407,7 +406,22 @@ class Trainer():
         finally:
             self.data.edge_index = self.data.edge_index_original.to(self.device)
             self.data.edge_attr = torch.ones(self.data.edge_index.shape[1]).bool().to(self.device)
-            
+
+
+    def get_prob_graph(self, to_sparse=False, with_prior=False, ret_fufv=False):
+        if with_prior and self.clamiter.prior is not None:
+            return utils.get_prob_graph(self.data.x, 
+                                        self.lorenz, 
+                                        to_sparse, 
+                                        self.clamiter.prior, 
+                                        ret_fufv)
+        else:
+            return utils.get_prob_graph(self.data.x, 
+                                        self.lorenz,  
+                                        to_sparse=to_sparse,
+                                        prior=None, 
+                                        ret_fufv=ret_fufv)
+
     def retrain_model(self, n_iter, plot_every=1000):
         self.data.to(self.device)
         try:    

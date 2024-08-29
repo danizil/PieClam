@@ -57,7 +57,7 @@ def get_edge_probs_from_edges_coords(edges_coords_0, edges_coords_1, lorenz, pri
     
     return tbr
 
-def get_prob_graph(x, lorenz, to_pyg=False, prior=None,ret_fufv=False):
+def get_prob_graph(x, lorenz, to_sparse=False, prior=None,ret_fufv=False):
     '''given node features, returns the probability graph or the inner product graph'''
     #! need to check this with the thresholds before we continue
     #* x has shape [N, in_channels]
@@ -75,7 +75,14 @@ def get_prob_graph(x, lorenz, to_pyg=False, prior=None,ret_fufv=False):
     else: 
         prob_graph = 1-torch.exp(-fufv)
     
-    if to_pyg:
+    if prior is not None:
+        prior_nodes = torch.exp(prior.forward_ll(x, sum=False))
+        prior_of_dyads = prior_nodes.unsqueeze(1) * prior_nodes
+        prob_graph = (1-torch.exp(-fufv)) * prior_of_dyads
+
+    prob_graph.fill_diagonal_(0)
+
+    if to_sparse:
         edge_index=dense_to_sparse(prob_graph)[0]
         edge_attr = prob_graph[edge_index[0], edge_index[1]]
         return Data(x=x, edge_index=edge_index, edge_attr=edge_attr)
@@ -428,7 +435,7 @@ def cut_log_data(data, lorenz, d=0.2, approx_method='sdp', return_d=False, verbo
     assert d <= 1 or d>0 , 'in cut log distance, d should be in (0,1].'
     if approx_method not in ['sdp', 'rounded']:
         raise ValueError('in cutnorm: approx_method should be either sdp or rounded')
-    p = get_prob_graph(data.x, lorenz=lorenz, to_pyg=False).cpu().numpy()
+    p = get_prob_graph(data.x, lorenz=lorenz, to_sparse=False).cpu().numpy()
     if hasattr(data, 'sbm'):
         q = data.sbm.cpu().numpy()
     else:
@@ -452,7 +459,7 @@ def cut_distance_data(data, lorenz, approx_method='sdp', verbose=False):
     '''calculates the cutnorm between the edge index and  the affiliation features x'''
     if approx_method not in ['sdp', 'rounded']:
         raise ValueError('in cutnorm: approx_method should be either sdp or rounded')
-    prob_adj = get_prob_graph(data.x, lorenz=lorenz, to_pyg=False)
+    prob_adj = get_prob_graph(data.x, lorenz=lorenz, to_sparse=False)
     if hasattr(data, 'sbm'):
         gt_adj = data.sbm
     else:
@@ -470,7 +477,7 @@ def cut_distance_data(data, lorenz, approx_method='sdp', verbose=False):
     return cutn_round if approx_method == 'rounded' else cutn_sdp
 
 def l2_distance_data(data, lorenz, verbose=False):
-    prob_adj = get_prob_graph(data.x, lorenz=lorenz, to_pyg=False)
+    prob_adj = get_prob_graph(data.x, lorenz=lorenz, to_sparse=False)
     gt_adj = to_dense_adj(data.edge_index)[0]
     l2_dist = torch.norm(prob_adj - gt_adj, p=2)
     if verbose:
@@ -478,7 +485,7 @@ def l2_distance_data(data, lorenz, verbose=False):
     return l2_dist
 
 def relative_l2_distance_data(data, lorenz, verbose=False):
-    prob_adj = get_prob_graph(data.x, lorenz=lorenz, to_pyg=False)
+    prob_adj = get_prob_graph(data.x, lorenz=lorenz, to_sparse=False)
     gt_adj = to_dense_adj(data.edge_index)[0]
     rel_l2_dist = torch.norm(prob_adj - gt_adj, p=2)/torch.norm(gt_adj, p=2)
     # if verbose:

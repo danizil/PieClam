@@ -724,7 +724,7 @@ class PCLAMIter(MessagePassing):
             calling_function_name=None):
         
         '''plot the state of the model'''
-        printd(f'\nin plot state, calling function is {calling_function_name}')
+        # printd(f'\nin plot state, calling function is {calling_function_name}')
         plot_optimization_stage(
                             self.prior, 
                             graph, 
