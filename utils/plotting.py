@@ -386,7 +386,7 @@ def plot_optimization_stage(
         if graph_cpu.x.shape[1] > 2:
 
             num_rows = math.ceil(num_feats / 6)
-            num_cols = 3
+            num_cols = min(3, num_feats//2)
             fig3, axes3 = plt.subplots(num_rows, num_cols)
 
             if type(axes3) != np.ndarray:

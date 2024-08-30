@@ -249,19 +249,19 @@ TwoMoons_pclam:
         l1_reg: 0.1
         s_reg: 0.0
         prior: None
-        hidden_dim: 128
+        hidden_dim: 64
         num_coupling_blocks: 32
         num_layers_mlp: 2
     feat_opt:
-        n_iter: 500
-        lr: 0.00001
+        n_iter: 2000
+        lr: 0.00005
     prior_opt:
-        n_iter: 1300
-        lr: 0.0000001
-        noise_amp: 0.1
+        n_iter: 1500
+        lr: 0.0000005
+        noise_amp: 0.25
         weight_decay: 0.01
     back_forth:
-        n_back_forth: 20
+        n_back_forth: 50
         scheduler_step_size: 300
         scheduler_gamma: 0.1
         first_func_in_fit: 'fit_prior'
@@ -278,14 +278,14 @@ TwoMoons_piegam:
         num_layers_mlp: 2
     feat_opt:
         n_iter: 2000
-        lr: 0.00001
+        lr: 0.00005
     prior_opt:
         n_iter: 2000
-        lr: 0.000005
-        noise_amp: 0.01
+        lr: 0.00005
+        noise_amp: 0.25
         weight_decay: 0.01
     back_forth:
-        n_back_forth: 30
+        n_back_forth: 5
         scheduler_step_size: 100
         scheduler_gamma: 0.5
         first_func_in_fit: 'fit_prior'
@@ -350,19 +350,18 @@ Circ_piegam:
         num_layers_mlp: 2
     feat_opt:
         n_iter: 2000
-        lr: 0.00001
+        lr: 0.00005
     prior_opt:
         n_iter: 2000
-        lr: 0.000005
-        noise_amp: 0.01
+        lr: 0.00005
+        noise_amp: 0.25
         weight_decay: 0.01
     back_forth:
-        n_back_forth: 30
+        n_back_forth: 5
         scheduler_step_size: 100
         scheduler_gamma: 0.5
         first_func_in_fit: 'fit_prior'
         early_stop_fit: 0
-
 
 #  dP""b8 88  88 88   88 88""Yb      dP""b8    db    88   88 .dP"Y8 
 # dP   `" 88  88 88   88 88__dP     dP   `"   dPYb   88   88 `Ybo." 
@@ -500,7 +499,7 @@ MightyConfigs_bigclam:
         num_layers_mlp: 2
     feat_opt: 
         lr: 0.000001
-        n_iter: 200
+        n_iter: 20000
         early_stop: 0
 
 
