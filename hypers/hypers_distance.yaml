@@ -248,7 +248,6 @@ TwoMoons_pclam:
         dim_feat: 2
         l1_reg: 0.1
         s_reg: 0.0
-        prior: None
         hidden_dim: 64
         num_coupling_blocks: 32
         num_layers_mlp: 2
@@ -256,9 +255,9 @@ TwoMoons_pclam:
         n_iter: 2000
         lr: 0.00005
     prior_opt:
-        n_iter: 1500
-        lr: 0.0000005
-        noise_amp: 0.25
+        n_iter: 2000
+        lr: 0.00005
+        noise_amp: 0.15
         weight_decay: 0.01
     back_forth:
         n_back_forth: 50
@@ -320,20 +319,19 @@ Circ_pclam:
         dim_feat: 2
         l1_reg: 0.1
         s_reg: 0.0
-        prior: None
-        hidden_dim: 128
+        hidden_dim: 64
         num_coupling_blocks: 32
         num_layers_mlp: 2
     feat_opt:
-        n_iter: 1000
-        lr: 0.00001
+        n_iter: 2000
+        lr: 0.00005
     prior_opt:
-        n_iter: 1300
-        lr: 0.000001
-        noise_amp: 0.1
+        n_iter: 2000
+        lr: 0.00005
+        noise_amp: 0.15
         weight_decay: 0.01
     back_forth:
-        n_back_forth: 30
+        n_back_forth: 5
         scheduler_step_size: 100
         scheduler_gamma: 0.5
         first_func_in_fit: 'fit_prior'
