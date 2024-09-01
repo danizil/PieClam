@@ -390,7 +390,7 @@ class Trainer():
                 if verbose:
                     printd(f'\ntrain_model_on_params on {self.model_name} {self.dataset_name} \ntook {time.time() - t_train_model} seconds')
                 
-                printd(f'\n\n\nFINISHED train model on params \n\n\n')
+                # printd(f'\n\n\nFINISHED train model on params \n\n\n')
 
                 return losses, accuracies_test, accuracies_val
             # ===============================================================
@@ -406,6 +406,13 @@ class Trainer():
         finally:
             self.data.edge_index = self.data.edge_index_original.to(self.device)
             self.data.edge_attr = torch.ones(self.data.edge_index.shape[1]).bool().to(self.device)
+            printd(f'\n\n\nFINISHED train model on params \n last accuracies:')
+            for key in accuracies_test.keys():
+                if accuracies_test[key] is not None:
+                    print(f'{key}: {accuracies_test[key][-1]}')
+                else:
+                    print(f'{key}: None')
+            printd(f'\n\n\n')
 
 
     def get_prob_graph(self, to_sparse=False, with_prior=False, ret_fufv=False):
