@@ -58,8 +58,8 @@ class Trainer():
     #*attr opt is given at init because the prior is different for the different optimizations.
     def __init__(self, 
                  model_name, 
-                 task,
                  device, 
+                 task=None,
                  dataset_name=None, 
                  configs_dict=None,
                  mighty_configs_dict=False,
