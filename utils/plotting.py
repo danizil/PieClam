@@ -81,8 +81,24 @@ def plot_relu_lines(lorenz, ax, line_range=1.7):
      else:
           plot_xy_axes(ax, line_range)
 
-def plot_2dgraph(graph,lorenz_fig_lims, proj_dims=[0,1],community_affiliation=None, test_mask=None, x_fig_lim=None, y_fig_lim=None, ax=None, figsize=(2,2), **kwargs):
+def plot_2dgraph(graph,
+                 lorenz_fig_lims, 
+                 proj_dims=[0,1],
+                 community_affiliation=None, 
+                 test_mask=None, 
+                 x_fig_lim=None, 
+                 y_fig_lim=None, 
+                 ax=None, 
+                 figsize=(2,2), 
+                 **kwargs):
+        draw_edges = kwargs.get('draw_edges', False)
+        draw_community_affiliation = kwargs.get('draw_community_affiliation', True)
+        draw_colorful_nodes = kwargs.get('draw_colorful_nodes', False)
         node_size_factor = kwargs.get('node_size_factor', 1)
+    
+        if not draw_community_affiliation:
+            community_affiliation = None
+        
         if x_fig_lim is None:
             if lorenz_fig_lims:
                 x_fig_lim = [-0.01, 2.7]
@@ -95,9 +111,9 @@ def plot_2dgraph(graph,lorenz_fig_lims, proj_dims=[0,1],community_affiliation=No
             y_fig_lim = x_fig_lim
         node_feats = graph_cpu.x.detach().numpy()[:, proj_dims]
         num_nodes = node_feats.shape[0]
+        num_edges = graph_cpu.edge_index.shape[1]
         node_positions_dict = {i: feat for i, feat in enumerate(node_feats)}
-        color_list = sns.color_palette("Paired", n_colors=graph_cpu.x.shape[0])
-        node_sizes = degree(graph_cpu.edge_index[0]).detach().numpy()
+        node_sizes = 5*node_size_factor*figsize[0]/num_nodes*degree(graph_cpu.edge_index[0]).detach().numpy()
         G = to_networkx(graph_cpu)
         if ax is None:
             fig, ax = plt.subplots(figsize=figsize)
@@ -106,10 +122,18 @@ def plot_2dgraph(graph,lorenz_fig_lims, proj_dims=[0,1],community_affiliation=No
             node_colors = community_affiliation_to_colors(community_affiliation)
 
         else:
-            node_colors = sns.color_palette("Paired", n_colors=graph_cpu.x.shape[0])
+            if draw_colorful_nodes:
+                node_colors = sns.color_palette("Paired", n_colors=graph_cpu.x.shape[0])
+            else:
+                node_colors = 'blue'
+            # node_colors = sns.color_palette("Paired", n_colors=graph_cpu.x.shape[0])
         
         edge_color = 'black' 
-        nx.draw(G, pos=node_positions_dict, node_color=node_colors, node_size=node_size_factor*5*node_sizes*figsize[0]/(num_nodes), arrows=False, edge_color=edge_color, width=0.01, ax=ax)
+        if draw_edges:
+            width = 10/num_edges
+        else:
+            width = 0.0
+        nx.draw(G, pos=node_positions_dict, node_color=node_colors, node_size=node_sizes, arrows=False, edge_color=edge_color, width=width, ax=ax)
      
         #* add the axes (nx doesn't use them ever)
         ax.axis('on')
