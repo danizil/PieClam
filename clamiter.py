@@ -721,7 +721,8 @@ class PCLAMIter(MessagePassing):
             anomalies_gt=None, 
             i=0,
             n_iter=0,
-            calling_function_name=None):
+            calling_function_name=None,
+            **kwargs):
         
         '''plot the state of the model'''
         # printd(f'\nin plot state, calling function is {calling_function_name}')
@@ -732,7 +733,8 @@ class PCLAMIter(MessagePassing):
                             things_to_plot,
                             community_affiliation, 
                             dyads_to_omit, 
-                            calling_function_name=calling_function_name)
+                            calling_function_name=calling_function_name,
+                            **kwargs)
         
 
 # 88 88b 88 88 888888     888888 888888    db    888888 .dP"Y8 
@@ -1063,15 +1065,17 @@ class AccTrack:
         elif task == 'link_prediction':
             accuracies = []
 
+
         elif task == 'distance':
             self.d = kwargs.get('d', None)
             self.calculate_cut = kwargs.get('calculate_cut', False)
             self.metric_log_cut = lambda data : utils.cut_log_data(data, self.clamiter.lorenz, d=self.d, return_d=True)
+            self.accuracies_test = {'log_cut': []}
             
             if self.calculate_cut:
                 self.metric_cut = lambda data : utils.cut_distance_data(data, self.clamiter.lorenz)
-            
-            self.accuracies_test = {'cut': [], 'log_cut': []}
+                self.accuracies_test = {'cut': [], 'log_cut': []}
+
             self.accuracies_val = []
 
             self.patiance_steps = 0

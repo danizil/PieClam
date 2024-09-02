@@ -545,12 +545,23 @@ class Trainer():
         return ca.omega_index(self.data.communities_found, self.data.y)
     
 
-    def plot_state(self, dyads_to_omit=None, gt_or_found_communities='gt', things_to_plot=['adj', '2dgraphs', 'losses'], calling_function_name="Trainer.plot_state"):
+    def plot_state(self, 
+                   dyads_to_omit=None,
+                    gt_or_found_communities='gt',
+                    things_to_plot=['adj', '2dgraphs', 'losses'],
+                    calling_function_name="Trainer.plot_state", 
+                    **kwargs):
         '''plots the state of the features and adjacency'''
         assert gt_or_found_communities in ['gt', 'found'], 'in trainer.plot_stategt_or_found_communities should be either gt or found'
         affiliation_to_plot = self.data.y if gt_or_found_communities == 'gt' else self.data.communities_found
         
-        self.clamiter.plot_state(self.data, community_affiliation=affiliation_to_plot, dyads_to_omit=dyads_to_omit,things_to_plot=things_to_plot, calling_function_name=calling_function_name)
+        self.clamiter.plot_state(
+            self.data,
+            community_affiliation=affiliation_to_plot,
+            dyads_to_omit=dyads_to_omit,
+            things_to_plot=things_to_plot,
+            calling_function_name=calling_function_name,
+            **kwargs)
 
     def save_state(self, inner_folder='trainers', suffix=''):
         '''save trainer feats prior and config'''    

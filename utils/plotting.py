@@ -12,7 +12,8 @@ import networkx as nx
 
 import matplotlib.pyplot as plt
 from matplotlib.cm import get_cmap
-from matplotlib.colors import ListedColormap
+from matplotlib.colors import ListedColormap, Normalize
+
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 
@@ -80,8 +81,8 @@ def plot_relu_lines(lorenz, ax, line_range=1.7):
      else:
           plot_xy_axes(ax, line_range)
 
-def plot_2dgraph(graph,lorenz_fig_lims, proj_dims=[0,1],community_affiliation=None, test_mask=None, x_fig_lim=None, y_fig_lim=None, ax=None, figsize=(2,2)):
-        
+def plot_2dgraph(graph,lorenz_fig_lims, proj_dims=[0,1],community_affiliation=None, test_mask=None, x_fig_lim=None, y_fig_lim=None, ax=None, figsize=(2,2), **kwargs):
+        node_size_factor = kwargs.get('node_size_factor', 1)
         if x_fig_lim is None:
             if lorenz_fig_lims:
                 x_fig_lim = [-0.01, 2.7]
@@ -108,7 +109,7 @@ def plot_2dgraph(graph,lorenz_fig_lims, proj_dims=[0,1],community_affiliation=No
             node_colors = sns.color_palette("Paired", n_colors=graph_cpu.x.shape[0])
         
         edge_color = 'black' 
-        nx.draw(G, pos=node_positions_dict, node_color=node_colors, node_size=5*node_sizes*figsize[0]/(num_nodes), arrows=False, edge_color=edge_color, width=0.01, ax=ax)
+        nx.draw(G, pos=node_positions_dict, node_color=node_colors, node_size=node_size_factor*5*node_sizes*figsize[0]/(num_nodes), arrows=False, edge_color=edge_color, width=0.01, ax=ax)
      
         #* add the axes (nx doesn't use them ever)
         ax.axis('on')
@@ -135,18 +136,22 @@ def community_affiliation_to_colors(community_affiliation):
     community_affiliation = community_affiliation.cpu().detach()
 
     # Separate anomalous and non-anomalous rows
-    anomalous_indices = torch.all(community_affiliation == 1, dim=1)
-    non_anomalous_indices = ~anomalous_indices
-    anomalous_affiliation = community_affiliation[anomalous_indices]
-    non_anomalous_affiliation = community_affiliation[non_anomalous_indices]
+    # anomalous_indices = torch.all(community_affiliation == 1, dim=1)
+    # non_anomalous_indices = ~anomalous_indices
+    # anomalous_affiliation = community_affiliation[anomalous_indices]
+    # non_anomalous_affiliation = community_affiliation[non_anomalous_indices]
 
     # Convert non-anomalous affiliation to numpy array for PCA
-    non_anomalous_affiliation_np = non_anomalous_affiliation.numpy()
+    # non_anomalous_affiliation_np = non_anomalous_affiliation.numpy()
+    community_affiliation_np = community_affiliation.numpy()
 
     # Run PCA on non-anomalous rows
-    n_components = min(3, non_anomalous_affiliation_np.shape[1])
+    # n_components = min(3, non_anomalous_affiliation_np.shape[1])
+    n_components = min(3, community_affiliation.shape[1])
     pca = PCA(n_components=n_components)
-    colors = pca.fit_transform(non_anomalous_affiliation_np)
+    # colors = pca.fit_transform(non_anomalous_affiliation_np)
+    colors = pca.fit_transform(community_affiliation_np)
+    
 
     # Normalize colors
     new_min = 0.3
@@ -156,13 +161,18 @@ def community_affiliation_to_colors(community_affiliation):
     colors = new_min + (colors - global_min) * (new_max - new_min) / (global_max - global_min)
 
     # Assign bright red to anomalous rows
-    anomalous_colors = np.zeros((anomalous_affiliation.shape[0], 3))
+    # anomalous_colors = np.zeros((anomalous_affiliation.shape[0], 3))
 
     # Combine colors
-    node_colors = np.zeros((num_nodes, 3))
-    node_colors[anomalous_indices.cpu().numpy()] = anomalous_colors
-    node_colors[non_anomalous_indices.cpu().numpy()] = colors
-
+    # node_colors = np.zeros((num_nodes, 3))
+    # node_colors = np.zeros((num_nodes, n_components))
+    # node_colors[anomalous_indices.cpu().numpy()] = anomalous_colors
+    # node_colors[non_anomalous_indices.cpu().numpy()] = colors
+    node_colors = colors
+    if node_colors.shape[1] == 2:
+        zeros = np.zeros([node_colors.shape[0], 1])
+        node_colors = np.concatenate([node_colors, zeros], axis=1)
+    
     return node_colors
 
 
@@ -339,7 +349,8 @@ def plot_optimization_stage(
                 losses=None, 
                 i=0, 
                 n_iter=0,  
-                calling_function_name=''):
+                calling_function_name='',
+                **kwargs):
     
     '''plot various figures of the situation of the graph in the optimization'''
     if graph.x.shape[1] > 6 and 'feats' in things_to_plot:
@@ -366,14 +377,14 @@ def plot_optimization_stage(
 
         w_cut[w_cut<0] = 0
         fig1, axes1 = plt.subplots(1,2)
-        im_opt = plot_adj(w_cut, dyads_to_omit, ax=axes1[0])
-        im_gt = plot_adj(w_gt, ax=axes1[1])
+        im_gt = plot_adj(w_gt, ax=axes1[0])
+        im_opt = plot_adj(w_cut, dyads_to_omit, ax=axes1[1])
 
-        axes1[0].set_title('optimized adj')
-        axes1[1].set_title('ground truth adj')
+        axes1[0].set_title('ground truth adj')
+        axes1[1].set_title('optimized adj')
 
-        my_colorbar(im_opt, ax=axes1[0])
-        my_colorbar(im_gt, ax=axes1[1])
+        my_colorbar(im_gt, ax=axes1[0], vmin=0, vmax=1)
+        my_colorbar(im_opt, ax=axes1[1], vmin=0, vmax=1)
 
         plt.subplots_adjust(wspace=0.5)
         
@@ -400,8 +411,13 @@ def plot_optimization_stage(
                 for j in range(num_feats // 2):
                     row = j // num_cols
                     col = j % num_cols
-                    plot_2dgraph(graph_cpu, community_affiliation=community_affiliation_cpu, proj_dims=[j, j + num_feats // 2], lorenz_fig_lims=lorenz, ax=axes3[row, col]) 
-                    # plot_relu_lines(lorenz=lorenz, ax=axes3[row, col])
+                    plot_2dgraph(
+                        graph_cpu,
+                        community_affiliation=community_affiliation_cpu,
+                        proj_dims=[j, j + num_feats // 2], lorenz_fig_lims=lorenz, 
+                        ax=axes3[row, col],
+                        **kwargs) 
+                        # plot_relu_lines(lorenz=lorenz, ax=axes3[row, col])
 
             else:
                 # odd number of features
@@ -409,14 +425,26 @@ def plot_optimization_stage(
                 for j in range(0, num_feats - 1, 2):
                     row = (j //2) //num_cols
                     col = (j// 2) % num_cols
-                    plot_2dgraph(graph_cpu, community_affiliation=community_affiliation_cpu, proj_dims=[j, j + 1], lorenz_fig_lims=lorenz, ax=axes3[row, col]) 
+                    plot_2dgraph(
+                        graph_cpu,
+                        community_affiliation=community_affiliation_cpu, 
+                        proj_dims=[j, j + 1],
+                        lorenz_fig_lims=lorenz, ax=axes3[row, col],
+                        **kwargs) 
+                    
                     plot_relu_lines(lorenz=lorenz, ax=axes3[row, col])
                     #todo: plot conditional probability on the plane. can test this when have prior say now
                 
                 # the last two features
                 row = (num_feats // 2) // num_cols
                 col = (num_feats // 2) % num_cols
-                plot_2dgraph(graph_cpu, community_affiliation=community_affiliation_cpu, proj_dims=[num_feats - 2, num_feats - 1], lorenz_fig_lims=lorenz, ax=axes3[row, col])
+                plot_2dgraph(
+                    graph_cpu,
+                    community_affiliation=community_affiliation_cpu,
+                    proj_dims=[num_feats - 2, num_feats - 1], 
+                    lorenz_fig_lims=lorenz, 
+                    ax=axes3[row, col],
+                    **kwargs)
                 plot_relu_lines(lorenz=lorenz, ax=axes3[row, col])
             
 
@@ -436,7 +464,11 @@ def plot_optimization_stage(
                 # plot_prob(prior.model.log_prob, device=next(prior.model.parameters()).device, ax=axes[0], title='prior', x_fig_lim=x_fig_lim, y_fig_lim=y_fig_lim)
                 plot_prob(prior.forward_ll, device=next(prior.model.parameters()).device, ax=axes[0], title='prior', x_fig_lim=x_fig_lim, y_fig_lim=y_fig_lim)
                 
-                plot_2dgraph(graph_cpu, community_affiliation=community_affiliation_cpu, lorenz_fig_lims=lorenz, ax=axes[0], figsize=(3,3))
+                plot_2dgraph(
+                    graph_cpu, community_affiliation=community_affiliation_cpu,
+                    lorenz_fig_lims=lorenz, ax=axes[0], 
+                    figsize=(3,3),
+                    **kwargs)      
                 
                 plot_xy_axes(axes[0], line_range=2)
                 
@@ -449,7 +481,12 @@ def plot_optimization_stage(
                 plot_xy_axes(axes[1], line_range=2)
 
             else:
-                plot_2dgraph(graph_cpu, community_affiliation=community_affiliation_cpu, lorenz_fig_lims=lorenz, figsize=(3,3))
+                plot_2dgraph(
+                    graph_cpu,
+                    community_affiliation=community_affiliation_cpu,
+                    lorenz_fig_lims=lorenz, 
+                    figsize=(3,3),
+                    **kwargs)
                 plot_relu_lines(lorenz=lorenz, ax=plt.gca())
                 
     
@@ -574,15 +611,23 @@ def plot_adj(w, dyads_to_omit=None, test_index=None, test_mask=None, ax=None, fi
     
     return im
  
-def my_colorbar(mappable, ax=None, **kwargs):
+def my_colorbar(mappable, ax=None,vmin=None, vmax=None, **kwargs):
     if ax is None:
         ax = mappable.axes
     fig = ax.figure
     divider = make_axes_locatable(ax)
     cax = divider.append_axes("right", size="5%", pad=0.05)
+    if vmin is None:
+        vmin = mappable.get_array().min()
+    if vmax is None:
+        vmax = mappable.get_array().max()
+    
+    norm = Normalize(vmin=vmin, vmax=vmax)
+    mappable.set_norm(norm)
+        
     return fig.colorbar(mappable, cax=cax, **kwargs)
 
-def plot_feature_pairs(graph, lorenz, prior=None, test_mask=None, axes=None):
+def plot_feature_pairs(graph, lorenz, prior=None, test_mask=None, axes=None, **kwargs):
     '''plot one feature from the first half against one feature from the second half. if there is an odd number of features there will be something like 15 vs. 16 and 16 vs. 17'''
     community_affiliation_cpu = graph.y if hasattr(graph, 'y') else None
     graph_cpu = graph.clone().to('cpu')
@@ -605,7 +650,12 @@ def plot_feature_pairs(graph, lorenz, prior=None, test_mask=None, axes=None):
             for j in range(num_feats // 2):
                 row = j // num_cols
                 col = j % num_cols
-                plot_2dgraph(graph_cpu, community_affiliation=community_affiliation_cpu, test_mask=test_mask, proj_dims=[j, j + num_feats // 2], lorenz_fig_lims=lorenz, ax=axes[row, col]) 
+                plot_2dgraph(graph_cpu, 
+                             community_affiliation=community_affiliation_cpu, 
+                             test_mask=test_mask, proj_dims=[j, j + num_feats // 2], 
+                             lorenz_fig_lims=lorenz, 
+                             ax=axes[row, col],
+                             **kwargs) 
                 # plot_relu_lines(lorenz=lorenz, ax=axes3[row, col])
 
         else:
@@ -614,13 +664,24 @@ def plot_feature_pairs(graph, lorenz, prior=None, test_mask=None, axes=None):
             for j in range(0, num_feats - 1, 2):
                 row = (j //2) //num_cols
                 col = (j// 2) % num_cols
-                plot_2dgraph(graph_cpu, community_affiliation=community_affiliation_cpu, test_mask=test_mask, proj_dims=[j, j + 1], lorenz_fig_lims=lorenz, ax=axes[row, col]) 
+                plot_2dgraph(graph_cpu, 
+                             community_affiliation=community_affiliation_cpu, 
+                             test_mask=test_mask, proj_dims=[j, j + 1], 
+                             lorenz_fig_lims=lorenz, 
+                             ax=axes[row, col],
+                             **kwargs) 
                 plot_relu_lines(lorenz=lorenz, ax=axes[row, col])
             
             # the last two features
             row = (num_feats // 2) // num_cols
             col = (num_feats // 2) % num_cols
-            plot_2dgraph(graph_cpu, community_affiliation=community_affiliation_cpu, test_mask=test_mask, proj_dims=[num_feats - 2, num_feats - 1], lorenz_fig_lims=lorenz, ax=axes[row, col])
+            plot_2dgraph(graph_cpu, 
+                         community_affiliation=community_affiliation_cpu, 
+                         test_mask=test_mask, 
+                         proj_dims=[num_feats - 2, num_feats - 1], 
+                         lorenz_fig_lims=lorenz, 
+                         ax=axes[row, col],
+                         **kwargs)
             plot_relu_lines(lorenz=lorenz, ax=axes[row, col])
         
 
@@ -640,7 +701,13 @@ def plot_feature_pairs(graph, lorenz, prior=None, test_mask=None, axes=None):
             # plot_prob(prior.model.log_prob, device=next(prior.model.parameters()).device, ax=axes[0], title='prior', x_fig_lim=x_fig_lim, y_fig_lim=y_fig_lim)
             plot_prob(prior.forward_ll, device=next(prior.model.parameters()).device, ax=axes[0], title='prior', x_fig_lim=x_fig_lim, y_fig_lim=y_fig_lim)
             
-            plot_2dgraph(graph_cpu, community_affiliation=community_affiliation_cpu, lorenz_fig_lims=lorenz, ax=axes[0], test_mask=test_mask, figsize=(3,3))
+            plot_2dgraph(graph_cpu, 
+                         community_affiliation=community_affiliation_cpu, 
+                         lorenz_fig_lims=lorenz, 
+                         ax=axes[0], 
+                         test_mask=test_mask, 
+                         figsize=(3,3),
+                         **kwargs)
             
             plot_xy_axes(axes[0], line_range=2)
             
@@ -652,7 +719,12 @@ def plot_feature_pairs(graph, lorenz, prior=None, test_mask=None, axes=None):
             plot_xy_axes(axes[1], line_range=2)
 
         else:
-            plot_2dgraph(graph_cpu, community_affiliation=community_affiliation_cpu, lorenz_fig_lims=lorenz, test_mask=test_mask, figsize=(3,3))
+            plot_2dgraph(graph_cpu, 
+                         community_affiliation=community_affiliation_cpu, 
+                         lorenz_fig_lims=lorenz, 
+                         test_mask=test_mask, 
+                         figsize=(3,3),
+                         **kwargs)
             plot_relu_lines(lorenz=lorenz, ax=plt.gca())
     
 

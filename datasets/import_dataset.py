@@ -306,8 +306,8 @@ def import_dataset(dataset_name, remove_data_feats=True, verbose=False):
     elif dataset_name == 'bipartiteHalf':
         data = simulate_dataset('bipartiteHalf', verbose=verbose)
 
-    elif dataset_name == 'small_bipart':
-        data = simulate_dataset('small_bipart', verbose=verbose)
+    elif dataset_name == 'smallBipart':
+        data = simulate_dataset('smallBipart', verbose=verbose)
 
     else:
         raise NotImplementedError(f'dataset {dataset_name} not implemented yet')
