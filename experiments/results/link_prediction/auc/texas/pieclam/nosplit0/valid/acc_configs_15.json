@@ -1,0 +1,108 @@
+{
+    "date_time": "2025-03-26 22:34:37",
+    "config_ranges": [
+        [
+            "clamiter_init",
+            "s_reg",
+            [
+                0,
+                0.001
+            ]
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            [
+                0.999,
+                1.001
+            ]
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            [
+                28,
+                32
+            ]
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            [
+                450,
+                550
+            ]
+        ],
+        [
+            "feat_opt",
+            "lr",
+            [
+                2.9e-06,
+                3.1e-06
+            ]
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            [
+                1250,
+                1350
+            ]
+        ],
+        [
+            "prior_opt",
+            "lr",
+            [
+                1.9e-06,
+                2.1e-06
+            ]
+        ],
+        [
+            "prior_opt",
+            "noise_amp",
+            [
+                0.045000000000000005,
+                0.055
+            ]
+        ],
+        [
+            "back_forth",
+            "scheduler_gamma",
+            [
+                0.4,
+                0.6
+            ]
+        ]
+    ],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 56,
+            "dim_attr": 100,
+            "s_reg": 0.0,
+            "l1_reg": 1,
+            "T": 1,
+            "hidden_dim": 64,
+            "num_coupling_blocks": 32,
+            "num_layers_mlp": 2
+        },
+        "feat_opt": {
+            "lr": 3e-06,
+            "n_iter": 500,
+            "early_stop": 0
+        },
+        "prior_opt": {
+            "n_iter": 1300,
+            "lr": 2e-06,
+            "noise_amp": 0.05,
+            "weight_decay": 0.1,
+            "early_stop": 0
+        },
+        "back_forth": {
+            "n_back_forth": 7,
+            "scheduler_step_size": 3,
+            "scheduler_gamma": 0.5,
+            "early_stop_fit": 0,
+            "first_func_in_fit": "fit_feats"
+        }
+    }
+}

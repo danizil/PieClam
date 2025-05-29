@@ -1,0 +1,40 @@
+{
+    "date_time": "2025-05-17 10:09:59",
+    "ds_name": "texas",
+    "model_name": "pieclam",
+    "task": "link_prediction",
+    "metric": "auc",
+    "config_ranges": [],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 22,
+            "l1_reg": 1
+        },
+        "feat_opt": {
+            "lr": 4e-06,
+            "n_iter": 2000
+        },
+        "prior_opt": {
+            "lr": 5e-06,
+            "n_iter": 2000,
+            "weight_decay": 0.1,
+            "noise_amp": 0.05
+        },
+        "back_forth": {
+            "scheduler_gamma": 0.5,
+            "scheduler_step_size": 3,
+            "n_back_forth": 7,
+            "first_func_in_fit": "fit_prior"
+        }
+    },
+    "(0.8620760534429599, None)": [],
+    "(0.8754367934224049, None)": [],
+    "(0.8612538540596094, None)": [],
+    "(0.8748201438848922, None)": [],
+    "(0.8779033915724562, None)": [],
+    "(0.8643371017471737, None)": [],
+    "(0.8583761562178828, None)": [],
+    "(0.8873586844809866, None)": [],
+    "(0.8757451181911614, None)": [],
+    "(0.8655704008221993, None)": []
+}

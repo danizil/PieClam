@@ -1,0 +1,5 @@
+ssh -X STAFF\\daniel.z@132.68.39.200
+
+cd ICML_PIECLAM_020425/experiments/scripts/link_prediction/hypers_search
+
+srun --partition=euler --account=euler --gres=gpu:1 --cpus-per-task=11 --pty python hypers_search.py

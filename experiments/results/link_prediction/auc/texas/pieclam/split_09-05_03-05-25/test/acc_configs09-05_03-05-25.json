@@ -1,0 +1,30 @@
+{
+    "date_time": "2025-05-03 09:05:00",
+    "ds_name": "texas",
+    "model_name": "pieclam",
+    "task": "link_prediction",
+    "metric": "auc",
+    "config_ranges": [],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 22,
+            "l1_reg": 1
+        },
+        "feat_opt": {
+            "lr": 4e-06,
+            "n_iter": 2000
+        },
+        "prior_opt": {
+            "lr": 5e-06,
+            "n_iter": 2000
+        },
+        "back_forth": {
+            "first_func_in_fit": "fit_prior"
+        }
+    },
+    "(0.8920863309352518, None)": [],
+    "(0.8597122302158273, None)": [],
+    "(0.8751284686536485, None)": [],
+    "(0.8756423432682425, None)": [],
+    "(0.8879753340184995, None)": []
+}

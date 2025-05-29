@@ -1,0 +1,16 @@
+{
+    "date_time": "2025-03-30 02:52:49",
+    "config_ranges": [],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 120,
+            "s_reg": 0,
+            "l1_reg": 1
+        },
+        "feat_opt": {
+            "lr": 1e-05,
+            "n_iter": 14000
+        }
+    },
+    "(0.9135209642742098, None)": []
+}

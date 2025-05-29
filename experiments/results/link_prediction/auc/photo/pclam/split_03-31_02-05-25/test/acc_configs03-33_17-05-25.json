@@ -1,0 +1,44 @@
+{
+    "date_time": "2025-05-17 03:33:06",
+    "ds_name": "photo",
+    "model_name": "pclam",
+    "task": "link_prediction",
+    "metric": "auc",
+    "config_ranges": [],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 150,
+            "s_reg": 0.0,
+            "l1_reg": 1,
+            "hidden_dim": 64,
+            "num_coupling_blocks": 32,
+            "num_layers_mlp": 2
+        },
+        "feat_opt": {
+            "lr": 5e-06,
+            "n_iter": 700
+        },
+        "prior_opt": {
+            "lr": 3e-06,
+            "n_iter": 1300,
+            "noise_amp": 0.1,
+            "weight_decay": 0.1
+        },
+        "back_forth": {
+            "n_back_forth": 7,
+            "scheduler_step_size": 3,
+            "scheduler_gamma": 0.5,
+            "first_func_in_fit": "fit_feats"
+        }
+    },
+    "(0.9843068359184229, None)": [],
+    "(0.9837078162547614, None)": [],
+    "(0.9842938288398524, None)": [],
+    "(0.9845098467837949, None)": [],
+    "(0.9845988952990339, None)": [],
+    "(0.9838600994431749, None)": [],
+    "(0.9840118818438985, None)": [],
+    "(0.9841306919599341, None)": [],
+    "(0.984546349269028, None)": [],
+    "(0.985796334386464, None)": []
+}

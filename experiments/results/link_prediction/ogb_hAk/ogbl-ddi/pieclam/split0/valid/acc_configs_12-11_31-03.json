@@ -1,0 +1,294 @@
+{
+    "date_time": "2025-03-31 12:11:32",
+    "config_ranges": [
+        [
+            "back_forth",
+            "n_back_forth",
+            [
+                7
+            ]
+        ],
+        [
+            "back_forth",
+            "scheduler_gamma",
+            [
+                0.8
+            ]
+        ],
+        [
+            "back_forth",
+            "scheduler_step_size",
+            [
+                4
+            ]
+        ],
+        [
+            "prior_opt",
+            "noise_amp",
+            [
+                0.05,
+                0.03
+            ]
+        ],
+        [
+            "prior_opt",
+            "n_iters",
+            [
+                2500,
+                2000
+            ]
+        ],
+        [
+            "prior_opt",
+            "lr",
+            [
+                1e-06,
+                5e-66
+            ]
+        ],
+        [
+            "feat_opt",
+            "lr",
+            [
+                1e-05,
+                2e-05
+            ]
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            [
+                2000,
+                1500
+            ]
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            [
+                170,
+                120,
+                190
+            ]
+        ]
+    ],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 56,
+            "dim_attr": 100,
+            "s_reg": 0.0,
+            "l1_reg": 1,
+            "T": 1,
+            "hidden_dim": 64,
+            "num_coupling_blocks": 32,
+            "num_layers_mlp": 2
+        },
+        "feat_opt": {
+            "lr": 3e-06,
+            "n_iter": 500,
+            "early_stop": 0
+        },
+        "prior_opt": {
+            "n_iter": 1300,
+            "lr": 2e-06,
+            "noise_amp": 0.05,
+            "weight_decay": 0.1,
+            "early_stop": 0
+        },
+        "back_forth": {
+            "n_back_forth": 7,
+            "scheduler_step_size": 3,
+            "scheduler_gamma": 0.5,
+            "early_stop_fit": 0,
+            "first_func_in_fit": "fit_feats"
+        }
+    },
+    "(0.8652697975114054, 0.8134003550854377)": [
+        [
+            "back_forth",
+            "n_back_forth",
+            7
+        ],
+        [
+            "back_forth",
+            "scheduler_gamma",
+            0.8
+        ],
+        [
+            "back_forth",
+            "scheduler_step_size",
+            4
+        ],
+        [
+            "prior_opt",
+            "noise_amp",
+            0.05
+        ],
+        [
+            "prior_opt",
+            "n_iters",
+            2500
+        ],
+        [
+            "prior_opt",
+            "lr",
+            1e-06
+        ],
+        [
+            "feat_opt",
+            "lr",
+            1e-05
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            2000
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            170
+        ]
+    ],
+    "(0.8431705983264539, 0.7846938699068837)": [
+        [
+            "back_forth",
+            "n_back_forth",
+            7
+        ],
+        [
+            "back_forth",
+            "scheduler_gamma",
+            0.8
+        ],
+        [
+            "back_forth",
+            "scheduler_step_size",
+            4
+        ],
+        [
+            "prior_opt",
+            "noise_amp",
+            0.05
+        ],
+        [
+            "prior_opt",
+            "n_iters",
+            2500
+        ],
+        [
+            "prior_opt",
+            "lr",
+            1e-06
+        ],
+        [
+            "feat_opt",
+            "lr",
+            1e-05
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            2000
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            120
+        ]
+    ],
+    "(0.8560705376472968, 0.8410056259317247)": [
+        [
+            "back_forth",
+            "n_back_forth",
+            7
+        ],
+        [
+            "back_forth",
+            "scheduler_gamma",
+            0.8
+        ],
+        [
+            "back_forth",
+            "scheduler_step_size",
+            4
+        ],
+        [
+            "prior_opt",
+            "noise_amp",
+            0.05
+        ],
+        [
+            "prior_opt",
+            "n_iters",
+            2500
+        ],
+        [
+            "prior_opt",
+            "lr",
+            1e-06
+        ],
+        [
+            "feat_opt",
+            "lr",
+            1e-05
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            2000
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            190
+        ]
+    ],
+    "(0.8152506948138049, 0.7976762130212977)": [
+        [
+            "back_forth",
+            "n_back_forth",
+            7
+        ],
+        [
+            "back_forth",
+            "scheduler_gamma",
+            0.8
+        ],
+        [
+            "back_forth",
+            "scheduler_step_size",
+            4
+        ],
+        [
+            "prior_opt",
+            "noise_amp",
+            0.05
+        ],
+        [
+            "prior_opt",
+            "n_iters",
+            2500
+        ],
+        [
+            "prior_opt",
+            "lr",
+            1e-06
+        ],
+        [
+            "feat_opt",
+            "lr",
+            1e-05
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            1500
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            170
+        ]
+    ]
+}

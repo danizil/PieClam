@@ -1,0 +1,48 @@
+{
+    "date_time": "2025-05-24 01:09:14",
+    "ds_name": "photo",
+    "model_name": "bigclam",
+    "task": "link_prediction",
+    "metric": "auc",
+    "config_ranges": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            [
+                40,
+                50,
+                60
+            ]
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            [
+                7000,
+                10000,
+                13000
+            ]
+        ],
+        [
+            "feat_opt",
+            "lr",
+            [
+                2e-06,
+                3e-06,
+                5e-06
+            ]
+        ]
+    ],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 50,
+            "dim_attr": 500,
+            "s_reg": 0.0,
+            "l1_reg": 1
+        },
+        "feat_opt": {
+            "lr": 1e-06,
+            "n_iter": 7000
+        }
+    }
+}
