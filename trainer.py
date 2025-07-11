@@ -351,7 +351,7 @@ class Trainer():
                 printd(f'\n init_node_feats took {time.time() - t} seconds')
 
         self.data.to(self.device) 
-
+        
         # OPTIMIZATION
         try:
             # FIT VANILLA 

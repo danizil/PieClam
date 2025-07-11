@@ -1,0 +1,6689 @@
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:97:::  
+Using device: cuda
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:119:::  
+Running cross val link splits for photo with model bigclam
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:120:::  
+args=Namespace(model_name='bigclam', ds_name='photo', dim_feats=[], l1_regs=[], s_regs=[], n_iters_feats=[], lr_feats=[], dim_attr=[], n_iters_prior=[], lr_prior=[], noise_amps=[], n_back_forth=[], first_funcs_in_fit=[], use_global_config_base=False, densify=False, attr_opt=False, test_p=0.1, val_p=0.0, val_dyads_path=None, test_dyads_path=None, random_search=False, num_draws_random=1, test_only=True, n_reps=10, reverse_test_set_order=False)
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_03-29_02-05-25 of photo,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/photo/bigclam/split_03-29_02-05-25/test/acc_configs12-39_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:39:55 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9730649026480958
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 68.907297372818 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:41:04 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9729158236284685
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.32102918624878 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:41:35 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9729166277185533
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.36117148399353 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:42:05 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9735871814141238
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.27856969833374 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:42:35 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9738998425103418
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.23664689064026 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:43:06 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.974304971094541
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.222825527191162 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:43:36 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9733912993260088
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.24446415901184 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:44:06 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9723507213219332
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.28182601928711 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:44:37 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9729339572957519
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.306606769561768 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:45:07 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9741474139500842
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.225605964660645 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_03-30_02-05-25 of photo,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/photo/bigclam/split_03-30_02-05-25/test/acc_configs12-45_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:45:44 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9738513769032441
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.232977390289307 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:46:14 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9731428668455534
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.253434896469116 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:46:45 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9737128557402267
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.24180269241333 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:47:15 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9750560464355774
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.241400718688965 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:47:45 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9738673346031218
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.23604130744934 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:48:16 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9742927440781086
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.257587909698486 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:48:46 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9747202524545118
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.214635372161865 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:49:16 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.974305701136752
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.271300315856934 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:49:47 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9733031788818557
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.242294549942017 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:50:17 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9744600196278234
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.26909589767456 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_03-31_02-05-25 of photo,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/photo/bigclam/split_03-31_02-05-25/test/acc_configs12-50_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:50:49 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9744646431477205
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.310100317001343 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:51:19 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9756456091414998
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.288315534591675 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:51:50 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.975296429634872
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.28384256362915 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:52:20 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9744912483754025
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.24378514289856 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:52:50 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.975213267138323
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.251569271087646 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:53:21 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9747903138463254
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.253806829452515 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:53:51 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9763282709293565
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.254451990127563 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:54:21 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9746423804574644
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.251361846923828 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:54:52 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9733224218984218
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.273037910461426 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:55:22 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9740965084743715
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.32373070716858 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_05-18_02-05-25 of photo,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/photo/bigclam/split_05-18_02-05-25/test/acc_configs12-55_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:55:55 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9739188445474429
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.3738796710968 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:56:25 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9745117749042521
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.185997247695923 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:56:55 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9735483386756805
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.10075306892395 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:57:26 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9741604175967963
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.100769519805908 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:57:56 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9751879918107046
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.14280128479004 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:58:26 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9748500211978854
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.16071844100952 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:58:56 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9747726364681216
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.18190336227417 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:59:26 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9754589227569646
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.09097981452942 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:59:57 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9755789311162818
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.089150428771973 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:00:27 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9740091876820072
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.081793069839478 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_12-31_03-05-25 of photo,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/photo/bigclam/split_12-31_03-05-25/test/acc_configs13-00_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:00:59 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9739102024490304
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.085784673690796 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:01:29 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9733256899504861
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.097360849380493 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:01:59 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.973856728138621
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.134809732437134 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:02:29 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9735690375149686
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.133389472961426 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:03:00 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9737413993674846
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.17193031311035 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:03:30 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9730757651589449
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.2066490650177 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:04:00 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9751462848089254
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.106511116027832 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:04:30 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9741327953174246
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.126503944396973 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:05:01 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9734611621381957
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.101800203323364 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:05:31 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9742744203496327
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.106876373291016 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_12-33_03-05-25 of photo,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/photo/bigclam/split_12-33_03-05-25/test/acc_configs13-06_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:06:03 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9741122516724944
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.187864780426025 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:06:34 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9757743902332773
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.189412117004395 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:07:04 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9727734605213657
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.099095344543457 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:07:34 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9750466148571139
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.12063956260681 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:08:04 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9745946307808803
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.338183641433716 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:08:35 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9742548614411882
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.35848307609558 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:09:05 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9730212220612587
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.33924627304077 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:09:36 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9738414665795478
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.35545587539673 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:10:06 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9744635788515308
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.3542742729187 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:10:36 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9747699951406227
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.362481832504272 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_12-46_03-05-25 of photo,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/photo/bigclam/split_12-46_03-05-25/test/acc_configs13-11_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:11:09 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9725581436078695
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.343546867370605 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:11:40 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.971528340494878
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.356473445892334 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:12:10 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9741705723519792
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.350183248519897 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:12:41 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9724752107619083
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.36852717399597 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:13:12 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9721503722640189
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.271190404891968 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:13:42 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9718968268522634
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.365875005722046 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:14:12 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9725520017198703
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.303163051605225 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:14:43 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9736266967984052
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.356576681137085 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:15:13 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9722173626986569
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.3388569355011 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:15:44 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9721521406516581
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.377054691314697 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_19-46_02-05-25 of photo,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/photo/bigclam/split_19-46_02-05-25/test/acc_configs13-16_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:16:16 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9744456227396893
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.319199323654175 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:16:47 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9738095212639394
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.363470315933228 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:17:17 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9751485711306576
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.337640285491943 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:17:48 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9749896834493715
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.335472583770752 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:18:18 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9751843931317757
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.29161524772644 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:18:48 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9745826555396382
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.412639379501343 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:19:19 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9754484699585448
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.4021053314209 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:19:49 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9759804809764833
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.352160453796387 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:20:20 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9744415684274358
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.387033462524414 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:20:50 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9761853426173801
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.33742117881775 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_19-57_02-05-25 of photo,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/photo/bigclam/split_19-57_02-05-25/test/acc_configs13-21_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:21:26 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9727472108713777
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.440321922302246 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:21:56 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9721407422108118
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.364899396896362 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:22:26 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9739823237724433
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.404477834701538 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:22:57 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9716941646569418
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.32880997657776 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:23:27 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9724026822199143
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.30075192451477 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:23:58 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9718507955564688
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.340734481811523 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:24:28 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9710783221118343
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.32821011543274 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:24:59 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9726918518663968
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.40686011314392 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:25:30 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9716885629071313
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.266066789627075 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:26:00 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9717001556119534
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.35592555999756 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_20-09_02-05-25 of photo,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/photo/bigclam/split_20-09_02-05-25/test/acc_configs13-26_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:26:33 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9743387383184143
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.39050602912903 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:27:03 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9751263504191106
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.32216501235962 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:27:34 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9744976554206396
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.317264080047607 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:28:04 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9749951149624341
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.373857498168945 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:28:35 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9730553584334365
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.3208646774292 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:29:05 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9760728115305475
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.312496423721313 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:29:35 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9755258965114443
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.344749689102173 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:30:06 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9724406425466317
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.43069314956665 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:30:36 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9748291093260317
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.420810222625732 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:31:07 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.974587579703189
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.317957878112793 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_22-52_02-05-25 of photo,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/photo/bigclam/split_22-52_02-05-25/test/acc_configs13-31_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:31:40 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9746229788999573
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.302250146865845 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:32:10 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9746368854159424
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.33594059944153 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:32:40 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9742841236013057
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.344237327575684 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:33:11 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9741840348576478
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.31929349899292 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:33:41 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9743471916866389
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.355913639068604 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:34:11 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9751834792449369
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.351588487625122 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:34:42 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9744931164365693
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.350991249084473 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:35:12 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9754363790908652
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.391737699508667 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:35:43 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.9739388052166014
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.41572093963623 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 13:36:13 starting optimization of bigclam on photo on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 2e-06,
+        "n_iter": 7000,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7000 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.973766016086429
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam photo 
+took 30.2960524559021 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+

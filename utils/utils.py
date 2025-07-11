@@ -119,8 +119,8 @@ def clam_edges_from_feats(points, lorenz):
         B = torch.ones(points.shape[1]).unsqueeze(1)
 
     prods = torch.matmul(points, B*points.T)
-    probs = torch.exp(-prods)
-
+    probs = torch.clamp(torch.exp(-prods), min=0.0, max=1.0)
+    
     adj_mat1 = torch.bernoulli(1 - probs)
     #* sample the graph only once since it's undirected:
     adj_mat = torch.triu(adj_mat1)

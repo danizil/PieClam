@@ -1,0 +1,8 @@
+Metadata-Version: 2.1
+Name: PieClam
+Version: 0.1.0
+Summary: Graphon learning and link prediction experiments (ICML PieClam project)
+Author: Danny Zilberg
+Author-email: dannyzilberg@gmail.com
+Requires-Python: >=3.6
+License-File: LICENSE

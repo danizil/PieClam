@@ -1,0 +1,49 @@
+{
+    "date_time": "2025-05-30 18:08:07",
+    "ds_name": "squirrel",
+    "model_name": "pieclam",
+    "task": "link_prediction",
+    "metric": "auc",
+    "config_ranges": [],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 100,
+            "dim_attr": 100,
+            "s_reg": 0.1,
+            "l1_reg": 1,
+            "T": 1,
+            "hidden_dim": 64,
+            "num_coupling_blocks": 32,
+            "num_layers_mlp": 2
+        },
+        "feat_opt": {
+            "lr": 5e-06,
+            "n_iter": 3000,
+            "early_stop": 0
+        },
+        "prior_opt": {
+            "n_iter": 2000,
+            "lr": 5e-06,
+            "noise_amp": 0.1,
+            "weight_decay": 0.1,
+            "early_stop": 0
+        },
+        "back_forth": {
+            "n_back_forth": 7,
+            "scheduler_step_size": 3,
+            "scheduler_gamma": 0.5,
+            "early_stop_fit": 0,
+            "first_func_in_fit": "fit_feats"
+        }
+    },
+    "(0.990332435255553, None)": [],
+    "(0.9899284579351991, None)": [],
+    "(0.9890070334415886, None)": [],
+    "(0.9899079494595325, None)": [],
+    "(0.989294812427671, None)": [],
+    "(0.9907659138173455, None)": [],
+    "(0.9894429153064208, None)": [],
+    "(0.9895698309764359, None)": [],
+    "(0.9894908371843684, None)": [],
+    "(0.9887693891822054, None)": []
+}

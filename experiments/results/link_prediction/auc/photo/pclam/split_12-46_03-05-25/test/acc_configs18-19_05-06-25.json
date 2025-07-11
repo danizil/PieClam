@@ -1,0 +1,340 @@
+{
+    "date_time": "2025-06-05 18:19:51",
+    "ds_name": "photo",
+    "model_name": "pclam",
+    "task": "link_prediction",
+    "metric": "auc",
+    "config_ranges": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            [
+                200
+            ]
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            [
+                3000
+            ]
+        ],
+        [
+            "feat_opt",
+            "lr",
+            [
+                5e-06
+            ]
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            [
+                3000
+            ]
+        ],
+        [
+            "prior_opt",
+            "lr",
+            [
+                5e-06
+            ]
+        ]
+    ],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 150,
+            "s_reg": 0.0,
+            "l1_reg": 1,
+            "hidden_dim": 64,
+            "num_coupling_blocks": 32,
+            "num_layers_mlp": 2
+        },
+        "feat_opt": {
+            "lr": 5e-06,
+            "n_iter": 700
+        },
+        "prior_opt": {
+            "lr": 3e-06,
+            "n_iter": 1300,
+            "noise_amp": 0.1,
+            "weight_decay": 0.1
+        },
+        "back_forth": {
+            "n_back_forth": 7,
+            "scheduler_step_size": 3,
+            "scheduler_gamma": 0.5,
+            "first_func_in_fit": "fit_feats"
+        }
+    },
+    "(0.9826192051261929, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            200
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-06
+        ]
+    ],
+    "(0.982864415169127, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            200
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-06
+        ]
+    ],
+    "(0.983825365230852, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            200
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-06
+        ]
+    ],
+    "(0.9834588456379246, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            200
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-06
+        ]
+    ],
+    "(0.9816154630592466, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            200
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-06
+        ]
+    ],
+    "(0.9833043646499198, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            200
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-06
+        ]
+    ],
+    "(0.982968113817056, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            200
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-06
+        ]
+    ],
+    "(0.9828647970445028, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            200
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-06
+        ]
+    ],
+    "(0.9836778649813932, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            200
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-06
+        ]
+    ],
+    "(0.982705965936263, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            200
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-06
+        ]
+    ]
+}

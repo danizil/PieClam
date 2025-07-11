@@ -1,0 +1,9117 @@
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:97:::  
+Using device: cuda
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:119:::  
+Running cross val link splits for texas with model bigclam
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:120:::  
+args=Namespace(model_name='bigclam', ds_name='texas', dim_feats=[], l1_regs=[], s_regs=[], n_iters_feats=[], lr_feats=[], dim_attr=[], n_iters_prior=[], lr_prior=[], noise_amps=[], n_back_forth=[], first_funcs_in_fit=[], use_global_config_base=False, densify=False, attr_opt=False, test_p=0.1, val_p=0.0, val_dyads_path=None, test_dyads_path=None, random_search=False, num_draws_random=1, test_only=True, n_reps=10, reverse_test_set_order=False)
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split1 of texas,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/texas/bigclam/split1/test/acc_configs12-32_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:33:31 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8295967876861301
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 42.38938856124878 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:34:13 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7721264848586248
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.985064268112183 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:34:21 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8333612180023423
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.692677021026611 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:34:29 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8502593274217836
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.632343292236328 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:34:37 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8303496737493726
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.665410041809082 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:34:45 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8062573197256149
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.66670560836792 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:34:52 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.78618035803915
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.678324222564697 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:35:00 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7896938263342813
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.648240089416504 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:35:08 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8035803915007529
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.672250747680664 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:35:16 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8572862640120461
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.638718605041504 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_00-08_02-05-25 of texas,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/texas/bigclam/split_00-08_02-05-25/test/acc_configs12-35_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:35:23 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7594619956208946
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.655116558074951 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:35:33 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5808570534876447
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.657141208648682 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:35:42 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.707538317172349
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.681947708129883 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:35:50 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7206756334063185
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.681981086730957 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:35:57 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7544573037222396
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.736155271530151 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:36:05 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7941820456678135
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.686627149581909 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:36:13 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7241163590866437
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.671756267547607 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:36:21 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.802314670003128
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.695683002471924 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:36:28 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.6690647482014389
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.654733419418335 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:36:36 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7857366280888333
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.657135009765625 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_00-10_02-05-25 of texas,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/texas/bigclam/split_00-10_02-05-25/test/acc_configs12-36_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:36:44 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8083081921559526
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.658043146133423 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:36:52 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8041308888373173
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.675593137741089 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:37:00 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7888141100023207
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.652505397796631 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:37:08 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8201438848920863
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.669273376464844 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:37:16 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8150382919470874
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.677878379821777 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:37:23 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7869575307495938
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.676936626434326 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:37:31 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7823160826177766
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.674786329269409 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:37:39 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7790670689255047
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.682535648345947 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:37:47 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8083081921559526
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.683388710021973 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:37:55 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.754467393826874
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.614471435546875 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_03-16_02-05-25 of texas,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/texas/bigclam/split_03-16_02-05-25/test/acc_configs12-38_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:38:03 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.742699957680914
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.63135552406311 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:38:11 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7803639441388066
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.636946439743042 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:38:19 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8222598391874736
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.6501007080078125 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:38:27 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7583580194667796
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.6436402797698975 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:38:35 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8764282691493863
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.643544912338257 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:38:44 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7460854845535336
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.657012939453125 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:38:52 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7714769360981802
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.673004627227783 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:39:01 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7308506136267457
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.621206283569336 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:39:08 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.837917900973339
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.663728952407837 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:39:16 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.6889547185780788
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.930850267410278 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_03-26_02-05-25 of texas,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/texas/bigclam/split_03-26_02-05-25/test/acc_configs12-39_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:39:24 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8563206577595066
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.460965156555176 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:39:33 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8610483042137719
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.45660138130188 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:39:42 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.80863309352518
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.470841884613037 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:39:50 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8316546762589928
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.4863011837005615 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:39:58 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8275436793422405
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.496147394180298 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:40:05 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8071942446043165
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.431948661804199 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:40:13 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.816032887975334
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.47892689704895 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:40:20 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7985611510791367
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.452226400375366 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:40:28 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8509763617677286
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.456137180328369 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:40:35 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8659815005138746
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.463447570800781 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_09-03_03-05-25 of texas,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/texas/bigclam/split_09-03_03-05-25/test/acc_configs12-40_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:40:43 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.6888489208633094
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.484011888504028 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:40:51 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.787769784172662
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.435964107513428 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:40:58 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8053956834532374
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.474539756774902 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:41:06 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.6960431654676259
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.425434589385986 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:41:13 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7309352517985611
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.43836236000061 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:41:21 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7446043165467626
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.445498466491699 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:41:29 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.6920863309352518
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.45072865486145 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:41:36 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7496402877697841
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.437762498855591 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:41:44 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7589928057553956
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.456634283065796 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:41:51 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7086330935251799
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.443846940994263 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_09-05_03-05-25 of texas,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/texas/bigclam/split_09-05_03-05-25/test/acc_configs12-41_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:41:59 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7317574511819116
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.503349781036377 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:42:06 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7268756423432683
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.722770929336548 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:42:14 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7348406988694758
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.513059377670288 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:42:22 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.6536485097636175
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.457540273666382 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:42:29 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7885405960945528
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.4623963832855225 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:42:37 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.6929599177800616
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.450062990188599 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:42:44 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7484583761562179
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.4455766677856445 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:42:52 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.72327852004111
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.457571983337402 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:42:59 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7286742034943472
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.432359218597412 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:43:07 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8001027749229188
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.446072816848755 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_09-21_03-05-25 of texas,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/texas/bigclam/split_09-21_03-05-25/test/acc_configs12-43_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:43:15 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7362110311750599
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.414918422698975 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:43:22 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7647215560884625
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.453479051589966 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:43:30 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7847055688782307
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.766021490097046 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:43:38 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8180122568611777
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.480894088745117 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:43:45 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7276845190514255
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.49909234046936 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:43:53 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.6799893418598455
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.504514694213867 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:44:02 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7668531841193711
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.477514743804932 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:44:12 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7316813216093792
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.471777439117432 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:44:22 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7628563815614176
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.471038818359375 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:44:31 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8054889421795897
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.43046498298645 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_16-15_02-05-25 of texas,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/texas/bigclam/split_16-15_02-05-25/test/acc_configs12-44_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:44:39 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7762589928057554
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.475539445877075 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:44:47 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8083932853717026
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.483606576919556 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:44:57 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7736211031175061
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.509123086929321 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:45:05 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7189448441247003
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.505609035491943 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:45:12 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7822541966426858
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.510438442230225 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:45:20 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7836930455635491
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.491542339324951 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:45:27 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7172661870503598
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.4865148067474365 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:45:35 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.705515587529976
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.482776880264282 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:45:42 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7611510791366906
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.471376657485962 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:45:50 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8170263788968826
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.460398197174072 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_16-25_02-05-25 of texas,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/texas/bigclam/split_16-25_02-05-25/test/acc_configs12-45_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:45:57 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7332134292565947
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.472043037414551 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:46:05 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8057553956834532
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.493890047073364 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:46:12 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8006594724220624
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.48417329788208 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:46:20 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.716127098321343
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.931917428970337 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:46:28 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7598920863309354
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.674749374389648 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:46:36 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7802757793764988
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.65303897857666 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:46:43 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7155275779376499
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.669074773788452 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:46:51 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7604916067146283
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.703503847122192 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:46:59 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.815947242206235
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.680865049362183 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:47:06 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8024580335731416
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.670017242431641 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_16-39_02-05-25 of texas,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/texas/bigclam/split_16-39_02-05-25/test/acc_configs12-47_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:47:15 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8007194244604318
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.632579565048218 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:47:23 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7954436450839328
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.6629533767700195 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:47:30 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7952038369304556
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.80897331237793 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:47:38 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8239808153477218
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.474360227584839 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:47:46 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7633093525179856
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.465963125228882 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:47:53 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7335731414868105
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.4826695919036865 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:48:01 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8160671462829736
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.509642124176025 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:48:08 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8026378896882493
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.914197683334351 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:48:17 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8211031175059952
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.570617198944092 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:48:24 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8501199040767385
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.5677008628845215 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_19-23_02-05-25 of texas,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/texas/bigclam/split_19-23_02-05-25/test/acc_configs12-48_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:48:32 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7807319361901782
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.5508081912994385 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:48:39 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7072255239286831
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.944993019104004 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:48:47 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7116046293400062
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.461431980133057 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:48:55 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7710353456365342
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.478758335113525 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:49:02 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.68282765092274
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.494945526123047 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:49:10 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7141069752893336
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.485598087310791 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:49:18 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7247419455739755
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.479058027267456 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:49:25 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7511729746637472
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.457561731338501 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:49:33 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7488270253362528
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.465225458145142 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:49:40 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7178604942133251
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.470501184463501 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_22-13_28-04-25 of texas,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/texas/bigclam/split_22-13_28-04-25/test/acc_configs12-49_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:49:48 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7585931254996003
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.480275869369507 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:49:55 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7785771382893685
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.457873821258545 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:50:03 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7242206235011991
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.481855630874634 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:50:11 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8006927791100452
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.485612392425537 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:50:18 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7948308020250467
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.48227334022522 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:50:26 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.773248068212097
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.773785591125488 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:50:34 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7966959765520917
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.419399738311768 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:50:41 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7780442312816414
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.800769090652466 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:50:49 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8292033040234479
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.460558652877808 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:50:57 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7705835331734612
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.44424033164978 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_22-15_28-04-25 of texas,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/texas/bigclam/split_22-15_28-04-25/test/acc_configs12-51_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:51:04 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7183664832839611
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.462984561920166 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:51:12 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.6965721540414728
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.4691174030303955 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:51:19 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7058823529411765
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.474574089050293 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:51:27 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7378332628015234
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.468738317489624 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:51:34 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7329665679221328
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.500563621520996 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:51:42 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7443927211172238
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.489764451980591 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:51:49 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7517985611510791
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.891840219497681 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:51:57 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7285230639018198
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.471212387084961 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:52:05 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7458738891239949
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.4824278354644775 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:52:12 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7680914092255607
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.474775314331055 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:516:::  
+On test set split_23-59_07-05-25 of texas,bigclam
+ ======================
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:633:::  
+RunSaver defined to acc_configs path /home/daniel.z/ICML_PIECLAM_020425/experiments/results/link_prediction/auc/texas/bigclam/split_23-59_07-05-25/test/acc_configs12-52_24-05-25.json
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 0
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:52:20 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.696969696969697
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.4660210609436035 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 1
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:52:27 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7458033573141487
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.492466688156128 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 2
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:52:35 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7678221059516024
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.459637641906738 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 3
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:52:42 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7159363418356224
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.47606086730957 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 4
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:52:50 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7277087420972312
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.505894660949707 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 5
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:52:57 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7277087420972312
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.471688985824585 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 6
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:53:05 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7233485938521909
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.819210767745972 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 7
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:53:13 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7455853499018966
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.477301836013794 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 8
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:53:20 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7660780466535863
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.4620537757873535 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:655:::  
+Repetition no. 9
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:161:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:335:::  
+
+ 2025-05-24 12:53:28 starting optimization of bigclam on texas on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 50,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 0.05,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 4e-06,
+        "n_iter": 7500,
+        "early_stop": 0
+    }
+}
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../clamiter.py:365:::  
+staring fit_feats for 7500 iterations
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:438:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7680401133638544
+val
+auc: None
+
+
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/../trainer.py:454:::  
+
+train_model_on_params on bigclam texas 
+took 7.4707958698272705 seconds
+
+
+/home/daniel.z/ICML_PIECLAM_020425/experiments/optimization_utils.py:729:::  
+
+
+Finished CrossVal!
+
+

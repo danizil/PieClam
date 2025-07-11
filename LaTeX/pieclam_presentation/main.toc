@@ -1,0 +1,45 @@
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Notations}{5}{0}{1}
+\beamer@subsectionintoc {1}{2}{Graph Representation Learning}{8}{0}{1}
+\beamer@subsectionintoc {1}{3}{Autoencoders}{10}{0}{1}
+\beamer@subsubsectionintoc {1}{3}{1}{Factorization and Inner Product Decoders}{12}{0}{1}
+\beamer@sectionintoc {2}{Main Contributions}{14}{0}{2}
+\beamer@sectionintoc {3}{BigClam Model}{16}{0}{3}
+\beamer@subsectionintoc {3}{1}{Community Affiliation}{17}{0}{3}
+\beamer@subsectionintoc {3}{2}{Overview}{19}{0}{3}
+\beamer@subsectionintoc {3}{3}{Probabilistic Model}{21}{0}{3}
+\beamer@sectionintoc {4}{IeClam}{26}{0}{4}
+\beamer@subsectionintoc {4}{1}{Bipartite Is Not Inclusive}{27}{0}{4}
+\beamer@subsectionintoc {4}{2}{Exclusive Communities}{30}{0}{4}
+\beamer@subsectionintoc {4}{3}{Probabilistic Model}{32}{0}{4}
+\beamer@subsectionintoc {4}{4}{Bipartite Encoding}{35}{0}{4}
+\beamer@subsectionintoc {4}{5}{L and Positivity Domain}{37}{0}{4}
+\beamer@sectionintoc {5}{PieClam}{41}{0}{5}
+\beamer@subsubsectionintoc {5}{0}{1}{Generative Models}{42}{0}{5}
+\beamer@subsubsectionintoc {5}{0}{2}{Prior on Code Space}{43}{0}{5}
+\beamer@subsubsectionintoc {5}{0}{3}{Probabilistic Model and PClam}{44}{0}{5}
+\beamer@subsubsectionintoc {5}{0}{4}{Normalizing Flows Neural Network Prior}{45}{0}{5}
+\beamer@subsubsectionintoc {5}{0}{5}{Optimizing PieClam}{46}{0}{5}
+\beamer@subsubsectionintoc {5}{0}{6}{PieClam as Graphon}{47}{0}{5}
+\beamer@subsubsectionintoc {5}{0}{7}{Sampling Graphs}{49}{0}{5}
+\beamer@subsubsectionintoc {5}{0}{8}{Graphs With Node Features}{50}{0}{5}
+\beamer@sectionintoc {6}{Universality of PieClam}{51}{0}{6}
+\beamer@subsectionintoc {6}{1}{Universal Autoencoders}{52}{0}{6}
+\beamer@subsectionintoc {6}{2}{Cut Distance}{54}{0}{6}
+\beamer@subsectionintoc {6}{3}{Log Cut Distance}{56}{0}{6}
+\beamer@subsectionintoc {6}{4}{Universal Autoencoders with Log Cut}{59}{0}{6}
+\beamer@subsectionintoc {6}{5}{Universality of IeClam and PieClam}{61}{0}{6}
+\beamer@subsectionintoc {6}{6}{Universality in $\mathcal {T}$}{63}{0}{6}
+\beamer@subsectionintoc {6}{7}{BigClam and PClam Are Not Universal}{65}{0}{6}
+\beamer@sectionintoc {7}{Experiments and Results}{67}{0}{7}
+\beamer@subsectionintoc {7}{1}{Reconstructing Synthetic Priors}{69}{0}{7}
+\beamer@subsubsectionintoc {7}{1}{1}{Description}{70}{0}{7}
+\beamer@subsubsectionintoc {7}{1}{2}{Results}{71}{0}{7}
+\beamer@subsectionintoc {7}{2}{SBM Distance Measurement}{72}{0}{7}
+\beamer@subsubsectionintoc {7}{2}{1}{Description}{73}{0}{7}
+\beamer@subsubsectionintoc {7}{2}{2}{Results}{74}{0}{7}
+\beamer@subsectionintoc {7}{3}{Anomaly Detection}{75}{0}{7}
+\beamer@subsubsectionintoc {7}{3}{1}{Description}{76}{0}{7}
+\beamer@subsubsectionintoc {7}{3}{2}{Results}{77}{0}{7}
+\beamer@sectionintoc {8}{Conclusion}{79}{0}{8}
+\beamer@sectionintoc {9}{Proofs}{82}{0}{9}

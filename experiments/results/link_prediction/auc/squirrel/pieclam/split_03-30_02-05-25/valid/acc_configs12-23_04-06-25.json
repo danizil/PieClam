@@ -1,0 +1,395 @@
+{
+    "date_time": "2025-06-04 12:23:37",
+    "ds_name": "squirrel",
+    "model_name": "pieclam",
+    "task": "link_prediction",
+    "metric": "auc",
+    "config_ranges": [
+        [
+            "clamiter_init",
+            "s_reg",
+            [
+                0.1
+            ]
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            [
+                100,
+                200
+            ]
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            [
+                1000,
+                2000,
+                3000
+            ]
+        ],
+        [
+            "feat_opt",
+            "lr",
+            [
+                5e-06
+            ]
+        ],
+        [
+            "back_forth",
+            "first_func_in_fit",
+            [
+                "fit_feats"
+            ]
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            [
+                1000,
+                2000,
+                3000
+            ]
+        ],
+        [
+            "prior_opt",
+            "lr",
+            [
+                5e-06
+            ]
+        ],
+        [
+            "prior_opt",
+            "noise_amp",
+            [
+                0.1
+            ]
+        ]
+    ],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 100,
+            "dim_attr": 100,
+            "s_reg": 0.1,
+            "l1_reg": 1,
+            "T": 1,
+            "hidden_dim": 64,
+            "num_coupling_blocks": 32,
+            "num_layers_mlp": 2
+        },
+        "feat_opt": {
+            "lr": 5e-06,
+            "n_iter": 3000,
+            "early_stop": 0
+        },
+        "prior_opt": {
+            "n_iter": 2000,
+            "lr": 5e-06,
+            "noise_amp": 0.1,
+            "weight_decay": 0.1,
+            "early_stop": 0
+        },
+        "back_forth": {
+            "n_back_forth": 7,
+            "scheduler_step_size": 3,
+            "scheduler_gamma": 0.5,
+            "early_stop_fit": 0,
+            "first_func_in_fit": "fit_feats"
+        }
+    },
+    "(0.9888658428304506, 0.9889806881128949)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.1
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            200
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            2000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "back_forth",
+            "first_func_in_fit",
+            "fit_feats"
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            2000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "noise_amp",
+            0.1
+        ]
+    ],
+    "(0.9811666054141353, 0.9808979043562855)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.1
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            200
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            2000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "back_forth",
+            "first_func_in_fit",
+            "fit_feats"
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            1000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "noise_amp",
+            0.1
+        ]
+    ],
+    "(0.9875119976398764, 0.9870070405347942)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.1
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            100
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            2000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "back_forth",
+            "first_func_in_fit",
+            "fit_feats"
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            2000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "noise_amp",
+            0.1
+        ]
+    ],
+    "(0.9776584871872487, 0.9771075131482991)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.1
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            200
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            1000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "back_forth",
+            "first_func_in_fit",
+            "fit_feats"
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            1000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "noise_amp",
+            0.1
+        ]
+    ],
+    "(0.988510727247191, 0.9890940501695855)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.1
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            100
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            2000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "back_forth",
+            "first_func_in_fit",
+            "fit_feats"
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "noise_amp",
+            0.1
+        ]
+    ],
+    "(0.9890913016053811, 0.9890456199416144)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.1
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            100
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "back_forth",
+            "first_func_in_fit",
+            "fit_feats"
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            2000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "noise_amp",
+            0.1
+        ]
+    ],
+    "(0.9870550156517716, 0.9873611275721185)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.1
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            200
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "back_forth",
+            "first_func_in_fit",
+            "fit_feats"
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            2000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "noise_amp",
+            0.1
+        ]
+    ]
+}

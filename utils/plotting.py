@@ -25,29 +25,34 @@ def plot_feats(graph, lorenz):
     '''plot the individual features per node one by one'''
     num_feats = graph.x.shape[1]
     printd(f'plotting {num_feats} features')
-    fig, axes = plt.subplots(2, math.ceil(num_feats/2))
-    if type(axes) != np.ndarray:
-        axes = np.array([axes])
+    
+    # Create a single subplot for both features with wider figure
+    fig, ax = plt.subplots(1, 1, figsize=(8, 6))
     
     y_fig_lim_inclusive = [-0.1, 2]
     if lorenz:
         y_fig_lim_exclusive = [-2,2]
     else:
         y_fig_lim_exclusive = y_fig_lim_inclusive
-
-    if num_feats == 2:
-        axes[0].plot(graph.x[:, 0].detach().numpy())
-        axes[0].set_ylim(y_fig_lim_inclusive)
-        axes[1].plot(graph.x[:, 1].detach().numpy())
-        axes[1].set_ylim(y_fig_lim_exclusive)
-        
-    if num_feats > 2:
-        for i in range(math.ceil(num_feats / 2)):
-            axes[0, i].plot(graph.x[:, i].detach().numpy())
-            axes[0, i].set_ylim(y_fig_lim_inclusive)
-            if i + math.ceil(num_feats / 2) < num_feats:
-                axes[1, i].plot(graph.x[:, i + math.ceil(num_feats / 2)].detach().numpy())
-                axes[1, i].set_ylim(y_fig_lim_exclusive)
+    
+    # Plot both features on the same axis with different colors
+    if num_feats >= 1:
+        ax.plot(graph.x[:, 0].detach().numpy(), color='blue', label='s', linewidth=2)
+        ax.set_ylim(y_fig_lim_inclusive)
+    
+    if num_feats >= 2:
+        ax.plot(graph.x[:, 1].detach().numpy(), color='green', label='t', linewidth=2)
+        ax.set_ylim(y_fig_lim_exclusive)
+    
+    # Add horizontal broken line at y=0
+    ax.axhline(y=0, color='black', linestyle='--', alpha=0.5, linewidth=1)
+    
+    # Add legend (bigger and positioned in bottom right)
+    ax.legend(loc='lower right', fontsize=36)
+    
+    # Add labels
+    ax.set_xlabel('Node Index')
+    ax.set_ylabel('Feature Value')
 
 def plot_relu_lines(lorenz, ax, line_range=1):
     if lorenz:
@@ -115,7 +120,8 @@ def plot_2dgraph(graph,
         if x_fig_lim is None:
             if lorenz_fig_lims:
                 x_fig_lim = [-0.01, 2.7]
-                y_fig_lim = [-1.7, 1.7]
+                # y_fig_lim = [-1.7, 1.7]
+                y_fig_lim = [-2, 2]
             else:
                 x_fig_lim = [-0.1, 2]
                 y_fig_lim = [-0.1, 2]
@@ -126,7 +132,7 @@ def plot_2dgraph(graph,
         num_nodes = node_feats.shape[0]
         num_edges = graph_cpu.edge_index.shape[1]
         node_positions_dict = {i: feat for i, feat in enumerate(node_feats)}
-        node_sizes = 5*node_size_factor*figsize[0]/num_nodes*degree(graph_cpu.edge_index[0]).detach().numpy()
+        node_sizes = 12*node_size_factor*figsize[0]/num_nodes*degree(graph_cpu.edge_index[0]).detach().numpy()
         G = to_networkx(graph_cpu)
         if ax is None:
             fig, ax = plt.subplots(figsize=figsize)
@@ -143,7 +149,7 @@ def plot_2dgraph(graph,
         
         edge_color = 'black' 
         if draw_edges:
-            width = 30/num_edges
+            width = 60/num_edges
         else:
             width = 0.0
          # Draw edges first
@@ -153,19 +159,30 @@ def plot_2dgraph(graph,
         # alpha_value = 0.5  # Adjust this value between 0 and 1 as needed
         # nx.draw_networkx_nodes(G, pos=node_positions_dict, node_color=node_colors, node_size=node_sizes, alpha=alpha_value, ax=ax)
         
-        nx.draw(G, pos=node_positions_dict, node_color=node_colors, node_size=node_sizes, arrows=False, edge_color=edge_color, width=width, alpha=0.5, ax=ax)
+        nx.draw(G, pos=node_positions_dict, node_color=node_colors, node_size=node_sizes, arrows=False, edge_color=edge_color, width=width, alpha=0.9, ax=ax)
      
         #* add the axes (nx doesn't use them ever)
         ax.axis('on')
         ax.tick_params(left=True, bottom=True, labelleft=True, labelbottom=True)
         
-        ax.set_title(f'feat {proj_dims[0]} vs feat {proj_dims[1]}')
-        ax.set_aspect('equal')
-        ax.set_xlim(x_fig_lim[0], x_fig_lim[1])
-        ax.set_ylim(y_fig_lim[0], y_fig_lim[1])
-        ax.set_aspect('equal')
+        if lorenz_fig_lims:
+            # ax.set_title(f'$t_{proj_dims[0]}$ vs $s_{proj_dims[0]}$')
+            ax.set_aspect('equal')
+            ax.set_xlim(x_fig_lim[0], x_fig_lim[1])
+            ax.set_ylim(y_fig_lim[0], y_fig_lim[1])
+            ax.set_xlabel('$\\mathbf{s}$', rotation=0)
+            ax.set_ylabel('$\\mathbf{t}$', rotation=0)
+            ax.set_aspect('equal')
+            if lorenz_fig_lims:
+                ax.axhline(y=0, color='gray', linestyle='--', alpha=0.5)
+        else:
+            ax.set_title(f'feat {proj_dims[0]} vs feat {proj_dims[1]}')
+            ax.set_aspect('equal')
+            ax.set_xlim(x_fig_lim[0], x_fig_lim[1])
+            ax.set_ylim(y_fig_lim[0], y_fig_lim[1])
+            ax.set_aspect('equal')
 
-        plot_relu_lines(lorenz=lorenz_fig_lims, ax=ax)
+        plot_relu_lines(lorenz=lorenz_fig_lims, ax=ax, line_range=2)
 
         if test_mask is not None:
             test_mask = test_mask.to(graph_cpu.x.device)
@@ -625,12 +642,12 @@ def plot_graph_with_omitted(data, pos=None):
         return pos
 
 
-def plot_sparse_adj(edge_index, omitted_dyads=None, test_index=None, test_mask=None, ax=None, figsize=(3,3), title=''):
+def plot_sparse_adj(edge_index, omitted_dyads=None, test_index=None, test_mask=None, ax=None, figsize=(3,3), title='', colorbar=True):
     W = to_dense_adj(edge_index)[0]
-    return plot_adj(W, omitted_dyads, test_index, test_mask, ax, figsize, title)
+    return plot_adj(W, omitted_dyads, test_index, test_mask, ax, figsize, title, colorbar)
 
 
-def plot_adj(w, omitted_dyads=None, test_index=None, test_mask=None, ax=None, figsize=(3,3), title=''):
+def plot_adj(w, omitted_dyads=None, test_index=None, test_mask=None, ax=None, figsize=(3,3), title='', colorbar=True):
     
     if w.shape[0] == 2 and w.shape[1] != 2:
         w = to_dense_adj(w)[0]
@@ -661,7 +678,8 @@ def plot_adj(w, omitted_dyads=None, test_index=None, test_mask=None, ax=None, fi
                 ax.scatter(node, 0, color='red', s=10000/w.shape[1])  # Mark at the beginning of the row
                 ax.scatter(0, node, color='red', s=10000/w.shape[0])  # Mark at the top of the column
     
-    my_colorbar(im, ax=ax, vmin=0, vmax=1)
+    if colorbar:
+        my_colorbar(im, ax=ax, vmin=0, vmax=1)
     ax.set_title(title)
     
     return im

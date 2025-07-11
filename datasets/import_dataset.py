@@ -155,6 +155,12 @@ def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remo
     elif dataset_name == 'smallBipart':
         data = simulate_dataset('smallBipart', verbose=verbose)
 
+    elif dataset_name == 'largeBipartFull':
+        data = simulate_dataset('largeBipartFull', verbose=verbose)
+
+    elif dataset_name == 'tripartite':
+        data = simulate_dataset('tripartite', verbose=verbose)
+
     else:
         raise NotImplementedError(f'dataset {dataset_name} not implemented yet')
     data.edge_attr = torch.ones(data.edge_index.shape[1], dtype=torch.bool) 

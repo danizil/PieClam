@@ -101,7 +101,7 @@ def simulate_dataset(name, verbose=False):
     
     
     elif name == 'bipartite':
-        num_samples = 100
+        num_samples = 30
         prob_adj_bipart, y = create_sbm(num_samples, p_comm=[0.1, 0.1], p_bipart=[0.9])
         adj_bipart = sample_from_adj(prob_adj_bipart)
         edge_index = dense_to_sparse(adj_bipart)[0]
@@ -113,6 +113,21 @@ def simulate_dataset(name, verbose=False):
             axes[0].set_title('sbm')
             axes[1].set_title('sampled')
 
+    elif name == 'tripartite':
+        num_samples = 100
+        prob_adj_bipart, y = create_sbm(num_samples, p_comm=[0.0, 0.0, 0.0], p_bipart=[0.5, 0.0, 0.5]) 
+        adj_bipart = sample_from_adj(prob_adj_bipart)
+        edge_index = dense_to_sparse(adj_bipart)[0]
+        data = Data(edge_index=edge_index, y=y)
+
+    elif name == 'largeBipartFull':
+        num_samples = 100
+        prob_adj_bipart, y = create_sbm(num_samples, p_comm=[0.0, 0.0], p_bipart=[1.0])
+        adj_bipart = sample_from_adj(prob_adj_bipart)
+        edge_index = dense_to_sparse(adj_bipart)[0]
+        data = Data(edge_index=edge_index, y=y)
+
+            
     elif name == 'bipartiteHalf':
         num_samples = 100
         prob_adj_bipart, y = create_sbm(num_samples, p_comm=[0.0, 0.0], p_bipart=[0.5])
