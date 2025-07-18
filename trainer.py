@@ -82,7 +82,6 @@ class Trainer():
         self.metric = metric
         self.device = device
         self.task = task
-        #! should i make "task" a member of clamiter?
         # SAFEGUARDS
         if not config_triplets_to_change and configs_dict is not None:
             printd('\n\nWARNING\nWarning: both config_triplets and configs_dict are given. configs_dict will be used.\nWARNING\n\n')

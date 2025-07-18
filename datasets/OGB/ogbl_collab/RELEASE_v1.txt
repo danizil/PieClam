@@ -1,5 +1,0 @@
-# Release note for ogbl-collab
-
-### v1
-
-May 4, 2020: First major release.
