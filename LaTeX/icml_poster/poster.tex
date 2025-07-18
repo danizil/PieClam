@@ -19,7 +19,7 @@
 % \usepackage{sansmathfonts}
 % \renewcommand{\familydefault}{\sfdefault}
 % \usepackage[size=custom,width=60in,height=36in,scale=1.0]{beamerposter} % default
-\usepackage[size=custom,width=152,height=91,scale=1.3]{beamerposter} % default
+\usepackage[size=custom,width=152.4,height=91.44,scale=1.35]{beamerposter} % default
 % \usepackage[orientation=landscape,size=a0,scale=1.4]{beamerposter} % custom
 % scale: scaling factor of all font
 
@@ -83,7 +83,7 @@
 
 % use this to include logos on the left and/or right side of the header:
 \logoleft{\includegraphics[height=6cm]{images/ICML-logo.png}}
-\logoright{\includegraphics[height=9cm]{technion logo.png}}
+\logoright{\includegraphics[height=9cm]{images/QR_archive.png} \hspace{1cm} \includegraphics[height=9cm]{technion logo.png}}
 
 % ====================
 % Body
@@ -94,7 +94,7 @@
   \vspace{1em}
   \begin{center}
     \color{white}
-    \fcolorbox{black}{blue!70!black}{\parbox{0.9\columnwidth}{\centering\LARGE\bfseries #1}}
+    \fcolorbox{black}{blue!80!black}{\parbox{0.9\columnwidth}{\centering\LARGE\bfseries #1}}
   \end{center}
   \vspace{1em}
 }
@@ -116,11 +116,11 @@
         
     \textbf{Goal}:
     % \vspace{-0.8em}
-    Build a \textbf{universal auoencoder}, which can represent any graph $G$ of any size $N$ with a fixed budget of parameters per node $C$.
+    Build a \textbf{universal autoencoder}, which can represent any graph $G$ of any size $N$ with a fixed budget of parameters per node $C$.
     % \end{itemize}
   \end{block}
 
-  \begin{block}{BigClam: Inclusive Community Affiliation}
+  \begin{block}{BigClam \cite{yang2013overlapping}: Inclusive Community Affiliation}
     \textbf{Inclusive communities}: 
     Common membership raises the probability to connect: $P(n\sim m \big| \mathbf{f}_n, \mathbf{f}_m) = 1-e^{-\mathbf{f}_n^\top \mathbf{f}_m}$
     % Edges are decoded from a Poisson distribution over the inner product between features: $P(n\sim m \big| \mathbf{f}_n, \mathbf{f}_m) = 1-e^{-\mathbf{f}_n^\top \mathbf{f}_m}$
@@ -144,8 +144,8 @@
   \begin{alertblock}{Bipartite Blindness Of BigClam}
   
     \begin{figure}
-        \begin{minipage}{0.25\columnwidth}
-        \includegraphics[width=\textwidth]{images/bipart/Simple_bipartite_graph.png}    
+        \begin{minipage}{0.35\columnwidth}
+        \includegraphics[width=\textwidth]{images/bipart/bipart_pic_orange_red.png}    
         \end{minipage} \hspace{3em} 
         \begin{minipage}{0.25\columnwidth}
             \includegraphics[width=\textwidth]{images/bipart/bipart_gt_30nodes.png}
@@ -154,8 +154,8 @@
     \end{figure}
     \textbf{Triangle inequality}: if $n\sim k$ and $m\sim k$ then $\mathbf{f}_{n}^\top \mathbf{f}_k$ and $\mathbf{f}_{m}^\top \mathbf{f}_k$ are large and therefore $\mathbf{f}_n^\top \mathbf{f}_m$ is also large which implies $m\sim n$ with high probability.%\pause
     \begin{figure}    
-        \begin{minipage}{0.25\columnwidth}
-            \includegraphics[width=\textwidth]{images/bipart/feat_vs_feat_bigclam_30nodes.png}
+        \begin{minipage}{0.27\columnwidth}
+            \includegraphics[width=\textwidth]{images/bipart/embedding_bc_best.png}
         \end{minipage}
         \hspace{3em}
         \begin{minipage}{0.30\columnwidth}
@@ -166,9 +166,10 @@
   
   \LARGE{Inner product decoding is not universal!}
 
-  Quick fix: use node features, or...
+  
   \end{alertblock}
-
+\vspace{-0.8em}
+  \LARGE{Quick fix: \fcolorbox{blue!60}{blue!10}{\textbf{use node features!}} or...}
 \end{column}
 
 \separatorcolumn
@@ -192,26 +193,26 @@
     \[ l(\mathbf{F}) = \frac{1}{2}\sumgraph \Big(\sumneighbors{}{\log(1-e^{-\mathbf{f}_n^\top \mathbf{L} \mathbf{f}_m})} - 
  \sumstrangers{\mathbf{f}_n^\top \mathbf{L} \mathbf{f}_m}\Big)\]
 
-    \textbf{Pairwise cone space $\mathcal{T}^C$}: Restrict $\mathbb{R}^{2C}$ to pairwise cones
-    \[\mathcal{T} = \{\mathbf{f}=(\mathbf{t}, \mathbf{s}) \text{ \textbf{s.t.} } \forall c\in[C]: |s^c| \leq t^c\}\]
-    This ensures positive probabilities and allows $(s^c,t^c)$ to be interpreted as complex features.
+    % \textbf{Pairwise cone space $\mathcal{T}^C$}: Restrict $\mathbb{R}^{2C}$ to pairwise cones
+    % \[\mathcal{T} = \{\mathbf{f}=(\mathbf{t}, \mathbf{s}) \text{ \textbf{s.t.} } \forall c\in[C]: |s^c| \leq t^c\}\]
+    % This ensures positive probabilities and allows $(s^c,t^c)$ to be interpreted as complex features.
 
     \textbf{Bipartite encoding}: A bipartite graph can be encoded by embedding part 1 to $(b,b)$ and part 2 to $(b,-b)$ where $b\in \mathbb{R}_+$.
 
     \begin{figure}
       \centering
-      \begin{minipage}{0.3\columnwidth}
-        \includegraphics[width=\textwidth]{images/bipart/feat_vs_node_30nodes_green.png}
+      \begin{minipage}{0.31\columnwidth}
+        \includegraphics[width=\textwidth]{images/bipart/feat_vs_node_narrow_bigfont.png}
       \end{minipage}
       \hspace{0.05\columnwidth}
       \begin{minipage}{0.25\columnwidth}
         \includegraphics[width=\textwidth]{images/bipart/ieclam_cone_30nodes.png}
       \end{minipage}
       \hspace{0.05\columnwidth}
-      \begin{minipage}{0.3\columnwidth}
-        \includegraphics[width=\textwidth]{images/bipart/decode_ie_30nodes.png}
-      \end{minipage}
-      \caption{Bipartite encoding with IeClam. Left: community value per node. Center: embedding in $\mathcal{T}^1$, Left: reconstucted adjacency.}
+              \begin{minipage}{0.3\columnwidth}
+          \raisebox{1.5em}{\includegraphics[width=\textwidth]{images/bipart/decode_ie_30nodes.png}}
+        \end{minipage}
+      \caption{Bipartite encoding with IeClam. \textbf{Left}: community value per node. \textbf{Center}: embedding space with one $\mathbf{s}$ and one $\mathbf{t}$ community, \textbf{Right}: reconstucted adjacency.}
     \end{figure}
 
   \end{block}
@@ -233,7 +234,8 @@
    
    \textbf{PClam}: Extend BigClam into a generative model by the same method.
   \end{block}
-
+  
+  \textbf{Graph Generation}: Sample N affiliation vectors from the prior and connect with $P(E|\mathbf{F})$
 \end{column}
 
 \separatorcolumn
@@ -242,7 +244,7 @@
   \columntitle{Theory}
   \begin{exampleblock}{Universality in Autoencoders}
 
-     A family of code spaces $\mathbb{R}^M$ and decoders $D_M:\mathbb{R}^{2M}\rightarrow[0,1]^{N\times N}$ is \textbf{universal} w.r.t. to the distance $d(.,.)$ if for every $\epsilon>0$ there is $M\in\mathbb{N}$ (depending only on $\epsilon$) such that for every $N\in\mathbb{N}$ and every graph with adjacency matrix $\mathbf{A}\in[0,1]^{N\times N}$ there are $N$ points $\{z_n\in\mathbb{R}^M\}_{n=1}^N$ such that 
+     A family of code spaces $\{\mathbb{R}^C\}_{C\in\mathbb{N}}$ and corresponding decoders \\ $\{\mathbf{D}_C:\mathbb{R}^{2C}\rightarrow[0,1]^{N\times N}\}_{C\in\mathbb{N}}$ is \textbf{universal} w.r.t. to the distance $d(.,.)$ if for every $\epsilon>0$ there is $C\in\mathbb{N}$ (depending only on $\epsilon$) such that for every $N\in\mathbb{N}$ and every graph with adjacency matrix $\mathbf{A}\in[0,1]^{N\times N}$ there are $N$ points $\{z_n\in\mathbb{R}^C\}_{n=1}^N$ such that 
      \[d(\mathbf{D}_M(\mathbf{z}), \mathbf{A}) <\epsilon.\]
 
  
@@ -281,9 +283,7 @@
 
   \end{block}
 \begin{block}{Universality Theorem for IeClam}
-  \textbf{Theorem:} IeClam (and hence PieClam) is universal with respect to the log cut distance.
-
- \textbf{Asymptotics}: Universality requires $O(\epsilon^{-2})$ communities in unrestricted space, $O(2^{\frac{1}{\epsilon^2}})$ in pairwise cone space.
+  \textbf{Theorem:} IeClam (and hence PieClam) is universal with respect to the log cut distance with $O(\epsilon^{-2})$ communities.
 
  \textbf{BigClam limitation}: Not universal - embedding dimension must depend on number of nodes.
 \end{block}
@@ -322,26 +322,32 @@
   % \begin{block}{Synthetic Data}
     \textbf{1. Prior Reconstruction}
 
-    Sample nodes from synthetic priors (circles in $\mathcal{T}$, moons in $\mathbb{R}^2_+$) and connect with clam probability.
-    Reset affiliation features and fit models to reconstruct shapes
+    Sample a graph from a synthetic prior. Reset affiliation features and fit models to learn the prior.
     \begin{figure}
-      \begin{minipage}{0.25\textwidth}
-        % \begin{center}
-        % \textbf{Sample}
-        % \end{center}
+      \begin{minipage}{0.37\textwidth}
+        \centering
+        \vspace{-0.18em}
+        \hspace{1.1em}\textbf{GT}\\%[0.05em]
+        % \vspace{1em}
         \includegraphics[width=\textwidth]{images/circle/circle_ie_gt.png}
       \end{minipage}
-      \hfill
-      \raisebox{0.5\height}{$\xrightarrow{\text{initialize}}$}
-      \hfill
+      % \hspace{0.02\textwidth}
+      \raisebox{0.5\height}{$\xrightarrow{}$}
+      % \hspace{0.02\textwidth}
       \begin{minipage}{0.25\textwidth}
+        \centering
+        \textbf{Initialize}
+        \vspace{0.3em}
         \includegraphics[width=\textwidth]{images/circle/circ_initialization.png}
       \end{minipage}
-      \hfill
-      \raisebox{0.5\height}{$\xrightarrow{\text{train}}$}
-      \hfill
+      % \hspace{0.02\textwidth}
+      \raisebox{0.5\height}{$\xrightarrow{}$}
+      % \hspace{0.02\textwidth}
       \begin{minipage}{0.25\textwidth}
-        \includegraphics[width=\textwidth]{images/circle/pieclam_circ_reconstruct_no_edge.png}
+        \centering
+        \textbf{Train}
+        \vspace{0.3em}
+        \includegraphics[width=\textwidth]{images/circle/circ_pie_orange_small.png}
       \end{minipage}
 
       % \begin{minipage}{0.2\textwidth}
@@ -352,19 +358,41 @@
       % \begin{minipage}{0.2\textwidth}
      
       % \end{minipage}
-      \caption{Node features sampled from synthetic priors in $\mathcal{T}$ and reconstructed with PieClam}
+      % \caption{Node features sampled from synthetic priors and reconstructed with PieClam}
     \end{figure}
+    
+    \vspace{0.7em}
+    
     \textbf{2. SBM Reconstruction}
+
+    Sample edges from an SBM with 3 communities and 9 blocks. And approximate with BigClam and IeClam.
     \begin{figure}[H] 
       % \begin{minipage}{0.2\columnwidth} \includegraphics[width=\textwidth]{images/sbm_reconstruction/halfdiag.png} \end{minipage} \hspace{0.5em}
-      \begin{minipage}{0.2\columnwidth} \includegraphics[width=\textwidth]{images/bipart/tripart_gt.png} \end{minipage} \hspace{0.5em}
+      \begin{minipage}{0.2\columnwidth} 
+        \centering
+        \textbf{GT}
+        \vspace{0.3em}
+        \includegraphics[width=\textwidth]{images/bipart/tripart_gt.png} 
+      \end{minipage} \hspace{2em}
       % \begin{minipage}{0.2\columnwidth} \includegraphics[width=\textwidth]{images/sbm_reconstruction/halfdiag_pieclam/adj.png} \end{minipage} \hspace{0.5em}
-      \begin{minipage}{0.2\columnwidth} \includegraphics[width=\textwidth]{images/bipart/tripart_bigclam_6comm.png} \end{minipage} \hspace{0.5em}
+      \begin{minipage}{0.2\columnwidth} 
+        \centering
+        \textbf{BigClam}
+        \vspace{0.3em}
+        \includegraphics[width=\textwidth]{images/bipart/tripart_bigclam_6comm.png} 
+      \end{minipage} \hspace{2em}
       % \begin{minipage}{0.2\columnwidth} \includegraphics[width=\textwidth]{images/sbm_reconstruction/halfdiag_pclam/adj.png} \end{minipage}
-      \begin{minipage}{0.2\columnwidth} \includegraphics[width=\textwidth]{images/bipart/tripart_ie_4comm.png} \end{minipage} \hspace{0.5em}
-      \caption{Left to right: Original SBM with 3 classes and 9 blocks; Adjacency matrix of the fitted BigClam graph, with six communities; Adjacency matrix of the fitted IeClam graph, with four communities.} 
+      \begin{minipage}{0.2\columnwidth} 
+        \centering
+        \textbf{IeClam}
+        \vspace{0.3em}
+        \includegraphics[width=\textwidth]{images/bipart/tripart_ie_4comm.png} 
+      \end{minipage} \hspace{0.5em}
       \label{fig:sbm_halfdiag} 
       \end{figure}
+      
+      \vspace{0.7em}
+      
     % \end{block}
     % \begin{block}{Real World Data}
     \textbf{3. Unsupervised Anomaly Detection Results}
@@ -392,6 +420,8 @@
       \caption{Anomaly detection AUC scores. First place in \textbf{boldface}, second with \underline{underline}, third with *star.}
     \end{table}
 
+    \vspace{0.7em}
+
     \textbf{4. Link Prediction Results}
     \begin{table}
       \centering
@@ -414,13 +444,14 @@
     \end{table}
 
   % \end{block}
-
+\vspace{-0.5em}
   \columntitle{References}
-  \begin{block}{}
+  % \begin{block}{}
+  \vspace{-1em}
     \nocite{yang2013overlapping}
     \nocite{dinh2016density}
     \footnotesize{\bibliographystyle{unsrt}\bibliography{references}}
-  \end{block}
+  % \end{block}
 
 \end{column}
 

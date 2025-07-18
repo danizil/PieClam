@@ -1,0 +1,43 @@
+
+var ftGUID_7902246="6405784E7D5CE4";
+var ftConfID_7902246="0";
+var ftParams_7902246="ftOBA=1&ft_agentEnv=0&ft_referrer=https://mspaint.humanhead.com/&gdpr=0&us_privacy=${US_PRIVACY}&site_url=https://mspaint.humanhead.com/&pub_id=1&sup_platform=1&cachebuster=25713.45171229622";
+var ftKeyword_7902246="";
+var ftCustom_7902246="";
+var ftSection_7902246="";
+var ftSegment_7902246="";
+var ftSegmentList_7902246=[];
+var ftRuleMatch_7902246="0";
+var ftTimestamp_7902246="1752608469";
+var ftGeoC2_7902246="ca";
+var ftGeoState_7902246="bc";
+var ftGeoCity_7902246="vancouver";
+var ftISP_7902246="itel networks inc";
+var ftSpeed_7902246="broadband";
+var ftConnType_7902246="wifi";
+var ftDMA_7902246="124933";
+var ftLong_7902246="-123.13";
+var ftLat_7902246="49.28";
+var ftPostal_7902246="v6z 1r2";
+var ftTimeZone_7902246="-700";
+var ftMobileCarrier_7902246="";
+var ftImp7902246 = {};
+ftImp7902246.privacy = "x";
+ftImp7902246.guidAge = "-1";
+ftImp7902246.impID = "B80A29D0-55EA-FCF6-A1C2-9A1F9AF78519";
+ftImp7902246.duid = "FT:6405784E7D5CE4";
+
+ftImp7902246.ft_tpplid = "";
+ftImp7902246.ft_c = {};
+ftImp7902246.gdpr = "0";
+ftImp7902246.gdpr_consent = "";
+ftImp7902246.gdpr_pd = "";
+ftImp7902246.oob_consent = "";
+ftImp7902246.gdprStoredConsent = "";
+ftImp7902246.us_privacy = "!!US_PRIVACY!";
+ftImp7902246.gpc = "";
+
+ftImp7902246.jsAppend = "1";
+var ftCreativeId_7902246 = "5398930";
+(function(){var tag=document.getElementById("ft_servedby_7902246")||function(s){return s[s.length-1]}(document.getElementsByTagName("script")),js=document.createElement("script");js.src="https://ajs-assets.ftstatic.com/ftUtils.js";js.id="ftscript_m7902246";js.setAttribute("name","ftscript_m7902246");tag.parentNode.insertBefore(js,tag)})();window.fTChecker=window.fTChecker||function(id){if(!id)return false;id=""+id;if(window.hasOwnProperty("ftUtils")){window["ft"+id]=Object.assign({},window.ftUtils.common);window["ft"+id].getBannerConfig(id)}else(function(id){window.setTimeout(function(){window.fTChecker(id)},50)})(id)};window.fTChecker("7902246");
+

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.16)  11 JUL 2025 23:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.16)  15 JUL 2025 16:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -613,13 +613,13 @@ Package beamerposter Info: myfontscale=1.0 on input line 129.
 Package beamerposter Info: checking size input, please wait. on input line 130.
 Package beamerposter Info: the input custom\ 6\ was correct, we proceed. on input line 130.
 Package beamerposter Info: finished size input check. on input line 130.
-Package beamerposter Info: custom poster width=152 on input line 130.
-Package beamerposter Info: custom poster height=91 on input line 130.
-Package beamerposter Info: myfontscale=1.3 on input line 130.
+Package beamerposter Info: custom poster width=152.4 on input line 130.
+Package beamerposter Info: custom poster height=91.44 on input line 130.
+Package beamerposter Info: myfontscale=1.35 on input line 130.
  ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-SUB ) ) ( FP-UPN ( FP-SUB ) )
-Package beamerposter Info: paperwidth=4324.8189pt, paperheight=2589.20078pt on input line 173.
-Package beamerposter Info: textwidth=4296.36613pt, textheight=2560.74802pt on input line 174.
-Package beamerposter Info: fontscale=1.0, myfontscale=1.30 on input line 175.
+Package beamerposter Info: paperwidth=4336.19981pt, paperheight=2601.72006pt on input line 173.
+Package beamerposter Info: textwidth=4307.74707pt, textheight=2573.2673pt on input line 174.
+Package beamerposter Info: fontscale=1.0, myfontscale=1.35 on input line 175.
  ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) ) ( FP-UPN ( FP-MUL ) ( FP-ROUND ) )) (./beamerthemegemini.sty (/usr/local/texlive/2022/texmf-dist/tex/latex/base/exscale.sty
 Package: exscale 2018/09/24 v2.1i Standard LaTeX package exscale
 LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 57.
@@ -786,7 +786,12 @@ File: images/ICML-logo.png Graphic file (type png)
 <use images/ICML-logo.png>
 Package pdftex.def Info: images/ICML-logo.png  used on input line 85.
 (pdftex.def)             Requested size: 494.2196pt x 170.71652pt.
-<technion logo.png, id=12, 225.84375pt x 225.84375pt>
+<images/QR_archive.png, id=12, 200.75pt x 200.75pt>
+File: images/QR_archive.png Graphic file (type png)
+<use images/QR_archive.png>
+Package pdftex.def Info: images/QR_archive.png  used on input line 86.
+(pdftex.def)             Requested size: 256.11366pt x 256.0748pt.
+<technion logo.png, id=13, 225.84375pt x 225.84375pt>
 File: technion logo.png Graphic file (type png)
 <use technion logo.png>
 Package pdftex.def Info: technion logo.png  used on input line 86.
@@ -828,12 +833,12 @@ LaTeX Font Info:    ... okay on input line 102.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: includehead includefoot 
-* h-part:(L,W,R)=(28.45274pt, 4267.9134pt, 28.45274pt)
-* v-part:(T,H,B)=(0.0pt, 2589.20078pt, 0.0pt)
-* \paperwidth=4324.8189pt
-* \paperheight=2589.20078pt
-* \textwidth=4267.9134pt
-* \textheight=2560.74805pt
+* h-part:(L,W,R)=(28.45274pt, 4279.29433pt, 28.45274pt)
+* v-part:(T,H,B)=(0.0pt, 2601.72006pt, 0.0pt)
+* \paperwidth=4336.19981pt
+* \paperheight=2601.72006pt
+* \textwidth=4279.29433pt
+* \textheight=2573.26733pt
 * \oddsidemargin=-43.81725pt
 * \evensidemargin=-43.81725pt
 * \topmargin=-72.26999pt
@@ -956,7 +961,7 @@ File: images/ICML-logo.png Graphic file (type png)
 <use images/ICML-logo.png>
 Package pdftex.def Info: images/ICML-logo.png  used on input line 102.
 (pdftex.def)             Requested size: 494.2196pt x 170.71652pt.
-LaTeX Font Info:    Calculating math sizes for size <15.6> on input line 102.
+LaTeX Font Info:    Calculating math sizes for size <16.2> on input line 102.
 LaTeX Font Info:    Trying to load font information for OT1+lmss on input line 102.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ot1lmss.fd
 File: ot1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -969,134 +974,145 @@ LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 1
  (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    External font `cmex7' loaded for size
-(Font)              <7.8> on input line 102.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <15.6> not available
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <16.2> not available
 (Font)              Font shape `T1/lmss/m/sl' tried instead on input line 102.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.91995> not available
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <11.33994> not available
 (Font)              Font shape `T1/lmss/m/sl' tried instead on input line 102.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <7.8> not available
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <8.09999> not available
 (Font)              Font shape `T1/lmss/m/sl' tried instead on input line 102.
+File: images/QR_archive.png Graphic file (type png)
+<use images/QR_archive.png>
+Package pdftex.def Info: images/QR_archive.png  used on input line 102.
+(pdftex.def)             Requested size: 256.11366pt x 256.0748pt.
 File: technion logo.png Graphic file (type png)
 <use technion logo.png>
 Package pdftex.def Info: technion logo.png  used on input line 102.
 (pdftex.def)             Requested size: 256.10677pt x 256.0748pt.
-LaTeX Font Info:    Calculating math sizes for size <32.34> on input line 429.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <32.34> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 429.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <22.6379> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 429.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <16.17> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 429.
-LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <32.34> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 429.
-LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <22.6379> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 429.
-LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <16.17> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 429.
-<images/bipart/Simple_bipartite_graph.png, id=16, 1927.2pt x 951.555pt>
-File: images/bipart/Simple_bipartite_graph.png Graphic file (type png)
-<use images/bipart/Simple_bipartite_graph.png>
-Package pdftex.def Info: images/bipart/Simple_bipartite_graph.png  used on input line 429.
-(pdftex.def)             Requested size: 237.86635pt x 117.43405pt.
-<images/bipart/bipart_gt_30nodes.png, id=17, 200.9106pt x 200.9106pt>
+LaTeX Font Info:    Calculating math sizes for size <33.59> on input line 460.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <33.59> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 460.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <23.5129> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 460.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <16.795> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 460.
+LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <33.59> not available
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 460.
+LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <23.5129> not available
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 460.
+LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <16.795> not available
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 460.
+<images/bipart/bipart_pic_orange_red.png, id=18, 1541.76pt x 1027.84pt>
+File: images/bipart/bipart_pic_orange_red.png Graphic file (type png)
+<use images/bipart/bipart_pic_orange_red.png>
+Package pdftex.def Info: images/bipart/bipart_pic_orange_red.png  used on input line 460.
+(pdftex.def)             Requested size: 333.89505pt x 222.5967pt.
+<images/bipart/bipart_gt_30nodes.png, id=19, 200.9106pt x 200.9106pt>
 File: images/bipart/bipart_gt_30nodes.png Graphic file (type png)
 <use images/bipart/bipart_gt_30nodes.png>
-Package pdftex.def Info: images/bipart/bipart_gt_30nodes.png  used on input line 429.
-(pdftex.def)             Requested size: 237.86635pt x 237.8695pt.
-<images/bipart/feat_vs_feat_bigclam_30nodes.png, id=18, 211.7511pt x 213.1965pt>
-File: images/bipart/feat_vs_feat_bigclam_30nodes.png Graphic file (type png)
-<use images/bipart/feat_vs_feat_bigclam_30nodes.png>
-Package pdftex.def Info: images/bipart/feat_vs_feat_bigclam_30nodes.png  used on input line 429.
-(pdftex.def)             Requested size: 237.86635pt x 239.48761pt.
-<images/bipart/decode_bc_30nodes.png, id=19, 224.7597pt x 191.5155pt>
+Package pdftex.def Info: images/bipart/bipart_gt_30nodes.png  used on input line 460.
+(pdftex.def)             Requested size: 238.49231pt x 238.49489pt.
+<images/bipart/embedding_bc_best.png, id=20, 203.8014pt x 198.0198pt>
+File: images/bipart/embedding_bc_best.png Graphic file (type png)
+<use images/bipart/embedding_bc_best.png>
+Package pdftex.def Info: images/bipart/embedding_bc_best.png  used on input line 460.
+(pdftex.def)             Requested size: 257.57576pt x 250.29187pt.
+<images/bipart/decode_bc_30nodes.png, id=21, 224.7597pt x 191.5155pt>
 File: images/bipart/decode_bc_30nodes.png Graphic file (type png)
 <use images/bipart/decode_bc_30nodes.png>
-Package pdftex.def Info: images/bipart/decode_bc_30nodes.png  used on input line 429.
-(pdftex.def)             Requested size: 285.44252pt x 243.23073pt.
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 429.
+Package pdftex.def Info: images/bipart/decode_bc_30nodes.png  used on input line 460.
+(pdftex.def)             Requested size: 286.19368pt x 243.87071pt.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 460.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-<images/bipart/feat_vs_node_30nodes_green.png, id=20, 508.0581pt x 383.031pt>
-File: images/bipart/feat_vs_node_30nodes_green.png Graphic file (type png)
-<use images/bipart/feat_vs_node_30nodes_green.png>
-Package pdftex.def Info: images/bipart/feat_vs_node_30nodes_green.png  used on input line 429.
-(pdftex.def)             Requested size: 285.44252pt x 215.20892pt.
-<images/bipart/ieclam_cone_30nodes.png, id=21, 165.4983pt x 216.0873pt>
+<images/bipart/feat_vs_node_narrow_bigfont.png, id=22, 795.97375pt x 670.505pt>
+File: images/bipart/feat_vs_node_narrow_bigfont.png Graphic file (type png)
+<use images/bipart/feat_vs_node_narrow_bigfont.png>
+Package pdftex.def Info: images/bipart/feat_vs_node_narrow_bigfont.png  used on input line 460.
+(pdftex.def)             Requested size: 295.72813pt x 249.10608pt.
+<images/bipart/ieclam_cone_30nodes.png, id=23, 190.0701pt x 226.2051pt>
 File: images/bipart/ieclam_cone_30nodes.png Graphic file (type png)
 <use images/bipart/ieclam_cone_30nodes.png>
-Package pdftex.def Info: images/bipart/ieclam_cone_30nodes.png  used on input line 429.
-(pdftex.def)             Requested size: 237.86635pt x 310.60164pt.
-<images/bipart/decode_ie_30nodes.png, id=22, 224.7597pt x 191.5155pt>
+Package pdftex.def Info: images/bipart/ieclam_cone_30nodes.png  used on input line 460.
+(pdftex.def)             Requested size: 238.49231pt x 283.84291pt.
+<images/bipart/decode_ie_30nodes.png, id=24, 224.7597pt x 191.5155pt>
 File: images/bipart/decode_ie_30nodes.png Graphic file (type png)
 <use images/bipart/decode_ie_30nodes.png>
-Package pdftex.def Info: images/bipart/decode_ie_30nodes.png  used on input line 429.
-(pdftex.def)             Requested size: 285.44252pt x 243.23073pt.
-LaTeX Font Info:    Calculating math sizes for size <26.96> on input line 429.
-LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <26.96> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 429.
-LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <18.87192> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 429.
-LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <13.48> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 429.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <26.96> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 429.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <18.87192> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 429.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <13.48> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 429.
-<images/circle/circle_ie_gt.png, id=24, 495.8525pt x 266.9975pt>
+Package pdftex.def Info: images/bipart/decode_ie_30nodes.png  used on input line 460.
+(pdftex.def)             Requested size: 286.19368pt x 243.87071pt.
+LaTeX Font Info:    Calculating math sizes for size <28> on input line 460.
+LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <28> not available
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 460.
+LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <19.59991> not available
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 460.
+LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <14> not available
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 460.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <28> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 460.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <19.59991> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 460.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <14> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 460.
+
+Overfull \hbox (24.44826pt too wide) detected at line 460
+\T1/lmss/m/sl/33.59 l\OT1/lmss/m/n/33.59 (\T1/lmss/bx/n/33.59 F\OT1/lmss/m/n/33.59 ) = [][][][][][] \OMS/lmsy/m/n/33.59 ^^@ \T1/lmss/bx/n/33.59 f[]L[] \OT1/lmss/m/n/33.59 + \T1/lmss/bx/n/33.59 f[]Lf[][] \OT1/lmss/m/n/33.59 + [] []\T1/lmss/m/sl/33.59 p\OT1/lmss/m/n/33.59 (\T1/lmss/bx/n/33.59 f[]\OT1/lmss/m/n/33.59 )[][]
+ []
+
+<images/circle/circle_ie_gt.png, id=26, 385.9218pt x 250.0542pt>
 File: images/circle/circle_ie_gt.png Graphic file (type png)
 <use images/circle/circle_ie_gt.png>
-Package pdftex.def Info: images/circle/circle_ie_gt.png  used on input line 429.
-(pdftex.def)             Requested size: 237.86635pt x 128.07993pt.
-<images/circle/circ_initialization.png, id=25, 397.485pt x 213.1965pt>
+Package pdftex.def Info: images/circle/circle_ie_gt.png  used on input line 460.
+(pdftex.def)             Requested size: 352.96396pt x 228.70576pt.
+<images/circle/circ_initialization.png, id=27, 236.3229pt x 226.2051pt>
 File: images/circle/circ_initialization.png Graphic file (type png)
 <use images/circle/circ_initialization.png>
-Package pdftex.def Info: images/circle/circ_initialization.png  used on input line 429.
-(pdftex.def)             Requested size: 237.86635pt x 127.58705pt.
-<images/circle/pieclam_circ_reconstruct_no_edge.png, id=26, 552.0625pt x 296.10625pt>
-File: images/circle/pieclam_circ_reconstruct_no_edge.png Graphic file (type png)
-<use images/circle/pieclam_circ_reconstruct_no_edge.png>
-Package pdftex.def Info: images/circle/pieclam_circ_reconstruct_no_edge.png  used on input line 429.
-(pdftex.def)             Requested size: 237.86635pt x 127.58525pt.
-<images/bipart/tripart_gt.png, id=27, 231.264pt x 191.5155pt>
+Package pdftex.def Info: images/circle/circ_initialization.png  used on input line 460.
+(pdftex.def)             Requested size: 238.49231pt x 228.28929pt.
+<images/circle/circ_pie_orange_small.png, id=28, 229.8186pt x 226.2051pt>
+File: images/circle/circ_pie_orange_small.png Graphic file (type png)
+<use images/circle/circ_pie_orange_small.png>
+Package pdftex.def Info: images/circle/circ_pie_orange_small.png  used on input line 460.
+(pdftex.def)             Requested size: 238.49231pt x 234.74725pt.
+<images/bipart/tripart_gt.png, id=29, 231.264pt x 191.5155pt>
 File: images/bipart/tripart_gt.png Graphic file (type png)
 <use images/bipart/tripart_gt.png>
-Package pdftex.def Info: images/bipart/tripart_gt.png  used on input line 429.
-(pdftex.def)             Requested size: 190.29018pt x 157.5931pt.
-<images/bipart/tripart_bigclam_6comm.png, id=28, 231.264pt x 191.5155pt>
+Package pdftex.def Info: images/bipart/tripart_gt.png  used on input line 460.
+(pdftex.def)             Requested size: 190.79092pt x 158.00514pt.
+<images/bipart/tripart_bigclam_6comm.png, id=30, 231.264pt x 191.5155pt>
 File: images/bipart/tripart_bigclam_6comm.png Graphic file (type png)
 <use images/bipart/tripart_bigclam_6comm.png>
-Package pdftex.def Info: images/bipart/tripart_bigclam_6comm.png  used on input line 429.
-(pdftex.def)             Requested size: 190.29018pt x 157.5931pt.
-<images/bipart/tripart_ie_4comm.png, id=29, 231.264pt x 191.5155pt>
+Package pdftex.def Info: images/bipart/tripart_bigclam_6comm.png  used on input line 460.
+(pdftex.def)             Requested size: 190.79092pt x 158.00514pt.
+<images/bipart/tripart_ie_4comm.png, id=31, 231.264pt x 191.5155pt>
 File: images/bipart/tripart_ie_4comm.png Graphic file (type png)
 <use images/bipart/tripart_ie_4comm.png>
-Package pdftex.def Info: images/bipart/tripart_ie_4comm.png  used on input line 429.
-(pdftex.def)             Requested size: 190.29018pt x 157.5931pt.
- (./poster.bbl
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <22.46> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 6.
+Package pdftex.def Info: images/bipart/tripart_ie_4comm.png  used on input line 460.
+(pdftex.def)             Requested size: 190.79092pt x 158.00514pt.
+(./poster.bbl
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <23.33> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 7.
 )
 File: images/ICML-logo.png Graphic file (type png)
 <use images/ICML-logo.png>
-Package pdftex.def Info: images/ICML-logo.png  used on input line 429.
+Package pdftex.def Info: images/ICML-logo.png  used on input line 460.
 (pdftex.def)             Requested size: 494.2196pt x 170.71652pt.
-LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <15.6> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 429.
-LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <10.91995> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 429.
-LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <7.8> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 429.
+LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <16.2> not available
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 460.
+LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <11.33994> not available
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 460.
+LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <8.09999> not available
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 460.
+File: images/QR_archive.png Graphic file (type png)
+<use images/QR_archive.png>
+Package pdftex.def Info: images/QR_archive.png  used on input line 460.
+(pdftex.def)             Requested size: 256.11366pt x 256.0748pt.
 File: technion logo.png Graphic file (type png)
 <use technion logo.png>
-Package pdftex.def Info: technion logo.png  used on input line 429.
+Package pdftex.def Info: technion logo.png  used on input line 460.
 (pdftex.def)             Requested size: 256.10677pt x 256.0748pt.
  [1{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
- <./images/ICML-logo.png> <./technion logo.png> <./images/bipart/Simple_bipartite_graph.png> <./images/bipart/bipart_gt_30nodes.png> <./images/bipart/feat_vs_feat_bigclam_30nodes.png> <./images/bipart/decode_bc_30nodes.png> <./images/bipart/feat_vs_node_30nodes_green.png> <./images/bipart/ieclam_cone_30nodes.png> <./images/bipart/decode_ie_30nodes.png> <./images/circle/circle_ie_gt.png> <./images/circle/circ_initialization.png> <./images/circle/pieclam_circ_reconstruct_no_edge.png (PNG copy)> <./images/bipart/tripart_gt.png> <./images/bipart/tripart_bigclam_6comm.png> <./images/bipart/tripart_ie_4comm.png>]
+ <./images/ICML-logo.png> <./images/QR_archive.png> <./technion logo.png> <./images/bipart/bipart_pic_orange_red.png (PNG copy)> <./images/bipart/bipart_gt_30nodes.png> <./images/bipart/embedding_bc_best.png> <./images/bipart/decode_bc_30nodes.png> <./images/bipart/feat_vs_node_narrow_bigfont.png> <./images/bipart/ieclam_cone_30nodes.png> <./images/bipart/decode_ie_30nodes.png> <./images/circle/circle_ie_gt.png> <./images/circle/circ_initialization.png> <./images/circle/circ_pie_orange_small.png> <./images/bipart/tripart_gt.png> <./images/bipart/tripart_bigclam_6comm.png> <./images/bipart/tripart_ie_4comm.png>]
 \tf@nav=\write6
 \openout6 = `poster.nav'.
 
@@ -1111,18 +1127,18 @@ Package rerunfilecheck Info: File `poster.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 36753 strings out of 478268
- 872785 string characters out of 5846347
- 1392575 words of memory out of 5000000
- 54204 multiletter control sequences out of 15000+600000
- 639835 words of font info for 132 fonts, out of 8000000 for 9000
+ 36755 strings out of 478268
+ 872645 string characters out of 5846347
+ 1390600 words of memory out of 5000000
+ 54209 multiletter control sequences out of 15000+600000
+ 639874 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,20n,122p,812b,1093s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmss17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsso17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on poster.pdf (1 page, 706596 bytes).
+Output written on poster.pdf (1 page, 1535162 bytes).
 PDF statistics:
- 109 PDF objects out of 1000 (max. 8388607)
- 51 compressed objects within 1 object stream
+ 112 PDF objects out of 1000 (max. 8388607)
+ 52 compressed objects within 1 object stream
  6 named destinations out of 1000 (max. 500000)
- 118 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 123 words of extra memory for PDF output out of 10000 (max. 10000000)
 

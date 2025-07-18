@@ -43,16 +43,20 @@ def plot_feats(graph, lorenz):
     if num_feats >= 2:
         ax.plot(graph.x[:, 1].detach().numpy(), color='green', label='t', linewidth=2)
         ax.set_ylim(y_fig_lim_exclusive)
-    
+        
     # Add horizontal broken line at y=0
     ax.axhline(y=0, color='black', linestyle='--', alpha=0.5, linewidth=1)
     
     # Add legend (bigger and positioned in bottom right)
     ax.legend(loc='lower right', fontsize=36)
     
-    # Add labels
-    ax.set_xlabel('Node Index')
-    ax.set_ylabel('Feature Value')
+    # Add labels with larger font size
+    ax.set_xlabel('Node Index', fontsize=20)
+    ax.set_ylabel('Feature Value', fontsize=20)
+
+    # Increase tick label font size
+    ax.tick_params(axis='both', which='major', labelsize=16)
+    ax.tick_params(axis='both', which='minor', labelsize=14)
 
 def plot_relu_lines(lorenz, ax, line_range=1):
     if lorenz:
@@ -103,7 +107,7 @@ def plot_2dgraph(graph,
                 #  x_fig_lim=None, 
                 #  y_fig_lim=None, 
                  ax=None, 
-                 figsize=(2,2), 
+                 figsize=(2,2),
                  **kwargs):
         
         
@@ -112,7 +116,8 @@ def plot_2dgraph(graph,
         draw_edges = kwargs.get('draw_edges', False)
         draw_community_affiliation = kwargs.get('draw_community_affiliation', True)
         draw_colorful_nodes = kwargs.get('draw_colorful_nodes', False)
-        node_size_factor = kwargs.get('node_size_factor', 1)
+        node_size_factor = kwargs.get('node_size_factor', 2.5)
+        alpha = kwargs.get('alpha', 0.7)
     
         if not draw_community_affiliation:
             community_affiliation = None
@@ -120,8 +125,9 @@ def plot_2dgraph(graph,
         if x_fig_lim is None:
             if lorenz_fig_lims:
                 x_fig_lim = [-0.01, 2.7]
-                # y_fig_lim = [-1.7, 1.7]
-                y_fig_lim = [-2, 2]
+                # x_fig_lim = [-0.01, 1.7]
+                y_fig_lim = [-1.7, 1.7]
+                # y_fig_lim = [-2, 2]
             else:
                 x_fig_lim = [-0.1, 2]
                 y_fig_lim = [-0.1, 2]
@@ -132,7 +138,7 @@ def plot_2dgraph(graph,
         num_nodes = node_feats.shape[0]
         num_edges = graph_cpu.edge_index.shape[1]
         node_positions_dict = {i: feat for i, feat in enumerate(node_feats)}
-        node_sizes = 12*node_size_factor*figsize[0]/num_nodes*degree(graph_cpu.edge_index[0]).detach().numpy()
+        node_sizes = node_size_factor*figsize[0]/num_nodes*degree(graph_cpu.edge_index[0]).detach().numpy()
         G = to_networkx(graph_cpu)
         if ax is None:
             fig, ax = plt.subplots(figsize=figsize)
@@ -144,12 +150,12 @@ def plot_2dgraph(graph,
             if draw_colorful_nodes:
                 node_colors = sns.color_palette("Paired", n_colors=graph_cpu.x.shape[0])
             else:
-                node_colors = 'blue'
+                node_colors = 'orange'
             # node_colors = sns.color_palette("Paired", n_colors=graph_cpu.x.shape[0])
         
         edge_color = 'black' 
         if draw_edges:
-            width = 60/num_edges
+            width = 15/num_edges
         else:
             width = 0.0
          # Draw edges first
@@ -159,7 +165,7 @@ def plot_2dgraph(graph,
         # alpha_value = 0.5  # Adjust this value between 0 and 1 as needed
         # nx.draw_networkx_nodes(G, pos=node_positions_dict, node_color=node_colors, node_size=node_sizes, alpha=alpha_value, ax=ax)
         
-        nx.draw(G, pos=node_positions_dict, node_color=node_colors, node_size=node_sizes, arrows=False, edge_color=edge_color, width=width, alpha=0.9, ax=ax)
+        nx.draw(G, pos=node_positions_dict, node_color=node_colors, node_size=node_sizes, arrows=False, edge_color=edge_color, width=width, alpha=alpha, ax=ax)
      
         #* add the axes (nx doesn't use them ever)
         ax.axis('on')
@@ -170,8 +176,8 @@ def plot_2dgraph(graph,
             ax.set_aspect('equal')
             ax.set_xlim(x_fig_lim[0], x_fig_lim[1])
             ax.set_ylim(y_fig_lim[0], y_fig_lim[1])
-            ax.set_xlabel('$\\mathbf{s}$', rotation=0)
-            ax.set_ylabel('$\\mathbf{t}$', rotation=0)
+            # ax.set_xlabel('$\\mathbf{t}$', rotation=0, fontsize=24)
+            # ax.set_ylabel('$\\mathbf{s}$', rotation=0, fontsize=24)
             ax.set_aspect('equal')
             if lorenz_fig_lims:
                 ax.axhline(y=0, color='gray', linestyle='--', alpha=0.5)
@@ -308,6 +314,7 @@ def plot_normflows_dist(dist, lorenz, zz=None, ax=None, figsize=(2,2), x_fig_lim
     im = ax.pcolormesh(xx, yy, prob, cmap='viridis')
     ax.set_xlim(x_fig_lim[0], x_fig_lim[1])
     ax.set_ylim(y_fig_lim[0], y_fig_lim[1])
+    # ax.set_ylabel('$\\mathbf{t}$', rotation=0, fontsize=24)
     plot_relu_lines(lorenz=lorenz, ax=ax)
     ax.set_aspect('equal', 'box')
     ax.set_title(title)
@@ -531,38 +538,55 @@ def plot_optimization_stage(
     if prior:
         prior.model.train()   
 
-def plot_graph_2_feats(graph, community_affiliation=None, prior=None, lorenz=False, draw_nodes_on_prior=True, **kwargs):    
+def plot_graph_2_feats(graph, community_affiliation=None, prior=None, lorenz=False, draw_nodes_on_prior=True, alpha=0.2, **kwargs):    
     if prior: 
-        draw_nodes_on_prior = draw_nodes_on_prior
         if lorenz:
             x_fig_lim = [-0.01, 2.7]
             y_fig_lim = [-1.7, 1.7]
         else:
             x_fig_lim = [-0.1, 2]
             y_fig_lim = [-0.1, 2]   
-        _, axes = plt.subplots(1, 2, figsize=(7, 3))
         
-
         if draw_nodes_on_prior:
-            plot_prob(prior.forward_ll, device=next(prior.model.parameters()).device, ax=axes[0], title='prior', x_fig_lim=x_fig_lim, y_fig_lim=y_fig_lim)
+            # Plot probability and features on the same axis
+            _, axes = plt.subplots(1, 1, figsize=(7, 3))
+            if not isinstance(axes, list):
+                axes = [axes]
+            # Plot probability on first axis
+            im_prob = plot_prob(prior.forward_ll, device=next(prior.model.parameters()).device, ax=axes[0], x_fig_lim=x_fig_lim, y_fig_lim=y_fig_lim)
+            my_colorbar(im_prob, ax=axes[0])
+            plot_relu_lines(lorenz=lorenz, ax=axes[0])
+            
+            # Plot features on top of the same axis
+            plot_2dgraph(
+                graph, community_affiliation=community_affiliation,
+                lorenz_fig_lims=lorenz, ax=axes[0], 
+                figsize=(3,3),
+                alpha=alpha,
+                **kwargs)
+            
+            # Plot graph on second axis
+            # plot_2dgraph(
+            #     graph, community_affiliation=community_affiliation,
+            #     lorenz_fig_lims=lorenz, ax=axes[1], 
+            #     figsize=(3,3),
+            #     **kwargs)
+        else:
+            # Plot probability and features in separate subplots
+            _, axes = plt.subplots(1, 2, figsize=(7, 3))
+            
+            # Plot probability on first axis
+            im_prob = plot_prob(prior.forward_ll, device=next(prior.model.parameters()).device, ax=axes[0], title='prior', x_fig_lim=x_fig_lim, y_fig_lim=y_fig_lim)
+            my_colorbar(im_prob, ax=axes[0])
+            plot_relu_lines(lorenz=lorenz, ax=axes[0])
+            
+            # Plot features on second axis
+            plot_2dgraph(
+                graph, community_affiliation=community_affiliation,
+                lorenz_fig_lims=lorenz, ax=axes[1], 
+                figsize=(3,3),
+                **kwargs)
         
-        
-        im_prob = plot_prob(prior.forward_ll, device=next(prior.model.parameters()).device, ax=axes[0], title='prior', x_fig_lim=x_fig_lim, y_fig_lim=y_fig_lim)
-        my_colorbar(im_prob, ax=axes[0])
-        
-        # plot_xy_axes(axes[0], line_range=2)
-        plot_relu_lines(lorenz=lorenz, ax=axes[0])
-        plot_2dgraph(
-            graph, community_affiliation=community_affiliation,
-            lorenz_fig_lims=lorenz, ax=axes[1], 
-            figsize=(3,3),
-            **kwargs)      
-        # plot just the prior
-        # im_prob = plot_prob(prior.model.log_prob, device=next(prior.model.parameters()).device, ax=axes[1], title='prior', x_fig_lim=x_fig_lim, y_fig_lim=y_fig_lim)
-        
-        
-        # plot_xy_axes(axes[1], line_range=2)
-
     else:
         plot_2dgraph(
             graph,

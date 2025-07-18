@@ -1501,6 +1501,11 @@ INPUT ./images/ICML-logo.png
 INPUT images/ICML-logo.png
 INPUT ./images/ICML-logo.png
 INPUT ./images/ICML-logo.png
+INPUT ./images/QR_archive.png
+INPUT ./images/QR_archive.png
+INPUT images/QR_archive.png
+INPUT ./images/QR_archive.png
+INPUT ./images/QR_archive.png
 INPUT ./technion logo.png
 INPUT ./technion logo.png
 INPUT technion logo.png
@@ -1631,14 +1636,14 @@ INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/lm/ot1lmss.fd
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/lm/ot1lmss.fd
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/lm/ot1lmss.fd
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/rm-lmss17.tfm
-INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/rm-lmss10.tfm
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/rm-lmss12.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/rm-lmss8.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/lm/omllmm.fd
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/lm/omllmm.fd
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/lm/omllmm.fd
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/lm/omllmm.fd
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/lmmi12.tfm
-INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/lmmi10.tfm
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/lmmi12.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/lmmi8.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/lm/omslmsy.fd
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/lm/omslmsy.fd
@@ -1649,21 +1654,25 @@ INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/lmsy10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/lmsy8.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
-INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmss10.tfm
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmss12.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmss8.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmsso17.tfm
-INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmsso10.tfm
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmsso12.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmsso8.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmss17.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmss17.tfm
+INPUT ./images/QR_archive.png
+INPUT ./images/QR_archive.png
+INPUT images/QR_archive.png
+INPUT ./images/QR_archive.png
 INPUT ./technion logo.png
 INPUT ./technion logo.png
 INPUT technion logo.png
@@ -1698,21 +1707,21 @@ INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm
-INPUT ./images/bipart/Simple_bipartite_graph.png
-INPUT ./images/bipart/Simple_bipartite_graph.png
-INPUT images/bipart/Simple_bipartite_graph.png
-INPUT ./images/bipart/Simple_bipartite_graph.png
-INPUT ./images/bipart/Simple_bipartite_graph.png
+INPUT ./images/bipart/bipart_pic_orange_red.png
+INPUT ./images/bipart/bipart_pic_orange_red.png
+INPUT images/bipart/bipart_pic_orange_red.png
+INPUT ./images/bipart/bipart_pic_orange_red.png
+INPUT ./images/bipart/bipart_pic_orange_red.png
 INPUT ./images/bipart/bipart_gt_30nodes.png
 INPUT ./images/bipart/bipart_gt_30nodes.png
 INPUT images/bipart/bipart_gt_30nodes.png
 INPUT ./images/bipart/bipart_gt_30nodes.png
 INPUT ./images/bipart/bipart_gt_30nodes.png
-INPUT ./images/bipart/feat_vs_feat_bigclam_30nodes.png
-INPUT ./images/bipart/feat_vs_feat_bigclam_30nodes.png
-INPUT images/bipart/feat_vs_feat_bigclam_30nodes.png
-INPUT ./images/bipart/feat_vs_feat_bigclam_30nodes.png
-INPUT ./images/bipart/feat_vs_feat_bigclam_30nodes.png
+INPUT ./images/bipart/embedding_bc_best.png
+INPUT ./images/bipart/embedding_bc_best.png
+INPUT images/bipart/embedding_bc_best.png
+INPUT ./images/bipart/embedding_bc_best.png
+INPUT ./images/bipart/embedding_bc_best.png
 INPUT ./images/bipart/decode_bc_30nodes.png
 INPUT ./images/bipart/decode_bc_30nodes.png
 INPUT images/bipart/decode_bc_30nodes.png
@@ -1726,11 +1735,11 @@ INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/lm/t1lmr.fd
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmr17.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmr17.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmr17.tfm
-INPUT ./images/bipart/feat_vs_node_30nodes_green.png
-INPUT ./images/bipart/feat_vs_node_30nodes_green.png
-INPUT images/bipart/feat_vs_node_30nodes_green.png
-INPUT ./images/bipart/feat_vs_node_30nodes_green.png
-INPUT ./images/bipart/feat_vs_node_30nodes_green.png
+INPUT ./images/bipart/feat_vs_node_narrow_bigfont.png
+INPUT ./images/bipart/feat_vs_node_narrow_bigfont.png
+INPUT images/bipart/feat_vs_node_narrow_bigfont.png
+INPUT ./images/bipart/feat_vs_node_narrow_bigfont.png
+INPUT ./images/bipart/feat_vs_node_narrow_bigfont.png
 INPUT ./images/bipart/ieclam_cone_30nodes.png
 INPUT ./images/bipart/ieclam_cone_30nodes.png
 INPUT images/bipart/ieclam_cone_30nodes.png
@@ -1741,6 +1750,7 @@ INPUT ./images/bipart/decode_ie_30nodes.png
 INPUT images/bipart/decode_ie_30nodes.png
 INPUT ./images/bipart/decode_ie_30nodes.png
 INPUT ./images/bipart/decode_ie_30nodes.png
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/rm-lmss17.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/rm-lmss17.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/rm-lmss12.tfm
@@ -1756,7 +1766,6 @@ INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/lmsy10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
-INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
@@ -1780,11 +1789,11 @@ INPUT ./images/circle/circ_initialization.png
 INPUT images/circle/circ_initialization.png
 INPUT ./images/circle/circ_initialization.png
 INPUT ./images/circle/circ_initialization.png
-INPUT ./images/circle/pieclam_circ_reconstruct_no_edge.png
-INPUT ./images/circle/pieclam_circ_reconstruct_no_edge.png
-INPUT images/circle/pieclam_circ_reconstruct_no_edge.png
-INPUT ./images/circle/pieclam_circ_reconstruct_no_edge.png
-INPUT ./images/circle/pieclam_circ_reconstruct_no_edge.png
+INPUT ./images/circle/circ_pie_orange_small.png
+INPUT ./images/circle/circ_pie_orange_small.png
+INPUT images/circle/circ_pie_orange_small.png
+INPUT ./images/circle/circ_pie_orange_small.png
+INPUT ./images/circle/circ_pie_orange_small.png
 INPUT ./images/bipart/tripart_gt.png
 INPUT ./images/bipart/tripart_gt.png
 INPUT images/bipart/tripart_gt.png
@@ -1812,11 +1821,15 @@ INPUT ./images/ICML-logo.png
 INPUT images/ICML-logo.png
 INPUT ./images/ICML-logo.png
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmr17.tfm
-INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmr10.tfm
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmr12.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmr8.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm
+INPUT ./images/QR_archive.png
+INPUT ./images/QR_archive.png
+INPUT images/QR_archive.png
+INPUT ./images/QR_archive.png
 INPUT ./technion logo.png
 INPUT ./technion logo.png
 INPUT technion logo.png

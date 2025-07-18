@@ -1,15 +1,15 @@
 \begin{thebibliography}{1}
 
-\bibitem{dinh2016density}
-Laurent Dinh, Jascha Sohl-Dickstein, and Samy Bengio.
-\newblock Density estimation using real nvp.
-\newblock {\em arXiv preprint arXiv:1605.08803}, 2016.
-
 \bibitem{yang2013overlapping}
 Jaewon Yang and Jure Leskovec.
 \newblock Overlapping community detection at scale: a nonnegative matrix
   factorization approach.
 \newblock In {\em Proceedings of the sixth ACM international conference on Web
   search and data mining}, pages 587--596, 2013.
+
+\bibitem{dinh2016density}
+Laurent Dinh, Jascha Sohl-Dickstein, and Samy Bengio.
+\newblock Density estimation using real nvp.
+\newblock {\em arXiv preprint arXiv:1605.08803}, 2016.
 
 \end{thebibliography}
