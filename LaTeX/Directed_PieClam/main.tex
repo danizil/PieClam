@@ -1,0 +1,125 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+\begin{document}
+
+\title{Directed PieClam}
+\author{Daniel Zilberg}
+\date{10 August 2025}
+
+\maketitle
+
+\section{Derivation}
+\subsection{Setting}
+Consider a directed graph G with $N$ nodes. The adjacency matrix is $A \in \mathbb{R}^{N \times N}$. consider the undirected bipartite graph $G_b$ with $2N$ nodes, where the off diagonal $N\times N$ blocks of $A$ are the adjacency matrix of $G$ and it's transpose accordingly, and the diagonal blocks are all zeros. 
+
+The duplicate set of nodes can be considered as "Sender" and "Receiver" sets. To extract the the original directed graph we simply only consider the connections from the "Sender" to the "Receiver".
+
+\subsection{Probabilistic Model}
+We write the PieClam probabilistic model of $G_b$ as:
+\begin{align}
+    p(E|\mathbf{F}) &= \prod_{n=1}^{N} \Bigg(
+    \prod_{m=1}^{N}e^{-\mathbf{f}_n^T \mathbf{L} \mathbf{f}_m} 
+    \prod_{\substack{N+1\leq m\leq 2N \\ m \sim n}}\bigg(1-e^{-\mathbf{f}_n^T \mathbf{L} \mathbf{f}_m}\bigg)
+    \prod_{\substack{N+1\leq m\leq 2N \\ m \not\sim n}}e^{-\mathbf{f}_n^T \mathbf{L} \mathbf{f}_m}
+    \Bigg) \notag \\
+    &\quad \times \prod_{n=N+1}^{2N}\Bigg(
+        \prod_{m=N+1}^{2N}e^{-\mathbf{f}_n^T \mathbf{L} \mathbf{f}_m} 
+        \prod_{\substack{1\leq m\leq N \\ m \sim n}}\bigg(1-e^{-\mathbf{f}_n^T \mathbf{L} \mathbf{f}_m}\bigg)
+        \prod_{\substack{1\leq m\leq N \\ m \not\sim n}}e^{-\mathbf{f}_n^T \mathbf{L} \mathbf{f}_m}
+        \Bigg)
+    \label{eq:big_bipartite}
+\end{align}
+
+
+In this case, the nodes $[1,N]$ are the "Sender" nodes and the nodes $[N+1,2N]$ are the "Receiver" nodes.
+
+The reconstruction of the directed graph is then:
+\begin{align}
+    p(n\rightarrow m|\mathbf{F}) = 1 - e^{-\mathbf{f}_n^T \mathbf{L} \mathbf{f}_{m + N}}
+\end{align}
+
+\subsection{Feature Representation}
+By creating a second set of nodes, we in fact create a second set of features for each of the nodes. We may use this intuition and add this second set directly. Each node will now have two feature sets $\mathbf{s} \in \mathbb{R}^{N \times d}$ (sender) and $\mathbf{r} \in \mathbb{R}^{N \times d}$ (receiver).
+
+Rewrite \ref{eq:big_bipartite} as:
+\begin{align}
+    p(E|F) &= \prod_{n=1}^{N} \Bigg[\sqrt{
+    \bigg(
+    \prod_{m=1}^{N}e^{-\mathbf{s}_n^T \mathbf{L} \mathbf{s}_m} 
+    \prod_{m \leftarrow n}\Big(1-e^{-\mathbf{s}_n^T \mathbf{L} \mathbf{r}_m}\Big)
+    \prod_{m \not\leftarrow n}e^{-\mathbf{s}_n^T \mathbf{L} \mathbf{r}_m}
+    \bigg)} \notag \\
+    &\quad \times \sqrt{\bigg(
+        \prod_{m=1}^{N}e^{-\mathbf{r}_n^T \mathbf{L} \mathbf{r}_m} 
+        \prod_{m \rightarrow n}\Big(1-e^{-\mathbf{r}_n^T \mathbf{L} \mathbf{s}_m}\Big)
+        \prod_{m \not\rightarrow n}e^{-\mathbf{r}_n^T \mathbf{L} \mathbf{s}_m}
+        \bigg)
+    }\Bigg]
+\end{align}
+
+Notice that the directed terms have the same elements but in different order. We can therefore rewrite the expression as:
+\begin{align}
+    p(E|F) &= \prod_{n=1}^{N} \Bigg(
+        \prod_{m=1}^{N}e^{-\frac{1}{2}(\mathbf{s}_n^T \mathbf{L} \mathbf{s}_m + \mathbf{r}_n^T \mathbf{L} \mathbf{r}_m)}
+        \prod_{m \rightarrow n}\Big(1-e^{-\mathbf{r}_n^T \mathbf{L} \mathbf{s}_m}\Big)
+        \prod_{m \not\rightarrow n}e^{-\mathbf{r}_n^T \mathbf{L} \mathbf{s}_m}
+    \Bigg)
+\end{align}
+ 
+The log likelihood is then:
+\begin{align}
+    \log p(E|F) &= \sum_{n=1}^{N} \Bigg(
+        \sum_{m=1}^{N} -\frac{1}{2}(\mathbf{s}_n^T \mathbf{L} \mathbf{s}_m + \mathbf{r}_n^T \mathbf{L} \mathbf{r}_m) +
+        \sum_{m \rightarrow n}^{N} \log(1-e^{-\mathbf{s}_n^T \mathbf{L} \mathbf{r}_m}) -
+        \sum_{m \not\rightarrow n}^{N} \mathbf{s}_n^T \mathbf{L} \mathbf{r}_m
+    \Bigg)
+\end{align}
+
+Which can be rewritten using a parameterization trick:
+\begin{align}
+    \log p(E|F) &= \sum_{n=1}^{N} \Bigg(
+        \sum_{m=1}^{N} -\frac{1}{2}(\mathbf{s}_n^T \mathbf{L} \mathbf{s}_m + \mathbf{r}_n^T \mathbf{L} \mathbf{r}_m + 2 \mathbf{s}_n^T \mathbf{L} \mathbf{r}_m) +
+        \sum_{m \rightarrow n}^{N} \log(e^{\mathbf{r}_n^T \mathbf{L} \mathbf{s}_m} - 1) 
+    \Bigg) \notag\\
+    &= \sum_{n=1}^{N} \Bigg(
+        \sum_{m=1}^{N} -\frac{1}{2}(\mathbf{s}_n + \mathbf{r}_n)^T \mathbf{L} (\mathbf{s}_m + \mathbf{r}_m) +
+        \sum_{m \rightarrow n}^{N} \log(e^{\mathbf{r}_n^T \mathbf{L} \mathbf{s}_m} - 1) 
+    \Bigg)
+\end{align}
+
+The gradient updates are then:
+\begin{align}
+    \nabla_{\mathbf{s_n}}l &= -\frac{1}{2} \sum_{m=1}^{N} \mathbf{L} (\mathbf{s}_m + \mathbf{r}_m) +
+    \sum_{m \leftarrow n}^{N} \frac{\mathbf{L} \mathbf{r}_m}{e^{\mathbf{r}_n^T \mathbf{L} \mathbf{s}_m} - 1} \\
+    \nabla_{\mathbf{r_n}}l &= -\frac{1}{2} \sum_{m=1}^{N} \mathbf{L} (\mathbf{s}_m + \mathbf{r}_m) +
+    \sum_{m \rightarrow n}^{N} \frac{\mathbf{L} \mathbf{s}_m}{e^{\mathbf{r}_n^T \mathbf{L} \mathbf{s}_m} - 1}
+\end{align}
+
+
+Which can be implemented as a message passing algorithm. 
+
+The reconstruction of the graph can be written as:
+\begin{align}
+    \hat{A}_{n,m} = p(n\rightarrow m|F) = 1 - e^{-\mathbf{s}_n^T \mathbf{L} \mathbf{r}_m}
+\end{align}
+
+
+
+
+
+\end{document}

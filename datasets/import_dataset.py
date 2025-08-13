@@ -142,6 +142,7 @@ def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remo
     elif dataset_name == 'bipartite':
         data = simulate_dataset('bipartite', verbose=verbose)
 
+
     elif dataset_name == 'sbm3x3HalfCenter':
         data = simulate_dataset('sbm3x3HalfCenter', verbose=verbose)
         
