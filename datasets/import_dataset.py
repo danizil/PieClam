@@ -158,6 +158,8 @@ def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remo
 
     elif dataset_name == 'largeBipartFull':
         data = simulate_dataset('largeBipartFull', verbose=verbose)
+    elif dataset_name == 'smallBipartFull':
+        data = simulate_dataset('smallBipartFull', verbose=verbose)
 
     elif dataset_name == 'tripartite':
         data = simulate_dataset('tripartite', verbose=verbose)
@@ -334,3 +336,26 @@ def transform_attributes(attr, transform='auto', n_components=32, normalize=True
     
 
     return torch.from_numpy(attr).float()
+
+# def direct_graph(data):
+#     '''make bottom triangle of the graph directed'''
+#     edge_index = data.edge_index
+#     edge_index = edge_index.sort(dim=0)[0]
+#     edge_index = edge_index[edge_index[0] < edge_index[1]]
+#     data.edge_index = edge_index
+#     data.edge_attr = torch.ones(edge_index.shape[1], dtype=torch.bool)
+#     data.edge_index = to_undirected(data.edge_index)
+#     return data
+
+def direct_graph(data):
+    '''make bottom triangle of the graph directed'''
+    edge_index = data.edge_index
+    # Sort each edge pair so smaller node index comes first
+    sorted_indices = edge_index[0].argsort()
+    edge_index = edge_index[:, sorted_indices]
+    # Keep only edges where source < target (upper triangle)
+    mask = edge_index[0] < edge_index[1]
+    edge_index = edge_index[:, mask]
+    data.edge_index = edge_index
+    data.edge_attr = torch.ones(edge_index.shape[1], dtype=torch.bool)
+    return data

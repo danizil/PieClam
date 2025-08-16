@@ -304,9 +304,10 @@ class PCLAMIter(MessagePassing):
             #       metric=None,
             
             
+            
 
             # ASSERTIONS
-            assert graph.is_undirected(), 'graph is directed!!!'
+            # assert graph.is_undirected(), 'graph is directed!!!'
             assert not graph.has_self_loops(), 'graph contains self loops!!!'
             assert which_fit in ['fit_feats', 'fit_prior'], 'which_fit should be either fit_feats or fit_prior'
             # ==== end assertions =====

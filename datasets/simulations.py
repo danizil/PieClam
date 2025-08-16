@@ -83,7 +83,7 @@ def sample_normflows_dist(num_samples, name_shape, lorenz=False, device='cpu'):
     graph.name = name_shape
     return graph, dist
 
-
+#todo: need to have an option for directed graphs. the import dataset function makes them undirected and we check for that everywhere.
 def simulate_dataset(name, verbose=False):
     figsize = (2, 1)
     if name == 'smallBipart':
@@ -127,6 +127,12 @@ def simulate_dataset(name, verbose=False):
         edge_index = dense_to_sparse(adj_bipart)[0]
         data = Data(edge_index=edge_index, y=y)
 
+    elif name == 'smallBipartFull':
+        num_samples = 10
+        prob_adj_bipart, y = create_sbm(num_samples, p_comm=[0.0, 0.0], p_bipart=[1.0])
+        adj_bipart = sample_from_adj(prob_adj_bipart)
+        edge_index = dense_to_sparse(adj_bipart)[0]
+        data = Data(edge_index=edge_index, y=y)
             
     elif name == 'bipartiteHalf':
         num_samples = 100

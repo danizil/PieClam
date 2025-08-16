@@ -139,6 +139,7 @@ def plot_2dgraph(graph,
         num_edges = graph_cpu.edge_index.shape[1]
         node_positions_dict = {i: feat for i, feat in enumerate(node_feats)}
         node_sizes = node_size_factor*figsize[0]/num_nodes*degree(graph_cpu.edge_index[0]).detach().numpy()
+        node_sizes = node_sizes if graph.is_undirected() else node_size_factor*figsize[0]/num_nodes
         G = to_networkx(graph_cpu)
         if ax is None:
             fig, ax = plt.subplots(figsize=figsize)
@@ -164,13 +165,15 @@ def plot_2dgraph(graph,
         # # Draw nodes with specified alpha
         # alpha_value = 0.5  # Adjust this value between 0 and 1 as needed
         # nx.draw_networkx_nodes(G, pos=node_positions_dict, node_color=node_colors, node_size=node_sizes, alpha=alpha_value, ax=ax)
+        arrows = True if graph.is_directed() else False
         
-        nx.draw(G, pos=node_positions_dict, node_color=node_colors, node_size=node_sizes, arrows=False, edge_color=edge_color, width=width, alpha=alpha, ax=ax)
+        nx.draw(G, pos=node_positions_dict, node_color=node_colors, node_size=node_sizes*40, arrows=arrows, edge_color=edge_color, width=width, alpha=alpha, ax=ax)
      
         #* add the axes (nx doesn't use them ever)
         ax.axis('on')
         ax.tick_params(left=True, bottom=True, labelleft=True, labelbottom=True)
         
+
         if lorenz_fig_lims:
             # ax.set_title(f'$t_{proj_dims[0]}$ vs $s_{proj_dims[0]}$')
             ax.set_aspect('equal')
