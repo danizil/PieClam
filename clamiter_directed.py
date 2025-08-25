@@ -40,10 +40,20 @@ eps = 1e-6
 
 
 
+#todo: maybe should make three different classes for the different cases:
+# 1. undirected
+# 2. directed with forward message
+# 3. directed with reverse message
+
+# i need to update the sender features and
+
+
+# 88   88 88b 88 8888b.  88 88""Yb 888888  dP""b8 888888 888888 8888b.  
+# 88   88 88Yb88  8I  Yb 88 88__dP 88__   dP   `"   88   88__    8I  Yb 
+# Y8   8P 88 Y88  8I  dY 88 88"Yb  88""   Yb        88   88""    8I  dY 
+# `YbodP' 88  Y8 8888Y"  88 88  Yb 888888  YboodP   88   888888 8888Y"   
 class ClamIter(MessagePassing):
     '''class to do the pclam iterations in the form of a message passing neural network'''
-    # i can initialize the node feats 
-    #TODO: add l1 regularization
     def __init__(self, 
                  lorenz, 
                  vanilla, 
@@ -59,6 +69,7 @@ class ClamIter(MessagePassing):
                  hidden_dim=64, 
                  num_coupling_blocks=32, 
                  num_layers_mlp=2,
+                 directed=False,
                  lr=0.01,
                  aggr='add', 
                  device=torch.device('cpu')):
@@ -75,7 +86,7 @@ class ClamIter(MessagePassing):
         self.s_reg = s_reg
         self.device = device
         self.T = T
-        
+        self.directed = directed
         if self.vanilla and not self.lorenz:
             self.model_name = 'bigclam'
         elif self.vanilla and self.lorenz:
@@ -120,12 +131,10 @@ class ClamIter(MessagePassing):
 
         self.to(self.device) 
 
-
     def __del__(self):
         if self.prior is not None:
             del self.prior
-        
-
+   
     def add_prior(self, hidden_dim=64, num_coupling_blocks=32, num_layers_mlp=2, prior=None):
         if prior is not None:
             self.prior = prior
@@ -141,8 +150,9 @@ class ClamIter(MessagePassing):
 
     def forward(self, graph, node_mask):
         '''first called, starts mpnn process by preprocessing then calling propagate'''
-
+        #todo: if the graph is directed, do this otherwise do the directed graph method
         t = time.time()
+        # PRIOR STUFF
         prior_grad = torch.zeros_like(graph.x)
         if not self.vanilla:
             #todo: concatenate features graph.s with graph.x
@@ -161,14 +171,30 @@ class ClamIter(MessagePassing):
             #the extra clone means the data of the tensor is different. tested, it doesn't take longer.
             graph.x = graph.x.detach().clone() 
             # attributes must not change
-            
-        with torch.no_grad():
-            tbr = self.propagate(edge_index=graph.edge_index, x=graph.x, global_features=(prior_grad), edge_attr=graph.edge_attr)
-        
-            # tbr2 = self.propagate(edge_index=graph.edge_index, x=graph.x, global_features=(torch.tensor(0.0)), edge_attr=graph.edge_attr) + prior_grad
+        # ===== end prior stuff =====        
 
-            # if not torch.allclose(tbr, tbr2):
-                # raise ValueError('tbr and tbr2 not equal')
+
+
+        # MESSAGE PASSING
+        with torch.no_grad():
+        #todo: different message passing for directed graphs
+            if self.directed():
+                #todo: split the features down the middle
+                
+                #forward direction: add the r features to the i features
+                #! BE SURE TO NOT TO USE UPDATED VALUES. calculate the inner product for all nodes before updating
+                tbr_i = self.propagate(edge_index=graph.edge_index, x=graph.x, global_features=(prior_grad), edge_attr=graph.edge_attr)
+                
+                #reverse direction: add the r features to the global features
+                tbr_r = self.propagate(edge_index=torch.flip(graph.edge_index, dims=[0]), x=graph.x, global_features=(prior_grad), edge_attr=graph.edge_attr)
+
+                tbr = torch.cat([tbr_i, tbr_r], dim=1)
+                #todo: add the reverse direction to the global features
+                #todo: add the reverse direction to the edge attributes
+                #todo: add the reverse direction to the node features
+                #todo: add the reverse direction to the node features
+            else:
+                tbr = self.propagate(edge_index=graph.edge_index, x=graph.x, global_features=(prior_grad), edge_attr=graph.edge_attr)
 
         tbr = tbr*node_mask.unsqueeze(-1).float()
         # ==================================
@@ -182,29 +208,30 @@ class ClamIter(MessagePassing):
         link prediction here will be either:'''
         #* x_i is the reciever and x_j is the sender.
 
-        # todo> change clamiter and maybe the prior to mask some of the edges
-        # how to mask the edges? for now not very important.. if this becomes a problem for large graphs i can do 2d edge attributes or something. hope it's not 
-        x_inner_product = torch.einsum('ij,ij->i', x_i, self.B*x_j) + eps
-        
-        if (x_inner_product < 0).any():
-            raise ValueError('x_inner_product is negative for neighbors')
-        if (x_inner_product == 0).any():
-            raise ValueError('x_inner_product is 0 for neighbors')
-        #* this is the only change to clamiter class due to dyad omittion
-        msg_1 = x_j / (1 - torch.exp(-x_inner_product) + eps).unsqueeze(1) #- self.reg_inr*x_j*(x_inner_product - 1).unsqueeze(1)
-        msg_0 = x_j
+        #todo: flip edges and flip features. but how do i make this case 
+        if self.forward_message is True:
+            pass
+        else:
+            x_inner_product = torch.einsum('ij,ij->i', x_i, self.B*x_j) + eps
+            
+            if (x_inner_product < 0).any():
+                raise ValueError('x_inner_product is negative for neighbors')
+            if (x_inner_product == 0).any():
+                raise ValueError('x_inner_product is 0 for neighbors')
+            #* this is the only change to clamiter class due to dyad omittion
+            msg_1 = x_j / (1 - torch.exp(-x_inner_product) + eps).unsqueeze(1) #- self.reg_inr*x_j*(x_inner_product - 1).unsqueeze(1)
+            msg_0 = x_j
 
-        # edge attr is 0 for omitted dyads
-        msg = edge_attr.unsqueeze(1)*msg_1 + (~edge_attr).unsqueeze(1)*msg_0 
-        #? TESTED  torch.where(msg == x_j) == torch.where(edge_attr==0) 
-        return msg
+            # edge attr is 0 for omitted dyads
+            msg = edge_attr.unsqueeze(1)*msg_1 + (~edge_attr).unsqueeze(1)*msg_0 
+            #? TESTED  torch.where(msg == x_j) == torch.where(edge_attr==0) 
+            return msg
 
 
     def update(self, aggr_out, x, global_features, edge_attr):
         '''returns the gradient of the loss with respect to the node features
         regularization: self.s_reg and self.l1_reg
         global: global_features[0] is the sum of the node features, global_features[1] is the prior grad'''
-        #! here there is addition of 2000
         global_term = torch.sum(x, dim=0)
         
         s_feats = x[:, self.num_t_comms:]
@@ -304,6 +331,7 @@ class ClamIter(MessagePassing):
             #       metric=None,
             
             
+
 
             # ASSERTIONS
             # assert graph.is_undirected(), 'graph is directed!!!'

@@ -13,7 +13,7 @@ import time
 import math
 from transformation import train_prior
 from datasets.import_dataset import import_dataset, transform_attributes
-import clamiter as ci
+import clamiter_directed as ci
 import utils.link_prediction as lp
 from utils.plotting import plot_optimization_stage, plot_2dgraph
 from utils.printing_utils import printd
@@ -177,7 +177,7 @@ class Trainer():
             self.clamiter=clamiter
 
         else:
-            self.clamiter = ci.PCLAMIter(
+            self.clamiter = ci.ClamIter(
                     vanilla=self.vanilla, 
                     lorenz=self.lorenz, 
                     attr_opt=self.attr_opt,
@@ -523,7 +523,7 @@ class Trainer():
         self.configs_dict_from_top_list(
                 config_triplets=config_triplets)
         
-        self.clamiter = ci.PCLAMIter(vanilla=self.vanilla, 
+        self.clamiter = ci.ClamIter(vanilla=self.vanilla, 
                                      lorenz=self.lorenz, 
                                      **self.configs_dict['clamiter_init'])
         self.clamiter.add_prior(prior)
@@ -533,7 +533,7 @@ class Trainer():
 
     def create_clamiter(self, ci_params):
         '''creates a clamiter object with the given parameters'''
-        self.clamiter = ci.PCLAMIter(vanilla=self.vanilla, lorenz=self.lorenz, **ci_params)
+        self.clamiter = ci.ClamIter(vanilla=self.vanilla, lorenz=self.lorenz, **ci_params)
     
     def set_device(self, device):
         '''set the device of the trainer'''

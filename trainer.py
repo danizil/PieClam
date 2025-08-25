@@ -174,7 +174,7 @@ class Trainer():
             self.clamiter=clamiter
 
         else:
-            self.clamiter = ci.PCLAMIter(
+            self.clamiter = ci.ClamIter(
                     vanilla=self.vanilla, 
                     lorenz=self.lorenz, 
                     attr_opt=self.attr_opt,
@@ -518,7 +518,7 @@ class Trainer():
         self.configs_dict_from_top_list(
                 config_triplets=config_triplets)
         
-        self.clamiter = ci.PCLAMIter(vanilla=self.vanilla, 
+        self.clamiter = ci.ClamIter(vanilla=self.vanilla, 
                                      lorenz=self.lorenz, 
                                      **self.configs_dict['clamiter_init'])
         self.clamiter.add_prior(prior)
@@ -528,7 +528,7 @@ class Trainer():
 
     def create_clamiter(self, ci_params):
         '''creates a clamiter object with the given parameters'''
-        self.clamiter = ci.PCLAMIter(vanilla=self.vanilla, lorenz=self.lorenz, **ci_params)
+        self.clamiter = ci.ClamIter(vanilla=self.vanilla, lorenz=self.lorenz, **ci_params)
     
     def set_device(self, device):
         '''set the device of the trainer'''

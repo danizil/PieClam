@@ -33,12 +33,12 @@ The duplicate set of nodes can be considered as "Sender" and "Receiver" sets. To
 We write the PieClam probabilistic model of $G_b$ as:
 \begin{align}
     p(E|\mathbf{F}) &= \prod_{n=1}^{N} \Bigg(
-    \prod_{m=1}^{N}e^{-\mathbf{f}_n^T \mathbf{L} \mathbf{f}_m} 
+    \prod_{m\not=n}^{N}e^{-\mathbf{f}_n^T \mathbf{L} \mathbf{f}_m} 
     \prod_{\substack{N+1\leq m\leq 2N \\ m \sim n}}\bigg(1-e^{-\mathbf{f}_n^T \mathbf{L} \mathbf{f}_m}\bigg)
     \prod_{\substack{N+1\leq m\leq 2N \\ m \not\sim n}}e^{-\mathbf{f}_n^T \mathbf{L} \mathbf{f}_m}
     \Bigg) \notag \\
     &\quad \times \prod_{n=N+1}^{2N}\Bigg(
-        \prod_{m=N+1}^{2N}e^{-\mathbf{f}_n^T \mathbf{L} \mathbf{f}_m} 
+        \prod_{\substack{N+1\leq m\leq 2N \\ m \not= n}}e^{-\mathbf{f}_n^T \mathbf{L} \mathbf{f}_m} 
         \prod_{\substack{1\leq m\leq N \\ m \sim n}}\bigg(1-e^{-\mathbf{f}_n^T \mathbf{L} \mathbf{f}_m}\bigg)
         \prod_{\substack{1\leq m\leq N \\ m \not\sim n}}e^{-\mathbf{f}_n^T \mathbf{L} \mathbf{f}_m}
         \Bigg)
@@ -54,20 +54,20 @@ The reconstruction of the directed graph is then:
 \end{align}
 
 \subsection{Feature Representation}
-By creating a second set of nodes, we in fact create a second set of features for each of the nodes. We may use this intuition and add this second set directly. Each node will now have two feature sets $\mathbf{s} \in \mathbb{R}^{N \times d}$ (sender) and $\mathbf{r} \in \mathbb{R}^{N \times d}$ (receiver).
+By creating a second set of nodes, we in fact create a second set of features for each of the nodes. We may use this intuition and add the second set directly. Each node will now have two feature sets $\mathbf{s} \in \mathbb{R}^{N \times d}$ (sender) and $\mathbf{r} \in \mathbb{R}^{N \times d}$ (receiver).
 
 Rewrite \ref{eq:big_bipartite} as:
 \begin{align}
     p(E|F) &= \prod_{n=1}^{N} \Bigg[\sqrt{
     \bigg(
-    \prod_{m=1}^{N}e^{-\mathbf{s}_n^T \mathbf{L} \mathbf{s}_m} 
+    \prod_{m\not=n}^{N}e^{-\mathbf{s}_n^T \mathbf{L} \mathbf{s}_m} 
     \prod_{m \leftarrow n}\Big(1-e^{-\mathbf{s}_n^T \mathbf{L} \mathbf{r}_m}\Big)
     \prod_{m \not\leftarrow n}e^{-\mathbf{s}_n^T \mathbf{L} \mathbf{r}_m}
     \bigg)} \notag \\
     &\quad \times \sqrt{\bigg(
-        \prod_{m=1}^{N}e^{-\mathbf{r}_n^T \mathbf{L} \mathbf{r}_m} 
-        \prod_{m \rightarrow n}\Big(1-e^{-\mathbf{r}_n^T \mathbf{L} \mathbf{s}_m}\Big)
-        \prod_{m \not\rightarrow n}e^{-\mathbf{r}_n^T \mathbf{L} \mathbf{s}_m}
+        \prod_{m\not=n}^{N}e^{-\mathbf{r}_n^T \mathbf{L} \mathbf{r}_m} 
+        \prod_{m \rightarrow n}\Big(1-e^{-\mathbf{s}_m^T \mathbf{L} \mathbf{r}_n}\Big)
+        \prod_{m \not\rightarrow n}e^{-\mathbf{s}_m^T \mathbf{L} \mathbf{r}_n}
         \bigg)
     }\Bigg]
 \end{align}
@@ -75,39 +75,46 @@ Rewrite \ref{eq:big_bipartite} as:
 Notice that the directed terms have the same elements but in different order. We can therefore rewrite the expression as:
 \begin{align}
     p(E|F) &= \prod_{n=1}^{N} \Bigg(
-        \prod_{m=1}^{N}e^{-\frac{1}{2}(\mathbf{s}_n^T \mathbf{L} \mathbf{s}_m + \mathbf{r}_n^T \mathbf{L} \mathbf{r}_m)}
-        \prod_{m \rightarrow n}\Big(1-e^{-\mathbf{r}_n^T \mathbf{L} \mathbf{s}_m}\Big)
-        \prod_{m \not\rightarrow n}e^{-\mathbf{r}_n^T \mathbf{L} \mathbf{s}_m}
+        \prod_{m\not=n}^{N}e^{-\frac{1}{2}(\mathbf{s}_n^T \mathbf{L} \mathbf{s}_m + \mathbf{r}_n^T \mathbf{L} \mathbf{r}_m)}
+        \prod_{m \rightarrow n}\Big(1-e^{-\mathbf{s}_m^T \mathbf{L} \mathbf{r}_n}\Big)
+        \prod_{m \not\rightarrow n}e^{-\mathbf{s}_m^T \mathbf{L} \mathbf{r}_n}
     \Bigg)
 \end{align}
  
 The log likelihood is then:
 \begin{align}
     \log p(E|F) &= \sum_{n=1}^{N} \Bigg(
-        \sum_{m=1}^{N} -\frac{1}{2}(\mathbf{s}_n^T \mathbf{L} \mathbf{s}_m + \mathbf{r}_n^T \mathbf{L} \mathbf{r}_m) +
-        \sum_{m \rightarrow n}^{N} \log(1-e^{-\mathbf{s}_n^T \mathbf{L} \mathbf{r}_m}) -
-        \sum_{m \not\rightarrow n}^{N} \mathbf{s}_n^T \mathbf{L} \mathbf{r}_m
+        \sum_{m\not=n}^{N} -\frac{1}{2}(\mathbf{s}_n^T \mathbf{L} \mathbf{s}_m + \mathbf{r}_n^T \mathbf{L} \mathbf{r}_m) +
+        \sum_{m \rightarrow n}^{N} \log(1-e^{-\mathbf{s}_m^T \mathbf{L} \mathbf{r}_n}) -
+        \sum_{m \not\rightarrow n}^{N} \mathbf{s}_m^T \mathbf{L} \mathbf{r}_n
     \Bigg)
 \end{align}
 
 Which can be rewritten using a parameterization trick:
 \begin{align}
     \log p(E|F) &= \sum_{n=1}^{N} \Bigg(
-        \sum_{m=1}^{N} -\frac{1}{2}(\mathbf{s}_n^T \mathbf{L} \mathbf{s}_m + \mathbf{r}_n^T \mathbf{L} \mathbf{r}_m + 2 \mathbf{s}_n^T \mathbf{L} \mathbf{r}_m) +
-        \sum_{m \rightarrow n}^{N} \log(e^{\mathbf{r}_n^T \mathbf{L} \mathbf{s}_m} - 1) 
+        \sum_{m\not=n}^{N} -\frac{1}{2}(\mathbf{s}_n^T \mathbf{L} \mathbf{s}_m + \mathbf{r}_n^T \mathbf{L} \mathbf{r}_m + 2 \mathbf{s}_m^T \mathbf{L} \mathbf{r}_n) +
+        \sum_{m \rightarrow n}^{N} \log(e^{\mathbf{s}_m^T \mathbf{L} \mathbf{r}_n} - 1) 
     \Bigg) \notag\\
     &= \sum_{n=1}^{N} \Bigg(
-        \sum_{m=1}^{N} -\frac{1}{2}(\mathbf{s}_n + \mathbf{r}_n)^T \mathbf{L} (\mathbf{s}_m + \mathbf{r}_m) +
-        \sum_{m \rightarrow n}^{N} \log(e^{\mathbf{r}_n^T \mathbf{L} \mathbf{s}_m} - 1) 
+        \sum_{m\not=n}^{N} -\frac{1}{2}(\mathbf{s}_n + \mathbf{r}_n)^T \mathbf{L} (\mathbf{s}_m + \mathbf{r}_m) +
+        \sum_{m \rightarrow n}^{N} \log(e^{\mathbf{s}_m^T \mathbf{L} \mathbf{r}_n} - 1) 
     \Bigg)
 \end{align}
 
-The gradient updates are then:
+Where we use the fact that
+
 \begin{align}
-    \nabla_{\mathbf{s_n}}l &= -\frac{1}{2} \sum_{m=1}^{N} \mathbf{L} (\mathbf{s}_m + \mathbf{r}_m) +
-    \sum_{m \leftarrow n}^{N} \frac{\mathbf{L} \mathbf{r}_m}{e^{\mathbf{r}_n^T \mathbf{L} \mathbf{s}_m} - 1} \\
-    \nabla_{\mathbf{r_n}}l &= -\frac{1}{2} \sum_{m=1}^{N} \mathbf{L} (\mathbf{s}_m + \mathbf{r}_m) +
-    \sum_{m \rightarrow n}^{N} \frac{\mathbf{L} \mathbf{s}_m}{e^{\mathbf{r}_n^T \mathbf{L} \mathbf{s}_m} - 1}
+\sum_{n=1}^N  \sum_{m\not=n}^{N} \mathbf{s}_m^\top \mathbf{L}\mathbf{r}_n =
+\sum_{n=1}^N  \sum_{m\not=n}^{N} \mathbf{s}_n^\top \mathbf{L}\mathbf{r}_m
+\end{align}
+
+The gradient updates are then (remembering that every node appears twice in first term):
+\begin{align}
+    \nabla_{\mathbf{s_n}}l &= -\sum_{m\not=n}^{N} \mathbf{L} (\mathbf{s}_m + \mathbf{r}_m) +
+    \sum_{m \leftarrow n}^{N} \frac{\mathbf{L} \mathbf{r}_m}{e^{\mathbf{s}_n^T \mathbf{L} \mathbf{r}_m} - 1} \notag \\
+    \nabla_{\mathbf{r_n}}l &= -\sum_{m\not=n}^{N} \mathbf{L} (\mathbf{s}_m + \mathbf{r}_m) +
+    \sum_{m \rightarrow n}^{N} \frac{\mathbf{L} \mathbf{s}_m}{e^{\mathbf{s}_m^T \mathbf{L} \mathbf{r}_n} - 1}
 \end{align}
 
 
@@ -118,6 +125,10 @@ The reconstruction of the graph can be written as:
     \hat{A}_{n,m} = p(n\rightarrow m|F) = 1 - e^{-\mathbf{s}_n^T \mathbf{L} \mathbf{r}_m}
 \end{align}
 
+\textbf{Example}: A directed bipartite with no self loop ($1\rightarrow 2$) i.e. an adjacency with diagonal 0 and off diagonals $0$ and $1-e^{-a^2}$ can now be represented by:
+$\mathbf{s}_1 = \mathbf{r}_1 = \mathbf{s}_2 = (a,a)$
+
+$\mathbf{r}_2 = (a, -a)$
 
 
 
