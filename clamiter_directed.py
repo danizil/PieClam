@@ -8,7 +8,7 @@ from torch.nn.functional import relu
 from torch.autograd import grad as a_grad
 
 from torch_geometric.nn import MessagePassing
-from torch_geometric.utils import to_dense_adj, is_undirected, dropout_edge, sort_edge_index, contains_self_loops, k_hop_subgraph, remove_isolated_nodes
+# from torch_geometric.utils import to_dense_adj, is_undirected, dropout_edge, sort_edge_index, contains_self_loops, k_hop_subgraph, remove_isolated_nodes
 
 from torch_geometric.data import Data
 
@@ -48,10 +48,6 @@ eps = 1e-6
 # i need to update the sender features and
 
 
-# 88   88 88b 88 8888b.  88 88""Yb 888888  dP""b8 888888 888888 8888b.  
-# 88   88 88Yb88  8I  Yb 88 88__dP 88__   dP   `"   88   88__    8I  Yb 
-# Y8   8P 88 Y88  8I  dY 88 88"Yb  88""   Yb        88   88""    8I  dY 
-# `YbodP' 88  Y8 8888Y"  88 88  Yb 888888  YboodP   88   888888 8888Y"   
 class ClamIter(MessagePassing):
     '''class to do the pclam iterations in the form of a message passing neural network'''
     def __init__(self, 
@@ -70,11 +66,13 @@ class ClamIter(MessagePassing):
                  num_coupling_blocks=32, 
                  num_layers_mlp=2,
                  directed=False,
+                #  forward_message=True,
                  lr=0.01,
                  aggr='add', 
                  device=torch.device('cpu')):
         '''clamiter is the message passing network that runs the clam process'''
-        
+        #todo: it should have both the forward and reverse messages? or maybe should make a class that has both? also there is the prior. 
+        #todo: in order to make the prior work i need both passes to happen at the same time. 
         super(ClamIter, self).__init__(aggr=aggr)
         self.dim_feat = dim_feat
         self.dim_attr = dim_attr
@@ -87,6 +85,18 @@ class ClamIter(MessagePassing):
         self.device = device
         self.T = T
         self.directed = directed
+        self.s_reg = s_reg if self.lorenz else 0
+        self.feat_bounding = relu_lightcone if self.lorenz else relu_transform
+
+        # ====== safeguards ======
+        if self.lorenz or self.directed:
+            if not dim_feat//2 == dim_feat/2:
+                raise ValueError('dim_feat should be even for lorenz and directed graphs')
+        if self.lorenz and self.directed:
+            if not dim_feat//4 == dim_feat/4:
+                raise ValueError('dim_feat should be divisible by 4 for directed p/ieclam')
+        # ==== end safeguards ======
+
         if self.vanilla and not self.lorenz:
             self.model_name = 'bigclam'
         elif self.vanilla and self.lorenz:
@@ -100,25 +110,34 @@ class ClamIter(MessagePassing):
             self.in_out_dim = dim_feat + dim_attr
         else:
             self.in_out_dim = dim_feat
+        
 
-        if self.lorenz:
-            if not dim_feat//2 == dim_feat/2:
-               raise ValueError('dim_feat should be even for p/ieclam')
-            self.B = 1/self.T*(torch.concatenate([torch.ones(dim_feat//2), -torch.ones(dim_feat//2)])).to(device) # GPU 50 mib
-            self.dim_feat = dim_feat
+        # ======= Define B ============
+        #DIRECTED
+        if self.directed:
+            #trick to take the middle of the matrix to match the dimension of the features
+            if self.lorenz:
+                self.B = torch.diag(1/self.T*torch.concatenate([torch.ones(dim_feat//4), -torch.ones(dim_feat//4)])).to(device) 
+            else:
+                self.B = torch.diag(1/self.T*torch.concatenate([torch.ones(dim_feat//2), -torch.ones(self.dim_feat//2)])).to(device) # GPU 50 mib
+
+            # self.B_forward = torch.block_diag(torch.zeros_like(self.B), self.B, torch.zeros_like(self.B), torch.zeros_like(self.B))
             
+            self.B_forward = torch.zeros(self.dim_feat, self.dim_feat)
+            self.B_forward[:self.dim_feat//2, self.dim_feat//2:] = self.B
+
+            self.B_reverse = torch.zeros(self.dim_feat, self.dim_feat)
+            self.B_reverse[self.dim_feat//2:, :self.dim_feat//2] = self.B
             
-            self.vanilla = vanilla
-            self.num_s_comms = dim_feat//2
-            self.num_t_comms = dim_feat//2
-            self.s_reg = s_reg
-            self.feat_bounding=relu_lightcone
-        else:
-            self.B = (1/self.T*torch.ones(dim_feat)).to(device)
-            self.num_t_comms = dim_feat
-            self.num_s_comms = 0
-            self.s_reg = 0
-            self.feat_bounding = relu_transform
+        # UNDIRECTED
+        else:    
+            if self.lorenz:
+                self.B = torch.diag(1/self.T*torch.concatenate([torch.ones(dim_feat//2), -torch.ones(self.dim_feat//2)])).to(device) # GPU 50 mib
+               
+            else:
+                 self.B = torch.diag(1/self.T*torch.ones(dim_feat)).to(device)
+                
+            #DIRECTED MODULATION
 
         if not vanilla:    
             if prior is None or prior == 'None':
@@ -149,13 +168,15 @@ class ClamIter(MessagePassing):
             self.model_name = 'pieclam'
 
     def forward(self, graph, node_mask):
-        '''first called, starts mpnn process by preprocessing then calling propagate'''
-        #todo: if the graph is directed, do this otherwise do the directed graph method
-        t = time.time()
-        # PRIOR STUFF
+        '''first called, starts mpnn process by preprocessing then calling propagate.
+        This function does the feat optimization part of PieClam - calculation of the prior gradient and the message passing.'''
+        if graph.is_undirected() and self.directed:
+            raise ValueError('graph is undirected and directed is True')
+        
+        # PRIOR DERIVATIVE
         prior_grad = torch.zeros_like(graph.x)
         if not self.vanilla:
-            #todo: concatenate features graph.s with graph.x
+            #? concatenate features graph.s with graph.x
             if self.attr_opt:
                 feats_for_prior = torch.cat([graph.x, graph.attr], dim=1)
             else:
@@ -163,36 +184,35 @@ class ClamIter(MessagePassing):
             feats_for_prior = feats_for_prior[node_mask]
             feats_for_prior.requires_grad_(True)
 
-            #? for omittion calc the prior, omit the nodes, add all up, looks good
             log_prior_loss = self.prior.forward_ll(feats_for_prior)
             
             masked_prior_grad = a_grad(log_prior_loss, feats_for_prior, create_graph=False)[0]
             prior_grad[node_mask] = masked_prior_grad[:, :self.dim_feat]
-            #the extra clone means the data of the tensor is different. tested, it doesn't take longer.
+            
+            '''remove graph.x from the COMPUTATION GRAPH so the gradients are NOT TRACKED when message passing.'''
+            #? the extra clone means the data of the tensor is different. TESTED, it doesn't take longer.
             graph.x = graph.x.detach().clone() 
-            # attributes must not change
-        # ===== end prior stuff =====        
-
-
-
+    
         # MESSAGE PASSING
         with torch.no_grad():
-        #todo: different message passing for directed graphs
-            if self.directed():
-                #todo: split the features down the middle
-                
+            # DIRECTED
+            if graph.is_directed():
                 #forward direction: add the r features to the i features
-                #! BE SURE TO NOT TO USE UPDATED VALUES. calculate the inner product for all nodes before updating
-                tbr_i = self.propagate(edge_index=graph.edge_index, x=graph.x, global_features=(prior_grad), edge_attr=graph.edge_attr)
-                
+                '''in this case multiply the features in the message by the forward/reverse B.
+                To get the reverse direction, flip the edge_index.'''
+                #! this is probably not efficient as we calculate the entire feature dimension for both forward and reverse
+                #todo: there is only one self B and it's just smaller than dim_feat since dim_feat has both
+                self.B_inr = self.B_forward
+                tbr_i = self.propagate(edge_index=graph.edge_index, x=graph.x, global_features=(prior_grad), edge_attr=graph.edge_attr)[:, :self.dim_feat//2]
+
+                #? BE SURE TO NOT TO USE UPDATED VALUES for the backward pass. This doesn't happen because propagate doesn't update the features (that's why we have tbr) and the 
+                self.B_inr = self.B_reverse
                 #reverse direction: add the r features to the global features
-                tbr_r = self.propagate(edge_index=torch.flip(graph.edge_index, dims=[0]), x=graph.x, global_features=(prior_grad), edge_attr=graph.edge_attr)
+                tbr_r = self.propagate(edge_index=torch.flip(graph.edge_index, dims=[0]), x=graph.x, global_features=(prior_grad), edge_attr=graph.edge_attr)[:, self.dim_feat//2:]
 
                 tbr = torch.cat([tbr_i, tbr_r], dim=1)
-                #todo: add the reverse direction to the global features
-                #todo: add the reverse direction to the edge attributes
-                #todo: add the reverse direction to the node features
-                #todo: add the reverse direction to the node features
+                
+            # UNDIRECTED
             else:
                 tbr = self.propagate(edge_index=graph.edge_index, x=graph.x, global_features=(prior_grad), edge_attr=graph.edge_attr)
 
@@ -204,28 +224,26 @@ class ClamIter(MessagePassing):
         
     def message(self, x_j, x_i, edge_attr):
         '''returns the message from node j to node i. this is only for edges. the global sum is preprocessed in the forward function, and will be added in the update function.             
+        x_i is the reciever and x_j is the sender.'''
 
-        link prediction here will be either:'''
-        #* x_i is the reciever and x_j is the sender.
+        #todo: flip edges and flip features. but how do i make this case
+        # TODO: must initialize the features differently for directed graphs!!!! 
+       
+        x_inner_product = torch.einsum('ij,jk,ik->i', x_i, self.B_inr, x_j) + eps
+        
+        if (x_inner_product < 0).any():
+            raise ValueError('x_inner_product is negative for neighbors')
+        if (x_inner_product == 0).any():
+            raise ValueError('x_inner_product is 0 for neighbors')
+        #* this is the only change to clamiter class due to dyad omittion
+        msg_1 = x_j / (1 - torch.exp(-x_inner_product) + eps).unsqueeze(1) #- self.reg_inr*x_j*(x_inner_product - 1).unsqueeze(1)
+        msg_0 = x_j
 
-        #todo: flip edges and flip features. but how do i make this case 
-        if self.forward_message is True:
-            pass
-        else:
-            x_inner_product = torch.einsum('ij,ij->i', x_i, self.B*x_j) + eps
-            
-            if (x_inner_product < 0).any():
-                raise ValueError('x_inner_product is negative for neighbors')
-            if (x_inner_product == 0).any():
-                raise ValueError('x_inner_product is 0 for neighbors')
-            #* this is the only change to clamiter class due to dyad omittion
-            msg_1 = x_j / (1 - torch.exp(-x_inner_product) + eps).unsqueeze(1) #- self.reg_inr*x_j*(x_inner_product - 1).unsqueeze(1)
-            msg_0 = x_j
-
-            # edge attr is 0 for omitted dyads
-            msg = edge_attr.unsqueeze(1)*msg_1 + (~edge_attr).unsqueeze(1)*msg_0 
-            #? TESTED  torch.where(msg == x_j) == torch.where(edge_attr==0) 
-            return msg
+        # edge attr is 0 for omitted dyads
+        #! not the most efficient implementation, but it's easy to understand and the time should not be much different
+        msg = edge_attr.unsqueeze(1)*msg_1 + (~edge_attr).unsqueeze(1)*msg_0 
+        #? TESTED  torch.where(msg == x_j) == torch.where(edge_attr==0) 
+        return msg
 
 
     def update(self, aggr_out, x, global_features, edge_attr):
@@ -233,13 +251,13 @@ class ClamIter(MessagePassing):
         regularization: self.s_reg and self.l1_reg
         global: global_features[0] is the sum of the node features, global_features[1] is the prior grad'''
         global_term = torch.sum(x, dim=0)
+        dim_feat = x.shape[1]
+        #! abuse of notation: s_feats are space features and not sender features
+        s_feats = x[:, dim_feat//2:]
+        s_feats = torch.concatenate([torch.zeros([x.shape[0], dim_feat//2]).to(s_feats.device), s_feats], dim=1)
+        #todo: maybe there is a way to do this more elegant? how to cut the feqatures in the middle? but our features go forward and backward
         
-        s_feats = x[:, self.num_t_comms:]
-        s_feats = torch.concatenate([torch.zeros([x.shape[0], self.num_t_comms]).to(s_feats.device), s_feats], dim=1)
-      
-        
-        update = self.B*(aggr_out - global_term + x) + global_features - self.s_reg*s_feats - self.l1_reg*torch.sign(x)
-
+        update = self.B@(aggr_out - global_term + x) + global_features - self.s_reg*s_feats - self.l1_reg*torch.sign(x)
 
         return update
 
@@ -335,7 +353,7 @@ class ClamIter(MessagePassing):
 
             # ASSERTIONS
             # assert graph.is_undirected(), 'graph is directed!!!'
-            assert not graph.has_self_loops(), 'graph contains self loops!!!'
+            # assert not graph.has_self_loops(), 'graph contains self loops!!!'
             assert which_fit in ['fit_feats', 'fit_prior'], 'which_fit should be either fit_feats or fit_prior'
             # ==== end assertions =====
             
@@ -399,6 +417,7 @@ class ClamIter(MessagePassing):
                     losses.append(loss.item())
                 except ValueError as e:
                     printd(f'fit wrapper {which_fit} error in iter_step at iter {i}: {e}')
+                    print(f'error happened at line {e.__traceback__.tb_lineno}')
                     break
                 
                 # ACCURACY CALCULATION
@@ -740,13 +759,15 @@ class ClamIter(MessagePassing):
 
 
     def init_node_feats(self, init_type,num_nodes=None, graph_given=None, node_feats_given=None):
+        #todo: init features differently for direc
         return init_node_feats(num_nodes=num_nodes, 
                                num_feats=self.dim_feat, 
                                lorenz=self.lorenz, 
                                init_type=init_type,
                                graph_given=graph_given, 
                                node_feats_given=node_feats_given, 
-                               device=self.device)
+                               device=self.device,
+                               directed=self.directed)
     
     def star_ll_nodes(
             self, 
@@ -807,22 +828,111 @@ class ClamIter(MessagePassing):
 # 88 88  Y8 88   88       88     888888 dP""""Yb   88   8bodP' 
 
 
-def init_node_feats(num_feats, lorenz, init_type, device, num_nodes=None, graph_given=None, node_feats_given=None, node_mask=None):
+def init_node_feats(num_feats, lorenz, init_type, device, num_nodes=None, graph_given=None, node_feats_given=None, node_mask=None, directed=False):
         '''initializes node features according to init_type.
-        if graph is given nodes need not be and vise versa'''
+        if graph is given nodes need not be and vise versa.
+        if directed is True, the first half of the feature vector represents sender features and the second half represents receiver features.
+        If both directed and lorenz are True, each half is sampled like the undirected lorenz case (with time and space components).'''
+        #todo: init differently for directed graphs
         if num_nodes is None and graph_given is None:
             raise ValueError('in init_node_feats: num_nodes and graph_given are None')
         if num_nodes is None:
             num_nodes = graph_given.num_nodes
         
         if init_type == 'random': # uniform [0,1)
-            node_feats = torch.rand([num_nodes, num_feats], requires_grad=False)
+            if directed:
+                if lorenz:
+                    # For directed Lorenz: first half is sender features, second half is receiver features
+                    node_feats_sender = torch.rand([num_nodes, num_feats//2], requires_grad=False)
+                    node_feats_receiver = torch.rand([num_nodes, num_feats//2], requires_grad=False)
+                    node_feats = torch.cat([node_feats_sender, node_feats_receiver], dim=1)
+                else:
+                    # For directed non-Lorenz: first half is sender features, second half is receiver features
+                    node_feats_sender = torch.rand([num_nodes, num_feats//2], requires_grad=False)
+                    node_feats_receiver = torch.rand([num_nodes, num_feats//2], requires_grad=False)
+                    node_feats = torch.cat([node_feats_sender, node_feats_receiver], dim=1)
+            else:
+                node_feats = torch.rand([num_nodes, num_feats], requires_grad=False)
         elif init_type == 'zero':
-            node_feats = torch.zeros([num_nodes, num_feats], requires_grad=False)
+            if directed:
+                if lorenz:
+                    # For directed Lorenz: first half is sender features, second half is receiver features
+                    node_feats_sender = torch.zeros([num_nodes, num_feats//2], requires_grad=False)
+                    node_feats_receiver = torch.zeros([num_nodes, num_feats//2], requires_grad=False)
+                    node_feats = torch.cat([node_feats_sender, node_feats_receiver], dim=1)
+                else:
+                    # For directed non-Lorenz: first half is sender features, second half is receiver features
+                    node_feats_sender = torch.zeros([num_nodes, num_feats//2], requires_grad=False)
+                    node_feats_receiver = torch.zeros([num_nodes, num_feats//2], requires_grad=False)
+                    node_feats = torch.cat([node_feats_sender, node_feats_receiver], dim=1)
+            else:
+                node_feats = torch.zeros([num_nodes, num_feats], requires_grad=False)
         elif init_type == 'ones':
-            node_feats = torch.ones([num_nodes, num_feats], requires_grad=False)
+            if directed:
+                if lorenz:
+                    # For directed Lorenz: first half is sender features, second half is receiver features
+                    node_feats_sender = torch.ones([num_nodes, num_feats//2], requires_grad=False)
+                    node_feats_receiver = torch.ones([num_nodes, num_feats//2], requires_grad=False)
+                    node_feats = torch.cat([node_feats_sender, node_feats_receiver], dim=1)
+                else:
+                    # For directed non-Lorenz: first half is sender features, second half is receiver features
+                    node_feats_sender = torch.ones([num_nodes, num_feats//2], requires_grad=False)
+                    node_feats_receiver = torch.ones([num_nodes, num_feats//2], requires_grad=False)
+                    node_feats = torch.cat([node_feats_sender, node_feats_receiver], dim=1)
+            else:
+                node_feats = torch.ones([num_nodes, num_feats], requires_grad=False)
         elif init_type == 'small_gaus':
-            if lorenz:
+            
+            if directed:
+                if lorenz:
+                    # For directed Lorenz: first half is sender features, second half is receiver features
+                    # Each half is sampled like undirected Lorenz (time and space components)
+                    
+                    # Sender features (first half): time and space components
+                    mean_sender_space = torch.tensor([0.0] * (num_feats//4))
+                    std_sender_space = 0.1
+                    mean_sender_time = torch.tensor([0.9] * (num_feats//4))
+                    std_sender_time = 0.1
+                    
+                    node_feats_sender_time = torch.randn(num_nodes, num_feats//4, requires_grad=False)
+                    node_feats_sender_time = node_feats_sender_time * std_sender_time + mean_sender_time
+                    
+                    node_feats_sender_space = torch.randn(num_nodes, num_feats//4, requires_grad=False)
+                    node_feats_sender_space = node_feats_sender_space * std_sender_space + mean_sender_space
+                    
+                    node_feats_sender = torch.cat([node_feats_sender_time, node_feats_sender_space], dim=1)
+                    
+                    # Receiver features (second half): time and space components
+                    mean_receiver_space = torch.tensor([0.0] * (num_feats//4))
+                    std_receiver_space = 0.1
+                    mean_receiver_time = torch.tensor([0.9] * (num_feats//4))
+                    std_receiver_time = 0.1
+                    
+                    node_feats_receiver_time = torch.randn(num_nodes, num_feats//4, requires_grad=False)
+                    node_feats_receiver_time = node_feats_receiver_time * std_receiver_time + mean_receiver_time
+                    
+                    node_feats_receiver_space = torch.randn(num_nodes, num_feats//4, requires_grad=False)
+                    node_feats_receiver_space = node_feats_receiver_space * std_receiver_space + mean_receiver_space
+                    
+                    node_feats_receiver = torch.cat([node_feats_receiver_time, node_feats_receiver_space], dim=1)
+                    
+                    node_feats = torch.cat([node_feats_sender, node_feats_receiver], dim=1)
+                else:
+                    # For directed non-Lorenz: first half is sender features, second half is receiver features
+                    mean_sender = torch.tensor([0.9] * (num_feats//2))
+                    std_sender = 0.1
+                    mean_receiver = torch.tensor([0.9] * (num_feats//2))
+                    std_receiver = 0.1
+                    
+                    node_feats_sender = torch.randn(num_nodes, num_feats//2, requires_grad=False)
+                    node_feats_sender = node_feats_sender * std_sender + mean_sender
+                    
+                    node_feats_receiver = torch.randn(num_nodes, num_feats//2, requires_grad=False)
+                    node_feats_receiver = node_feats_receiver * std_receiver + mean_receiver
+
+                    node_feats = torch.cat([node_feats_sender, node_feats_receiver], dim=1)
+            
+            elif lorenz:
                 #in a lightcone time can have only positive values and space can have both positive and negative.
                 mean_space = torch.tensor([0.0] * (num_feats//2))
                 std_space = 0.1
@@ -846,13 +956,53 @@ def init_node_feats(num_feats, lorenz, init_type, device, num_nodes=None, graph_
         elif init_type == 'minimal_neigh':
             if graph_given is None:
                 raise ValueError('in init_node_feats: graph_given is None')
-            if lorenz == False:
+            if directed:
+                if lorenz:
+                    # For directed Lorenz: first half is sender features, second half is receiver features
+                    # Each half is sampled like undirected Lorenz minimal_neigh
+                    
+                    # Sender features (first half): time and space components
+                    node_feats_sender_time = 0.1*torch.ones([num_nodes, num_feats//4], requires_grad=False)
+                    minimal_neighborhoods_sender_time = k_minimal_neighborhoods(graph_given, k=num_feats//4)
+                    for i, neighborhood in enumerate(minimal_neighborhoods_sender_time):
+                        node_feats_sender_time[neighborhood, i] = 1
+                    
+                    std_sender = 0.1 * min(node_feats_sender_time.std(), 1)
+                    node_feats_sender_space = std_sender*torch.randn(num_nodes, num_feats//4, requires_grad=False)
+                    node_feats_sender = torch.cat([node_feats_sender_time, node_feats_sender_space], dim=1)
+                    
+                    # Receiver features (second half): time and space components
+                    node_feats_receiver_time = 0.1*torch.ones([num_nodes, num_feats//4], requires_grad=False)
+                    minimal_neighborhoods_receiver_time = k_minimal_neighborhoods(graph_given, k=num_feats//4)
+                    for i, neighborhood in enumerate(minimal_neighborhoods_receiver_time):
+                        node_feats_receiver_time[neighborhood, i] = 1
+                    
+                    std_receiver = 0.1 * min(node_feats_receiver_time.std(), 1)
+                    node_feats_receiver_space = std_receiver*torch.randn(num_nodes, num_feats//4, requires_grad=False)
+                    node_feats_receiver = torch.cat([node_feats_receiver_time, node_feats_receiver_space], dim=1)
+                    
+                    node_feats = torch.cat([node_feats_sender, node_feats_receiver], dim=1)
+                else:
+                    # For directed non-Lorenz: first half is sender features, second half is receiver features
+                    node_feats_sender = 0.1*torch.ones([num_nodes, num_feats//2], requires_grad=False)
+                    minimal_neighborhoods_sender = k_minimal_neighborhoods(graph_given, k=num_feats//2)
+                    for i, neighborhood in enumerate(minimal_neighborhoods_sender):
+                        node_feats_sender[neighborhood, i] = 1
+                    
+                    node_feats_receiver = 0.1*torch.ones([num_nodes, num_feats//2], requires_grad=False)
+                    minimal_neighborhoods_receiver = k_minimal_neighborhoods(graph_given, k=num_feats//2)
+                    for i, neighborhood in enumerate(minimal_neighborhoods_receiver):
+                        node_feats_receiver[neighborhood, i] = 1
+                    
+                    node_feats = torch.cat([node_feats_sender, node_feats_receiver], dim=1)
+            
+            elif lorenz == False:
                 node_feats = 0.1*torch.ones([graph_given.num_nodes, num_feats]) 
                 minimal_neighborhoods = k_minimal_neighborhoods(graph_given, k=num_feats)
                 for i, neighborhood in enumerate(minimal_neighborhoods):
                     node_feats[neighborhood, i] = 1
             
-            if lorenz == True:
+            elif lorenz == True:
                 '''if it's lorenz, start s communities with minimal neigh'''
                 node_feats_time = 0.1*torch.ones([num_nodes, num_feats//2], requires_grad=False)
                 minimal_neighborhoods = k_minimal_neighborhoods(graph_given, k=num_feats//2)
@@ -1632,7 +1782,7 @@ def clam_loss_prior(graph, lorenz, prior):
 
 def star_prob_direct_sum(graph, nodes, lorenz):
     '''test if the sum without the reindexing trick is the same as with the trick'''
-    assert graph.is_undirected(), 'in star prob direct sum: graph is directed'
+    # assert graph.is_undirected(), 'in star prob direct sum: graph is directed'
 
     if lorenz:
         B = torch.cat([torch.ones(graph.x.shape[1]//2), -torch.ones(graph.x.shape[1]//2)]).to(graph.x.device)

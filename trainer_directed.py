@@ -73,7 +73,7 @@ class Trainer():
                  use_global_config_base=False,
                  config_triplets_to_change=[], 
                  dataset=None, 
-                 clamiter=None, 
+                #  clamiter=None, 
                  prior=None,
                  attr_opt=False, # move to clamiter init configs
                  attr_transform='auto',
@@ -111,6 +111,7 @@ class Trainer():
         else:
             self.dataset_name = dataset_name #should be a string
             self.data = import_dataset(self.dataset_name)
+        
         self.data.communities_found = torch.tensor([]).to(self.device) # GPU 400 
         # OPTIMIZER, SCHEDULER, VANILLA, LORENZ
         self.optimizer = optimizer
@@ -144,15 +145,6 @@ class Trainer():
         else:
             hypers_file_name = self.task
         self.configs_path = os.path.join(dir_path, 'hypers', 'hypers_'+ hypers_file_name + '.yaml')
-        #todo: first get_global_configs, then 
-        # if configs_dict is None:
-        #     if use_global_config_base:
-        #         self.get_global_configs_dict(config_triplets=config_triplets_to_change)
-        #     else:
-        #         self.get_global_configs_dict()
-        #         self.configs_dict_from_top_list(config_triplets=config_triplets_to_change)
-        #         #todo: make config list from the hypers
-
         
         if configs_dict is None:
             if use_global_config_base:
@@ -172,18 +164,22 @@ class Trainer():
                 if self.configs_dict['clamiter_init']['dim_attr'] is not None:
                     #* if the given attr dim is smaller than the attr dim of the data
                     self.configs_dict['clamiter_init']['dim_attr'] = min(self.configs_dict['clamiter_init']['dim_attr'], self.data.raw_attr.shape[1])
-        # CLAMITER
-        if clamiter is not None:
-            self.clamiter=clamiter
+        
+        # if clamiter is not None:
+        #     self.clamiter=clamiter
 
-        else:
-            self.clamiter = ci.ClamIter(
-                    vanilla=self.vanilla, 
-                    lorenz=self.lorenz, 
-                    attr_opt=self.attr_opt,
-                    device=self.device, 
-                    inflation_flow_name=inflation_flow_name,
-                    **self.configs_dict['clamiter_init'])
+        # else:
+
+        # CLAMITER
+        self.clamiter = ci.ClamIter(
+                vanilla=self.vanilla, 
+                lorenz=self.lorenz, 
+                directed=self.data.is_directed(),
+                attr_opt=self.attr_opt,
+                device=self.device, 
+                inflation_flow_name=inflation_flow_name,
+                **self.configs_dict['clamiter_init'])
+        
         if prior is not None:
             self.add_prior(prior)
             # add the prior config into the clamiter init
@@ -315,7 +311,7 @@ class Trainer():
         returns: losses_feats, losses_prior, auc_scores, cutnorms
         '''
         #todo: print the classification score every few back and forth? in the fit functions? it does take some time...
-        # SETUP AND INIT NODES
+        # ======= start safeguards =======
         losses = None
         accuracies_test = None
         accuracies_val = None
@@ -327,14 +323,14 @@ class Trainer():
         if not verbose:
             verbose_in_funcs = False
 
-        # self.data.edge_index = self.data.edge_index_original 
-        
-        t_train_model = time.time()
         
         if self.configs_dict is None:
             raise ValueError(" in train_model_on_params: trainer doesn't have a config dict.")
-        
-        printd(f'\n {datetime.now().strftime("%Y-%m-%d %H:%M:%S")} starting optimization of {self.model_name} on {self.dataset_name} on device {self.device}')
+        t_train_model = time.time()
+        # ======= end safeguards =======
+
+
+        printd(f'\nIn function train. \n{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} starting optimization of {self.model_name} on {self.dataset_name} on device {self.device}')
         print('\n configs_dict: \n' + json.dumps(self.configs_dict, indent=4))
           
           
@@ -430,9 +426,9 @@ class Trainer():
 
         except (ValueError, AssertionError) as e:
             
-            printd(f'\nERROR in train_model_on_params: {e}')
-            printd(f'\nFull error location:')
-            printd(traceback.format_exc())
+            # printd(f'\nERROR in train: {e}')
+            # printd(f'\nFull error location:')
+            # printd(traceback.format_exc())
             raise
             
         finally:

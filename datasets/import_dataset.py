@@ -32,9 +32,20 @@ def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remo
     '''will import a dataset with the same name as the dataset_name parameter'''
     current_dir = os.path.dirname(os.path.abspath(__file__))
 
+# 8888b.  88 88""Yb 888888  dP""b8 888888 888888 8888b.  
+#  8I  Yb 88 88__dP 88__   dP   `"   88   88__    8I  Yb 
+#  8I  dY 88 88"Yb  88""   Yb        88   88""    8I  dY 
+# 8888Y"  88 88  Yb 888888  YboodP   88   888888 8888Y"
+    if dataset_name == 'BipartDir':
+        data = simulate_dataset('BipartDir', verbose=verbose)
+
+# 88   88 88b 88 8888b.  88 88""Yb 888888  dP""b8 888888 888888 8888b.  
+# 88   88 88Yb88  8I  Yb 88 88__dP 88__   dP   `"   88   88__    8I  Yb 
+# Y8   8P 88 Y88  8I  dY 88 88"Yb  88""   Yb        88   88""    8I  dY 
+# `YbodP' 88  Y8 8888Y"  88 88  Yb 888888  YboodP   88   888888 8888Y"  
     # LINK PREDICTION
 
-    if dataset_name == 'ogbl-ddi':
+    elif dataset_name == 'ogbl-ddi':
         '''this dataaset is only for link prediction.
         the dataset comes with an edge index and a split with a train edge index set that is the directed version of the edge index.'''
 
@@ -165,7 +176,7 @@ def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remo
         data = simulate_dataset('tripartite', verbose=verbose)
 
     else:
-        raise NotImplementedError(f'dataset {dataset_name} not implemented yet')
+        raise NotImplementedError(f' in import_dataset: dataset {dataset_name} not implemented yet')
     data.edge_attr = torch.ones(data.edge_index.shape[1], dtype=torch.bool) 
 
     data.edge_index, data.edge_attr, non_isolated_mask = remove_isolated_nodes(data.edge_index, data.edge_attr)
@@ -219,8 +230,9 @@ def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remo
     # 1 flag is normal: normal edge and normal node.
 
     assert not data.has_isolated_nodes(), 'in import_dataset: isolated nodes found'
-    assert data.is_undirected(), 'in import_dataset: graph is not undirected'
-    assert not data.has_self_loops(), 'in import_dataset: self loops found'
+    # assert not data.has_self_loops(), 'in import_dataset: self loops found'
+    
+    printd(f'end of import_dataset\n{dataset_name} \nhas {data.num_nodes} nodes \nand {data.edge_index.shape[1]} edges. \nGraph is {"directed" if data.is_directed() else "undirected" }\nGraph has {"self loops" if data.has_self_loops() else "NO self loops"}')
 
     return data
 
