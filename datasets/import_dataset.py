@@ -39,6 +39,9 @@ def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remo
     if dataset_name == 'BipartDir':
         data = simulate_dataset('BipartDir', verbose=verbose)
 
+    elif dataset_name == 'BipartDirSmallFull':
+        data = simulate_dataset('BipartDirSmallFull', verbose=verbose)
+
 # 88   88 88b 88 8888b.  88 88""Yb 888888  dP""b8 888888 888888 8888b.  
 # 88   88 88Yb88  8I  Yb 88 88__dP 88__   dP   `"   88   88__    8I  Yb 
 # Y8   8P 88 Y88  8I  dY 88 88"Yb  88""   Yb        88   88""    8I  dY 

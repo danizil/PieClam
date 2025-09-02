@@ -129,6 +129,19 @@ def simulate_dataset(name, verbose=False):
             axes[1].imshow(adj_bipart)
             axes[0].set_title('sbm')
             axes[1].set_title('sampled')
+
+    elif name == 'BipartDirSmallFull':
+        num_samples_per_comm = 5
+        prob_adj_bipart, y = create_sbm_directed(num_samples_per_comm, interaction_probs=[0,1,0,0])
+        adj_bipart = sample_from_adj_directed(prob_adj_bipart)
+        edge_index = dense_to_sparse(adj_bipart)[0]
+        data = Data(edge_index=edge_index, y=y)
+        if verbose == True:
+            _, axes = plt.subplots(1,2, figsize=figsize)
+            axes[0].imshow(prob_adj_bipart)
+            axes[1].imshow(adj_bipart)
+            axes[0].set_title('sbm')
+            axes[1].set_title('sampled')
             
 # 88   88 88b 88 8888b.  88 88""Yb 
 # 88   88 88Yb88  8I  Yb 88 88__dP 

@@ -73,36 +73,64 @@ def get_edge_probs_from_edges_coords(edges_coords_0, edges_coords_1, lorenz, pri
     #todo: add an option to return both to avoid double calculation 
     return tbr
 
-def get_prob_graph(x, lorenz, to_sparse=False, prior=None,ret_fufv=False):
+def get_prob_graph(graph, lorenz, directed=False, to_sparse=False, prior=None,ret_fufv=False):
     '''given node features, returns the probability graph or the inner product graph'''
-    #! need to check this with the thresholds before we continue
+    # Modified for directed graphs
     #* x has shape [N, in_channels]
-    
+    x = graph.x
+    directed = graph.is_directed()
     dim_feat = x.shape[1]
-    
-    if lorenz:
-        B = torch.concatenate([torch.ones(dim_feat//2), -torch.ones(dim_feat//2)]).to(x.device)
-        fufv = x @ (B*x).T
+    if directed:
+        if lorenz:
+            B = torch.concatenate([torch.ones(dim_feat//4), -torch.ones(dim_feat//4)]).to(x.device)
+            fufv = x[:, :dim_feat//2] @ (B*x[:, dim_feat//2:]).T
+        else:
+            fufv = x[:, :dim_feat//2] @ x[:, dim_feat//2:].T
+        
+        if ret_fufv:
+            prob_graph = fufv
+        else: 
+            prob_graph = 1-torch.exp(-fufv)
+        
+        if prior is not None:
+            prior_nodes = torch.exp(prior.forward_ll(x, sum=False))
+            prior_of_dyads = prior_nodes.unsqueeze(1) * prior_nodes
+            prob_graph = (1-torch.exp(-fufv)) * prior_of_dyads
+
+        # prob_graph.fill_diagonal_(0)
+
+        if to_sparse:
+            edge_index=dense_to_sparse(prob_graph)[0]
+            edge_attr = prob_graph[edge_index[0], edge_index[1]]
+            return Data(x=x, edge_index=edge_index, edge_attr=edge_attr)
+        
     else:
-        fufv = x @ x.T
+        # if graph is undirected
+        dim_feat = x.shape[1]
     
-    if ret_fufv:
-        prob_graph = fufv
-    else: 
-        prob_graph = 1-torch.exp(-fufv)
-    
-    if prior is not None:
-        prior_nodes = torch.exp(prior.forward_ll(x, sum=False))
-        prior_of_dyads = prior_nodes.unsqueeze(1) * prior_nodes
-        prob_graph = (1-torch.exp(-fufv)) * prior_of_dyads
+        if lorenz:
+            B = torch.concatenate([torch.ones(dim_feat//2), -torch.ones(dim_feat//2)]).to(x.device)
+            fufv = x @ (B*x).T
+        else:
+            fufv = x @ x.T
+        
+        if ret_fufv:
+            prob_graph = fufv
+        else: 
+            prob_graph = 1-torch.exp(-fufv)
+        
+        if prior is not None:
+            prior_nodes = torch.exp(prior.forward_ll(x, sum=False))
+            prior_of_dyads = prior_nodes.unsqueeze(1) * prior_nodes
+            prob_graph = (1-torch.exp(-fufv)) * prior_of_dyads
 
-    prob_graph.fill_diagonal_(0)
+        prob_graph.fill_diagonal_(0)
 
-    if to_sparse:
-        edge_index=dense_to_sparse(prob_graph)[0]
-        edge_attr = prob_graph[edge_index[0], edge_index[1]]
-        return Data(x=x, edge_index=edge_index, edge_attr=edge_attr)
-    
+        if to_sparse:
+            edge_index=dense_to_sparse(prob_graph)[0]
+            edge_attr = prob_graph[edge_index[0], edge_index[1]]
+            return Data(x=x, edge_index=edge_index, edge_attr=edge_attr)
+        
     return prob_graph
     # if prior:
     #     #? tested
@@ -110,20 +138,33 @@ def get_prob_graph(x, lorenz, to_sparse=False, prior=None,ret_fufv=False):
     #     return (1-torch.exp(-fufv)) * prior_nodes.unsqueeze(1) * prior_nodes
     
 
-
-def clam_edges_from_feats(points, lorenz):
+#!something isn't working in the optimization. we should first check if the scheme is correct. i can see it isn't since the features are blown out of the screen.
+def clam_edges_from_feats(points, lorenz, directed):
     ''''sample edges from feature probabilities'''
-    if lorenz:
-        B = torch.cat([torch.ones(points.shape[1]//2), -torch.ones(points.shape[1]//2)]).unsqueeze(1)
+    if directed:
+        points_sender = points[:, :points.shape[1]//2]
+        points_receiver = points[:, points.shape[1]//2:]
     else:
-        B = torch.ones(points.shape[1]).unsqueeze(1)
+        points_sender = points
+        points_receiver = points
 
-    prods = torch.matmul(points, B*points.T)
+    if lorenz:
+        B = torch.cat([torch.ones(points_sender.shape[1]//2), -torch.ones(points_receiver.shape[1]//2)]).unsqueeze(1)
+    else:
+        B = torch.ones(points_sender.shape[1]).unsqueeze(1)
+    
+    
+    #! stopped here, too tired. some mess going on
+    prods = torch.matmul(points_sender, B*points_receiver.T)
     probs = torch.clamp(torch.exp(-prods), min=0.0, max=1.0)
     
     adj_mat1 = torch.bernoulli(1 - probs)
+    if directed:
+        adj_mat = adj_mat1.transpose(0, 1)
+    else:
     #* sample the graph only once since it's undirected:
-    adj_mat = torch.triu(adj_mat1)
+        adj_mat = torch.triu(adj_mat1)
+    
     edge_index = dense_to_sparse(adj_mat)[0]
     edge_index = to_undirected(edge_index)
     edge_index = remove_self_loops(edge_index)[0]

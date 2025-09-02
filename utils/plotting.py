@@ -424,7 +424,7 @@ def plot_optimization_stage(
                 n_iter=0,  
                 calling_function_name='',
                 **kwargs):
-    
+    #todo: i want to make the case for directed graphs. a column for sender and a column for receiver in plot 2graphs
     '''plot various figures of the situation of the graph in the optimization'''
     if graph.x.shape[1] > 6 and 'feats' in things_to_plot:
         things_to_plot.remove('feats')
@@ -468,8 +468,9 @@ def plot_optimization_stage(
     # plot 2d graphs
     
     if '2dgraphs' in things_to_plot:
-        if graph_cpu.x.shape[1] > 2:
 
+        if graph_cpu.x.shape[1] > 2:
+            #todo: change this. i want the first column to be sender features and the second column to be receivers
             num_rows = math.ceil(num_feats / 6)
             num_cols = min(3, num_feats//2)
             fig3, axes3 = plt.subplots(num_rows, num_cols)

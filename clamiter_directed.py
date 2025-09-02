@@ -20,7 +20,7 @@ import json
 from ogb.linkproppred import Evaluator
 
 
-from transformation import  RealNVP, relu_lightcone, relu_transform, uv_from_xt
+from transformation_directed import  RealNVP, relu_lightcone, relu_transform, uv_from_xt
 from utils.plotting import *
 from utils import utils
 from utils import pyg_helpers as up
@@ -200,17 +200,20 @@ class ClamIter(MessagePassing):
                 #forward direction: add the r features to the i features
                 '''in this case multiply the features in the message by the forward/reverse B.
                 To get the reverse direction, flip the edge_index.'''
-                #! this is probably not efficient as we calculate the entire feature dimension for both forward and reverse
-                #todo: there is only one self B and it's just smaller than dim_feat since dim_feat has both
-                self.B_inr = self.B_forward
-                tbr_i = self.propagate(edge_index=graph.edge_index, x=graph.x, global_features=(prior_grad), edge_attr=graph.edge_attr)[:, :self.dim_feat//2]
+                #! check if tbr_sender makes sense
+                '''backward direction for sender features: edge_index is flipped and the features aren't'''
+                tbr_sender = self.propagate(edge_index=torch.flip(graph.edge_index, dims=[0]), x=graph.x, global_features=(prior_grad[:, :self.dim_feat//2]), edge_attr=graph.edge_attr)
 
                 #? BE SURE TO NOT TO USE UPDATED VALUES for the backward pass. This doesn't happen because propagate doesn't update the features (that's why we have tbr) and the 
-                self.B_inr = self.B_reverse
-                #reverse direction: add the r features to the global features
-                tbr_r = self.propagate(edge_index=torch.flip(graph.edge_index, dims=[0]), x=graph.x, global_features=(prior_grad), edge_attr=graph.edge_attr)[:, self.dim_feat//2:]
+                
 
-                tbr = torch.cat([tbr_i, tbr_r], dim=1)
+                #reverse direction: add the r features to the global features
+                '''forward direction for receiver features: edge_index is not flipped and the features are'''
+                x_flipped = torch.cat([graph.x[:, self.dim_feat//2:], graph.x[:, :self.dim_feat//2]], dim=1)
+                #! see that the global features make sense
+                tbr_receiver = self.propagate(edge_index=graph.edge_index, x=x_flipped, global_features=(prior_grad[:, self.dim_feat//2:]), edge_attr=graph.edge_attr)
+
+                tbr = torch.cat([tbr_sender, tbr_receiver], dim=1)
                 
             # UNDIRECTED
             else:
@@ -224,20 +227,22 @@ class ClamIter(MessagePassing):
         
     def message(self, x_j, x_i, edge_attr):
         '''returns the message from node j to node i. this is only for edges. the global sum is preprocessed in the forward function, and will be added in the update function.             
-        x_i is the reciever and x_j is the sender.'''
+        x_j[num_edges X dim_feat//2] is the reciever and x_i[num_edges X dim_feat//2] is the sender.
+        x_j and x_i are arranged like the edges so that x_j[0] and x_i[0] correspond to edge_index[0].
+        '''
 
         #todo: flip edges and flip features. but how do i make this case
         # TODO: must initialize the features differently for directed graphs!!!! 
        
-        x_inner_product = torch.einsum('ij,jk,ik->i', x_i, self.B_inr, x_j) + eps
+        inner_product_nm = torch.einsum('ij,jk,ik->i', x_i[:, :self.dim_feat//2], self.B, x_j[:, self.dim_feat//2:]) + eps
         
-        if (x_inner_product < 0).any():
+        if (inner_product_nm < 0).any():
             raise ValueError('x_inner_product is negative for neighbors')
-        if (x_inner_product == 0).any():
+        if (inner_product_nm == 0).any():
             raise ValueError('x_inner_product is 0 for neighbors')
         #* this is the only change to clamiter class due to dyad omittion
-        msg_1 = x_j / (1 - torch.exp(-x_inner_product) + eps).unsqueeze(1) #- self.reg_inr*x_j*(x_inner_product - 1).unsqueeze(1)
-        msg_0 = x_j
+        msg_1 = x_j[:, self.dim_feat//2:] / (1 - torch.exp(-inner_product_nm) + eps).unsqueeze(1) 
+        msg_0 = x_j[:, self.dim_feat//2:]
 
         # edge attr is 0 for omitted dyads
         #! not the most efficient implementation, but it's easy to understand and the time should not be much different
@@ -250,14 +255,23 @@ class ClamIter(MessagePassing):
         '''returns the gradient of the loss with respect to the node features
         regularization: self.s_reg and self.l1_reg
         global: global_features[0] is the sum of the node features, global_features[1] is the prior grad'''
-        global_term = torch.sum(x, dim=0)
-        dim_feat = x.shape[1]
+        if self.directed:
+            global_term = torch.sum(x[:, self.dim_feat//2], dim=0)
+            s_feats = x[:, self.dim_feat//2:self.dim_feat//2+self.dim_feat//4]
+            s_feats = torch.concatenate([torch.zeros([x.shape[0], self.dim_feat//4]).to(s_feats.device), s_feats], dim=1)
+
+            update = (aggr_out - global_term)@self.B + global_features - self.s_reg*s_feats - self.l1_reg*torch.sign(x[:, self.dim_feat//2:])
+            
+        else:
+            global_term = torch.sum(x, dim=0)
+            s_feats = x[:, self.dim_feat//2:]
+            s_feats = torch.concatenate([torch.zeros([x.shape[0], self.dim_feat//2]).to(s_feats.device), s_feats], dim=1)
+            
+            update = (aggr_out - global_term)@self.B + global_features - self.s_reg*s_feats - self.l1_reg*torch.sign(x)
         #! abuse of notation: s_feats are space features and not sender features
-        s_feats = x[:, dim_feat//2:]
-        s_feats = torch.concatenate([torch.zeros([x.shape[0], dim_feat//2]).to(s_feats.device), s_feats], dim=1)
-        #todo: maybe there is a way to do this more elegant? how to cut the feqatures in the middle? but our features go forward and backward
         
-        update = self.B@(aggr_out - global_term + x) + global_features - self.s_reg*s_feats - self.l1_reg*torch.sign(x)
+        
+        #! PROBLEM: NEED TO MAKE A CASE FOR DIRECTED WHERE THE DIMENSIONS ARE SMALLER
 
         return update
 
@@ -328,8 +342,14 @@ class ClamIter(MessagePassing):
 
             def iter_step_feat():
                 clamiter_grad = self(graph, node_mask)
-                self.debug_last_grad = clamiter_grad
-                graph.x = torch.clamp(self.feat_bounding(graph.x, clamiter_grad, lr, node_mask, cutoff), -5000,5000)
+                self.debug_last_grad = clamiter_grad 
+                #todo: if the graph is directed you need to do this twice: once for sende rand one for receiver
+                if graph.is_directed():
+                    graph.x[:, :self.dim_feat//2] = torch.clamp(self.feat_bounding(graph.x[:, :self.dim_feat//2], clamiter_grad[:, :self.dim_feat//2], lr, node_mask, cutoff), -5000,5000)
+                    graph.x[:, self.dim_feat//2:] = torch.clamp(self.feat_bounding(graph.x[:, self.dim_feat//2:], clamiter_grad[:, self.dim_feat//2:], lr, node_mask, cutoff), -5000,5000)
+                else:
+                    graph.x = torch.clamp(self.feat_bounding(graph.x, clamiter_grad, lr, node_mask, cutoff), -5000,5000)
+                #! loss for directed is s_n @ r_n
                 loss = self.readout(graph)
                 return loss
             
@@ -1717,20 +1737,28 @@ def load_model(path_in_checkpoints, device=torch.device('cpu') ,verbose=False):
 def clam_loss(graph, lorenz):
         ''' loss of the vanilla bigclam model on the featoptimizer's edge array
         '''
-        dim_feat=graph.x.shape[1]
+        if graph.is_directed():
+            dim_feat = graph.x.shape[1]//2
+        else:
+            dim_feat = graph.x.shape[1]
         if lorenz:
             B = torch.concatenate([torch.ones(dim_feat//2), -torch.ones(dim_feat//2)]).to(graph.x.device)
         else:
             B = torch.ones(dim_feat).to(graph.x.device)
 
-        sum_graph_feats = torch.sum(graph.x, dim=0)
+        sum_graph_feats = torch.sum(graph.x[:, :dim_feat], dim=0)
         
-        term_glob_per_node = sum_graph_feats@(B*graph.x).T
+        term_glob_per_node = sum_graph_feats@(B*graph.x[:, dim_feat:]).T
         # term_sq_nodes_per_node = (graph.x**2).sum(dim=1)
-        norms = (graph.x*B*graph.x).sum(dim=1)
-
+        if graph.is_directed():
+            norms = torch.tensor(0.0).to(graph.x.device)
+        else:
+            norms = (graph.x*B*graph.x).sum(dim=1)
+    
         edges_feats_0, edges_feats_1 = edges_by_coords(graph)
         
+        edges_feats_0 = edges_feats_0[:, :dim_feat]
+        edges_feats_1 = edges_feats_1[:, dim_feat:]
         fufv = (edges_feats_0*B*edges_feats_1).sum(dim=1) # inner prods of all nodes in a row
         if (fufv < -10**-6).any():
             #* cases in which this could happen: if there is a node drop that is big

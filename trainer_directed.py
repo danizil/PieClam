@@ -455,15 +455,18 @@ class Trainer():
 
 
     def get_prob_graph(self, to_sparse=False, with_prior=False, ret_fufv=False):
+        
         if with_prior and self.clamiter.prior is not None:
             return utils.get_prob_graph(self.data.x, 
-                                        self.lorenz, 
-                                        to_sparse, 
-                                        self.clamiter.prior, 
-                                        ret_fufv)
+                                        self.lorenz,
+                                        directed=self.data.is_directed(),
+                                        to_sparse=to_sparse, 
+                                        prior=self.clamiter.prior, 
+                                        ret_fufv=ret_fufv)
         else:
             return utils.get_prob_graph(self.data.x, 
                                         self.lorenz,  
+                                        directed=self.data.is_directed(),
                                         to_sparse=to_sparse,
                                         prior=None, 
                                         ret_fufv=ret_fufv)
