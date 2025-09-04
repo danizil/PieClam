@@ -119,7 +119,7 @@ class ClamIter(MessagePassing):
             if self.lorenz:
                 self.B = torch.diag(1/self.T*torch.concatenate([torch.ones(dim_feat//4), -torch.ones(dim_feat//4)])).to(device) 
             else:
-                self.B = torch.diag(1/self.T*torch.concatenate([torch.ones(dim_feat//2), -torch.ones(self.dim_feat//2)])).to(device) # GPU 50 mib
+                self.B = torch.diag(1/self.T*torch.ones(self.dim_feat//2)).to(device) # GPU 50 mib
 
             # self.B_forward = torch.block_diag(torch.zeros_like(self.B), self.B, torch.zeros_like(self.B), torch.zeros_like(self.B))
             
