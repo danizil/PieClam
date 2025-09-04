@@ -257,8 +257,11 @@ class ClamIter(MessagePassing):
         global: global_features[0] is the sum of the node features, global_features[1] is the prior grad'''
         if self.directed:
             global_term = torch.sum(x[:, self.dim_feat//2], dim=0)
-            s_feats = x[:, self.dim_feat//2:self.dim_feat//2+self.dim_feat//4]
-            s_feats = torch.concatenate([torch.zeros([x.shape[0], self.dim_feat//4]).to(s_feats.device), s_feats], dim=1)
+            if self.lorenz:
+                s_feats = x[:, self.dim_feat//2:self.dim_feat//2+self.dim_feat//4]
+                s_feats = torch.concatenate([torch.zeros([x.shape[0], self.dim_feat//4]).to(s_feats.device), s_feats], dim=1)
+            else:
+                s_feats = torch.zeros_like(global_features)
 
             update = (aggr_out - global_term)@self.B + global_features - self.s_reg*s_feats - self.l1_reg*torch.sign(x[:, self.dim_feat//2:])
             
