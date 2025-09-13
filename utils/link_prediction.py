@@ -18,6 +18,7 @@ from utils import pyg_helpers as up
 def get_dyads_to_omit(
           edge_index, 
           edge_attr, 
+          directed,
           p_sample_edge, 
           p_sample_non_edge=None, 
         #   omitted_previously=(torch.empty(2, 0), torch.empty(2, 0))
@@ -25,7 +26,7 @@ def get_dyads_to_omit(
     '''
     the edges that have attr 0 are omitted (edges and non edges). the non edges that are omitted are inserted into the edge index and also given attr 0.
     algo: 
-    general idea: create 4 sets: A(pre-omitted dyads) = {were 0 in the beginning}, B(retained edges) = {were 1 in the beginning and are still 1}, C(newly omitted_edges) = {were 1 in the beginning and are now 0}, D(newly omitted non edges) = {sampled non edges that have attr are 0}
+    general idea: create 4 sets: A(pre-omitted dyads) = {were 0 in the beginning}, B(retained edges) = {were 1 at the beginning and are still 1}, C(newly omitted_edges) = {were 1 in the beginning and are now 0}, D(newly omitted non edges) = {sampled non edges that have attr are 0}
 
     1. split the edges into attr 1 = (B or C) and attr 0 = A.
     2. sample edges from (B or C) (this also rearanges them) - creating B and C.
@@ -47,12 +48,12 @@ def get_dyads_to_omit(
     # 1. split the edges into attr 1 = (B or C) and attr 0 = A.
     B_or_C = edge_index[:, edge_attr]
     A = edge_index[:, ~edge_attr]
-    assert utils.is_undirected(B_or_C), 'B_or_C should be undirected'
-    assert utils.is_undirected(A), 'A should be undirected'
+    # assert utils.is_undirected(B_or_C), 'B_or_C should be undirected'
+    # assert utils.is_undirected(A), 'A should be undirected'
     
     # 2. sample edges from (B or C) (this also rearanges them) - creating B and C.
-    #todo: where can i replace the sampling with existing dyads to omit
-    B_or_C_rearanged, edge_mask_retain = up.edge_mask_drop_and_rearange(B_or_C, p_sample_edge)
+    #todo: there is some business with making stuff undirected here.
+    B_or_C_rearanged, edge_mask_retain = up.edge_mask_drop_and_rearange(B_or_C, p_sample_edge, directed)
     B = B_or_C_rearanged[:, edge_mask_retain]
     C = B_or_C_rearanged[:, ~edge_mask_retain]
 
@@ -61,7 +62,7 @@ def get_dyads_to_omit(
     D = utils.sort_edge_index(utils.negative_sampling(
                             edge_index, 
                             num_neg_samples=math.floor(num_edges*p_sample_non_edge), 
-                            force_undirected=True))
+                            force_undirected= not directed))
     
     
     

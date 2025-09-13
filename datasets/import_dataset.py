@@ -5,7 +5,8 @@ from torch_geometric.data import Data, HeteroData
 import matplotlib.pyplot as plt
 import networkx as nx
 from torch_geometric.datasets import SNAPDataset, WebKB
-from torch_geometric.utils import to_networkx, to_dense_adj, to_undirected, remove_self_loops, is_undirected, contains_self_loops, remove_isolated_nodes, contains_isolated_nodes, subgraph
+from torch_geometric.utils import to_networkx, to_dense_adj, remove_self_loops, is_undirected, contains_self_loops, remove_isolated_nodes, contains_isolated_nodes, subgraph
+import torch_geometric.utils as upyg
 from sklearn.decomposition import TruncatedSVD, PCA
 from sklearn.preprocessing import MaxAbsScaler
 
@@ -28,7 +29,7 @@ from utils import utils
 
 
 
-def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remove_data_feats=True, verbose=False):
+def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remove_data_feats=True, verbose=False, to_undirected=True, remove_self_loops=True):
     '''will import a dataset with the same name as the dataset_name parameter'''
     current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -92,9 +93,13 @@ def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remo
 
     elif dataset_name == 'texas':
         data = WebKB(root=os.path.join(current_dir,'WebKB'), name='texas')[0]
-        data.edge_index = remove_self_loops(data.edge_index)[0]
-        data.edge_index = remove_isolated_nodes(data.edge_index)[0]
-        data.edge_index = to_undirected(data.edge_index)
+        if remove_self_loops:
+            data.edge_index = remove_self_loops(data.edge_index)[0]
+        # if remove_isolated_nodes:
+        #     data.edge_index = remove_isolated_nodes(data.edge_index)[0]
+        if to_undirected:
+            data.edge_index = upyg.to_undirected(data.       edge_index)
+        
         dense_attr_np = data.x.numpy()
         data.raw_attr = sp.lil_matrix(dense_attr_np)
         
@@ -133,20 +138,20 @@ def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remo
         data.edge_index = to_undirected(data.edge_index)
     
 
-    elif dataset_name == 'BlogCatalog':
-        data = load_data_matlab_format('anomaly', 'BlogCatalog')
-        data.edge_index = remove_self_loops(data.edge_index)[0]
-        data.edge_index = to_undirected(data.edge_index)
+    # elif dataset_name == 'BlogCatalog':
+    #     data = load_data_matlab_format('anomaly', 'BlogCatalog')
+    #     data.edge_index = remove_self_loops(data.edge_index)[0]
+    #     data.edge_index = to_undirected(data.edge_index)
     
-    elif dataset_name == 'ACM':
-        data = load_data_matlab_format('anomaly', 'ACM')
-        data.edge_index = remove_self_loops(data.edge_index)[0]
-        data.edge_index = to_undirected(data.edge_index)
+    # elif dataset_name == 'ACM':
+    #     data = load_data_matlab_format('anomaly', 'ACM')
+    #     data.edge_index = remove_self_loops(data.edge_index)[0]
+    #     data.edge_index = to_undirected(data.edge_index)
 
-    elif dataset_name == 'Flickr':
-        data = load_data_matlab_format('anomaly', 'Flickr')
-        data.edge_index = remove_self_loops(data.edge_index)[0]
-        data.edge_index = to_undirected(data.edge_index)
+    # elif dataset_name == 'Flickr':
+    #     data = load_data_matlab_format('anomaly', 'Flickr')
+    #     data.edge_index = remove_self_loops(data.edge_index)[0]
+    #     data.edge_index = to_undirected(data.edge_index)
 
     # SYNTHETIC
     

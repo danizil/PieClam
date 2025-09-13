@@ -82,6 +82,9 @@ class Trainer():
                  metric = None,
                  scheduler=None):
         
+        ''' trainer class takes care of the different settings i.e. configs, results, tasks and metrics. 
+        tasks are anomaly_unsupervised, link_prediction, distance, or losses. Anything else will default to losses'''        
+        
         self.metric = metric
         self.device = device
         self.task = task
@@ -140,10 +143,10 @@ class Trainer():
         
         # CONFIGS DICT
         dir_path = os.path.dirname(os.path.realpath(__file__))
-        if self.task is None:
-            hypers_file_name = 'distance'
-        else:
+        if self.task in ['distance', 'anomaly_unsupervised', 'link_prediction']:
             hypers_file_name = self.task
+        else:
+            hypers_file_name = 'losses'
         self.configs_path = os.path.join(dir_path, 'hypers', 'hypers_'+ hypers_file_name + '.yaml')
         
         if configs_dict is None:
@@ -543,10 +546,6 @@ class Trainer():
 
 #link prediction
     
-    # def omit_dyads(self, dyads_to_omit):
-    #     '''returns a new edge index with the dyads to omit and the attr to recognize them'''
-    #     return lp.omit_dyads(self.data, dyads_to_omit)
-        
 
     def determine_community_affiliation(self, clustering_method, clustering_param):
         '''determine the community affiliation of the nodes in x'''

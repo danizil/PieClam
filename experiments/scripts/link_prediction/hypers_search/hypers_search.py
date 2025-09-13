@@ -9,24 +9,7 @@ from inspect import currentframe, getframeinfo
 import os
 import sys
 import json
-# local imports
 
-# Add the root directory of the project to the Python path
-# root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
-
-# if root_dir not in sys.path:
-#     sys.path.insert(0, root_dir)
-# script_dir = os.path.dirname(os.path.realpath(__file__))
-# parent_dir = os.path.dirname(script_dir)
-# grand_parent_dir = os.path.dirname(parent_dir)
-# grand_grand_parent_dir = os.path.dirname(grand_parent_dir)
-
-# if parent_dir not in sys.path:
-#     sys.path.insert(0, parent_dir)
-# if grand_parent_dir not in sys.path:
-#     sys.path.insert(0, grand_parent_dir)
-# if grand_grand_parent_dir not in sys.path:
-#     sys.path.insert(0, grand_grand_parent_dir)
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
 

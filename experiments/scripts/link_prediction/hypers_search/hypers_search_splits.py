@@ -50,7 +50,6 @@ import link_prediction as lp
 
 
 def main():    
-    '''run big and ie on a chosen dataset to find the optimal number of communities and number of iterations.'''
 
     
     #           ARGS
@@ -114,8 +113,8 @@ def main():
             ['prior_opt','noise_amp', args.noise_amps],
             ['back_forth','n_back_forth', args.n_back_forth]
         ]
+    #todo: how to omit dyads and check that they are omitted?
     # Create the file if it doesn't exist
-    #todo: test the datasets: photo, texas, facebook, squirrel and crocodile
     printd(f'Running cross val link splits for {args.ds_name} with model {args.model_name}')
     printd(f'{args=}')
     ou.cross_val_link_splits(

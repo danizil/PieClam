@@ -185,14 +185,14 @@ class ClamIter(MessagePassing):
             feats_for_prior.requires_grad_(True)
 
             log_prior_loss = self.prior.forward_ll(feats_for_prior)
-            
+            #todo: for directed take the first half of the grad elements
             masked_prior_grad = a_grad(log_prior_loss, feats_for_prior, create_graph=False)[0]
             prior_grad[node_mask] = masked_prior_grad[:, :self.dim_feat]
             
             '''remove graph.x from the COMPUTATION GRAPH so the gradients are NOT TRACKED when message passing.'''
             #? the extra clone means the data of the tensor is different. TESTED, it doesn't take longer.
             graph.x = graph.x.detach().clone() 
-    
+        
         # MESSAGE PASSING
         with torch.no_grad():
             # DIRECTED
@@ -200,7 +200,6 @@ class ClamIter(MessagePassing):
                 #forward direction: add the r features to the i features
                 '''in this case multiply the features in the message by the forward/reverse B.
                 To get the reverse direction, flip the edge_index.'''
-                #! check if tbr_sender makes sense
                 '''backward direction for sender features: edge_index is flipped and the features aren't'''
                 tbr_sender = self.propagate(edge_index=torch.flip(graph.edge_index, dims=[0]), x=graph.x, global_features=(prior_grad[:, :self.dim_feat//2]), edge_attr=graph.edge_attr)
 
@@ -240,7 +239,7 @@ class ClamIter(MessagePassing):
             raise ValueError('x_inner_product is negative for neighbors')
         if (inner_product_nm == 0).any():
             raise ValueError('x_inner_product is 0 for neighbors')
-        #* this is the only change to clamiter class due to dyad omittion
+        #* don't worry about B not appearing, it multiplies everything in the update function.
         msg_1 = x_j[:, self.dim_feat//2:] / (1 - torch.exp(-inner_product_nm) + eps).unsqueeze(1) 
         msg_0 = x_j[:, self.dim_feat//2:]
 
@@ -254,15 +253,18 @@ class ClamIter(MessagePassing):
     def update(self, aggr_out, x, global_features, edge_attr):
         '''returns the gradient of the loss with respect to the node features
         regularization: self.s_reg and self.l1_reg
-        global: global_features[0] is the sum of the node features, global_features[1] is the prior grad'''
+        global: global_features[0] is the sum of the node features, global_features[1] is the prior grad
+        Directed: 
+        in directed the propagation is done once with the features in the order s,t and then with the flipped version t,s. The update function is the same for both cases.'''
         if self.directed:
-            global_term = torch.sum(x[:, self.dim_feat//2], dim=0)
+            #! seems wrong the global term
+            global_term = torch.sum(x[:, self.dim_feat//2:], dim=0)
             if self.lorenz:
                 s_feats = x[:, self.dim_feat//2:self.dim_feat//2+self.dim_feat//4]
                 s_feats = torch.concatenate([torch.zeros([x.shape[0], self.dim_feat//4]).to(s_feats.device), s_feats], dim=1)
             else:
                 s_feats = torch.zeros_like(global_features)
-
+            #todo: there is some problem with the global term. it's much bigger than the other terms.
             update = (aggr_out - global_term)@self.B + global_features - self.s_reg*s_feats - self.l1_reg*torch.sign(x[:, self.dim_feat//2:])
             
         else:
@@ -1240,7 +1242,9 @@ class AccTrack:
                  acc_every,
                  **kwargs 
                  ):
-        '''should track all of the accuracies and losses during an optimization in one of the fit functions. should also save the best state, validation accuracies...'''
+        '''should track all of the accuracies and losses during an optimization in one of the fit functions. should also save the best state, validation accuracies...
+        Task can either be anomaly_unsupervised, link_prediction, distance or none (losses).
+        '''
         #todo: IF THE TASK IS NONE, ACC TRACKER SHOULD TRACK LOSSES. 
         # trainer should be an option as well
         self.task = task # trainer knows the model and dataset. does it matter? i think not.  
@@ -1579,86 +1583,6 @@ class EarlyStop:
     def save(self, graph):
         pass
 
-
-# if task == 'distance':
-                
-            #     accuracies_test['log_cut'] += accuracies_test['log_cut'] + accuracies_test_epoch_1st['log_cut'] + accuracies_test_epoch_2nd['log_cut']
-                
-            #     accuracies_test['cut'] += accuracies_test['cut'] + accuracies_test_epoch_1st['cut'] + accuracies_test_epoch_2nd['cut']
-
-            #     accuracies_val = accuracies_val + accuracies_val_epoch_1st + accuracies_val_epoch_2nd
-
-            #     last_val_dist = accuracies_val[-1]
-
-                
-            #     if last_val_dist < best_distance:
-            #         best_distance = last_val_dist
-            #         patiance = max(patiance - 1, 0)
-            #     else:
-            #         patiance += 1
-            #         if early_stop_fit!=0:
-            #             if patiance >= early_stop_fit:
-            #                 printd(f'\nfit_prior early stopping at iteration {i}')
-            #                 break
-                
-            # # ========= distance collect results  ====================
-
-        
-            # if task == 'link_prediction':
-            #     # here omit some of the dyads like 20% of all of the dyads and do 
-            #     auc_score = roc_of_omitted_dyads(
-            #                 graph.x, 
-            #                 self.lorenz, 
-            #                 dyads_to_omit)['auc']
-            #     accuracies_test.append(auc_score)
-            # # ===== end link collect acc =====
-            
-            # elif task == 'anomaly_unsupervised':                
-            #     if i%acc_every == 0:
-            #         # calculate intermediate accuracies
-                    
-            #         if dyads_to_omit is not None:
-            #             # LINK get best per round
-            #             best_acc_val_2nd = max(accuracies_val_epoch_2nd['prior_auc'])
-            #             auc_link = best_acc_val_2nd
-                        
-            #             auc_vanilla_star, auc_prior, auc_prior_star = all_types_classify(self, graph, ll_types=['vanilla_star', 'prior', 'prior_star'])
-
-            #             # CHECK IMPROVE
-            #             if auc_link - best_auc_link > 0:
-            #                 best_auc_link = auc_link
-            #                 iter_best_link = i
-            #                 count_not_improved_link = max(count_not_improved_link - 1, 0)
-            #                 utils.delete_file_by_str(delete_folder, 'vanilla_star_auc')
-            #                 utils.delete_file_by_str(delete_folder, 'prior_auc')
-            #                 utils.delete_file_by_str(delete_folder, 'prior_star_auc')
-
-            #                 saved_auc_vanilla_star_anomaly = auc_vanilla_star
-            #                 saved_auc_prior_anomaly = auc_prior
-            #                 saved_auc_prior_star_anomaly = auc_prior_star
-
-            #                 self.save_state(graph, inner_folder=f'{save_folder}', configs_dict=configs_dict, suffix=f'vanilla_star_auc_{auc_vanilla_star:.3f}')
-            #                 self.save_state(graph, inner_folder=f'{save_folder}', configs_dict=configs_dict, suffix=f'prior_auc_{auc_prior:.3f}')
-            #                 self.save_state(graph, inner_folder=f'{save_folder}', configs_dict=configs_dict, suffix=f'prior_star_auc_{auc_prior_star:.3f}')
-            #             else:
-            #                 count_not_improved_link += 1
-            #         # === end CHECK IMPROVE ======
-                        
-            #             if verbose:
-            #                 printd(f'\nfit function after checking improvement {i= }; \n {count_not_improved_link=}, {iter_best_link= }\n\n ANOMALY ACC:\n {auc_vanilla_star= }, {auc_prior= }, {auc_prior_star= }' )
-                        
-            #             # STOPPING CONDITION
-            #             if early_stop_fit!=0 and count_not_improved_link >= early_stop_fit:
-            #                 printd(f'\nfit. early stopping at iteration {i+1}')
-            #                 break
-                
-            #     accuracies_test['vanilla_star'] += accuracies_test_epoch_1st['vanilla_star'] + accuracies_test_epoch_2nd['vanilla_star']
-            #     accuracies_test['prior'] += accuracies_test_epoch_1st['prior'] + accuracies_test_epoch_2nd['prior']
-            #     accuracies_test['prior_star'] += accuracies_test_epoch_1st['prior_star'] + accuracies_test_epoch_2nd['prior_star']
-
-            #     if accuracies_val is not None:
-            #         accuracies_val += accuracies_val_epoch_1st + accuracies_val_epoch_2nd
-            
 
 
 # 88      dP"Yb     db    8888b.      8b    d8  dP"Yb  8888b.  888888 88     

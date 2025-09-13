@@ -411,6 +411,66 @@ def plot_feature_prediction_adj(graph, lorenz, prior=None, ax=None, figsize=(3,3
     # ax.set_ylim(y_fig_lim[0], y_fig_lim[1])
     ax.set_aspect('equal')
 
+def plot_2d_graphs(graph_cpu, community_affiliation_cpu, lorenz, directed, **kwargs):
+    
+    num_feats = graph_cpu.x.shape[1]
+    if directed:
+        num_cols = 2
+        num_rows = num_feats // 2 + 1
+    else:
+        num_cols = min(3, num_feats//2)
+        num_rows = math.ceil(num_feats / 6)
+
+    fig3, axes3 = plt.subplots(num_rows, num_cols)
+
+    if type(axes3) != np.ndarray:
+        axes3 = np.array([axes3])
+    
+    if axes3.ndim == 1:
+        axes3 = np.expand_dims(axes3, axis=0)
+
+    if graph_cpu.x.shape[1] % 2 == 0:
+        # even number of features
+        for j in range(num_feats // 2):
+            row = j // num_cols
+            col = j % num_cols
+            plot_2dgraph(
+                graph_cpu,
+                community_affiliation=community_affiliation_cpu,
+                proj_dims=[j, j + num_feats // 2], lorenz_fig_lims=lorenz, 
+                ax=axes3[row, col],
+                **kwargs) 
+                # plot_relu_lines(lorenz=lorenz, ax=axes3[row, col])
+
+    else:
+        # odd number of features
+        # (this is only for clam)
+        for j in range(0, num_feats - 1, 2):
+            row = (j //2) //num_cols
+            col = (j// 2) % num_cols
+            plot_2dgraph(
+                graph_cpu,
+                community_affiliation=community_affiliation_cpu, 
+                proj_dims=[j, j + 1],
+                lorenz_fig_lims=lorenz, ax=axes3[row, col],
+                **kwargs) 
+            
+            plot_relu_lines(lorenz=lorenz, ax=axes3[row, col])
+            
+        
+        # the last two features
+        row = (num_feats // 2) // num_cols
+        col = (num_feats // 2) % num_cols
+        plot_2dgraph(
+            graph_cpu,
+            community_affiliation=community_affiliation_cpu,
+            proj_dims=[num_feats - 2, num_feats - 1], 
+            lorenz_fig_lims=lorenz, 
+            ax=axes3[row, col],
+            **kwargs)
+        plot_relu_lines(lorenz=lorenz, ax=axes3[row, col])
+    
+
 
 def plot_optimization_stage(
                 prior, 
@@ -423,6 +483,7 @@ def plot_optimization_stage(
                 i=0, 
                 n_iter=0,  
                 calling_function_name='',
+                directed=False,
                 **kwargs):
     #todo: i want to make the case for directed graphs. a column for sender and a column for receiver in plot 2graphs
     '''plot various figures of the situation of the graph in the optimization'''
@@ -444,24 +505,24 @@ def plot_optimization_stage(
 
     # plot SBM and original adj
     if 'adj' in things_to_plot:
-        #todo; this should be the function "plot sparse adj"
-        w_opt = get_prob_graph(graph_cpu.x, lorenz=lorenz, prior=None)
-        # w_opt = get_prob_graph(graph.x, lorenz=lorenz, prior=prior).cpu()
-        w_gt = to_dense_adj(graph_cpu.edge_index)[0]
-        w_cut = w_opt.clone()
+        # #todo; this should be the function "plot sparse adj"
+        # w_opt = get_prob_graph(graph_cpu.x, lorenz=lorenz, prior=None)
+        # # w_opt = get_prob_graph(graph.x, lorenz=lorenz, prior=prior).cpu()
+        # w_gt = to_dense_adj(graph_cpu.edge_index)[0]
+        # w_cut = w_opt.clone()
 
-        w_cut[w_cut<0] = 0
-        fig1, axes1 = plt.subplots(1,2)
+        # w_cut[w_cut<0] = 0
+        # fig1, axes1 = plt.subplots(1,2)
     
-        im_gt = plot_adj(w_gt, ax=axes1[0])
-        im_opt = plot_adj(w_cut, omitted_dyads, ax=axes1[1])
+        # im_gt = plot_adj(w_gt, ax=axes1[0])
+        # im_opt = plot_adj(w_cut, omitted_dyads, ax=axes1[1])
 
 
-        axes1[0].set_title('ground truth adj')
-        axes1[1].set_title('optimized adj')
+        # axes1[0].set_title('ground truth adj')
+        # axes1[1].set_title('optimized adj')
 
-        plt.subplots_adjust(wspace=0.5)
-        
+        # plt.subplots_adjust(wspace=0.5)
+        fig1, axes1 = plot_adj(graph_cpu, lorenz, prior)
     # plot the features
     if 'feats' in things_to_plot:
         plot_feats(graph_cpu, lorenz=lorenz)
@@ -471,61 +532,11 @@ def plot_optimization_stage(
 
         if graph_cpu.x.shape[1] > 2:
             #todo: change this. i want the first column to be sender features and the second column to be receivers
-            num_rows = math.ceil(num_feats / 6)
-            num_cols = min(3, num_feats//2)
-            fig3, axes3 = plt.subplots(num_rows, num_cols)
-
-            if type(axes3) != np.ndarray:
-                axes3 = np.array([axes3])
-            
-            if axes3.ndim == 1:
-                axes3 = np.expand_dims(axes3, axis=0)
-
-            if graph_cpu.x.shape[1] % 2 == 0:
-                # even number of features
-                for j in range(num_feats // 2):
-                    row = j // num_cols
-                    col = j % num_cols
-                    plot_2dgraph(
-                        graph_cpu,
-                        community_affiliation=community_affiliation_cpu,
-                        proj_dims=[j, j + num_feats // 2], lorenz_fig_lims=lorenz, 
-                        ax=axes3[row, col],
-                        **kwargs) 
-                        # plot_relu_lines(lorenz=lorenz, ax=axes3[row, col])
-
-            else:
-                # odd number of features
-                # (this is only for clam)
-                for j in range(0, num_feats - 1, 2):
-                    row = (j //2) //num_cols
-                    col = (j// 2) % num_cols
-                    plot_2dgraph(
-                        graph_cpu,
-                        community_affiliation=community_affiliation_cpu, 
-                        proj_dims=[j, j + 1],
-                        lorenz_fig_lims=lorenz, ax=axes3[row, col],
-                        **kwargs) 
-                    
-                    plot_relu_lines(lorenz=lorenz, ax=axes3[row, col])
-                    
-                
-                # the last two features
-                row = (num_feats // 2) // num_cols
-                col = (num_feats // 2) % num_cols
-                plot_2dgraph(
-                    graph_cpu,
-                    community_affiliation=community_affiliation_cpu,
-                    proj_dims=[num_feats - 2, num_feats - 1], 
-                    lorenz_fig_lims=lorenz, 
-                    ax=axes3[row, col],
-                    **kwargs)
-                plot_relu_lines(lorenz=lorenz, ax=axes3[row, col])
-            
+            plot_2d_graphs(graph_cpu, community_affiliation_cpu, lorenz, directed, **kwargs)
 
         else: #* 2 features
             
-            plot_graph_2_feats(graph_cpu, community_affiliation=community_affiliation_cpu, prior=prior, lorenz=lorenz, **kwargs)  
+            plot_graph_2_feats(graph_cpu, community_affiliation=community_affiliation_cpu, prior=prior, lorenz=lorenz, directed=directed, **kwargs)  
 
     
     #* plot losses
@@ -542,7 +553,7 @@ def plot_optimization_stage(
     if prior:
         prior.model.train()   
 
-def plot_graph_2_feats(graph, community_affiliation=None, prior=None, lorenz=False, draw_nodes_on_prior=True, alpha=0.2, **kwargs):    
+def plot_graph_2_feats(graph, community_affiliation=None, prior=None, lorenz=False, draw_nodes_on_prior=True, alpha=0.2, directed=False, **kwargs):    
     if prior: 
         if lorenz:
             x_fig_lim = [-0.01, 2.7]

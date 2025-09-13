@@ -537,12 +537,7 @@ class Trainer():
         self.clamiter.to(device)
 
 
-#link prediction
-    
-    # def omit_dyads(self, dyads_to_omit):
-    #     '''returns a new edge index with the dyads to omit and the attr to recognize them'''
-    #     return lp.omit_dyads(self.data, dyads_to_omit)
-        
+   
 
     def determine_community_affiliation(self, clustering_method, clustering_param):
         '''determine the community affiliation of the nodes in x'''

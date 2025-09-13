@@ -27,7 +27,7 @@ from utils.path_utils import get_project_root
 
 from datasets.import_dataset import import_dataset
 import utils.link_prediction as lp
-from trainer import Trainer
+from trainer_directed import Trainer
 from datetime import datetime
 import os
 
@@ -251,12 +251,12 @@ class SaveRun:
 
     '''we save the a base config (either model specific or global) and change it with deltas. each experiment result is the config delta and the result of the experiment in a json file. to gather all of the results together there is an analysis.py in every results folder.'''
     
-    def __init__(self, model_name, ds_name, task, metric=None, omitted_test_dyads=None, test_or_valid=None, use_global_config_base=True, config_ranges=None):
+    def __init__(self, model_name, ds_name, task, metric=None, omitted_test_dyads=None, test_or_valid=None, use_global_config_base=True, config_ranges=None, directed=False):
         self.model_name = model_name
         self.task = task
         self.ds_name = ds_name
         self.use_global_config_base = use_global_config_base
-    
+        self.directed = directed
         '''test as number is the binary edge_attr as a decimal number, which defines the test set so many experiments with the same test set can be saved in the same folder. edge attr is the omitted test/test and val mask'''
     
         timestamp = datetime.now().strftime('%H-%M_%d-%m-%y')
@@ -268,7 +268,7 @@ class SaveRun:
         base_results_dir = os.path.join(current_file_dir, 'results')
         if task == 'link_prediction':
         # Build your final model path
-            self.model_path = os.path.join(base_results_dir, task, metric, ds_name, model_name)
+            self.model_path = os.path.join(base_results_dir, 'directed' if directed else 'undirected', task, metric, ds_name, model_name)
             os.makedirs(self.model_path, exist_ok=True)
             
             split_exists = False
@@ -495,6 +495,7 @@ def cross_val_link_splits(
         random_seed=42,
         num_draws_random=50,
         reverse_test_set_order=False,
+        directed=False,
         verbose_in_funcs=False):
     
     '''Get the path to the folder in which this file is located'''
@@ -530,7 +531,8 @@ def cross_val_link_splits(
             random_search=random_search,
             random_seed=random_seed,
             num_draws_random=num_draws_random,
-            verbose_in_funcs=verbose_in_funcs
+            verbose_in_funcs=verbose_in_funcs,
+            directed=directed
         )
     
 #todo: cancel time consuming jobs.
@@ -561,6 +563,8 @@ def cross_val_link(
         attr_opt=False,
         acc_every=20,
         plot_every=10000,
+        to_undirected=True,
+        remove_self_loops=True,
         verbose=False,
         verbose_in_funcs=False):
     
@@ -582,7 +586,7 @@ def cross_val_link(
         # save run should configure the save paths 
         # if there is a test set folder (split. the number after split should be the number that is the test sets connected and turned into a number) like the test set we are using save n
 
-        ds = import_dataset(ds_name, test_dyads_path=test_dyads_path, val_dyads_path=val_dyads_path)
+        ds = import_dataset(ds_name, test_dyads_path=test_dyads_path, val_dyads_path=val_dyads_path, to_undirected= to_undirected, remove_self_loops=remove_self_loops)
         
         # if the dataset comes with dyads to omit use THEM
         if hasattr(ds, 'val_dyads_to_omit'):
@@ -599,17 +603,18 @@ def cross_val_link(
         ds_test_omitted = ds.clone()
         if test_dyads_to_omit is not None: # if the dataset comes with test dyads
             assert type(test_dyads_to_omit) == tuple
-            assert utils.is_undirected(test_dyads_to_omit[0]) and utils.is_undirected(test_dyads_to_omit[1])
+            # assert utils.is_undirected(test_dyads_to_omit[0]) and utils.is_undirected(test_dyads_to_omit[1])
             
             ds_test_omitted.omitted_dyads_test, ds_test_omitted.edge_index, ds_test_omitted.edge_attr = lp.omit_dyads(ds_test_omitted.edge_index,
                                       ds_test_omitted.edge_attr,
                                       test_dyads_to_omit)
         else:
-
+           #! do we undirect the omitted dyads?
            ds_test_omitted.omitted_dyads_test, ds_test_omitted.edge_index, ds_test_omitted.edge_attr = lp.get_dyads_to_omit(
-                                                ds.edge_index, 
-                                                ds.edge_attr, 
-                                                test_p)
+                                                edge_index=ds.edge_index, 
+                                                edge_attr=ds.edge_attr,
+                                                directed=ds.is_directed(), 
+                                                p_sample_edge=test_p)
              
         
         
@@ -624,15 +629,17 @@ def cross_val_link(
                             omitted_test_dyads=ds_test_omitted.omitted_dyads_test, 
                             test_or_valid=test_or_valid, 
                             use_global_config_base=use_global_config_base, 
+                            directed=ds.is_directed(),
                             config_ranges=range_triplets)
         
         printd(f'RunSaver defined to acc_configs path {run_saver.acc_configs_path}')
 
         if val_dyads_to_omit is not None and not test_only:
             assert type(val_dyads_to_omit) == tuple
-            assert utils.is_undirected(val_dyads_to_omit[0]) and utils.is_undirected(val_dyads_to_omit[1])
+            # assert utils.is_undirected(val_dyads_to_omit[0]) and utils.is_undirected(val_dyads_to_omit[1])
 
             ds_test_omitted.omitted_dyads_val = val_dyads_to_omit
+            #! do we undirect the omitted dyads?
             ds_test_omitted.omitted_dyads_val, ds_test_omitted.edge_index, ds_test_omitted.edge_attr = lp.omit_dyads(
                             ds_test_omitted.edge_index, 
                             ds_test_omitted.edge_attr,
@@ -656,9 +663,10 @@ def cross_val_link(
 
                 if val_dyads_to_omit is None and not test_only: #sample random validation set
                     ds_test_val_omitted.omitted_dyads_val, ds_test_val_omitted.edge_index, ds_test_val_omitted.edge_attr = lp.get_dyads_to_omit(
-                                            ds_test_omitted.edge_index, 
-                                            ds_test_omitted.edge_attr, 
-                                            ((val_p)/(1-test_p)))# the amount to extract from the remaining edges to get the initial extraction we wanted for val (size changes after removal).
+                                            edge_index=ds_test_omitted.edge_index, 
+                                            edge_attr=ds_test_omitted.edge_attr, 
+                                            directed=ds.is_directed(), 
+                                            p_sample_edge=((val_p)/(1-test_p)))# the amount to extract from the remaining edges to get the initial extraction we wanted for val (size changes after removal).
 
                 # ============ OMIT VALIDATION =============
 
@@ -685,7 +693,7 @@ def cross_val_link(
                             use_global_config_base=use_global_config_base,
                             attr_opt=False,
                             metric=metric,
-                            device=device,
+                            device=device
                 )
 
                 losses, acc_test, acc_val = trainer.train(
@@ -722,7 +730,8 @@ def cross_val_link(
         if ds_test_val_omitted is not None:
             del ds_test_val_omitted
         torch.cuda.empty_cache()
-        printd('\n\nFinished CrossVal!\n\n')    
+        printd('\n\nFinished CrossVal!\n\n')
+        return trainer   
 
 #  dP""b8 88""Yb  dP"Yb  .dP"Y8 .dP"Y8        db    88b 88  dP"Yb  8b    d8    db    88     Yb  dP 
 # dP   `" 88__dP dP   Yb `Ybo." `Ybo."       dPYb   88Yb88 dP   Yb 88b  d88   dPYb   88      YbdP  
