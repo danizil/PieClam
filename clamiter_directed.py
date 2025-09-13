@@ -91,10 +91,10 @@ class ClamIter(MessagePassing):
         # ====== safeguards ======
         if self.lorenz or self.directed:
             if not dim_feat//2 == dim_feat/2:
-                raise ValueError('dim_feat should be even for lorenz and directed graphs')
+                raise ValueError('in clamiter init. dim_feat should be even for lorenz and directed graphs')
         if self.lorenz and self.directed:
             if not dim_feat//4 == dim_feat/4:
-                raise ValueError('dim_feat should be divisible by 4 for directed p/ieclam')
+                raise ValueError('in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam')
         # ==== end safeguards ======
 
         if self.vanilla and not self.lorenz:
@@ -151,7 +151,7 @@ class ClamIter(MessagePassing):
         self.to(self.device) 
 
     def __del__(self):
-        if self.prior is not None:
+        if hasattr(self, 'prior') and self.prior is not None:
             del self.prior
    
     def add_prior(self, hidden_dim=64, num_coupling_blocks=32, num_layers_mlp=2, prior=None):

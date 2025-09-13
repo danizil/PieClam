@@ -248,7 +248,6 @@ def perturb_config(task, model_name, deltas, use_global_config, ds_name=None):
 
 
 class SaveRun:
-
     '''we save the a base config (either model specific or global) and change it with deltas. each experiment result is the config delta and the result of the experiment in a json file. to gather all of the results together there is an analysis.py in every results folder.'''
     
     def __init__(self, model_name, ds_name, task, metric=None, omitted_test_dyads=None, test_or_valid=None, use_global_config_base=True, config_ranges=None, directed=False):
@@ -721,6 +720,7 @@ def cross_val_link(
                 ds_test_val_omitted = None
                 torch.cuda.empty_cache()
     except Exception as e:
+        printd(f'\n\n#### ERROR #### in cross_val_link: {e}\n\n')
         raise e
     finally:
         if ds is not None:
