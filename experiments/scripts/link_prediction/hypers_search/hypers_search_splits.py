@@ -37,13 +37,13 @@ for _ in range(4):
         sys.path.insert(0, script_dir)
 
 from utils.printing_utils import printd, filename_n_line_str
-import experiments.optimization_utils as ou
+import experiments.optimization_utils_directed as ou
 
 from tests import tests
 from utils import utils
 from utils.plotting import *
 import anomaly_detection as ad
-from trainer import Trainer
+from trainer_directed import Trainer
 from scripting_utils import print_prior_training_stats
 from datasets.import_dataset import import_dataset
 import link_prediction as lp
@@ -56,7 +56,7 @@ def main():
     #=================================
     #todo: this already has test set path. i need to do it in the batch file
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model_name', type=str, default='iegam', help='name of the model')
+    parser.add_argument('--model_name', type=str, default='ieclam', help='name of the model')
     parser.add_argument('--ds_name', type=str, default='squirrel', help='name of the dataset')
 
     # feat config triplet range
@@ -86,13 +86,18 @@ def main():
     parser.add_argument('--test_only', action='store_true', help='whether to test only')
     parser.add_argument('--n_reps', type=int, default=3, help='number of repetitions')
     parser.add_argument('--reverse_test_set_order', action='store_true', help='whether to reverse the order of the features')
+    parser.add_argument('--to_undirected', action='store_false', help='whether to use undirected data')
+    parser.add_argument('--remove_self_loops', action='store_false', help='whether to remove self loops')
     args = parser.parse_args()
-    
-
+  
     # ========= RESULTS FOLDERS =========
     if not torch.cuda.is_available():
-        raise Exception('CUDA not available')
-    device = torch.device('cuda')
+        printd('CUDA not available')
+        # raise Exception('CUDA not available')
+        device = torch.device('cpu')
+    else:
+        printd('CUDA available')
+        device = torch.device('cuda')
     printd(f'Using device: {device}')
 
 
@@ -104,7 +109,7 @@ def main():
         ['feat_opt','lr', args.lr_feats],
     ]
 
-    if args.model_name in ['pclam', 'piegam']:
+    if args.model_name in ['pclam', 'pieclam']:
         range_triplets += [
             # ['clamiter_init','dim_attr', args.dim_attr],
             ['back_forth', 'first_func_in_fit', args.first_funcs_in_fit],
@@ -131,7 +136,9 @@ def main():
         n_reps=args.n_reps,
         device=device,
         plot_every=100000,
-        acc_every=-1
+        acc_every=-1,
+        to_undirected=args.to_undirected,
+        remove_self_loops=args.remove_self_loops
         )
 
 if __name__ == "__main__":
