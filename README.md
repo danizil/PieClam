@@ -17,6 +17,11 @@ There is a separate hypers.yaml file for every task, and in each file there is a
 The hyperparameters are organized in four groups: clamiter_init (initializations for clamiter), feat_opt (feature optimization parameters), prior_opt (prior optimization parameters) and back_forth (alternation hyperparameters).
 In addition, there is an option to set the hyperparameters manually before the optimization by adding "config_triplets" list of lists where each list is a triplet for which the first element is the outer group (clamiter_init, feat_opt, prior_opt or back_forth), the second element is the hyperparameter name (e.g. n_iter, lr, etc....) and the third element is the value. Please see examples in the \experiments directory.
 
+
+# Directed
+Emphases:
+1. be sure that the dimension you choose can be divided by 4
+
 # Datasets
 Synthetic datasets are simulated in the simulations.py file. The real world datasets are not part of the github repository, but have a specific loading mechanism via the datasets/import_datasets.import_dataset function. The datasets can be obtained and loaded in the following way:
 - Texas is part of the WebKB dataset that is available in pytorch geometric and is downloaded automatically with the import_dataset function.

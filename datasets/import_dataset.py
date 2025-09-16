@@ -81,11 +81,13 @@ def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remo
         labels_df = pd.read_csv(os.path.join(current_dir, 'wikipedia/squirrel/musae_squirrel_target.csv'))
         labels = labels_df['target'].values  # Assuming the label column is named 'target'
         y = torch.tensor(labels, dtype=torch.long)
-
         # Create the PyTorch Geometric Data object
-        edge_index = remove_self_loops(edge_index)[0]
-        edge_index = remove_isolated_nodes(edge_index)[0]
-        edge_index = to_undirected(edge_index)
+        if remove_self_loops:
+            edge_index = upyg.remove_self_loops(edge_index)[0]
+        if to_undirected:
+            edge_index = upyg.to_undirected(edge_index)
+        
+        edge_index = upyg.remove_isolated_nodes(edge_index)[0]
         
         data = Data(x=None, edge_index=edge_index, y=y)
         #todo: need to make the test and validation sets from the 
@@ -94,7 +96,7 @@ def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remo
     elif dataset_name == 'texas':
         data = WebKB(root=os.path.join(current_dir,'WebKB'), name='texas')[0]
         if remove_self_loops:
-            data.edge_index = remove_self_loops(data.edge_index)[0]
+            data.edge_index = upyg.remove_self_loops(data.edge_index)[0]
         # if remove_isolated_nodes:
         #     data.edge_index = remove_isolated_nodes(data.edge_index)[0]
         if to_undirected:

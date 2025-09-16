@@ -92,7 +92,7 @@ def omit_dyads(
     C - edges to omit
     D - non edges to omit
     '''
-    #todo: need to assert that dyads_to_omit[0] is in edge_index and that dyads_to_omit[1] is not at all in edge_index
+    #todo: need to see if the directed version still works, probably not.
     # Assert that dyads_to_omit[0] (C) is in edge_index
     C = dyads_to_omit[0]
     D = dyads_to_omit[1]
@@ -108,8 +108,8 @@ def omit_dyads(
     
     # B is the retaied edges so i need to get the set of 
     B_or_C = edge_index[:, edge_attr]
-    assert utils.is_undirected(B_or_C), 'B_or_C should be undirected'
-    assert utils.is_undirected(A), 'A should be undirected'
+    # assert utils.is_undirected(B_or_C), 'B_or_C should be undirected'
+    # assert utils.is_undirected(A), 'A should be undirected'
     
 
     B_or_C_set = set(map(tuple, B_or_C.t().tolist()))

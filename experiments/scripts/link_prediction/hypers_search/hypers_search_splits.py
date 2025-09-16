@@ -86,9 +86,10 @@ def main():
     parser.add_argument('--test_only', action='store_true', help='whether to test only')
     parser.add_argument('--n_reps', type=int, default=3, help='number of repetitions')
     parser.add_argument('--reverse_test_set_order', action='store_true', help='whether to reverse the order of the features')
-    parser.add_argument('--to_undirected', action='store_false', help='whether to use undirected data')
-    parser.add_argument('--remove_self_loops', action='store_false', help='whether to remove self loops')
+    parser.add_argument('--to_undirected', action='store_true', help='whether to use undirected data')
+    parser.add_argument('--remove_self_loops', action='store_true', help='whether to remove self loops')
     args = parser.parse_args()
+
   
     # ========= RESULTS FOLDERS =========
     if not torch.cuda.is_available():
@@ -122,6 +123,7 @@ def main():
     # Create the file if it doesn't exist
     printd(f'Running cross val link splits for {args.ds_name} with model {args.model_name}')
     printd(f'{args=}')
+
     ou.cross_val_link_splits(
         ds_name=args.ds_name,
         model_name=args.model_name,

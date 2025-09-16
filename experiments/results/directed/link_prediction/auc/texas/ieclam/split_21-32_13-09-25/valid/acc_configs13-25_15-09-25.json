@@ -1,0 +1,22 @@
+{
+    "date_time": "2025-09-15 13:25:28",
+    "ds_name": "texas",
+    "model_name": "ieclam",
+    "task": "link_prediction",
+    "metric": "auc",
+    "config_ranges": [],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 36,
+            "s_reg": 0.1,
+            "l1_reg": 1
+        },
+        "feat_opt": {
+            "lr": 3e-06,
+            "n_iter": 10000
+        }
+    },
+    "(0.5416666666666665, 0.7479423868312757)": [],
+    "(0.44995590828924165, 0.6790123456790123)": [],
+    "(0.6216931216931219, 0.6536351165980796)": []
+}

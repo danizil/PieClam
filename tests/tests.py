@@ -29,7 +29,7 @@ def test_no_duplicacy(edge_index, verbose=False):
 
 
 def calc_grad_no_tricks(x, edge_array, non_edge_array, lorenz):
-    '''calculates the gradient using a loop. if there is edge omittion it should be done before calling this function.'''
+    '''calculates the gradient on the retained edge set. if there is edge omittion it should be done BEFORE calling this function.'''
     
     B = torch.ones(x.shape[1])
     if lorenz:
@@ -50,6 +50,51 @@ def calc_grad_no_tricks(x, edge_array, non_edge_array, lorenz):
         grads[i] = grad
     
     return grads
+
+
+def grad_no_tricks_one_direction_single_node(x, edges_with_x, non_edges_with_x, B):
+    dim_feat = x.shape[1]//2
+    grad = 0
+    for edge in edges_with_x.T:
+        if edge[0] == edge[1]:
+            feats_other = x[edge[0]]
+        else:
+            feats_other = x[edge[edge != i]]
+
+        inner_prod = feats[:, :dim_feat] @ (B*feats_other[:, dim_feat:]).T
+        grad += B*feats_other[:, dim_feat:]*1/(torch.exp(inner_prod) - 1)
+    for non_edge in non_edges_with_x.T:
+        if edge[0] == edge[1]:
+            feats_other = x[edge[0], dim_feat:]
+        else:
+            feats_other = x[non_edge[non_edge != i]]
+        
+        grad += -B*feats_other
+
+    return grad
+def calc_grad_no_tricks_directed(x, edge_array, non_edge_array, lorenz):
+    '''calculates the gradient on the retained edge set. if there is edge omittion it should be done BEFORE calling this function.'''
+    assert x.shape[1] % 4 == 0, 'x.shape[1] should be divisible by 4'
+    dim_feat = x.shape[1]//2
+
+    B = torch.ones(dim_feat)
+    if lorenz:
+        B = torch.diag([torch.ones(x.shape[1]//4), -torch.ones(x.shape[1]//4)])
+        
+    grads = torch.zeros(x.shape)
+    for i in range(len(x)):
+        feats = x[i]
+        edges_with_x = edge_array[:, torch.logical_or(edge_array[0] == i, edge_array[1] == i)]
+        non_edges_with_x = non_edge_array[:,torch.logical_or(non_edge_array[0] == i, non_edge_array[1] == i)]
+        
+        grad = torch.zeros(x.shape)
+        grad[:,:dim_feat] += grad_no_tricks_one_direction_single_node(feats, torch.flip(edges_with_x, dims=[0]), torch.flip(non_edges_with_x, dims=[0]), B)
+        grad[:,dim_feat:] += grad_no_tricks_one_direction_single_node(feats[:, [*range(dim_feat,2*dim_feat), *range(0,dim_feat)]], edges_with_x, non_edges_with_x, B)
+
+        grads[i] = grad
+    # calculate both grads
+    return grads
+
 
 def test_omit_dyads_trainer_and_no_tricks(verbose=False, ds_name='smallBipart'):
     trainer_clam = Trainer(dataset_name=ds_name, model_name='ieclam', device='cpu')

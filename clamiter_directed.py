@@ -26,7 +26,7 @@ from utils import utils
 from utils import pyg_helpers as up
 from utils.utils import get_prob_graph, edges_by_coords, k_minimal_neighborhoods
 import utils.link_prediction as lp
-from utils.printing_utils import printd, print_dolphin, print_escher, print_end_fit
+from utils.printing_utils import *
 from datasets.import_dataset import import_dataset
 # from tests import tests
 
@@ -121,13 +121,7 @@ class ClamIter(MessagePassing):
             else:
                 self.B = torch.diag(1/self.T*torch.ones(self.dim_feat//2)).to(device) # GPU 50 mib
 
-            # self.B_forward = torch.block_diag(torch.zeros_like(self.B), self.B, torch.zeros_like(self.B), torch.zeros_like(self.B))
-            
-            self.B_forward = torch.zeros(self.dim_feat, self.dim_feat)
-            self.B_forward[:self.dim_feat//2, self.dim_feat//2:] = self.B
 
-            self.B_reverse = torch.zeros(self.dim_feat, self.dim_feat)
-            self.B_reverse[self.dim_feat//2:, :self.dim_feat//2] = self.B
             
         # UNDIRECTED
         else:    
@@ -170,6 +164,7 @@ class ClamIter(MessagePassing):
     def forward(self, graph, node_mask):
         '''first called, starts mpnn process by preprocessing then calling propagate.
         This function does the feat optimization part of PieClam - calculation of the prior gradient and the message passing.'''
+        
         if graph.is_undirected() and self.directed:
             raise ValueError('graph is undirected and directed is True')
         
@@ -202,7 +197,6 @@ class ClamIter(MessagePassing):
                 To get the reverse direction, flip the edge_index.'''
                 '''backward direction for sender features: edge_index is flipped and the features aren't'''
                 tbr_sender = self.propagate(edge_index=torch.flip(graph.edge_index, dims=[0]), x=graph.x, global_features=(prior_grad[:, :self.dim_feat//2]), edge_attr=graph.edge_attr)
-
                 #? BE SURE TO NOT TO USE UPDATED VALUES for the backward pass. This doesn't happen because propagate doesn't update the features (that's why we have tbr) and the 
                 
 
@@ -232,7 +226,8 @@ class ClamIter(MessagePassing):
 
         #todo: flip edges and flip features. but how do i make this case
         # TODO: must initialize the features differently for directed graphs!!!! 
-       
+
+
         inner_product_nm = torch.einsum('ij,jk,ik->i', x_i[:, :self.dim_feat//2], self.B, x_j[:, self.dim_feat//2:]) + eps
         
         if (inner_product_nm < 0).any():
@@ -256,6 +251,7 @@ class ClamIter(MessagePassing):
         global: global_features[0] is the sum of the node features, global_features[1] is the prior grad
         Directed: 
         in directed the propagation is done once with the features in the order s,t and then with the flipped version t,s. The update function is the same for both cases.'''
+       
         if self.directed:
             #! seems wrong the global term
             global_term = torch.sum(x[:, self.dim_feat//2:], dim=0)
@@ -342,10 +338,11 @@ class ClamIter(MessagePassing):
                     **kwargs
                     ):
             '''The algorithm optimizes the features and prior back to back in alternation. the fit functions are similar and are both represeted by this wrapper function.'''
+
             if acc_every == -1:
                 acc_every = n_iter
-
             def iter_step_feat():
+
                 clamiter_grad = self(graph, node_mask)
                 self.debug_last_grad = clamiter_grad 
                 #todo: if the graph is directed you need to do this twice: once for sende rand one for receiver
@@ -379,9 +376,10 @@ class ClamIter(MessagePassing):
             # ASSERTIONS
             # assert graph.is_undirected(), 'graph is directed!!!'
             # assert not graph.has_self_loops(), 'graph contains self loops!!!'
+            
             assert which_fit in ['fit_feats', 'fit_prior'], 'which_fit should be either fit_feats or fit_prior'
             # ==== end assertions =====
-            
+
             if plot_every == -1:
                 plot_every = n_iter
             if print_every < n_iter//100:
@@ -508,7 +506,7 @@ class ClamIter(MessagePassing):
         
         '''optimize the features using iterations of clamiter.
         param: node_mask: a mask for the nodes to optimize, the rest should stay unchanged'''
-        
+
         return self.fit_wrapper(graph=graph,
                                 n_iter=n_iter, 
                                 lr=lr, 
@@ -1087,7 +1085,6 @@ class StarProb(MessagePassing):
 
     def forward(self, graph):
         '''calculate the probability of the star graph for all nodes'''
-        
         dim_feat = graph.x.shape[1]
         if self.lorenz:
             self.B = (torch.concatenate([torch.ones(dim_feat//2), -torch.ones(dim_feat//2)])).to(self.device)

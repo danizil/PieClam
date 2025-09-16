@@ -20,7 +20,7 @@ if os.path.join(current_dir, '..') not in sys.path:
 # if '..' not in sys.path:
 #     sys.path.insert(0, '..')
 
-from utils.printing_utils import printd
+from utils.printing_utils import *
 from utils import pyg_helpers as up
 from utils import utils as my_utils
 from utils.path_utils import get_project_root
@@ -494,13 +494,14 @@ def cross_val_link_splits(
         random_seed=42,
         num_draws_random=50,
         reverse_test_set_order=False,
-        directed=False,
-        verbose_in_funcs=False):
+        verbose_in_funcs=False,
+        to_undirected=False,
+        remove_self_loops=False):
     
     '''Get the path to the folder in which this file is located'''
     current_file_path = os.path.abspath(__file__)
     current_folder_path = os.path.dirname(current_file_path)
-    path_to_res = os.path.join(current_folder_path,'results', 'link_prediction', 'auc',ds_name, model_name)
+    path_to_res = os.path.join(current_folder_path,'results', 'undirected' if to_undirected else 'directed', 'link_prediction', 'auc',ds_name, model_name)
     #todo: add option of doing it in reverse
     splits = os.listdir(path_to_res)
     if reverse_test_set_order:
@@ -530,8 +531,9 @@ def cross_val_link_splits(
             random_search=random_search,
             random_seed=random_seed,
             num_draws_random=num_draws_random,
+            to_undirected=to_undirected,
+            remove_self_loops=remove_self_loops,
             verbose_in_funcs=verbose_in_funcs,
-            directed=directed
         )
     
 #todo: cancel time consuming jobs.
@@ -570,7 +572,7 @@ def cross_val_link(
     ds = None
     ds_test_omitted = None
     ds_test_val_omitted = None
-    
+
     '''This function tests the model for different parameter configurations, different test - train (+ val) sets and number of repetitions.
     If there are data splits that already exist it's better to use the function cross_val_link_splits defined above.'''
     # ============ OMIT TEST =============
@@ -578,13 +580,12 @@ def cross_val_link(
 #todo: what a
     #todo: add option for doing it in random
     try:
-        
+       
         curr_file_dir = os.path.dirname(os.path.abspath(__file__)) 
         test_or_valid = 'test' if test_only else 'valid'
-        
+ 
         # save run should configure the save paths 
         # if there is a test set folder (split. the number after split should be the number that is the test sets connected and turned into a number) like the test set we are using save n
-
         ds = import_dataset(ds_name, test_dyads_path=test_dyads_path, val_dyads_path=val_dyads_path, to_undirected= to_undirected, remove_self_loops=remove_self_loops)
         
         # if the dataset comes with dyads to omit use THEM
@@ -600,6 +601,7 @@ def cross_val_link(
         
         # OMIT TEST
         ds_test_omitted = ds.clone()
+        
         if test_dyads_to_omit is not None: # if the dataset comes with test dyads
             assert type(test_dyads_to_omit) == tuple
             # assert utils.is_undirected(test_dyads_to_omit[0]) and utils.is_undirected(test_dyads_to_omit[1])
@@ -620,7 +622,7 @@ def cross_val_link(
         for triplet in range_triplets[:]:
             if triplet[2] == []:
                 range_triplets.remove(triplet)
-        
+
         run_saver = SaveRun(model_name, 
                             ds_name, 
                             'link_prediction', 
@@ -651,15 +653,17 @@ def cross_val_link(
                 random.seed(random_seed)
             random.shuffle(grid)
             grid = grid[:num_draws_random]
-
-        for values in tqdm(grid, desc="Grid search"):
-            for i in tqdm(range(n_reps), leave=False, desc="Repetitions"): 
+    
+        # for values in tqdm(grid, desc="Grid search"):
+        for values in grid:
+            # for i in tqdm(range(n_reps), leave=False, desc="Repetitions"): 
+            for i in range(n_reps):
                 printd(f'Repetition no. {i}')
                 ds_test_val_omitted = ds_test_omitted.clone()
                 
                 # OMIT VALIDATION DYADS
                 '''edge attr signifies if the edge is omitted or not. if the edge_attr is 0 then the edge is an omitted dyad.'''
-
+              
                 if val_dyads_to_omit is None and not test_only: #sample random validation set
                     ds_test_val_omitted.omitted_dyads_val, ds_test_val_omitted.edge_index, ds_test_val_omitted.edge_attr = lp.get_dyads_to_omit(
                                             edge_index=ds_test_omitted.edge_index, 
@@ -681,8 +685,6 @@ def cross_val_link(
                 config_triplets = [
                     [outers[i], inners[i], values[i]] for i in range(len(range_triplets))
                             ]
-
-
 
                 trainer = Trainer(
                             dataset=ds_test_val_omitted,
@@ -778,7 +780,8 @@ def multi_ds_anomaly(
             random.shuffle(grid)
 
                
-        for values in tqdm(grid, desc="Grid search"):
+        # for values in tqdm(grid, desc="Grid search"):
+        for values in grid:
             '''for each configuration run all of the datasets and save the results in the corresponding folder'''
             outers = []
             inners = []
@@ -789,7 +792,8 @@ def multi_ds_anomaly(
             config_triplets = [
                 [outers[i], inners[i], values[i]] for i in range(len(range_triplets))]
             
-            for i in tqdm(range(n_reps), leave=False, desc="Repetitions"): 
+            # for i in tqdm(range(n_reps), leave=False, desc="Repetitions"): 
+            for i in range(n_reps): 
                 printd(f'Repetition no. {i}')
                 for i, ds_name in enumerate(ds_names):
                     ds = import_dataset(ds_name)

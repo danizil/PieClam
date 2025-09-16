@@ -11,12 +11,11 @@ import tqdm
 import matplotlib.pyplot as plt
 import time
 import math
-from transformation import train_prior
 from datasets.import_dataset import import_dataset, transform_attributes
 import clamiter_directed as ci
 import utils.link_prediction as lp
 from utils.plotting import plot_optimization_stage, plot_2dgraph
-from utils.printing_utils import printd
+from utils.printing_utils import *
 from utils import utils
 # from tests import tests
 import json
@@ -318,7 +317,7 @@ class Trainer():
         losses = None
         accuracies_test = None
         accuracies_val = None
-
+       
         if plot_every == 1:
             if self.model_name == 'bigclam' or self.model_name == 'ieclam':
                 raise ValueError('plot_every=1 is not supported for non prior models, it should plot at alternations')
@@ -356,6 +355,7 @@ class Trainer():
         # OPTIMIZATION
         try:
             # FIT VANILLA 
+
             if self.vanilla:
                 losses_prior = None
                 # losses_feats, accuracies_test, accuracies_val = self.clamiter.fit_feats(
