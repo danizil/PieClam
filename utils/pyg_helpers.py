@@ -293,21 +293,35 @@ def edge_mask_drop_and_rearange(edge_index, p, directed):
     it's important to get the rearanged edge_index to get the correct mask because it's hard to get it for undirected'''
     
     # assert utils.is_undirected(edge_index), 'edge_index is directed'
+    num_edges = edge_index.size(1)
+    num_edges_to_omit = int(p * num_edges)
+    
     if directed:
-        edge_mask_retain = torch.rand(edge_index.size(1), device=edge_index.device) >= p
+        # For directed graphs, sample edges directly
+        indices_omitted = torch.randperm(num_edges, device=edge_index.device)[:num_edges_to_omit]
+        edge_mask_retain = torch.ones(num_edges, dtype=torch.bool, device=edge_index.device)
+        edge_mask_retain[indices_omitted] = False
         return edge_index, edge_mask_retain
     else:
+        # For undirected graphs, work with unique edges
         row, col = edge_index
-        edge_index_directed = edge_index[:, row < col] # the edge_index is assumed to be directed
-
-        row_directed, col_directed = edge_index_directed
+        edge_index_directed = edge_index[:, row < col]  # Get unique edges
         
-        edge_mask_directed_retain = torch.rand(row_directed.size(0), device=edge_index.device) >= p
+        num_unique_edges = edge_index_directed.size(1)
+        num_unique_to_omit = int(p * num_unique_edges)
         
+        # Sample unique edges
+        unique_indices_omitted = torch.randperm(num_unique_edges, device=edge_index.device)[:num_unique_to_omit]
+        edge_mask_directed_retain = torch.ones(num_unique_edges, dtype=torch.bool, device=edge_index.device)
+        edge_mask_directed_retain[unique_indices_omitted] = False
+        
+        # Create mask for both directions
         edge_mask_retain = torch.cat([edge_mask_directed_retain, edge_mask_directed_retain])
-        edge_index_orig_rearange = torch.cat([edge_index_directed, edge_index_directed.flip(0)], dim=1)
-        # very important to use the new edge index otherwise the positions of the dropped edges is not correct!
-        return edge_index_orig_rearange, edge_mask_retain
+        
+        # Create the rearranged edge index
+        edge_index_orig_rearrange = torch.cat([edge_index_directed, edge_index_directed.flip(0)], dim=1)
+        
+        return edge_index_orig_rearrange, edge_mask_retain
 
 
 

@@ -33,9 +33,10 @@ def omit_dyads_random(
     4. concatenate [B, C, A, D] to get the new edge index, in this way the 0 attr edges are also arranged [edges, non edges]
     5. return (C, D, new_edge_index, edge_attr)
     
+    Notes;
+    1. we are taking 5 times more non edges. instead of calculating the probability and multiplying 
     '''
     # 0. pre-processing
-    #! are you taking p from the existing edge index with all of the omitted non edges? you need to take p from the 
     if p_sample_edge == 0:
         return ((torch.empty(2, 0), torch.empty(2, 0)), edge_index, edge_attr)
    
@@ -51,17 +52,16 @@ def omit_dyads_random(
     # assert utils.is_undirected(A), 'A should be undirected'
     
     # 2. sample edges from (B or C) (this also rearanges them) - creating B and C.
-    #todo: there is some business with making stuff undirected here.
+    #todo: i should take a fixed number of edges and not an average. 
     B_or_C_rearanged, edge_mask_retain = up.edge_mask_drop_and_rearange(B_or_C, p_sample_edge, directed)
     B = B_or_C_rearanged[:, edge_mask_retain]
     C = B_or_C_rearanged[:, ~edge_mask_retain]
     # 3. get D from the non edges using negative sampling.
-    #! this is wrong!! the negative sampling is taken including the omitted dyads
-    # num_edges = edge_index.shape[1]
+    
     num_edges_omitted = C.shape[1]
     D = upyg.sort_edge_index(upyg.negative_sampling(
                             edge_index, 
-                            num_neg_samples=math.floor(num_edges_omitted*non_edge_factor), 
+                            num_neg_samples=num_edges_omitted*non_edge_factor, 
                             force_undirected= not directed))
     
     
