@@ -1,5 +1,5 @@
 import torch
-from torch_geometric import utils
+from torch_geometric import utils as upyg
 from torch_geometric.data import Data
 import numpy as np
 from sklearn.metrics import roc_curve, roc_auc_score
@@ -15,13 +15,12 @@ from utils import pyg_helpers as up
 
 
 
-def get_dyads_to_omit(
+def omit_dyads_random(
           edge_index, 
           edge_attr, 
           directed,
           p_sample_edge, 
-          p_sample_non_edge=None, 
-        #   omitted_previously=(torch.empty(2, 0), torch.empty(2, 0))
+          non_edge_factor=5, 
           ):
     '''
     the edges that have attr 0 are omitted (edges and non edges). the non edges that are omitted are inserted into the edge index and also given attr 0.
@@ -36,15 +35,15 @@ def get_dyads_to_omit(
     
     '''
     # 0. pre-processing
+    #! are you taking p from the existing edge index with all of the omitted non edges? you need to take p from the 
     if p_sample_edge == 0:
         return ((torch.empty(2, 0), torch.empty(2, 0)), edge_index, edge_attr)
    
     assert p_sample_edge <= 1, 'p_sample_edge should be a probability'
     
-    if p_sample_non_edge is None:
-        # factor of 5 to replicate the paper.
-        p_sample_non_edge = 5*p_sample_edge
-    
+    #todo: need to overhaul this function. need the probability of sampling  to be the same for second sampling. so the probability of sampling in a second try need to be the probability in the first try. so 
+    # i want the number of sampled edges to be the same on average
+    #? edge index has the omitted edges and non edges and i want how do i know
     # 1. split the edges into attr 1 = (B or C) and attr 0 = A.
     B_or_C = edge_index[:, edge_attr]
     A = edge_index[:, ~edge_attr]
@@ -56,12 +55,13 @@ def get_dyads_to_omit(
     B_or_C_rearanged, edge_mask_retain = up.edge_mask_drop_and_rearange(B_or_C, p_sample_edge, directed)
     B = B_or_C_rearanged[:, edge_mask_retain]
     C = B_or_C_rearanged[:, ~edge_mask_retain]
-
-    # 3. sample D from the non edges using negative sampling.
-    num_edges = edge_index.shape[1]
-    D = utils.sort_edge_index(utils.negative_sampling(
+    # 3. get D from the non edges using negative sampling.
+    #! this is wrong!! the negative sampling is taken including the omitted dyads
+    # num_edges = edge_index.shape[1]
+    num_edges_omitted = C.shape[1]
+    D = upyg.sort_edge_index(upyg.negative_sampling(
                             edge_index, 
-                            num_neg_samples=math.floor(num_edges*p_sample_non_edge), 
+                            num_neg_samples=math.floor(num_edges_omitted*non_edge_factor), 
                             force_undirected= not directed))
     
     

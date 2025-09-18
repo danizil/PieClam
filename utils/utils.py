@@ -208,7 +208,7 @@ def several_omits(data, num_sets, percentage_edges, percentage_non_edges=None, s
         num_non_edges_to_omit = num_edges_to_omit
     dyad_sets = []
     for i in range(num_sets):
-        dyads_to_omit = get_dyads_to_omit(data.edge_index, floor(num_edges_to_omit), floor(num_non_edges_to_omit))
+        dyads_to_omit = omit_dyads_random(data.edge_index, floor(num_edges_to_omit), floor(num_non_edges_to_omit))
         dyad_sets.append(dyads_to_omit)
     return dyad_sets
 
@@ -247,15 +247,15 @@ def sample_edges(edge_index, num_samples):
     return to_undirected(sampled_edges)
 
 #! not in use: only in tests. the function moved to "link_prediction.py"
-def get_dyads_to_omit(edge_index, p_sample_edge, p_sample_non_edge=None):
+def omit_dyads_random(edge_index, p_sample_edge, non_edge_factor=None):
     
     if p_sample_edge == 0:
         return None
 
     assert p_sample_edge <= 1, 'p_sample_edge should be a probability'
 
-    if p_sample_non_edge is None:
-        p_sample_non_edge = p_sample_edge
+    if non_edge_factor is None:
+        non_edge_factor = p_sample_edge
     num_edges = edge_index.shape[1]
 
     # sampled_edge_index = sample_edges(edge_index, num_samples_edge)
@@ -266,7 +266,7 @@ def get_dyads_to_omit(edge_index, p_sample_edge, p_sample_non_edge=None):
     sampled_edge_index = edge_index_rearanged[:, ~edge_mask_retain]
     sampled_non_edge_index = sort_edge_index(negative_sampling(
                             edge_index, 
-                            num_neg_samples=floor(num_edges*p_sample_non_edge), 
+                            num_neg_samples=floor(num_edges*non_edge_factor), 
                             force_undirected=True))
 
     

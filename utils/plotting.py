@@ -657,7 +657,8 @@ def plot_test_accuracies(
 
 def plot_graph_with_omitted(data, pos=None):
     # Create an empty graph
-    G = nx.Graph()
+    directed = data.is_directed()
+    G = nx.DiGraph() if directed else nx.Graph()
 
     # Add edges with attribute 0 in red
     for i in range(data.edge_index.shape[1]):
@@ -675,7 +676,8 @@ def plot_graph_with_omitted(data, pos=None):
     
     edge_colors = [G[u][v]['color'] if 'color' in G[u][v] else 'gray' for u, v in G.edges()]
     plt.figure(figsize=(3,3))
-    nx.draw(G, pos, with_labels=True, edge_color=edge_colors, node_color='white') 
+    nx.draw(G, pos, with_labels=True, edge_color=edge_colors, node_color='white',
+            arrows=directed)
     plt.show()
     if return_pos:
         return pos

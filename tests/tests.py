@@ -110,7 +110,7 @@ def test_omit_dyads_trainer_and_no_tricks(verbose=False, ds_name='smallBipart'):
     num_nodes = trainer_clam.data.num_nodes
     num_edges = edge_index.shape[1]
     num_neg_samples = num_nodes*num_nodes - num_nodes - num_edges
-    dyads_to_omit = utils.get_dyads_to_omit(edge_index, p_sample_edge=0.3)
+    dyads_to_omit = utils.omit_dyads_random(edge_index, p_sample_edge=0.3)
     # ==================================
 
     #calculate with DIRECT SUMMATION and no trick

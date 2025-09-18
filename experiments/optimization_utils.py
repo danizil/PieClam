@@ -606,9 +606,10 @@ def cross_val_link(
                                       test_dyads_to_omit)
         else:
 
-           ds_test_omitted.omitted_dyads_test, ds_test_omitted.edge_index, ds_test_omitted.edge_attr = lp.get_dyads_to_omit(
+           ds_test_omitted.omitted_dyads_test, ds_test_omitted.edge_index, ds_test_omitted.edge_attr = lp.omit_dyads_random(
                                                 ds.edge_index, 
                                                 ds.edge_attr, 
+                                                ds.is_directed(),
                                                 test_p)
              
         
@@ -655,9 +656,10 @@ def cross_val_link(
                 '''edge attr signifies if the edge is omitted or not. if the edge_attr is 0 then the edge is an omitted dyad.'''
 
                 if val_dyads_to_omit is None and not test_only: #sample random validation set
-                    ds_test_val_omitted.omitted_dyads_val, ds_test_val_omitted.edge_index, ds_test_val_omitted.edge_attr = lp.get_dyads_to_omit(
+                    ds_test_val_omitted.omitted_dyads_val, ds_test_val_omitted.edge_index, ds_test_val_omitted.edge_attr = lp.omit_dyads_random(
                                             ds_test_omitted.edge_index, 
                                             ds_test_omitted.edge_attr, 
+                                            ds.is_directed(),
                                             ((val_p)/(1-test_p)))# the amount to extract from the remaining edges to get the initial extraction we wanted for val (size changes after removal).
 
                 # ============ OMIT VALIDATION =============
