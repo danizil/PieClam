@@ -52,10 +52,10 @@ def prior_model(model_name):
     elif model_name == 'ieclam' or model_name == 'pieclam':
         return 'pieclam'
 
-def get_edge_probs_from_edges_coords(edges_coords_0, edges_coords_1, lorenz, prior=None, use_prior=False):
+def get_edge_probs_from_edges_coords(edges_coords_0, edges_coords_1, lorenz, directed=False, prior=None, use_prior=False):
     '''given two lists of edges in coordinate shape, get a list of edge probabilities'''
     #* edges_coords_0, edges_coords_1 have shape [N, in_channels]
-    dim_feat = edges_coords_0.shape[1]
+    dim_feat = edges_coords_0.shape[1] if not directed else edges_coords_0.shape[1]//2
     if lorenz:
         B = torch.ones(dim_feat//2)
         B = torch.cat([B, -B])
@@ -63,7 +63,7 @@ def get_edge_probs_from_edges_coords(edges_coords_0, edges_coords_1, lorenz, pri
         B = torch.ones(dim_feat)
     
     B = B.to(edges_coords_0.device)
-    fufv = torch.einsum('ij,ij->i', edges_coords_0, B*edges_coords_1)
+    fufv = torch.einsum('ij,ij->i', edges_coords_0[:, :dim_feat], B*edges_coords_1[:, dim_feat:])
     if prior and use_prior:
         prior_nodes_0 = torch.exp(prior.forward_ll(edges_coords_0, sum=False))
         prior_nodes_1 = torch.exp(prior.forward_ll(edges_coords_1, sum=False))

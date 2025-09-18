@@ -152,17 +152,16 @@ def ogb_hAk_omitted_dyads(x, lorenz, dyads_to_omit=None, prior=None, use_prior=F
     
 
 #todo: can i still do it if i change the edge_attr when loading the dataset?
-def roc_of_omitted_dyads(x, lorenz, dyads_to_omit=None, prior=None, use_prior=False, verbose=False):
+def roc_of_omitted_dyads(x, lorenz, dyads_to_omit=None, prior=None, use_prior=False, directed=False, verbose=False):
     '''calculates the minimun distance from 0,1 in the roc curve and the auc. mathematically there is no sense in using the prior'''
     if dyads_to_omit is None:
         return {'auc': 0.0}
     
     edges_coords_0, edges_coords_1 = utils.edges_by_coords(Data(x=x, edge_index=dyads_to_omit[0]))
-
     non_edges_coords_0, non_edges_coords_1 = utils.edges_by_coords(Data(x=x, edge_index=dyads_to_omit[1]))
 
-    edge_probs = utils.get_edge_probs_from_edges_coords(edges_coords_0, edges_coords_1, lorenz, prior, use_prior)
-    non_edge_probs = utils.get_edge_probs_from_edges_coords(non_edges_coords_0, non_edges_coords_1, lorenz, prior, use_prior)
+    edge_probs = utils.get_edge_probs_from_edges_coords(edges_coords_0, edges_coords_1, lorenz, directed, prior, use_prior)
+    non_edge_probs = utils.get_edge_probs_from_edges_coords(non_edges_coords_0, non_edges_coords_1, lorenz, directed, prior, use_prior)
     
     y_true = torch.cat((torch.ones(len(edge_probs)), torch.zeros(len(non_edge_probs)))).cpu().detach().numpy()
     y_score = torch.cat((edge_probs, non_edge_probs)).cpu().detach().numpy()

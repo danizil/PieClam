@@ -1369,7 +1369,8 @@ class AccTrack:
                         omitted_tup,
                         prior=self.clamiter.prior,
                         # use_prior=True if self.clamiter.prior is not None else False)['auc']
-                        use_prior=False if self.clamiter.prior is not None else False)['auc']
+                        use_prior=False if self.clamiter.prior is not None else False,
+                        directed=self.clamiter.directed)['auc']
                 return auc_score
 
             if self.graph.omitted_dyads_test[0].numel() > 0:
