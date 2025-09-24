@@ -11,6 +11,7 @@ from torch_geometric.transforms import TwoHop
 from torch_geometric import utils
 import numpy as np
 import random
+import traceback
 from tqdm import tqdm
 import sys
 
@@ -723,6 +724,7 @@ def cross_val_link(
                 torch.cuda.empty_cache()
     except Exception as e:
         printd(f'\n\n#### ERROR #### in cross_val_link: {e}\n\n')
+        printd(f'Full traceback:\n{traceback.format_exc()}')
         raise e
     finally:
         if ds is not None:
