@@ -333,7 +333,7 @@ class Trainer():
         # ======= end safeguards =======
 
 
-        printd(f'\nIn function train. \n{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} starting optimization of {self.model_name} on {self.dataset_name} on device {self.device}')
+        printd(f'\nIn function train. \n{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} starting optimization of {self.model_name} on {self.dataset_name} ({"DIRECTED" if self.data.is_directed() else "UNDIRECTED"}) on device {self.device}')
         print('\n configs_dict: \n' + json.dumps(self.configs_dict, indent=4))
           
           
