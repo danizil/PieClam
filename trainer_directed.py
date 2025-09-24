@@ -82,7 +82,8 @@ class Trainer():
                  scheduler=None):
         
         ''' trainer class takes care of the different settings i.e. configs, results, tasks and metrics. 
-        tasks are anomaly_unsupervised, link_prediction, distance, or losses. Anything else will default to losses'''        
+        tasks are anomaly_unsupervised, link_prediction, distance, or losses. Anything else will default to losses.
+        config_triplets_to_change is a list of triplets to change the configs. ['clamiter_init', 'dim_feat, 2]. see hypers/ folder for examples'''        
         
         self.metric = metric
         self.device = device

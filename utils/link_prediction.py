@@ -59,12 +59,17 @@ def omit_dyads_random(
     # 3. get D from the non edges using negative sampling.
     
     num_edges_omitted = C.shape[1]
-    D = upyg.sort_edge_index(upyg.negative_sampling(
-                            edge_index, 
-                            num_neg_samples=num_edges_omitted*non_edge_factor, 
-                            force_undirected= not directed))
-    
-    
+    if not directed:
+        D = upyg.sort_edge_index(upyg.negative_sampling(
+                                edge_index, 
+                                num_neg_samples=num_edges_omitted*non_edge_factor, 
+                                force_undirected= not directed))
+    else:
+        D = upyg.sort_edge_index(up.negative_sampling_with_self_loops(
+                                edge_index, 
+                                num_neg_samples=num_edges_omitted*non_edge_factor,
+                                force_undirected= not directed))
+        
     
     edge_index_rearanged = torch.cat([B, C, D, A], dim=1)
     # edge_mask_retain will be the edge attr

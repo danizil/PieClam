@@ -142,6 +142,17 @@ def simulate_dataset(name, verbose=False):
             axes[1].imshow(adj_bipart)
             axes[0].set_title('sbm')
             axes[1].set_title('sampled')
+
+    elif name == 'SmallDirected':
+        '''small directed graph, every dyad is an edge with probability 0.5'''
+        prob_adj_bipart, y = create_sbm_directed(10, interaction_probs=[0.2])
+        adj = sample_from_adj_directed(prob_adj_bipart)
+        edge_index = dense_to_sparse(adj)[0]
+        data = Data(edge_index=edge_index)
+        if verbose == True:
+            _, ax = plt.subplots(1,1, figsize=figsize)
+            ax.imshow(adj)
+
             
 # 88   88 88b 88 8888b.  88 88""Yb 
 # 88   88 88Yb88  8I  Yb 88 88__dP 
