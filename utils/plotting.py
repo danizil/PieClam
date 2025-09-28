@@ -689,7 +689,7 @@ def plot_sparse_adj(edge_index, omitted_dyads=None, test_index=None, test_mask=N
 
 
 def plot_adj(w, omitted_dyads=None, test_index=None, test_mask=None, ax=None, figsize=(3,3), title='', colorbar=True):
-    
+    '''omitted dyads is a tuple of tuples: [[omitted_edges_test, omitted_non_edges_test], [omitted_edges_val, omitted_non_edges_val]]'''
     if w.shape[0] == 2 and w.shape[1] != 2:
         w = to_dense_adj(w)[0]
 
@@ -700,16 +700,17 @@ def plot_adj(w, omitted_dyads=None, test_index=None, test_mask=None, ax=None, fi
 
 
     if omitted_dyads is not None:
+        assert len(omitted_dyads) == 2, 'omitted dyads should be a tuple of tuples'
+        colors = ['red', 'green']
+        for i, val_then_test in enumerate(omitted_dyads):
+            if val_then_test is not None:
+                assert len(val_then_test) == 2, 'omitted dyads should be a tuple of tuples'
         # omitted dyads is (omitted_val, omitted_test). if one is none we don't want to plot it. 
-        omitted_val_np, omitted_test_np = (omitted_dyads[0].detach().cpu().numpy(), omitted_dyads[1].detach().cpu().numpy())
-        omitted_val_edges, omitted_val_non_edges = omitted_val_np[0], omitted_val_np[1]
-        omitted_test_edges, omitted_test_non_edges = omitted_test_np[0], omitted_test_np[1]
-        ax.scatter(omitted_val_edges[0], omitted_val_edges[1], color='green', s=5/w.shape[1])
-        ax.scatter(omitted_val_non_edges[0], omitted_val_non_edges[1], color='green', s=5/w.shape[1])
-        ax.scatter(omitted_test_edges[0], omitted_test_edges[1], color='red', s=5/w.shape[1])
-        ax.scatter(omitted_test_non_edges[0], omitted_test_non_edges[1], color='red', s=5/w.shape[1])
-        # ax.scatter(dyads_to_omit_np[0][0], dyads_to_omit_np[0][1], color='red', s=5/w.shape[1])
-        # ax.scatter(dyads_to_omit_np[1][0], dyads_to_omit_np[1][1], color='red', s=5/w.shape[1])
+                omitted_edges, omitted_non_edges = val_then_test[0], val_then_test[1]
+                ax.scatter(omitted_edges[0], omitted_edges[1], color=colors[i], s=500/w.shape[1])
+                ax.scatter(omitted_non_edges[0], omitted_non_edges[1], color=colors[i], s=500/w.shape[1])
+
+       
     if test_mask is not None:
         test_index = torch.where(test_mask)[0]
 

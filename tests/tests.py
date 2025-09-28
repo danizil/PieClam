@@ -4,7 +4,7 @@ from torch_geometric.data import Data
 import sys
 if '..' not in sys.path:
     sys.path.insert(0, '..')
-from trainer import Trainer
+from trainer_directed import Trainer
 from utils.utils import edge_mask_of_selected_edges, sample_edges, densify_ds_via_train_nodes, get_fat_ds_test_OLD
 from utils import utils
 from utils.plotting import *
@@ -51,27 +51,7 @@ def calc_grad_no_tricks(x, edge_array, non_edge_array, lorenz):
     
     return grads
 
-
-def grad_no_tricks_one_direction_single_node(x, edges_with_x, non_edges_with_x, B):
-    dim_feat = x.shape[1]//2
-    grad = 0
-    for edge in edges_with_x.T:
-        if edge[0] == edge[1]:
-            feats_other = x[edge[0]]
-        else:
-            feats_other = x[edge[edge != i]]
-
-        inner_prod = feats[:, :dim_feat] @ (B*feats_other[:, dim_feat:]).T
-        grad += B*feats_other[:, dim_feat:]*1/(torch.exp(inner_prod) - 1)
-    for non_edge in non_edges_with_x.T:
-        if edge[0] == edge[1]:
-            feats_other = x[edge[0], dim_feat:]
-        else:
-            feats_other = x[non_edge[non_edge != i]]
-        
-        grad += -B*feats_other
-
-    return grad
+    
 def calc_grad_no_tricks_directed(x, edge_array, non_edge_array, lorenz):
     '''calculates the gradient on the retained edge set. if there is edge omittion it should be done BEFORE calling this function.'''
     assert x.shape[1] % 4 == 0, 'x.shape[1] should be divisible by 4'
@@ -79,21 +59,49 @@ def calc_grad_no_tricks_directed(x, edge_array, non_edge_array, lorenz):
 
     B = torch.ones(dim_feat)
     if lorenz:
-        B = torch.diag([torch.ones(x.shape[1]//4), -torch.ones(x.shape[1]//4)])
+        B = torch.diag(torch.concatenate([torch.ones(x.shape[1]//4), -torch.ones(x.shape[1]//4)]))
         
     grads = torch.zeros(x.shape)
     for i in range(len(x)):
-        feats = x[i]
-        edges_with_x = edge_array[:, torch.logical_or(edge_array[0] == i, edge_array[1] == i)]
-        non_edges_with_x = non_edge_array[:,torch.logical_or(non_edge_array[0] == i, non_edge_array[1] == i)]
-        
-        grad = torch.zeros(x.shape)
-        grad[:,:dim_feat] += grad_no_tricks_one_direction_single_node(feats, torch.flip(edges_with_x, dims=[0]), torch.flip(non_edges_with_x, dims=[0]), B)
-        grad[:,dim_feat:] += grad_no_tricks_one_direction_single_node(feats[:, [*range(dim_feat,2*dim_feat), *range(0,dim_feat)]], edges_with_x, non_edges_with_x, B)
+        #! there are edges with x first and edges with x second, likewise non edges.
+        edges_with_x_first = edge_array[:, edge_array[0] == i]
+        edges_with_x_second = edge_array[:, edge_array[1] == i]
+        non_edges_with_x_first = non_edge_array[:, non_edge_array[0] == i]
+        non_edges_with_x_second = non_edge_array[:, non_edge_array[1] == i]
+        grad = torch.zeros(dim_feat)
+        grad[:dim_feat] += grad_no_tricks_one_direction_single_node(x, torch.flip(edges_with_x_first, dims=[0]), torch.flip(non_edges_with_x_first, dims=[0]), B)
+        grad[:,dim_feat:] += grad_no_tricks_one_direction_single_node(x, edges_with_x_second, non_edges_with_x_second, B)
+        #! with self loops are we doing it twice?!!!
 
         grads[i] = grad
     # calculate both grads
     return grads
+
+
+def grad_no_tricks_one_direction_single_node(x, edges_with_x_first, non_edges_with_x_first, B):
+    '''edges_with_x are edges with x as the first node'''
+    index =  edges_with_x_first[0][0]
+    dim_feat = x.shape[1]//2
+    grad = 0
+    sender_i = x[index, :dim_feat]
+    receiver_i = x[index, dim_feat:]
+    for edge in edges_with_x_first.T:
+        if edge[1] == edge[0]:
+            receiver_other = receiver_i
+        else:
+            receiver_other = x[edge[1]][dim_feat:]
+
+        inner_prod = sender_i @ (B*receiver_other).T
+        grad += B@receiver_other*1/(torch.exp(inner_prod) - 1)
+    for non_edge in non_edges_with_x_first.T:
+        if non_edge[0] == non_edge[1]:
+            receiver_other = receiver_i
+        else:
+            receiver_other = x[non_edge[1]][dim_feat:]
+        
+        grad += -B@receiver_other
+
+    return grad
 
 
 def test_omit_dyads_trainer_and_no_tricks(verbose=False, ds_name='smallBipart'):

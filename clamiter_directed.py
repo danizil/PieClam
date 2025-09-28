@@ -54,6 +54,7 @@ class ClamIter(MessagePassing):
                  lorenz, 
                  vanilla, 
                  dim_feat,
+                 directed,
                  dim_attr=0, 
                  attr_opt=False,
                  l1_reg=1, 
@@ -65,7 +66,6 @@ class ClamIter(MessagePassing):
                  hidden_dim=64, 
                  num_coupling_blocks=32, 
                  num_layers_mlp=2,
-                 directed=False,
                 #  forward_message=True,
                  lr=0.01,
                  aggr='add', 
@@ -161,9 +161,13 @@ class ClamIter(MessagePassing):
         elif self.model_name == 'ieclam':
             self.model_name = 'pieclam'
 
-    def forward(self, graph, node_mask):
+    def forward(self, graph, node_mask=None):
         '''first called, starts mpnn process by preprocessing then calling propagate.
         This function does the feat optimization part of PieClam - calculation of the prior gradient and the message passing.'''
+        #! default mode for node mask not tested!
+        if node_mask is None:
+            node_mask = torch.ones(graph.x.shape[0], dtype=torch.bool)
+        node_mask = node_mask.to(self.device)
         
         if graph.is_undirected() and self.directed:
             raise ValueError('graph is undirected and directed is True')

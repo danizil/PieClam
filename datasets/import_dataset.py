@@ -104,8 +104,8 @@ def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remo
         if to_undirected:
             data.edge_index = upyg.to_undirected(data.       edge_index)
         
-        dense_attr_np = data.x.numpy()
-        data.raw_attr = sp.lil_matrix(dense_attr_np)
+        # dense_attr_np = data.x.numpy()
+        # data.raw_attr = sp.lil_matrix(dense_attr_np)
         
         if hasattr(data, 'y'):
             data.y = intersecting_tensor_from_non_intersecting_vec(data.y)
@@ -117,9 +117,10 @@ def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remo
         data_dict = sio.loadmat(os.path.join(current_dir, f"{'facebook100'}/{dataset_name}.mat"))
         adj = sp.coo_matrix(data_dict['A'])
         edge_index = torch.tensor(adj.nonzero(), dtype=torch.long)
-        raw_attr = sp.lil_matrix(data_dict['local_info'])
+        # raw_attr = sp.lil_matrix(data_dict['local_info'])
 
-        data = Data(edge_index=edge_index, raw_attr=raw_attr, x=None)
+        data = Data(edge_index=edge_index, x=None)
+        # data.raw_attr = raw_attr
         data.edge_index = remove_self_loops(data.edge_index)[0]
         data.edge_index = remove_isolated_nodes(data.edge_index)[0]
         data.edge_index = to_undirected(data.edge_index)
