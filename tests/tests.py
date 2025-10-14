@@ -68,19 +68,17 @@ def calc_grad_no_tricks_directed(x, edge_array, non_edge_array, lorenz):
         edges_with_x_second = edge_array[:, edge_array[1] == i]
         non_edges_with_x_first = non_edge_array[:, non_edge_array[0] == i]
         non_edges_with_x_second = non_edge_array[:, non_edge_array[1] == i]
-        grad = torch.zeros(dim_feat)
-        grad[:dim_feat] += grad_no_tricks_one_direction_single_node(x, torch.flip(edges_with_x_first, dims=[0]), torch.flip(non_edges_with_x_first, dims=[0]), B)
-        grad[:,dim_feat:] += grad_no_tricks_one_direction_single_node(x, edges_with_x_second, non_edges_with_x_second, B)
+        grads[i, :dim_feat] += grad_no_tricks_one_direction_single_node(i, x, edges_with_x_first, non_edges_with_x_first, B)
+        new_x = torch.cat([x[:, dim_feat:], x[:, :dim_feat]], dim=1)
+        grads[i, dim_feat:] += grad_no_tricks_one_direction_single_node(i, new_x, torch.flip(edges_with_x_second, dims=[0]), torch.flip(non_edges_with_x_second, dims=[0]), B)
         #! with self loops are we doing it twice?!!!
 
-        grads[i] = grad
-    # calculate both grads
+        # calculate both grads
     return grads
 
 
-def grad_no_tricks_one_direction_single_node(x, edges_with_x_first, non_edges_with_x_first, B):
+def grad_no_tricks_one_direction_single_node(index, x, edges_with_x_first, non_edges_with_x_first, B):
     '''edges_with_x are edges with x as the first node'''
-    index =  edges_with_x_first[0][0]
     dim_feat = x.shape[1]//2
     grad = 0
     sender_i = x[index, :dim_feat]
@@ -91,8 +89,8 @@ def grad_no_tricks_one_direction_single_node(x, edges_with_x_first, non_edges_wi
         else:
             receiver_other = x[edge[1]][dim_feat:]
 
-        inner_prod = sender_i @ (B*receiver_other).T
-        grad += B@receiver_other*1/(torch.exp(inner_prod) - 1)
+        inner_prod = sender_i @ (B@receiver_other).T
+        grad += B@receiver_other*1/(1 - torch.exp(-inner_prod))
     for non_edge in non_edges_with_x_first.T:
         if non_edge[0] == non_edge[1]:
             receiver_other = receiver_i

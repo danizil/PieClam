@@ -239,8 +239,9 @@ class ClamIter(MessagePassing):
         if (inner_product_nm == 0).any():
             raise ValueError('x_inner_product is 0 for neighbors')
         #* don't worry about B not appearing, it multiplies everything in the update function.
-        msg_1 = x_j[:, self.dim_feat//2:] / (1 - torch.exp(-inner_product_nm) + eps).unsqueeze(1) 
-        msg_0 = x_j[:, self.dim_feat//2:]
+        # msg_1 = x_j[:, self.dim_feat//2:] / (1 - torch.exp(-inner_product_nm) + eps).unsqueeze(1) 
+        msg_1 = x_j[:, self.dim_feat//2:] / (1 - torch.exp(-inner_product_nm)).unsqueeze(1) 
+        msg_0 = x_j[:, self.dim_feat//2:]@self.B
 
         # edge attr is 0 for omitted dyads
         #! not the most efficient implementation, but it's easy to understand and the time should not be much different

@@ -246,35 +246,35 @@ def sample_edges(edge_index, num_samples):
     # sampled_edge_index = to_undirected(edge_index[:, perm[:num_samples]])
     return to_undirected(sampled_edges)
 
-#! not in use: only in tests. the function moved to "link_prediction.py"
-def omit_dyads_random(edge_index, p_sample_edge, non_edge_factor=None):
+# #! not in use: only in tests. the function moved to "link_prediction.py"
+# def omit_dyads_random(edge_index, p_sample_edge, non_edge_factor=None):
     
-    if p_sample_edge == 0:
-        return None
+#     if p_sample_edge == 0:
+#         return None
 
-    assert p_sample_edge <= 1, 'p_sample_edge should be a probability'
+#     assert p_sample_edge <= 1, 'p_sample_edge should be a probability'
 
-    if non_edge_factor is None:
-        non_edge_factor = p_sample_edge
-    num_edges = edge_index.shape[1]
+#     if non_edge_factor is None:
+#         non_edge_factor = p_sample_edge
+#     num_edges = edge_index.shape[1]
 
-    # sampled_edge_index = sample_edges(edge_index, num_samples_edge)
-    # sampled_non_edge_index = sample_edges(non_edge_index, num_samples_non_edge)
+#     # sampled_edge_index = sample_edges(edge_index, num_samples_edge)
+#     # sampled_non_edge_index = sample_edges(non_edge_index, num_samples_non_edge)
     
-    edge_index_rearanged, edge_mask_retain = up.edge_mask_drop_and_rearange(edge_index, p_sample_edge)
+#     edge_index_rearanged, edge_mask_retain = up.edge_mask_drop_and_rearange(edge_index, p_sample_edge)
     
-    sampled_edge_index = edge_index_rearanged[:, ~edge_mask_retain]
-    sampled_non_edge_index = sort_edge_index(negative_sampling(
-                            edge_index, 
-                            num_neg_samples=floor(num_edges*non_edge_factor), 
-                            force_undirected=True))
+#     sampled_edge_index = edge_index_rearanged[:, ~edge_mask_retain]
+#     sampled_non_edge_index = sort_edge_index(negative_sampling(
+#                             edge_index, 
+#                             num_neg_samples=floor(num_edges*non_edge_factor), 
+#                             force_undirected=True))
 
     
-    dyads_to_omit = (sampled_edge_index, sampled_non_edge_index, edge_index_rearanged, edge_mask_retain)
+#     dyads_to_omit = (sampled_edge_index, sampled_non_edge_index, edge_index_rearanged, edge_mask_retain)
     
-    #? TESTED that edge_index_rearanged contains the same edges as edge_index. 
-    #? TESTED edge_index_rearanged[: , ~edge_mask_retain] == sampled_edge_index
-    return dyads_to_omit
+#     #? TESTED that edge_index_rearanged contains the same edges as edge_index. 
+#     #? TESTED edge_index_rearanged[: , ~edge_mask_retain] == sampled_edge_index
+#     return dyads_to_omit
 
 
 

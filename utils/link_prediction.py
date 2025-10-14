@@ -20,7 +20,7 @@ def omit_dyads_random(
           edge_attr, 
           directed,
           p_sample_edge, 
-          non_edge_factor=5, 
+          non_edge_factor=1, #! in The original PieClam, this was 5.
           ):
     '''
     the edges that have attr 0 are omitted (edges and non edges). the non edges that are omitted are inserted into the edge index and also given attr 0.
