@@ -1,0 +1,226 @@
+{
+    "date_time": "2025-10-19 21:51:35",
+    "ds_name": "texas",
+    "model_name": "bigclam",
+    "task": "link_prediction",
+    "metric": "auc",
+    "config_ranges": [
+        [
+            "clamiter_init",
+            "s_reg",
+            [
+                0.0,
+                0.1
+            ]
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            [
+                0.01,
+                0.1,
+                0.3
+            ]
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            [
+                56,
+                120,
+                172,
+                252
+            ]
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            [
+                1500,
+                5000,
+                14000
+            ]
+        ],
+        [
+            "feat_opt",
+            "lr",
+            [
+                3e-06,
+                1e-06
+            ]
+        ]
+    ],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 52,
+            "l1_reg": 0.05,
+            "T": 1
+        },
+        "feat_opt": {
+            "lr": 4e-06,
+            "n_iter": 7500
+        }
+    },
+    "(0.8515625, 0.73046875)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            56
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            1500
+        ],
+        [
+            "feat_opt",
+            "lr",
+            3e-06
+        ]
+    ],
+    "(0.7646484375, 0.677734375)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            56
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            1500
+        ],
+        [
+            "feat_opt",
+            "lr",
+            3e-06
+        ]
+    ],
+    "(0.810546875, 0.66796875)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            56
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            1500
+        ],
+        [
+            "feat_opt",
+            "lr",
+            3e-06
+        ]
+    ],
+    "(0.8056640625, 0.58056640625)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            56
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            1500
+        ],
+        [
+            "feat_opt",
+            "lr",
+            1e-06
+        ]
+    ],
+    "(0.72265625, 0.7373046875)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            56
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            1500
+        ],
+        [
+            "feat_opt",
+            "lr",
+            1e-06
+        ]
+    ],
+    "(0.76123046875, 0.78369140625)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            56
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            1500
+        ],
+        [
+            "feat_opt",
+            "lr",
+            1e-06
+        ]
+    ]
+}

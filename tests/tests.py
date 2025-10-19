@@ -57,13 +57,12 @@ def calc_grad_no_tricks_directed(x, edge_array, non_edge_array, lorenz):
     assert x.shape[1] % 4 == 0, 'x.shape[1] should be divisible by 4'
     dim_feat = x.shape[1]//2
 
-    B = torch.ones(dim_feat)
     if lorenz:
         B = torch.diag(torch.concatenate([torch.ones(x.shape[1]//4), -torch.ones(x.shape[1]//4)]))
-        
+    else:   
+        B = torch.diag(torch.ones(dim_feat))
     grads = torch.zeros(x.shape)
     for i in range(len(x)):
-        #! when i didn't flip the features in the reparametrization version it was the same as here. 
         edges_with_x_first = edge_array[:, edge_array[0] == i]
         edges_with_x_second = edge_array[:, edge_array[1] == i]
         non_edges_with_x_first = non_edge_array[:, non_edge_array[0] == i]
@@ -71,17 +70,11 @@ def calc_grad_no_tricks_directed(x, edge_array, non_edge_array, lorenz):
         
         grads[i, :dim_feat] += grad_no_tricks_one_direction_single_node(i, x, edges_with_x_first, non_edges_with_x_first, B)
         x_flip = torch.cat([x[:, dim_feat:], x[:, :dim_feat]], dim=1)
-        #! SOMET HERE with flipping... the first should be flipped 
-        #todo: maybe the edges that were alreay calculated affect the other edges? no.. why only the space component is wrong? and only some of the times and not all...
         grads[i, dim_feat:] += grad_no_tricks_one_direction_single_node(i, x_flip, torch.flip(edges_with_x_second, dims=[0]), torch.flip(non_edges_with_x_second, dims=[0]), B)
-        #! SELF LOOPS' doing it twice? 
-        #* think not. the sender features and the receiver features are updated by the same edge and so need to do so separately.
-        #! without flipping the features it's the same
-
         # calculate both grads
     return grads
 
-
+# maybe using the features the wrong way is worse than not using them at all... hopefully
 def grad_no_tricks_one_direction_single_node(index, x, edges_with_x_first, non_edges_with_x_first, B):
     '''edges_with_x are edges with x as the first node'''
     #! maybe something with the x_first... maybe some mix up...
