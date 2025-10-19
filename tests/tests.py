@@ -9,7 +9,7 @@ from utils.utils import edge_mask_of_selected_edges, sample_edges, densify_ds_vi
 from utils import utils
 from utils.plotting import *
 from utils.printing_utils import printd
-
+eps = 1e-6
 #? test that omit dyads and the entire process work in this way:
 # omit the edges of one node and see if it's value has changed
 
@@ -63,15 +63,20 @@ def calc_grad_no_tricks_directed(x, edge_array, non_edge_array, lorenz):
         
     grads = torch.zeros(x.shape)
     for i in range(len(x)):
-        #! there are edges with x first and edges with x second, likewise non edges.
+        #! when i didn't flip the features in the reparametrization version it was the same as here. 
         edges_with_x_first = edge_array[:, edge_array[0] == i]
         edges_with_x_second = edge_array[:, edge_array[1] == i]
         non_edges_with_x_first = non_edge_array[:, non_edge_array[0] == i]
         non_edges_with_x_second = non_edge_array[:, non_edge_array[1] == i]
+        
         grads[i, :dim_feat] += grad_no_tricks_one_direction_single_node(i, x, edges_with_x_first, non_edges_with_x_first, B)
-        new_x = torch.cat([x[:, dim_feat:], x[:, :dim_feat]], dim=1)
-        grads[i, dim_feat:] += grad_no_tricks_one_direction_single_node(i, new_x, torch.flip(edges_with_x_second, dims=[0]), torch.flip(non_edges_with_x_second, dims=[0]), B)
-        #! with self loops are we doing it twice?!!!
+        x_flip = torch.cat([x[:, dim_feat:], x[:, :dim_feat]], dim=1)
+        #! SOMET HERE with flipping... the first should be flipped 
+        #todo: maybe the edges that were alreay calculated affect the other edges? no.. why only the space component is wrong? and only some of the times and not all...
+        grads[i, dim_feat:] += grad_no_tricks_one_direction_single_node(i, x_flip, torch.flip(edges_with_x_second, dims=[0]), torch.flip(non_edges_with_x_second, dims=[0]), B)
+        #! SELF LOOPS' doing it twice? 
+        #* think not. the sender features and the receiver features are updated by the same edge and so need to do so separately.
+        #! without flipping the features it's the same
 
         # calculate both grads
     return grads
@@ -79,6 +84,7 @@ def calc_grad_no_tricks_directed(x, edge_array, non_edge_array, lorenz):
 
 def grad_no_tricks_one_direction_single_node(index, x, edges_with_x_first, non_edges_with_x_first, B):
     '''edges_with_x are edges with x as the first node'''
+    #! maybe something with the x_first... maybe some mix up...
     dim_feat = x.shape[1]//2
     grad = 0
     sender_i = x[index, :dim_feat]
@@ -90,7 +96,7 @@ def grad_no_tricks_one_direction_single_node(index, x, edges_with_x_first, non_e
             receiver_other = x[edge[1]][dim_feat:]
 
         inner_prod = sender_i @ (B@receiver_other).T
-        grad += B@receiver_other*1/(1 - torch.exp(-inner_prod))
+        grad += B@receiver_other/(torch.exp(inner_prod)- 1 + eps)
     for non_edge in non_edges_with_x_first.T:
         if non_edge[0] == non_edge[1]:
             receiver_other = receiver_i

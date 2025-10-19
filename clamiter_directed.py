@@ -207,6 +207,7 @@ class ClamIter(MessagePassing):
                 #reverse direction: add the r features to the global features
                 '''forward direction for receiver features: edge_index is not flipped and the features are'''
                 x_flipped = torch.cat([graph.x[:, self.dim_feat//2:], graph.x[:, :self.dim_feat//2]], dim=1)
+                # x_flipped = graph.x
                 #! see that the global features make sense
                 tbr_receiver = self.propagate(edge_index=graph.edge_index, x=x_flipped, global_features=(prior_grad[:, self.dim_feat//2:]), edge_attr=graph.edge_attr)
 
@@ -239,10 +240,14 @@ class ClamIter(MessagePassing):
         if (inner_product_nm == 0).any():
             raise ValueError('x_inner_product is 0 for neighbors')
         #* don't worry about B not appearing, it multiplies everything in the update function.
-        # msg_1 = x_j[:, self.dim_feat//2:] / (1 - torch.exp(-inner_product_nm) + eps).unsqueeze(1) 
-        msg_1 = x_j[:, self.dim_feat//2:] / (1 - torch.exp(-inner_product_nm)).unsqueeze(1) 
-        msg_0 = x_j[:, self.dim_feat//2:]@self.B
-
+        msg_1 = x_j[:, self.dim_feat//2:] / (1 - torch.exp(-inner_product_nm) + eps).unsqueeze(1) 
+        # msg_1 = x_j[:, self.dim_feat//2:] / (1 - torch.exp(-inner_product_nm) ).unsqueeze(1) 
+        #? VARIFIED the expression: 1/(1 - e^...) although the loss has 1/(e^... - 1 + eps) because the derivative has an e^... term.
+        
+        # msg_1 = x_j[:, self.dim_feat//2:] / (1 - torch.exp(-inner_product_nm)).unsqueeze(1) 
+        # msg_1 = x_j[:, self.dim_feat//2:] / (torch.exp(inner_product_nm) - 1 + eps).unsqueeze(1) 
+        # msg_0 = x_j[:, self.dim_feat//2:]@self.B
+        msg_0 = x_j[:, self.dim_feat//2:]
         # edge attr is 0 for omitted dyads
         #! not the most efficient implementation, but it's easy to understand and the time should not be much different
         msg = edge_attr.unsqueeze(1)*msg_1 + (~edge_attr).unsqueeze(1)*msg_0 
@@ -258,7 +263,6 @@ class ClamIter(MessagePassing):
         in directed the propagation is done once with the features in the order s,t and then with the flipped version t,s. The update function is the same for both cases.'''
        
         if self.directed:
-            #! seems wrong the global term
             global_term = torch.sum(x[:, self.dim_feat//2:], dim=0)
             if self.lorenz:
                 s_feats = x[:, self.dim_feat//2:self.dim_feat//2+self.dim_feat//4]
@@ -276,16 +280,12 @@ class ClamIter(MessagePassing):
             update = (aggr_out - global_term)@self.B + global_features - self.s_reg*s_feats - self.l1_reg*torch.sign(x)
         #! abuse of notation: s_feats are space features and not sender features
         
-        
-        #! PROBLEM: NEED TO MAKE A CASE FOR DIRECTED WHERE THE DIMENSIONS ARE SMALLER
-
         return update
 
     def readout(self, graph):
         # no add noise here - the nodes are after the optimization and the net noise is applied in the backward xz functions
         if self.vanilla:
             #noise isn't added here because there is no prior
-            #! does this calculate the omittion loss?
             readout = clam_loss(graph, lorenz=self.lorenz)
         else:
             readout = clam_loss_prior(graph, self.lorenz, self.prior)
