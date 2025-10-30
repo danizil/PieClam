@@ -325,35 +325,74 @@ def edge_mask_drop_and_rearange(edge_index, p, directed):
 
 
 
+# def two_hop_link(data):
+#     '''densify the edges with with attr 1. if one of the edges with attr 0 is produced, set it's attr to 1'''
+#     assert data.edge_index is not None
+#     edge_index, edge_attr = data.edge_index, data.edge_attr
+#     N = data.num_nodes
+
+#     # Sort edge_index by the attribute values
+#     # sorted_indices = edge_attr.argsort(dim=0, descending=True)
+#     # edge_index = edge_index[:, sorted_indices]
+#     # edge_attr = edge_attr[sorted_indices]
+    
+#     #densify the edge with attribute 1
+#     edges_to_densify = edge_index[:, edge_attr]
+
+#     edges_to_densify = EdgeIndex(edges_to_densify, sparse_size=(N, N))
+#     edges_to_densify = edges_to_densify.sort_by('row')[0]
+#     # all of the 2hop edges V:
+#     edges_densified = edges_to_densify.matmul(edges_to_densify)[0].as_tensor()
+#     # edges_densified, _ = remove_self_loops(edges_densified)
+#     edge_index = torch.cat([edge_index, edges_densified], dim=1)
+
+#     # We treat newly added edge features as "zero-features":
+#     attr_densified = torch.ones(edges_densified.size(1)).bool()
+#     edge_attr = torch.cat([edge_attr, attr_densified], dim=0)
+
+#     edge_index, edge_attr = coalesce(edge_index, edge_attr, N, reduce="max")
+
+#     return edge_index, edge_attr
+
+import torch
+
 def two_hop_link(data):
     '''densify the edges with with attr 1. if one of the edges with attr 0 is produced, set it's attr to 1'''
     assert data.edge_index is not None
     edge_index, edge_attr = data.edge_index, data.edge_attr
     N = data.num_nodes
 
-    # Sort edge_index by the attribute values
-    # sorted_indices = edge_attr.argsort(dim=0, descending=True)
-    # edge_index = edge_index[:, sorted_indices]
-    # edge_attr = edge_attr[sorted_indices]
-    
     #densify the edge with attribute 1
     edges_to_densify = edge_index[:, edge_attr]
-
-    edges_to_densify = EdgeIndex(edges_to_densify, sparse_size=(N, N))
-    edges_to_densify = edges_to_densify.sort_by('row')[0]
-    # all of the 2hop edges V:
-    edges_densified = edges_to_densify.matmul(edges_to_densify)[0].as_tensor()
-    edges_densified, _ = remove_self_loops(edges_densified)
+    
+    # Convert to sparse COO tensor
+    indices = edges_to_densify
+    values = torch.ones(edges_to_densify.shape[1], device=edges_to_densify.device, dtype=torch.float32)
+    
+    sparse_adj = torch.sparse_coo_tensor(
+        indices=indices,
+        values=values,
+        size=(N, N)
+    )
+    
+    # Compute 2-hop connections: sparse matrix multiplication A²
+    sparse_adj_2hop = torch.sparse.mm(sparse_adj, sparse_adj)
+    
+    # Convert back to edge_index (COO format)
+    sparse_adj_2hop = sparse_adj_2hop.coalesce()
+    edges_densified = sparse_adj_2hop.indices()
+    
+    # Remove self-loops if desired
+    # edges_densified, _ = remove_self_loops(edges_densified)
     edge_index = torch.cat([edge_index, edges_densified], dim=1)
 
     # We treat newly added edge features as "zero-features":
-    attr_densified = torch.ones(edges_densified.size(1)).bool()
+    attr_densified = torch.ones(edges_densified.size(1), device=edges_densified.device).bool()
     edge_attr = torch.cat([edge_attr, attr_densified], dim=0)
 
     edge_index, edge_attr = coalesce(edge_index, edge_attr, N, reduce="max")
 
     return edge_index, edge_attr
-
 
 # 88b 88 888888  dP""b8 
 # 88Yb88 88__   dP   `" 

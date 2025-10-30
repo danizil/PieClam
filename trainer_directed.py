@@ -299,6 +299,7 @@ class Trainer():
             verbose=False, 
             verbose_in_funcs=False,
             node_feats_for_init=None,
+            attr_init=False,
             **kwargs):
         
         '''train one of the 4 models (bool vanilla, bool lorenz) on the given parameters. 
@@ -342,7 +343,8 @@ class Trainer():
                 printd(f'\n train_model_on_params, initializing feats with {init_type}')
             t = time.time()
 
-
+            # if attr_init is true, initialize the nodes with the attributes plus some noise
+            
             self.data.x = self.clamiter.init_node_feats(
                                             graph_given=self.data, 
                                             init_type=init_type, 
