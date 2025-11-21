@@ -158,6 +158,16 @@ def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remo
     #     data.edge_index = remove_self_loops(data.edge_index)[0]
     #     data.edge_index = to_undirected(data.edge_index)
 
+
+    # PLANETOID
+    elif dataset_name == 'cora_ml':
+        data = load_data_from_npz('cora_ml')
+        a=0
+
+    elif dataset_name == 'citeseer':
+        data = load_data_from_npz('citeseer')
+
+    
     # SYNTHETIC
     
     elif dataset_name == 'sbm3x3':
@@ -384,3 +394,225 @@ def direct_graph(data):
     data.edge_index = edge_index
     data.edge_attr = torch.ones(edge_index.shape[1], dtype=torch.bool)
     return data
+
+
+#  dP""b8  dP"Yb  88""Yb    db    
+# dP   `" dP   Yb 88__dP   dPYb   
+# Yb      Yb   dP 88"Yb   dP__Yb  
+#  YboodP  YbodP  88  Yb dP""""Yb 
+
+
+# 8888b.  88 88""Yb 
+#  8I  Yb 88 88__dP 
+#  8I  dY 88 88"Yb  
+# 8888Y"  88 88  Yb 
+            
+def load_data_from_npz(dataset_name = 'cora_ml', directed=True):
+    
+    dataset_path = os.path.join(f'datasets/Planetoid/{dataset_name}/{dataset_name}.npz')
+    g = load_npz_dataset(dataset_path)
+    adj, features, labels = g['A'], g['X'], g['z']
+
+    if not directed:
+        adj  = (adj + adj.T) / 2.0
+        
+    # mask = train_test_split(labels, seed=1020, train_examples_per_class=20, val_size=500, test_size=None)
+    
+    # mask['train'] = torch.from_numpy(mask['train']).bool()
+    # mask['val'] = torch.from_numpy(mask['val']).bool()
+    # mask['test'] = torch.from_numpy(mask['test']).bool()
+
+    coo = adj.tocoo()
+
+    indices = np.vstack((coo.row, coo.col))
+    indices = torch.from_numpy(indices).long()
+    
+    values = coo.data
+    values = torch.from_numpy(values).float()
+    
+    features = torch.from_numpy(features.todense()).float()
+    
+    labels   = torch.from_numpy(labels).long()
+    
+    edge_index  = indices
+    edge_weight = values
+    
+    data = Data(x=features, edge_index=edge_index, edge_weight=edge_weight, y=labels)
+
+    # data.train_mask = mask['train']
+    # data.val_mask = mask['val']
+    # data.test_mask = mask['test']
+
+    return data
+
+
+def load_npz_dataset(file_name):
+    """Load a graph from a Numpy binary file.
+
+    Parameters
+    ----------
+    file_name : str
+        Name of the file to load.
+
+    Returns
+    -------
+    graph : dict
+        Dictionary that contains:
+            * 'A' : The adjacency matrix in sparse matrix format
+            * 'X' : The attribute matrix in sparse matrix format
+            * 'z' : The ground truth class labels
+            * Further dictionaries mapping node, class and attribute IDs
+
+    """
+    if not file_name.endswith('.npz'):
+        file_name += '.npz'
+    with np.load(file_name, allow_pickle=True) as loader:
+        loader = dict(loader)
+        edge_index = loader['adj_indices'].copy()
+        A = sp.csr_matrix((loader['adj_data'], loader['adj_indices'],
+                           loader['adj_indptr']), shape=loader['adj_shape'])
+
+        X = sp.csr_matrix((loader['attr_data'], loader['attr_indices'],
+                           loader['attr_indptr']), shape=loader['attr_shape'])
+
+        z = loader.get('labels')
+
+        graph = {
+            'A': A,
+            'X': X,
+            'z': z
+        }
+
+        idx_to_node = loader.get('idx_to_node')
+        if idx_to_node:
+            idx_to_node = idx_to_node.tolist()
+            graph['idx_to_node'] = idx_to_node
+
+        idx_to_attr = loader.get('idx_to_attr')
+        if idx_to_attr:
+            idx_to_attr = idx_to_attr.tolist()
+            graph['idx_to_attr'] = idx_to_attr
+
+        idx_to_class = loader.get('idx_to_class')
+        if idx_to_class:
+            idx_to_class = idx_to_class.tolist()
+            graph['idx_to_class'] = idx_to_class
+
+        return graph
+
+
+# def train_test_split(labels, seed, train_examples_per_class=None, val_examples_per_class=None, test_examples_per_class=None, train_size=None, val_size=None, test_size=None):
+#     random_state = np.random.RandomState(seed)
+#     train_indices, val_indices, test_indices = get_train_val_test_split(
+#         random_state, labels, train_examples_per_class, val_examples_per_class, test_examples_per_class, train_size, val_size, test_size)
+
+#     #print('number of training: {}'.format(len(train_indices)))
+#     #print('number of validation: {}'.format(len(val_indices)))
+#     #print('number of testing: {}'.format(len(test_indices)))
+
+#     train_mask = np.zeros((labels.shape[0], 1), dtype=int)
+#     train_mask[train_indices, 0] = 1
+#     train_mask = np.squeeze(train_mask, 1)
+#     val_mask = np.zeros((labels.shape[0], 1), dtype=int)
+#     val_mask[val_indices, 0] = 1
+#     val_mask = np.squeeze(val_mask, 1)
+#     test_mask = np.zeros((labels.shape[0], 1), dtype=int)
+#     test_mask[test_indices, 0] = 1
+#     test_mask = np.squeeze(test_mask, 1)
+#     mask = {}
+#     mask['train'] = train_mask
+#     mask['val'] = val_mask
+#     mask['test'] = test_mask
+#     return mask
+
+
+# def get_train_val_test_split(random_state,
+#                              labels,
+#                              train_examples_per_class=None, val_examples_per_class=None,
+#                              test_examples_per_class=None,
+#                              train_size=None, val_size=None, test_size=None):
+#     num_samples = labels.shape[0]
+#     num_classes = labels.max()+1
+#     remaining_indices = list(range(num_samples))
+
+#     if train_examples_per_class is not None:
+#         train_indices = sample_per_class(
+#             random_state, labels, train_examples_per_class)
+#     else:
+#         # select train examples with no respect to class distribution
+#         train_indices = random_state.choice(
+#             remaining_indices, train_size, replace=False)
+
+#     if val_examples_per_class is not None:
+#         val_indices = sample_per_class(
+#             random_state, labels, val_examples_per_class, forbidden_indices=train_indices)
+#     else:
+#         remaining_indices = np.setdiff1d(remaining_indices, train_indices)
+#         val_indices = random_state.choice(
+#             remaining_indices, val_size, replace=False)
+
+#     forbidden_indices = np.concatenate((train_indices, val_indices))
+#     if test_examples_per_class is not None:
+#         test_indices = sample_per_class(random_state, labels, test_examples_per_class,
+#                                         forbidden_indices=forbidden_indices)
+#     elif test_size is not None:
+#         remaining_indices = np.setdiff1d(remaining_indices, forbidden_indices)
+#         test_indices = random_state.choice(
+#             remaining_indices, test_size, replace=False)
+#     else:
+#         test_indices = np.setdiff1d(remaining_indices, forbidden_indices)
+
+#     # assert that there are no duplicates in sets
+#     assert len(set(train_indices)) == len(train_indices)
+#     assert len(set(val_indices)) == len(val_indices)
+#     assert len(set(test_indices)) == len(test_indices)
+#     # assert sets are mutually exclusive
+#     assert len(set(train_indices) - set(val_indices)
+#                ) == len(set(train_indices))
+#     assert len(set(train_indices) - set(test_indices)
+#                ) == len(set(train_indices))
+#     assert len(set(val_indices) - set(test_indices)) == len(set(val_indices))
+#     if test_size is None and test_examples_per_class is None:
+#         # all indices must be part of the split
+#         assert len(np.concatenate(
+#             (train_indices, val_indices, test_indices))) == num_samples
+
+#     if train_examples_per_class is not None:
+#         train_labels = labels[train_indices]
+#         train_sum = np.sum(train_labels, axis=0)
+#         # assert all classes have equal cardinality
+#         assert np.unique(train_sum).size == 1
+
+#     if val_examples_per_class is not None:
+#         val_labels = labels[val_indices]
+#         val_sum = np.sum(val_labels, axis=0)
+#         # assert all classes have equal cardinality
+#         assert np.unique(val_sum).size == 1
+
+#     if test_examples_per_class is not None:
+#         test_labels = labels[test_indices]
+#         test_sum = np.sum(test_labels, axis=0)
+#         # assert all classes have equal cardinality
+#         assert np.unique(test_sum).size == 1
+
+#     return train_indices, val_indices, test_indices
+
+
+
+# def sample_per_class(random_state, labels, num_examples_per_class, forbidden_indices=None):
+#     num_samples = labels.shape[0]
+#     num_classes = labels.max()+1
+#     sample_indices_per_class = {index: [] for index in range(num_classes)}
+
+#     # get indices sorted by class
+#     for class_index in range(num_classes):
+#         for sample_index in range(num_samples):
+#             if labels[sample_index] == class_index:
+#                 if forbidden_indices is None or sample_index not in forbidden_indices:
+#                     sample_indices_per_class[class_index].append(sample_index)
+
+#     # get specified number of indices for each class
+#     return np.concatenate(
+#         [random_state.choice(sample_indices_per_class[class_index], num_examples_per_class, replace=False)
+#          for class_index in range(len(sample_indices_per_class))
+#          ])
