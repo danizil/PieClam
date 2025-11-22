@@ -160,13 +160,13 @@ def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remo
 
 
     # PLANETOID
-    elif dataset_name == 'cora_ml':
-        data = load_data_from_npz('cora_ml')
-        a=0
+    elif dataset_name == 'cora-ml':
+        data = load_data_from_npz('cora-ml')
+        data.x = None
 
     elif dataset_name == 'citeseer':
         data = load_data_from_npz('citeseer')
-
+        data.x = None
     
     # SYNTHETIC
     
@@ -407,9 +407,9 @@ def direct_graph(data):
 #  8I  dY 88 88"Yb  
 # 8888Y"  88 88  Yb 
             
-def load_data_from_npz(dataset_name = 'cora_ml', directed=True):
-    
-    dataset_path = os.path.join(f'datasets/Planetoid/{dataset_name}/{dataset_name}.npz')
+def load_data_from_npz(dataset_name = 'cora-ml', directed=True):
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    dataset_path = os.path.join(current_dir, f'Planetoid/{dataset_name}/{dataset_name}.npz')
     g = load_npz_dataset(dataset_path)
     adj, features, labels = g['A'], g['X'], g['z']
 
