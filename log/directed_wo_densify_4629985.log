@@ -1,0 +1,890 @@
+/var/spool/slurm/slurmd/job4629985/slurm_script: line 7: nvcc: command not found
+Tue Nov 25 10:15:24 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 560.35.03              Driver Version: 560.35.03      CUDA Version: 12.6     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla V100-PCIE-32GB           On  |   00000000:AF:00.0 Off |                  Off |
+| N/A   45C    P0             35W /  250W |       1MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Running with model_name=ieclam and ds_name=cora-ml and s_reg=0.01 dim_feats=64 noise_amp=0.0, l1_reg=0.01
+/mnt/home/jcervino/miniconda3/envs/pieclam_directed/lib/python3.11/site-packages/outdated/__init__.py:36: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:100:::  
+CUDA available
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:102:::  
+Using device: cuda
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:124:::  
+Running cross val link splits for cora-ml with model ieclam
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:125:::  
+args=Namespace(model_name='ieclam', ds_name='cora-ml', dim_feats=[64], l1_regs=[0.01], s_regs=[0.01], n_iters_feats=[5000], lr_feats=[], dim_attr=[], n_iters_prior=[], lr_prior=[], noise_amps=[0.0], n_back_forth=[], first_funcs_in_fit=[], use_global_config_base=False, densify=False, attr_opt=False, test_p=0.1, val_p=0.0, val_dyads_path=None, test_dyads_path=None, random_search=False, num_draws_random=1, test_only=True, n_reps=1, reverse_test_set_order=False, to_undirected=False, remove_self_loops=False)
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_22-51_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:637:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_22-51_22-11-25/test/acc_configs10-15_25-11-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:662:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-11-25 10:15:40 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 64,
+        "s_reg": 0.01,
+        "l1_reg": 0.01,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 1e-06,
+        "n_iter": 5000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 5000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.755259932049638
+val
+auc: None
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 41.794174671173096 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:737:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_22-59_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:637:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_22-59_22-11-25/test/acc_configs10-16_25-11-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:662:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-11-25 10:16:22 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 64,
+        "s_reg": 0.01,
+        "l1_reg": 0.01,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 1e-06,
+        "n_iter": 5000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 5000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7535152223797897
+val
+auc: None
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 58.9810745716095 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:737:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_22-57_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:637:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_22-57_22-11-25/test/acc_configs10-17_25-11-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:662:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-11-25 10:17:22 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 64,
+        "s_reg": 0.01,
+        "l1_reg": 0.01,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 1e-06,
+        "n_iter": 5000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 5000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.732510840811502
+val
+auc: None
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 60.60149312019348 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:737:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_22-58_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:637:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_22-58_22-11-25/test/acc_configs10-18_25-11-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:662:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-11-25 10:18:24 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 64,
+        "s_reg": 0.01,
+        "l1_reg": 0.01,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 1e-06,
+        "n_iter": 5000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 5000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7633868292800174
+val
+auc: None
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 74.33661317825317 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:737:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_22-48_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:637:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_22-48_22-11-25/test/acc_configs10-19_25-11-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:662:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-11-25 10:19:39 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 64,
+        "s_reg": 0.01,
+        "l1_reg": 0.01,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 1e-06,
+        "n_iter": 5000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 5000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7559986766221628
+val
+auc: None
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 58.89159369468689 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:737:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_22-47_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:637:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_22-47_22-11-25/test/acc_configs10-20_25-11-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:662:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-11-25 10:20:40 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 64,
+        "s_reg": 0.01,
+        "l1_reg": 0.01,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 1e-06,
+        "n_iter": 5000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 5000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7691561062717648
+val
+auc: None
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 66.4457459449768 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:737:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_22-54_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:637:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_22-54_22-11-25/test/acc_configs10-21_25-11-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:662:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-11-25 10:21:47 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 64,
+        "s_reg": 0.01,
+        "l1_reg": 0.01,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 1e-06,
+        "n_iter": 5000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 5000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7796130533691701
+val
+auc: None
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 66.29134178161621 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:737:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_23-00_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:637:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_23-00_22-11-25/test/acc_configs10-22_25-11-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:662:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-11-25 10:22:54 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 64,
+        "s_reg": 0.01,
+        "l1_reg": 0.01,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 1e-06,
+        "n_iter": 5000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 5000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7677266885438743
+val
+auc: None
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 74.61653208732605 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:737:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_23-01_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:637:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_23-01_22-11-25/test/acc_configs10-24_25-11-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:662:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-11-25 10:24:10 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 64,
+        "s_reg": 0.01,
+        "l1_reg": 0.01,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 1e-06,
+        "n_iter": 5000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 5000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7681762976808368
+val
+auc: None
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 54.484426498413086 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:737:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_22-52_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:637:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_22-52_22-11-25/test/acc_configs10-25_25-11-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:662:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-11-25 10:25:05 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 64,
+        "s_reg": 0.01,
+        "l1_reg": 0.01,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 1e-06,
+        "n_iter": 5000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 5000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7487490827549448
+val
+auc: None
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 65.65766072273254 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:737:::  
+
+
+Finished CrossVal!
+
+

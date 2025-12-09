@@ -1,0 +1,107 @@
+/var/spool/slurm/slurmd/job4629954/slurm_script: line 7: nvcc: command not found
+Tue Nov 25 10:01:18 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 560.35.03              Driver Version: 560.35.03      CUDA Version: 12.6     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla V100-PCIE-32GB           On  |   00000000:AF:00.0 Off |                  Off |
+| N/A   38C    P0             23W /  250W |       1MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Running with model_name=pclam and ds_name=cora-ml and s_reg=0.01 dim_feats=64 noise_amp=0.1, l1_reg=0.0
+/mnt/home/jcervino/miniconda3/envs/pieclam_directed/lib/python3.11/site-packages/outdated/__init__.py:36: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:100:::  
+CUDA available
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:102:::  
+Using device: cuda
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:124:::  
+Running cross val link splits for cora-ml with model pclam
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:125:::  
+args=Namespace(model_name='pclam', ds_name='cora-ml', dim_feats=[64], l1_regs=[0.0], s_regs=[0.01], n_iters_feats=[5000], lr_feats=[], dim_attr=[], n_iters_prior=[], lr_prior=[], noise_amps=[0.1], n_back_forth=[], first_funcs_in_fit=[], use_global_config_base=False, densify=False, attr_opt=False, test_p=0.1, val_p=0.0, val_dyads_path=None, test_dyads_path=None, random_search=False, num_draws_random=1, test_only=True, n_reps=1, reverse_test_set_order=False, to_undirected=False, remove_self_loops=False)
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_23-00_22-11-25 of cora-ml,pclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:726:::  
+
+
+#### ERROR #### in cross_val_link: 'cora-ml_pclam'
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:727:::  
+Full traceback:
+Traceback (most recent call last):
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 627, in cross_val_link
+    run_saver = SaveRun(model_name,
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 320, in __init__
+    configs_dict = deepcopy(params_dict[ds_name + '_' + model_name])
+                            ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'cora-ml_pclam'
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:737:::  
+
+
+Finished CrossVal!
+
+
+Traceback (most recent call last):
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 728, in cross_val_link
+    raise e
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 627, in cross_val_link
+    run_saver = SaveRun(model_name, 
+                ^^^^^^^^^^^^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 320, in __init__
+    configs_dict = deepcopy(params_dict[ds_name + '_' + model_name])
+                            ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'cora-ml_pclam'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py", line 147, in <module>
+    main()
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py", line 127, in main
+    ou.cross_val_link_splits(
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 517, in cross_val_link_splits
+    cross_val_link(
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 738, in cross_val_link
+    return trainer   
+           ^^^^^^^
+UnboundLocalError: cannot access local variable 'trainer' where it is not associated with a value

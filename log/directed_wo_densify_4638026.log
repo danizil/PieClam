@@ -1,0 +1,127 @@
+/var/spool/slurm/slurmd/job4638026/slurm_script: line 7: nvcc: command not found
+Mon Dec  1 14:04:33 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 565.57.01              Driver Version: 565.57.01      CUDA Version: 12.7     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla V100-SXM2-32GB           On  |   00000000:AF:00.0 Off |                    0 |
+| N/A   38C    P0             63W /  300W |       1MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Running with model_name=pieclam and ds_name=cora-ml and s_reg=0.0 dim_feats=50 noise_amp=0.1, l1_reg=0.1, n_iter_prior=500, n_iter_feat=500, lr_prior=0.000002, lr_feat=0.000003, first_func_in_fit=fit_prior
+
+/mnt/home/jcervino/miniconda3/envs/pieclam_directed/lib/python3.11/site-packages/outdated/__init__.py:36: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:100:::  
+CUDA available
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:102:::  
+Using device: cuda
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:124:::  
+Running cross val link splits for cora-ml with model pieclam
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:125:::  
+args=Namespace(model_name='pieclam', ds_name='cora-ml', dim_feats=[50], l1_regs=[0.1], s_regs=[0.0], n_iters_feats=[500], lr_feats=[3e-06], dim_attr=[], n_iters_prior=[500], lr_prior=[2e-06], noise_amps=[0.1], n_back_forth=[], first_funcs_in_fit=['fit_prior'], use_global_config_base=False, densify=False, attr_opt=False, test_p=0.1, val_p=0.0, val_dyads_path=None, test_dyads_path=None, random_search=False, num_draws_random=1, test_only=True, n_reps=1, reverse_test_set_order=False, to_undirected=False, remove_self_loops=False)
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_22-51_22-11-25 of cora-ml,pieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:637:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/pieclam/split_22-51_22-11-25/test/acc_configs14-04_01-12-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:662:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:726:::  
+
+
+#### ERROR #### in cross_val_link: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:727:::  
+Full traceback:
+Traceback (most recent call last):
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 690, in cross_val_link
+    trainer = Trainer(
+              ^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py", line 177, in __init__
+    self.clamiter = ci.ClamIter(
+                    ^^^^^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py", line 97, in __init__
+    raise ValueError('in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam')
+ValueError: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:737:::  
+
+
+Finished CrossVal!
+
+
+Traceback (most recent call last):
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 728, in cross_val_link
+    raise e
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 690, in cross_val_link
+    trainer = Trainer(
+              ^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py", line 177, in __init__
+    self.clamiter = ci.ClamIter(
+                    ^^^^^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py", line 97, in __init__
+    raise ValueError('in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam')
+ValueError: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py", line 147, in <module>
+    main()
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py", line 127, in main
+    ou.cross_val_link_splits(
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 517, in cross_val_link_splits
+    cross_val_link(
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 738, in cross_val_link
+    return trainer   
+           ^^^^^^^
+UnboundLocalError: cannot access local variable 'trainer' where it is not associated with a value
