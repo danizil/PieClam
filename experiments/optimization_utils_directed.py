@@ -583,7 +583,6 @@ def cross_val_link(
     try:
        
         curr_file_dir = os.path.dirname(os.path.abspath(__file__)) 
-        test_or_valid = 'test' if test_only else 'valid'
  
         # save run should configure the save paths 
         # if there is a test set folder (split. the number after split should be the number that is the test sets connected and turned into a number) like the test set we are using save n
@@ -599,6 +598,8 @@ def cross_val_link(
             if test_only == False:
                 printd('\n\n Warning! vaildation experiment set to true but no validation set detected, either random or built in')
             test_only = True
+        
+        test_or_valid = 'test' if test_only else 'valid'
         
         # OMIT TEST
         ds_test_omitted = ds.clone()
