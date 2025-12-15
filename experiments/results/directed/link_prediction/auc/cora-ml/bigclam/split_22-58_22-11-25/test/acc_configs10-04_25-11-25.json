@@ -1,0 +1,113 @@
+{
+    "date_time": "2025-11-25 10:04:33",
+    "ds_name": "cora-ml",
+    "model_name": "bigclam",
+    "task": "link_prediction",
+    "metric": "auc",
+    "config_ranges": [
+        [
+            "clamiter_init",
+            "s_reg",
+            [
+                0.0
+            ]
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            [
+                0.01
+            ]
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            [
+                64
+            ]
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            [
+                5000
+            ]
+        ]
+    ],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 48,
+            "l1_reg": 1
+        },
+        "feat_opt": {
+            "lr": 2e-06,
+            "n_iter": 7000
+        }
+    },
+    "(0.7548753607123619, None)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            64
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ]
+    ],
+    "(0.7588179238520474, None)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            64
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ]
+    ],
+    "(0.7687277051129607, None)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            64
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ]
+    ]
+}
