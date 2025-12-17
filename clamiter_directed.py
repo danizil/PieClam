@@ -32,6 +32,7 @@ from datasets.import_dataset import import_dataset
 
 
 from tqdm import tqdm
+import traceback
 import datetime
 import os
 eps = 1e-6
@@ -445,7 +446,7 @@ class ClamIter(MessagePassing):
                     losses.append(loss.item())
                 except ValueError as e:
                     printd(f'fit wrapper {which_fit} error in iter_step at iter {i}: {e}')
-                    print(f'error happened at line {e.__traceback__.tb_lineno}')
+                    print(f'traceback: {traceback.format_exc()}')
                     break
                 
                 # ACCURACY CALCULATION

@@ -12,6 +12,6 @@
 source ~/miniconda3/etc/profile.d/conda.sh                
 conda activate clam                  
 
-python -u ~/ICML_PIECLAM_020425/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py --model_name 'pieclam' --ds_name 'cora' --dim_feats 50 100 200 --s_reg 0.0 --lr_feats 0.0000005 0.000005 --n_iters_feats 500 1000 3000 --lr_prior 0.000005 0.0000005 --n_iters_prior 500 1000 3000  --n_reps 3 --random_search --num_draws_random 50 --test_only --val_p 0.0 --directed
+python -u ~/ICML_PIECLAM_020425/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py --model_name 'pieclam' --ds_name 'cora' --dim_feats 50 100 200 --s_reg 0.0 --lr_feats 0.0000005 0.000001 0.000005 --n_iters_feats 500 1000 3000 --lr_prior 0.0000005 0.000001 0.000005 --n_iters_prior 500 1000 3000 --first_funcs_in_fit fit_feats fit_prior --n_reps 3 --random_search --num_draws_random 50 --test_only
 
 
