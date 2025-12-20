@@ -112,6 +112,32 @@ def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remo
 
         data.x = None
 
+    elif dataset_name == 'wisconsin':
+        data = WebKB(root=os.path.join(current_dir,'WebKB'), name='wisconsin')[0]
+        if remove_self_loops:
+            data.edge_index = upyg.remove_self_loops(data.edge_index)[0]
+        # if remove_isolated_nodes:
+        #     data.edge_index = remove_isolated_nodes(data.edge_index)[0]
+        if to_undirected:
+            data.edge_index = upyg.to_undirected(data.       edge_index)
+        
+        # dense_attr_np = data.x.numpy()
+        # data.raw_attr = sp.lil_matrix(dense_attr_np)
+        
+        if hasattr(data, 'y'):
+            data.y = intersecting_tensor_from_non_intersecting_vec(data.y)
+
+        data.x = None
+
+    elif dataset_name == 'cornell':
+        data = WebKB(root=os.path.join(current_dir,'WebKB'), name='cornell')[0]
+        if remove_self_loops:
+            data.edge_index = upyg.remove_self_loops(data.edge_index)[0]
+        if to_undirected:
+            data.edge_index = upyg.to_undirected(data.edge_index)
+        
+        data.x = None
+
     elif dataset_name == 'JohnsHopkins55':
         current_dir = os.path.dirname(os.path.abspath(__file__))
         data_dict = sio.loadmat(os.path.join(current_dir, f"{'facebook100'}/{dataset_name}.mat"))

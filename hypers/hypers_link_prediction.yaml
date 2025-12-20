@@ -50,6 +50,16 @@ cora-ml_pieclam:
         early_stop_fit: 0
         first_func_in_fit: "fit_feats"
 
+cora-ml_pclam:
+    clamiter_init:
+        dim_feat: 24
+        l1_reg: 1
+    feat_opt:
+        lr: 0.000003
+        n_iter: 1000
+    back_forth:
+        first_func_in_fit: 'fit_prior'
+
 #  dP""b8 88 888888    db    .dP"Y8 888888 888888 88""Yb 
 # dP   `" 88   88     dPYb   `Ybo." 88__   88__   88__dP 
 # Yb      88   88    dP__Yb  o.`Y8b 88""   88""   88"Yb  
@@ -101,6 +111,15 @@ citeseer_pieclam:
         early_stop_fit: 0
         first_func_in_fit: "fit_feats"
 
+citeseer_pclam:
+    clamiter_init:
+        dim_feat: 24
+        l1_reg: 1
+    feat_opt:
+        lr: 0.000003
+        n_iter: 1000
+    back_forth:
+        first_func_in_fit: 'fit_prior'
 
 # 8888b.  8888b.  88 
 #  8I  Yb  8I  Yb 88 

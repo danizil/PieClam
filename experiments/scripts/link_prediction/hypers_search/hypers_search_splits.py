@@ -71,8 +71,13 @@ def main():
     parser.add_argument('--n_iters_prior', nargs='+', type=int, default=[], help='number of iterations in fit prior')
     parser.add_argument('--lr_prior', nargs='+', type=float, default=[], help='lr prior')
     parser.add_argument('--noise_amps', nargs='+', type=float, default=[], help='noise amplitudes')
+    parser.add_argument('--num_coupling_blocks', nargs='+', type=int, default=[], help='number of coupling blocks')
+    parser.add_argument('--num_layers_mlp', nargs='+', type=int, default=[], help='number of layers in mlp')
+    parser.add_argument('--hidden_dim', nargs='+', type=int, default=[], help='hidden dimension')
+
     parser.add_argument('--n_back_forth', nargs='+', type=int, default=[], help='number of back and forth iterations')
     parser.add_argument('--first_funcs_in_fit', nargs='+', type=str, default=[], help='first function in alternation')
+
 
     parser.add_argument('--use_global_config_base', action='store_true', help='whether to use the global config base') # if not given, use_global_config base is false
     parser.add_argument('--densify', action='store_true', help='whether to densify the data')
@@ -117,6 +122,9 @@ def main():
             ['prior_opt','n_iter', args.n_iters_prior],
             ['prior_opt','lr', args.lr_prior],
             ['prior_opt','noise_amp', args.noise_amps],
+            ['clamiter_init','num_coupling_blocks', args.num_coupling_blocks],
+            ['clamiter_init','num_layers_mlp', args.num_layers_mlp],
+            ['clamiter_init','hidden_dim', args.hidden_dim],
             ['back_forth','n_back_forth', args.n_back_forth]
         ]
     #todo: how to omit dyads and check that they are omitted?
