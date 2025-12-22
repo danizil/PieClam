@@ -1,0 +1,4179 @@
+/var/spool/slurm/slurmd/job4640794/slurm_script: line 7: nvcc: command not found
+Mon Dec 15 10:55:46 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 555.42.06              Driver Version: 555.42.06      CUDA Version: 12.5     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla V100-SXM2-16GB           On  |   00000000:AF:00.0 Off |                    0 |
+| N/A   39C    P0             48W /  300W |       1MiB /  16384MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+/mnt/home/jcervino/miniconda3/envs/pieclam_directed/lib/python3.11/site-packages/outdated/__init__.py:36: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:100:::  
+CUDA available
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:102:::  
+Using device: cuda
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:124:::  
+Running cross val link splits for cora-ml with model ieclam
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:125:::  
+args=Namespace(model_name='ieclam', ds_name='cora-ml', dim_feats=[50, 100, 200], l1_regs=[], s_regs=[0.0, 0.1], n_iters_feats=[500, 1000, 3000], lr_feats=[5e-07, 5e-06], dim_attr=[], n_iters_prior=[], lr_prior=[], noise_amps=[], n_back_forth=[], first_funcs_in_fit=[], use_global_config_base=False, densify=False, attr_opt=False, test_p=0.0, val_p=0.1, val_dyads_path=None, test_dyads_path=None, random_search=True, num_draws_random=50, test_only=False, n_reps=3, reverse_test_set_order=False, to_undirected=False, remove_self_loops=False)
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_22-51_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:638:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_22-51_22-11-25/valid/acc_configs10-56_15-12-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:56:01 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7402772024131852
+val
+key='auc': 0.7497648543143779
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 6.895805597305298 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:56:09 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7526718517816822
+val
+key='auc': 0.7481000752117183
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 6.270371913909912 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:56:15 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.741764588614709
+val
+key='auc': 0.7522498076080754
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 6.004096984863281 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:56:21 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5164580979836868
+val
+key='auc': 0.5650389408235597
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.518545389175415 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:56:25 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5384359257494546
+val
+key='auc': 0.5614842709785725
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.1385154724121094 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:56:28 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5379997483319925
+val
+key='auc': 0.5597200239421062
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.143031597137451 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:727:::  
+
+
+#### ERROR #### in cross_val_link: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:728:::  
+Full traceback:
+Traceback (most recent call last):
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 691, in cross_val_link
+    trainer = Trainer(
+              ^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py", line 177, in __init__
+    self.clamiter = ci.ClamIter(
+                    ^^^^^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py", line 97, in __init__
+    raise ValueError('in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam')
+ValueError: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:738:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_22-59_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:638:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_22-59_22-11-25/valid/acc_configs10-56_15-12-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:56:32 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7444636573016946
+val
+key='auc': 0.7324268954312808
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.991113901138306 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:56:39 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7331336484367599
+val
+key='auc': 0.7296435383361631
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.996905088424683 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:56:45 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7348104925765007
+val
+key='auc': 0.739959410102801
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.978532075881958 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:56:51 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5665626533160089
+val
+key='auc': 0.5501091529694668
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.137073516845703 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:56:54 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5472428921461201
+val
+key='auc': 0.5086249168919237
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.132373332977295 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:56:58 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5777251191534906
+val
+key='auc': 0.5552797404759453
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.1491291522979736 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:727:::  
+
+
+#### ERROR #### in cross_val_link: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:728:::  
+Full traceback:
+Traceback (most recent call last):
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 691, in cross_val_link
+    trainer = Trainer(
+              ^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py", line 177, in __init__
+    self.clamiter = ci.ClamIter(
+                    ^^^^^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py", line 97, in __init__
+    raise ValueError('in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam')
+ValueError: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:738:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_22-57_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:638:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_22-57_22-11-25/valid/acc_configs10-57_15-12-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:57:02 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7278719490556088
+val
+key='auc': 0.7397840324300364
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 12.341102600097656 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:57:15 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.743173505297046
+val
+key='auc': 0.7530429335013235
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 6.018143653869629 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:57:21 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7352537393200156
+val
+key='auc': 0.7609288210955784
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.985022306442261 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:57:27 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.531150985251972
+val
+key='auc': 0.5664725006064054
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.1442148685455322 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:57:30 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5544479492592054
+val
+key='auc': 0.5519493097448909
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.1311869621276855 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:57:34 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5637066455906492
+val
+key='auc': 0.5558983612221643
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.138206720352173 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:727:::  
+
+
+#### ERROR #### in cross_val_link: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:728:::  
+Full traceback:
+Traceback (most recent call last):
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 691, in cross_val_link
+    trainer = Trainer(
+              ^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py", line 177, in __init__
+    self.clamiter = ci.ClamIter(
+                    ^^^^^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py", line 97, in __init__
+    raise ValueError('in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam')
+ValueError: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:738:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_22-58_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:638:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_22-58_22-11-25/valid/acc_configs10-57_15-12-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:57:38 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7490502360447969
+val
+key='auc': 0.7333971440487638
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.976739168167114 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:57:44 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7406398588396973
+val
+key='auc': 0.7655165614109787
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.9971699714660645 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:57:50 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7593403470473546
+val
+key='auc': 0.7290196824355334
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 6.001365661621094 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:57:56 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5590331141370969
+val
+key='auc': 0.5484277958778394
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.145822286605835 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:58:00 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5194929596581839
+val
+key='auc': 0.5311395709616455
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.1363937854766846 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:58:03 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5448103370513275
+val
+key='auc': 0.5709756059254968
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.1899590492248535 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:727:::  
+
+
+#### ERROR #### in cross_val_link: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:728:::  
+Full traceback:
+Traceback (most recent call last):
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 691, in cross_val_link
+    trainer = Trainer(
+              ^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py", line 177, in __init__
+    self.clamiter = ci.ClamIter(
+                    ^^^^^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py", line 97, in __init__
+    raise ValueError('in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam')
+ValueError: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:738:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_22-48_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:638:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_22-48_22-11-25/valid/acc_configs10-58_15-12-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:58:08 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7434287079675546
+val
+key='auc': 0.7380250205479811
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.996014356613159 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:58:14 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7425563531326305
+val
+key='auc': 0.744721655565231
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.997037887573242 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:58:20 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7465243658461065
+val
+key='auc': 0.7469335083038275
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.988370418548584 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:58:26 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5274629178501897
+val
+key='auc': 0.5222773270697618
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.1409382820129395 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:58:29 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5462171329358487
+val
+key='auc': 0.5623533066107785
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.1345267295837402 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:58:33 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.546895081304319
+val
+key='auc': 0.5565152369169128
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.1441783905029297 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:727:::  
+
+
+#### ERROR #### in cross_val_link: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:728:::  
+Full traceback:
+Traceback (most recent call last):
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 691, in cross_val_link
+    trainer = Trainer(
+              ^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py", line 177, in __init__
+    self.clamiter = ci.ClamIter(
+                    ^^^^^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py", line 97, in __init__
+    raise ValueError('in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam')
+ValueError: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:738:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_22-47_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:638:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_22-47_22-11-25/valid/acc_configs10-58_15-12-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:58:37 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7456647357980773
+val
+key='auc': 0.719164504257053
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.990187406539917 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:58:43 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7532296216072537
+val
+key='auc': 0.747223186847896
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 6.008313894271851 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:58:49 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7632836171196455
+val
+key='auc': 0.7356805438976424
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.9911181926727295 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:58:55 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5283211340330081
+val
+key='auc': 0.5504267523370602
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.1498961448669434 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:58:59 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5485690977136385
+val
+key='auc': 0.5738174222448691
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.142317056655884 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:59:02 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5365371047716537
+val
+key='auc': 0.5322311006563138
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.2006046772003174 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:727:::  
+
+
+#### ERROR #### in cross_val_link: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:728:::  
+Full traceback:
+Traceback (most recent call last):
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 691, in cross_val_link
+    trainer = Trainer(
+              ^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py", line 177, in __init__
+    self.clamiter = ci.ClamIter(
+                    ^^^^^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py", line 97, in __init__
+    raise ValueError('in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam')
+ValueError: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:738:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_22-54_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:638:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_22-54_22-11-25/valid/acc_configs10-59_15-12-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:59:06 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.751331507562058
+val
+key='auc': 0.746811354700907
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.987741947174072 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:59:12 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7711206719818573
+val
+key='auc': 0.7685241576200291
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.995630502700806 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:59:19 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7493895636953347
+val
+key='auc': 0.7541868147401006
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.979965686798096 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:59:25 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5473871063975987
+val
+key='auc': 0.5168947158096429
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.144784450531006 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:59:28 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5369018819959818
+val
+key='auc': 0.5473266684000845
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.1363866329193115 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:59:31 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.519909342962698
+val
+key='auc': 0.5474418417971239
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.139573097229004 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:727:::  
+
+
+#### ERROR #### in cross_val_link: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:728:::  
+Full traceback:
+Traceback (most recent call last):
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 691, in cross_val_link
+    trainer = Trainer(
+              ^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py", line 177, in __init__
+    self.clamiter = ci.ClamIter(
+                    ^^^^^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py", line 97, in __init__
+    raise ValueError('in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam')
+ValueError: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:738:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_23-00_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:638:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_23-00_22-11-25/valid/acc_configs10-59_15-12-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:59:36 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7523219201420653
+val
+key='auc': 0.7269849524211716
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.9878456592559814 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:59:42 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7445633347990402
+val
+key='auc': 0.7518467007184377
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 6.009923934936523 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:59:48 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7356079125552644
+val
+key='auc': 0.7433186341831152
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.9770424365997314 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:59:54 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5744810054278285
+val
+key='auc': 0.5656523264153676
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.1403777599334717 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 10:59:57 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5257118457868938
+val
+key='auc': 0.5279888805320313
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.1324217319488525 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 11:00:01 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5446526910803485
+val
+key='auc': 0.5575099162549799
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.184246301651001 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:727:::  
+
+
+#### ERROR #### in cross_val_link: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:728:::  
+Full traceback:
+Traceback (most recent call last):
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 691, in cross_val_link
+    trainer = Trainer(
+              ^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py", line 177, in __init__
+    self.clamiter = ci.ClamIter(
+                    ^^^^^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py", line 97, in __init__
+    raise ValueError('in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam')
+ValueError: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:738:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_23-01_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:638:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_23-01_22-11-25/valid/acc_configs11-00_15-12-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 11:00:05 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7596973480130245
+val
+key='auc': 0.7391950775588126
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.999987840652466 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 11:00:11 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7483397687764834
+val
+key='auc': 0.7018003696019014
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 6.007525682449341 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 11:00:17 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.765824332903047
+val
+key='auc': 0.7467825613516471
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.993241310119629 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 11:00:24 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5134571690742434
+val
+key='auc': 0.537613711916433
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.1466305255889893 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 11:00:27 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5477971273086651
+val
+key='auc': 0.5282698338187486
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.139260768890381 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 11:00:31 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5386169004964081
+val
+key='auc': 0.5790717722219216
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.15206241607666 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:727:::  
+
+
+#### ERROR #### in cross_val_link: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:728:::  
+Full traceback:
+Traceback (most recent call last):
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 691, in cross_val_link
+    trainer = Trainer(
+              ^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py", line 177, in __init__
+    self.clamiter = ci.ClamIter(
+                    ^^^^^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py", line 97, in __init__
+    raise ValueError('in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam')
+ValueError: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:738:::  
+
+
+Finished CrossVal!
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_22-52_22-11-25 of cora-ml,ieclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:258:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:638:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/ieclam/split_22-52_22-11-25/valid/acc_configs11-00_15-12-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 11:00:35 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7471606051908648
+val
+key='auc': 0.759307668279676
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.99317479133606 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 11:00:41 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.726944453477472
+val
+key='auc': 0.7641702542016477
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 6.022637605667114 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 11:00:47 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-06,
+        "n_iter": 1000,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 1000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.73352811683051
+val
+key='auc': 0.7379412580774071
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 5.984699726104736 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 11:00:53 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.5327910688962378
+val
+key='auc': 0.5236105463930658
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.15975284576416 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 11:00:57 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.527547749762824
+val
+key='auc': 0.5413969835040284
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.138362407684326 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-15 11:01:00 starting optimization of ieclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 64,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 500,
+        "early_stop": 0
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:439:::  
+staring fit_feats for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.552834022121335
+val
+key='auc': 0.5535591197262363
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on ieclam cora-ml 
+took 3.149338960647583 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:727:::  
+
+
+#### ERROR #### in cross_val_link: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:728:::  
+Full traceback:
+Traceback (most recent call last):
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py", line 691, in cross_val_link
+    trainer = Trainer(
+              ^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py", line 177, in __init__
+    self.clamiter = ci.ClamIter(
+                    ^^^^^^^^^^^^
+  File "/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py", line 97, in __init__
+    raise ValueError('in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam')
+ValueError: in clamiter init. dim_feat should be divisible by 4 for directed p/ieclam
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:738:::  
+
+
+Finished CrossVal!
+
+

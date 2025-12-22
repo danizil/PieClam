@@ -1,0 +1,7 @@
+sbatch a_bigclam_cora_val_wide.sbatch
+sleep 1
+sbatch a_ieclam_cora_val_wide.sbatch
+sleep 1
+sbatch a_pclam_cora_val_wide.sbatch
+sleep 1
+sbatch a_pieclam_cora_val_wide.sbatch
