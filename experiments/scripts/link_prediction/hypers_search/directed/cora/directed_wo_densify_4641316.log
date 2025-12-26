@@ -1,0 +1,1110 @@
+/var/spool/slurm/slurmd/job4641316/slurm_script: line 7: nvcc: command not found
+Tue Dec 23 21:03:58 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 565.57.01              Driver Version: 565.57.01      CUDA Version: 12.7     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla V100-SXM2-32GB           On  |   00000000:AF:00.0 Off |                    0 |
+| N/A   37C    P0             48W /  300W |       1MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+/mnt/home/jcervino/miniconda3/envs/pieclam_directed/lib/python3.11/site-packages/outdated/__init__.py:36: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:105:::  
+CUDA available
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:107:::  
+Using device: cuda
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:132:::  
+Running cross val link splits for cora-ml with model pclam
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/scripts/link_prediction/hypers_search/hypers_search_splits.py:133:::  
+args=Namespace(model_name='pclam', ds_name='cora-ml', dim_feats=[48, 100, 200], l1_regs=[], s_regs=[0.0], n_iters_feats=[500, 1000, 3000], lr_feats=[5e-07, 1e-06, 5e-06], dim_attr=[], n_iters_prior=[500, 1000, 3000], lr_prior=[5e-07, 1e-06, 5e-06], noise_amps=[], num_coupling_blocks=[32, 42], num_layers_mlp=[], hidden_dim=[50, 64, 74], n_back_forth=[], first_funcs_in_fit=['fit_feats', 'fit_prior'], use_global_config_base=False, densify=False, attr_opt=False, test_p=0.1, val_p=0.0, val_dyads_path=None, test_dyads_path=None, random_search=True, num_draws_random=50, test_only=True, n_reps=3, reverse_test_set_order=False, to_undirected=False, remove_self_loops=False)
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:514:::  
+On test set split_23-00_22-11-25 of cora-ml,pclam
+ ======================
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../datasets/import_dataset.py:284:::  
+end of import_dataset
+cora-ml 
+has 2995 nodes 
+and 8416 edges. 
+Graph is directed
+Graph has NO self loops
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:638:::  
+RunSaver defined to acc_configs path /mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/results/directed/link_prediction/auc/cora-ml/pclam/split_23-00_22-11-25/test/acc_configs21-04_23-12-25.json
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-23 21:04:12 starting optimization of pclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 48,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 50,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 3000,
+        "early_stop": 0
+    },
+    "prior_opt": {
+        "n_iter": 3000,
+        "lr": 5e-06,
+        "noise_amp": 0.1,
+        "weight_decay": 0.1,
+        "early_stop": 0
+    },
+    "back_forth": {
+        "n_back_forth": 6,
+        "scheduler_step_size": 3,
+        "scheduler_gamma": 0.5,
+        "early_stop_fit": 0,
+        "first_func_in_fit": "fit_prior"
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:643:::  
+
+in fit,
+first_func_in_fit='fit_prior'
+second_function_name='fit_feats'
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 1/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 2/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 3/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 4/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 5/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 6/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:780:::  
+
+fit end
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7801778925207944
+val
+auc: None
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on pclam cora-ml 
+took 8037.196208953857 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-23 23:18:09 starting optimization of pclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 48,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 50,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 3000,
+        "early_stop": 0
+    },
+    "prior_opt": {
+        "n_iter": 3000,
+        "lr": 5e-06,
+        "noise_amp": 0.1,
+        "weight_decay": 0.1,
+        "early_stop": 0
+    },
+    "back_forth": {
+        "n_back_forth": 6,
+        "scheduler_step_size": 3,
+        "scheduler_gamma": 0.5,
+        "early_stop_fit": 0,
+        "first_func_in_fit": "fit_prior"
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:643:::  
+
+in fit,
+first_func_in_fit='fit_prior'
+second_function_name='fit_feats'
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 1/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 2/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 3/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 4/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 5/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 6/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:780:::  
+
+fit end
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.808199994061766
+val
+auc: None
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on pclam cora-ml 
+took 8127.224769830704 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-24 01:33:37 starting optimization of pclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 48,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 50,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 3000,
+        "early_stop": 0
+    },
+    "prior_opt": {
+        "n_iter": 3000,
+        "lr": 5e-06,
+        "noise_amp": 0.1,
+        "weight_decay": 0.1,
+        "early_stop": 0
+    },
+    "back_forth": {
+        "n_back_forth": 6,
+        "scheduler_step_size": 3,
+        "scheduler_gamma": 0.5,
+        "early_stop_fit": 0,
+        "first_func_in_fit": "fit_prior"
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:643:::  
+
+in fit,
+first_func_in_fit='fit_prior'
+second_function_name='fit_feats'
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 1/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 2/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 3/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 4/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 5/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 6/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:780:::  
+
+fit end
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.8047777333195718
+val
+auc: None
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on pclam cora-ml 
+took 8054.322194099426 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-24 03:47:51 starting optimization of pclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 50,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 1e-06,
+        "n_iter": 3000,
+        "early_stop": 0
+    },
+    "prior_opt": {
+        "n_iter": 500,
+        "lr": 1e-06,
+        "noise_amp": 0.1,
+        "weight_decay": 0.1,
+        "early_stop": 0
+    },
+    "back_forth": {
+        "n_back_forth": 6,
+        "scheduler_step_size": 3,
+        "scheduler_gamma": 0.5,
+        "early_stop_fit": 0,
+        "first_func_in_fit": "fit_feats"
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:643:::  
+
+in fit,
+first_func_in_fit='fit_feats'
+second_function_name='fit_prior'
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 1/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 2/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 3/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 4/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 5/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 6/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:780:::  
+
+fit end
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7474893288523232
+val
+auc: None
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on pclam cora-ml 
+took 5241.448925495148 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 1
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-24 05:15:13 starting optimization of pclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 50,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 1e-06,
+        "n_iter": 3000,
+        "early_stop": 0
+    },
+    "prior_opt": {
+        "n_iter": 500,
+        "lr": 1e-06,
+        "noise_amp": 0.1,
+        "weight_decay": 0.1,
+        "early_stop": 0
+    },
+    "back_forth": {
+        "n_back_forth": 6,
+        "scheduler_step_size": 3,
+        "scheduler_gamma": 0.5,
+        "early_stop_fit": 0,
+        "first_func_in_fit": "fit_feats"
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:643:::  
+
+in fit,
+first_func_in_fit='fit_feats'
+second_function_name='fit_prior'
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 1/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 2/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 3/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 4/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 5/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 6/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:780:::  
+
+fit end
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.745804001521319
+val
+auc: None
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on pclam cora-ml 
+took 5226.949826478958 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 2
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-24 06:42:20 starting optimization of pclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 200,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 50,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 1e-06,
+        "n_iter": 3000,
+        "early_stop": 0
+    },
+    "prior_opt": {
+        "n_iter": 500,
+        "lr": 1e-06,
+        "noise_amp": 0.1,
+        "weight_decay": 0.1,
+        "early_stop": 0
+    },
+    "back_forth": {
+        "n_back_forth": 6,
+        "scheduler_step_size": 3,
+        "scheduler_gamma": 0.5,
+        "early_stop_fit": 0,
+        "first_func_in_fit": "fit_feats"
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:643:::  
+
+in fit,
+first_func_in_fit='fit_feats'
+second_function_name='fit_prior'
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 1/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 2/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 3/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 4/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 5/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 6/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 500 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:780:::  
+
+fit end
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:444:::  
+
+
+
+FINISHED train 
+ last accuracies:
+test
+key='auc': 0.7575546352863998
+val
+auc: None
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:460:::  
+
+train_model_on_params on pclam cora-ml 
+took 5263.5433847904205 seconds
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/optimization_utils_directed.py:663:::  
+Repetition no. 0
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:158:::  
+
+Using dataset specific configuration and not global 
+
+
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../trainer_directed.py:337:::  
+
+In function train. 
+2025-12-24 08:10:04 starting optimization of pclam on cora-ml (DIRECTED) on device cuda
+
+ configs_dict: 
+{
+    "clamiter_init": {
+        "dim_feat": 100,
+        "dim_attr": 100,
+        "s_reg": 0.0,
+        "l1_reg": 1,
+        "T": 1,
+        "hidden_dim": 74,
+        "num_coupling_blocks": 32,
+        "num_layers_mlp": 2
+    },
+    "feat_opt": {
+        "lr": 5e-07,
+        "n_iter": 3000,
+        "early_stop": 0
+    },
+    "prior_opt": {
+        "n_iter": 3000,
+        "lr": 5e-06,
+        "noise_amp": 0.1,
+        "weight_decay": 0.1,
+        "early_stop": 0
+    },
+    "back_forth": {
+        "n_back_forth": 6,
+        "scheduler_step_size": 3,
+        "scheduler_gamma": 0.5,
+        "early_stop_fit": 0,
+        "first_func_in_fit": "fit_feats"
+    }
+}
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:643:::  
+
+in fit,
+first_func_in_fit='fit_feats'
+second_function_name='fit_prior'
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 1/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 2/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_prior for 3000 iterations
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:705:::  
+
+back and forth 3/6
+
+
+/mnt/home/jcervino/Github/CoraCiteseer/PieClam/experiments/../clamiter_directed.py:440:::  
+staring fit_feats for 3000 iterations
+slurmstepd: error: *** JOB 4641316 ON node10 CANCELLED AT 2025-12-24T09:04:11 DUE TO TIME LIMIT ***
