@@ -118,5 +118,69 @@
             "lr",
             5e-07
         ]
+    ],
+    "(0.6050484758494192, 0.6175513506998846)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            100
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            1000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-07
+        ]
+    ],
+    "(0.663740064634466, 0.6404073621321947)": [
+        [
+            "clamiter_init",
+            "s_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            100
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            1000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ],
+        [
+            "prior_opt",
+            "n_iter",
+            3000
+        ],
+        [
+            "prior_opt",
+            "lr",
+            5e-07
+        ]
     ]
 }
