@@ -490,6 +490,7 @@ def cross_val_link_splits(
         acc_every=20,
         plot_every=10000,
         verbose=False,
+        densify=False,
         val_p=0.0,
         random_search=False,
         random_seed=42,
@@ -528,6 +529,7 @@ def cross_val_link_splits(
             acc_every=acc_every,
             plot_every=plot_every,
             verbose=verbose,
+            densify=densify,
             val_p=val_p,
             random_search=random_search,
             random_seed=random_seed,
@@ -677,7 +679,11 @@ def cross_val_link(
 
                 if densify:
                     ds_test_val_omitted.edge_index, ds_test_val_omitted.edge_attr = up.two_hop_link(ds_test_val_omitted)
-                                            
+                    printd('Densifyed the graph (link prediction)')
+                    print(f'Number of edges: {ds_test_val_omitted.edge_index.shape[1]}')
+                    print(f'Number of nodes: {ds_test_val_omitted.num_nodes}')
+                else:
+                    printd('Not densifying the graph (link prediction)')
                 outers = []
                 inners = []
                 for i in range(len(range_triplets)):

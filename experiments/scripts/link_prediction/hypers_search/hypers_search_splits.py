@@ -139,6 +139,7 @@ def main():
         use_global_config_base=False,
         attr_opt=args.attr_opt,
         val_p=args.val_p,
+        densify=args.densify,
         random_search=args.random_search,
         num_draws_random=args.num_draws_random,
         test_only=args.test_only,

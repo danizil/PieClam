@@ -368,7 +368,7 @@ def two_hop_link(data):
     # Convert to sparse COO tensor
     indices = edges_to_densify
     values = torch.ones(edges_to_densify.shape[1], device=edges_to_densify.device, dtype=torch.float32)
-    
+    #! todo: the edges created by densification should have a smaller weight in the calculation if the iteration
     sparse_adj = torch.sparse_coo_tensor(
         indices=indices,
         values=values,
