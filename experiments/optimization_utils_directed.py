@@ -82,11 +82,13 @@ def print_folder(ds_name,
                  top_num_to_print=20,
                  from_date=None,
                  sort_by='val_acc', 
+                 show_empty_files=True,
                  print_base_config=True,
                  return_dataframes=False):
     '''print the results of an experiment on a dataset with one of the Clam models. The results are arranged into a metric (auc or hits@20) and test/validation experiments.'''
-    printd(f'Printing results for {task} on {ds_name} with {model_name} model.\n')
-    
+    printd(f'Printing results for {task} on {ds_name} with {model_name} model.')
+    if not show_empty_files:
+        print('Not showing empty files!\n')
     if task == 'link_prediction':   
         model_path = os.path.join(metric, ds_name, model_name)
         existing_splits = os.listdir(model_path)
@@ -106,21 +108,16 @@ def print_folder(ds_name,
             if os.path.exists(path):
                 print(f'{splits[i]}')
                 print(f'================== \n')
+                #todo: unify all files into one dataframe?
                 for file_name in os.listdir(path):
                     # the folder names should all be datetime %H%M_%d%m%y
                     if file_name.endswith('.json'):
                         # Extract the timestamp from the file name
                         if from_date is not None:    
-                            try:
-                                file_timestamp = datetime.strptime(file_name[17:-5], '%d-%m-%y')
-                            except ValueError:
+                            file_timestamp = datetime.strptime(file_name[17:-5], '%d-%m-%y')
+                            input_date = datetime.strptime(from_date, '%d-%m-%y')
+                            if file_timestamp < input_date:
                                 continue
-
-                            # Check if the file's timestamp is after the given date
-                            if from_date is not None:
-                                input_date = datetime.strptime(from_date, '%d-%m-%y')
-                                if file_timestamp < input_date:
-                                    continue
                         file_path = os.path.join(path, file_name)
                         grouped_tup = SaveRun.load_saved(
                             task,
@@ -133,8 +130,8 @@ def print_folder(ds_name,
                             base_config = grouped_tup[1]
                         else:
                             grouped_df = grouped_tup
-                        print("    " + file_name + '\n    ==================')
                         if not grouped_df.empty:  
+                            print("    " + file_name + '\n    ==================')
                             if print_base_config:
                                 print('    Base config:')
                                 print(json.dumps(base_config, indent=4))
@@ -146,7 +143,10 @@ def print_folder(ds_name,
                             
                             print('\n')
                         else:
-                            print(f'The file in {file_path} has no results, consider deleting.\n')
+                            if show_empty_files:
+                                print("    " + file_name + '\n    ==================')
+                                print(f'The file in {file_path} has no results, consider deleting.\n')
+                            
             else:
                 print(f'Path {path} does not exist. Skipping.\n')
 
@@ -457,8 +457,8 @@ class SaveRun:
 
                 # Sort by avg_acc
                 grouped = grouped.sort_values(by='avg_acc', ascending=False).reset_index(drop=True)
-        else:
-            printd('no test or val accuracy scores in the file')
+        # else:
+        #     printd('no test or val accuracy scores in the file')
 
         if return_base_config:
             return grouped, base_config
