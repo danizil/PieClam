@@ -166,8 +166,8 @@ def clam_edges_from_feats(points, lorenz, directed):
         adj_mat = torch.triu(adj_mat1)
     
     edge_index = dense_to_sparse(adj_mat)[0]
-    edge_index = to_undirected(edge_index)
-    edge_index = remove_self_loops(edge_index)[0]
+    # edge_index = to_undirected(edge_index)
+    # edge_index = remove_self_loops(edge_index)[0]
     edge_index = sort_edge_index(edge_index)
 
     graph = Data(x=points, edge_index=edge_index)

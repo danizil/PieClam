@@ -82,7 +82,7 @@ def sample_from_adj_undirected(prob_adj):
 
 # add all graph creation with prior models here
 
-def sample_normflows_dist(num_samples, name_shape, lorenz=False, device='cpu'):
+def sample_normflows_dist(num_samples, name_shape, lorenz=False, device='cpu', directed=True):
     ''''sample nodes from one of the normflows packge distributions'''
     assert name_shape in ['Circ', 'TwoMoons', 'ChubGaus'], 'sample_normflow_dist: name_shape should be one of Circ, TwoMoons, ChubGaus'
 
@@ -106,19 +106,37 @@ def sample_normflows_dist(num_samples, name_shape, lorenz=False, device='cpu'):
         
 
 
-    graph = clam_edges_from_feats(node_feats, lorenz)
+    graph = clam_edges_from_feats(node_feats, lorenz, directed=directed)
     graph.name = name_shape
+    graph.edge_attr = torch.ones(graph.edge_index.shape[1], dtype=torch.bool)
+    graph.edge_attr = graph.edge_attr.to(device)
     return graph, dist
 
 #todo: need to have an option for directed graphs. the import dataset function makes them undirected and we check for that everywhere.
 def simulate_dataset(name, verbose=False):
     figsize = (2, 1)
+    if name == '2UP':
+        num_samples_per_comm = 20
+        # prob_adj_bipart, y = create_sbm_directed(num_samples_per_comm, interaction_probs=[1,1,0,0])
+        prob_adj_bipart, y = create_sbm_directed(num_samples_per_comm, interaction_probs=[0.9,0.9,0.1,0.1])
+        adj_bipart = sample_from_adj_directed(prob_adj_bipart)
+        edge_index = dense_to_sparse(adj_bipart)[0]
+        data = Data(edge_index=edge_index, y=y)
+        if verbose == True:
+            _, axes = plt.subplots(1,2, figsize=figsize)
+            axes[0].imshow(prob_adj_bipart)
+            axes[1].imshow(adj_bipart)
+            axes[0].set_title('sbm')
+            axes[1].set_title('sampled')
+        return data
+
 # 8888b.  88 88""Yb 
 #  8I  Yb 88 88__dP 
 #  8I  dY 88 88"Yb  
 # 8888Y"  88 88  Yb 
-    if name == 'BipartDir':
-        num_samples_per_comm = 10
+    elif name == 'BipartDir':
+        num_samples_per_comm = 20
+        # prob_adj_bipart, y = create_sbm_directed(num_samples_per_comm, interaction_probs=[0.1,0.9,0.1,0.1])
         prob_adj_bipart, y = create_sbm_directed(num_samples_per_comm, interaction_probs=[0.1,0.9,0.1,0.1])
         adj_bipart = sample_from_adj_directed(prob_adj_bipart)
         edge_index = dense_to_sparse(adj_bipart)[0]

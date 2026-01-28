@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 0 "main.aux" "main.bbl" "main" 0
+["bibtex main"] 1769517995 "main.aux" "main.bbl" "main" 1769517995
   "./icml2025.bst" 1754853583 27147 88eb4aed280e585571f8eac50f39a681 ""
   "bibiliography.bib" 1754853583 31164 03e3663dd73bf7810fb861548f727c8d ""
-  "main.aux" 0 -1 0 "pdflatex"
+  "main.aux" 1769517995 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1759318017 "/Users/danielzilberg/Documents/Learned_Graphon/ICML_PieClam_020425/LaTeX/pieclam_icml_paper/main.tex" "main.pdf" "main" 1759318017
+["pdflatex"] 1769517993 "/Users/danielzilberg/Documents/Learned_Graphon/ICML_PieClam_020425/LaTeX/pieclam_icml_paper/main.tex" "main.pdf" "main" 1769517993
   "/Users/danielzilberg/Documents/Learned_Graphon/ICML_PieClam_020425/LaTeX/pieclam_icml_paper/main.tex" 1759318015 170129 40ba4da0793953265dddb066be78e688 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -309,8 +309,8 @@
   "images/synthetic_2d/two_moons/moons_big_gt.png" 1754853583 50087 3204611b075719b2fed09c02fa234a4f ""
   "images/synthetic_2d/two_moons/moons_big_reconstruct.png" 1754853583 19691 63e9a01d67b5347ed8eb3e3c5203c125 ""
   "images/synthetic_2d/two_moons/moons_pclam_reconstructed.png" 1754853583 33216 b4baaf56305cd247caca0db94dd14fc8 ""
-  "main.aux" 1759318017 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
-  "main.bbl" 0 -1 0 "bibtex main"
+  "main.aux" 1769285773 27588 1a903b0f1da9f0d26072a0b9582664cc "pdflatex"
+  "main.bbl" 1769517993 24517 a48f78ecbe12d43c1eaad8167f8e320b "bibtex main"
   "main.out" 0 -1 0 "pdflatex"
   "main.tex" 1759318015 170129 40ba4da0793953265dddb066be78e688 ""
   (generated)

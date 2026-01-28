@@ -29,15 +29,23 @@ from utils import utils
 
 
 
-def import_dataset(dataset_name, test_dyads_path=None, val_dyads_path=None, remove_data_feats=True, verbose=False, to_undirected=True, remove_self_loops=True):
+def import_dataset(dataset_name=None, data=None, test_dyads_path=None, val_dyads_path=None, remove_data_feats=True, verbose=False, to_undirected=True, remove_self_loops=True):
     '''will import a dataset with the same name as the dataset_name parameter'''
     current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    if data is not None:
+       data = data
+       if dataset_name is None:
+           dataset_name = 'custom_dataset'
+       data.name = dataset_name
 
 # 8888b.  88 88""Yb 888888  dP""b8 888888 888888 8888b.  
 #  8I  Yb 88 88__dP 88__   dP   `"   88   88__    8I  Yb 
 #  8I  dY 88 88"Yb  88""   Yb        88   88""    8I  dY 
 # 8888Y"  88 88  Yb 888888  YboodP   88   888888 8888Y"
-    if dataset_name == 'BipartDir':
+    elif dataset_name == '2UP':
+        data = simulate_dataset('2UP', verbose=verbose)
+    elif dataset_name == 'BipartDir':
         data = simulate_dataset('BipartDir', verbose=verbose)
 
     elif dataset_name == 'BipartDirSmallFull':

@@ -202,7 +202,7 @@ class ClamIter(MessagePassing):
                 To get the reverse direction, flip the edge_index.'''
                 '''backward direction for sender features: edge_index is flipped and the features aren't'''
                 tbr_sender = self.propagate(edge_index=torch.flip(graph.edge_index, dims=[0]), x=graph.x, global_features=(prior_grad[:, :self.dim_feat//2]), edge_attr=graph.edge_attr)
-                #? BE SURE TO NOT TO USE UPDATED VALUES for the backward pass. This doesn't happen because propagate doesn't update the features (that's why we have tbr) and the 
+                
                 
 
                 #reverse direction: add the r features to the global features

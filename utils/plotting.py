@@ -113,6 +113,9 @@ def plot_2dgraph(graph,
         
         x_fig_lim = kwargs.get('x_fig_lim', None)
         y_fig_lim = kwargs.get('y_fig_lim', None)
+        title = kwargs.get('title', None)
+        x_label = kwargs.get('x_label', None)
+        y_label = kwargs.get('y_label', None)
         draw_edges = kwargs.get('draw_edges', False)
         draw_community_affiliation = kwargs.get('draw_community_affiliation', True)
         draw_colorful_nodes = kwargs.get('draw_colorful_nodes', False)
@@ -167,12 +170,15 @@ def plot_2dgraph(graph,
         # nx.draw_networkx_nodes(G, pos=node_positions_dict, node_color=node_colors, node_size=node_sizes, alpha=alpha_value, ax=ax)
         arrows = True if graph.is_directed() else False
         
-        nx.draw(G, pos=node_positions_dict, node_color=node_colors, node_size=node_sizes*40, arrows=arrows, edge_color=edge_color, width=width, alpha=alpha, ax=ax)
+        nx.draw(G, pos=node_positions_dict, node_color=node_colors, node_size=node_sizes*40, arrows=False, edge_color=edge_color, width=width, alpha=alpha, ax=ax)
      
         #* add the axes (nx doesn't use them ever)
         ax.axis('on')
         ax.tick_params(left=True, bottom=True, labelleft=True, labelbottom=True)
-        
+        if x_label is not None:
+            ax.set_xlabel(x_label, rotation=0, fontsize=10)
+        if y_label is not None:
+            ax.set_ylabel(y_label, rotation=90, fontsize=10)
 
         if lorenz_fig_lims:
             # ax.set_title(f'$t_{proj_dims[0]}$ vs $s_{proj_dims[0]}$')
@@ -185,7 +191,10 @@ def plot_2dgraph(graph,
             if lorenz_fig_lims:
                 ax.axhline(y=0, color='gray', linestyle='--', alpha=0.5)
         else:
-            ax.set_title(f'feat {proj_dims[0]} vs feat {proj_dims[1]}')
+            if title is None:
+                ax.set_title(f'feat {proj_dims[0]} vs feat {proj_dims[1]}')
+            else:
+                ax.set_title(title)
             ax.set_aspect('equal')
             ax.set_xlim(x_fig_lim[0], x_fig_lim[1])
             ax.set_ylim(y_fig_lim[0], y_fig_lim[1])
@@ -246,7 +255,7 @@ def community_affiliation_to_colors(community_affiliation):
     return node_colors
 
 
-def plot_prob(log_prob_fn, device, zz=None, ax=None, figsize=(3,3), x_fig_lim=[0, 2], y_fig_lim=None, title=''):
+def plot_prob(log_prob_fn, device, zz=None, ax=None, figsize=(3,3), x_fig_lim=[0, 2], y_fig_lim=None, title='', x_label=None, y_label=None):
     if ax is None:
         _, ax = plt.subplots(figsize=figsize)
 
@@ -276,9 +285,13 @@ def plot_prob(log_prob_fn, device, zz=None, ax=None, figsize=(3,3), x_fig_lim=[0
     ax.set_aspect('equal', 'box')
     ax.set_title(title)
     ax.set_aspect('equal')
+    if x_label is not None:
+        ax.set_xlabel(x_label, rotation=0, fontsize=10)
+    if y_label is not None:
+        ax.set_ylabel(y_label, rotation=90, fontsize=10)
     return im
 
-def plot_normflows_dist(dist, lorenz, zz=None, ax=None, figsize=(2,2), x_fig_lim=[0, 2], y_fig_lim=None, title=''):
+def plot_normflows_dist(dist, lorenz, zz=None, ax=None, figsize=(2,2), x_fig_lim=[0, 2], y_fig_lim=None, title='', x_label=None, y_label=None):
     '''since we shift the distribution for sampling, we need to shift the plot as well'''
     if ax is None:
         _, ax = plt.subplots(figsize=figsize)
@@ -322,6 +335,10 @@ def plot_normflows_dist(dist, lorenz, zz=None, ax=None, figsize=(2,2), x_fig_lim
     ax.set_aspect('equal', 'box')
     ax.set_title(title)
     ax.set_aspect('equal')
+    if x_label is not None:
+        ax.set_xlabel(x_label, rotation=0, fontsize=10)
+    if y_label is not None:
+        ax.set_ylabel(y_label, rotation=90, fontsize=10)
     return im
 
 
@@ -430,6 +447,7 @@ def plot_2d_graphs(graph_cpu, community_affiliation_cpu, lorenz, directed, **kwa
         axes3 = np.expand_dims(axes3, axis=0)
 
     if graph_cpu.x.shape[1] % 2 == 0:
+    # if lorenz:
         # even number of features
         for j in range(num_feats // 2):
             row = j // num_cols
@@ -444,7 +462,7 @@ def plot_2d_graphs(graph_cpu, community_affiliation_cpu, lorenz, directed, **kwa
 
     else:
         # odd number of features
-        # (this is only for clam)
+        # (this is only for bigclam)
         for j in range(0, num_feats - 1, 2):
             row = (j //2) //num_cols
             col = (j// 2) % num_cols
