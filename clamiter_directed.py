@@ -201,15 +201,15 @@ class ClamIter(MessagePassing):
                 '''in this case multiply the features in the message by the forward/reverse B.
                 To get the reverse direction, flip the edge_index.'''
                 '''backward direction for sender features: edge_index is flipped and the features aren't'''
+                x_flipped = torch.cat([graph.x[:, self.dim_feat//2:], graph.x[:, :self.dim_feat//2]], dim=1)
+                
+                
                 tbr_sender = self.propagate(edge_index=torch.flip(graph.edge_index, dims=[0]), x=graph.x, global_features=(prior_grad[:, :self.dim_feat//2]), edge_attr=graph.edge_attr)
                 
-                
-
                 #reverse direction: add the r features to the global features
                 '''forward direction for receiver features: edge_index is not flipped and the features are'''
-                x_flipped = torch.cat([graph.x[:, self.dim_feat//2:], graph.x[:, :self.dim_feat//2]], dim=1)
                 # x_flipped = graph.x
-                #! see that the global features make sense
+                #! is flipping the correct way to do this? i think maybe the inner product should stay the same for both forward and backward directions.
                 tbr_receiver = self.propagate(edge_index=graph.edge_index, x=x_flipped, global_features=(prior_grad[:, self.dim_feat//2:]), edge_attr=graph.edge_attr)
 
                 tbr = torch.cat([tbr_sender, tbr_receiver], dim=1)
@@ -229,9 +229,6 @@ class ClamIter(MessagePassing):
         x_j[num_edges X dim_feat//2] is the reciever and x_i[num_edges X dim_feat//2] is the sender.
         x_j and x_i are arranged like the edges so that x_j[0] and x_i[0] correspond to edge_index[0].
         '''
-
-        #todo: flip edges and flip features. but how do i make this case
-        # TODO: must initialize the features differently for directed graphs!!!! 
 
 
         inner_product_nm = torch.einsum('ij,jk,ik->i', x_i[:, :self.dim_feat//2], self.B, x_j[:, self.dim_feat//2:]) + eps
@@ -1677,7 +1674,7 @@ def clam_loss(graph, lorenz):
             B = torch.concatenate([torch.ones(dim_feat//2), -torch.ones(dim_feat//2)]).to(graph.x.device)
         else:
             B = torch.ones(dim_feat).to(graph.x.device)
-
+        #! this sums only one of the features... should it make sense?
         sum_graph_feats = torch.sum(graph.x[:, :dim_feat], dim=0)
         
         term_glob_per_node = sum_graph_feats@(B*graph.x[:, dim_feat:]).T
@@ -1704,7 +1701,7 @@ def clam_loss(graph, lorenz):
         term_neighbors_non_omitted = M + torch.log(torch.exp(fufv_non_omitted-M)- torch.exp(-M)+1e-10)
         # old_term_neighbors_non_omitted = torch.log(torch.exp(fufv_non_omitted)-1 + 1e-10)
         # if edges are omitted, all of the edges with edge_attr = 1 will be calculated with the normal loss, and all of the edges with attr 0 we just sum their term_per_edge
-        loss = 0.5*(torch.sum(term_neighbors_non_omitted) - torch.sum(term_glob_per_node) + torch.sum(norms) + torch.sum(fufv_omitted))
+        loss = (graph.is_directed()+1)*0.5*(torch.sum(term_neighbors_non_omitted) - torch.sum(term_glob_per_node) + torch.sum(norms) + torch.sum(fufv_omitted))
 
         if torch.isnan(loss):
             raise ValueError('in clam_loss: loss is nan')

@@ -29,7 +29,7 @@ from utils import utils
 
 
 
-def import_dataset(dataset_name=None, data=None, test_dyads_path=None, val_dyads_path=None, remove_data_feats=True, verbose=False, to_undirected=True, remove_self_loops=True):
+def import_dataset(dataset_name=None, data=None, test_dyads_path=None, val_dyads_path=None, remove_data_feats=True, verbose=False, to_undirected=False, remove_self_loops=False):
     '''will import a dataset with the same name as the dataset_name parameter'''
     current_dir = os.path.dirname(os.path.abspath(__file__))
 
