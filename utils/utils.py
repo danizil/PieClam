@@ -52,7 +52,7 @@ def prior_model(model_name):
     elif model_name == 'ieclam' or model_name == 'pieclam':
         return 'pieclam'
 
-def get_edge_probs_from_edges_coords(edges_coords_0, edges_coords_1, lorenz, directed=False, prior=None, use_prior=False):
+def get_edge_probs_from_edges_coords(edges_coords_0, edges_coords_1, lorenz, directed=True, prior=None, use_prior=False):
     '''given two lists of edges in coordinate shape, get a list of edge probabilities'''
     #* edges_coords_0, edges_coords_1 have shape [N, in_channels]
     dim_feat = edges_coords_0.shape[1] if not directed else edges_coords_0.shape[1]//2
@@ -61,7 +61,7 @@ def get_edge_probs_from_edges_coords(edges_coords_0, edges_coords_1, lorenz, dir
         B = torch.cat([B, -B])
     else:
         B = torch.ones(dim_feat)
-    
+    #! if clam_edges_from feats has an error maybe this one also...?
     B = B.to(edges_coords_0.device)
     fufv = torch.einsum('ij,ij->i', edges_coords_0[:, :dim_feat], B*edges_coords_1[:, dim_feat:])
     if prior and use_prior:
@@ -160,7 +160,8 @@ def clam_edges_from_feats(points, lorenz, directed):
     
     adj_mat1 = torch.bernoulli(1 - probs)
     if directed:
-        adj_mat = adj_mat1.transpose(0, 1)
+        # adj_mat = adj_mat1.transpose(0, 1)
+        adj_mat = adj_mat1
     else:
     #* sample the graph only once since it's undirected:
         adj_mat = torch.triu(adj_mat1)

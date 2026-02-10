@@ -225,7 +225,8 @@ class ClamIter(MessagePassing):
 
         
     def message(self, x_j, x_i, edge_attr):
-        '''returns the message from node j to node i. this is only for edges. the global sum is preprocessed in the forward function, and will be added in the update function.             
+        '''returns the message from node j to node i. this is only for edges. the global sum is preprocessed in the forward function, and will be added in the update function.
+        #! is the message added to x_j or x_i?             
         x_j[num_edges X dim_feat//2] is the reciever and x_i[num_edges X dim_feat//2] is the sender.
         x_j and x_i are arranged like the edges so that x_j[0] and x_i[0] correspond to edge_index[0].
         '''
@@ -238,6 +239,7 @@ class ClamIter(MessagePassing):
         if (inner_product_nm == 0).any():
             raise ValueError('x_inner_product is 0 for neighbors')
         #* don't worry about B not appearing, it multiplies everything in the update function.
+        
         msg_1 = x_j[:, self.dim_feat//2:] / (1 - torch.exp(-inner_product_nm) + eps).unsqueeze(1) 
         # msg_1 = x_j[:, self.dim_feat//2:] / (1 - torch.exp(-inner_product_nm) ).unsqueeze(1) 
         #? VARIFIED the expression: 1/(1 - e^...) although the loss has 1/(e^... - 1 + eps) because the derivative has an e^... term.
@@ -349,11 +351,12 @@ class ClamIter(MessagePassing):
                 clamiter_grad = self(graph, node_mask)
                 self.debug_last_grad = clamiter_grad 
                 #todo: if the graph is directed you need to do this twice: once for sende rand one for receiver
-                if graph.is_directed():
-                    graph.x[:, :self.dim_feat//2] = torch.clamp(self.feat_bounding(graph.x[:, :self.dim_feat//2], clamiter_grad[:, :self.dim_feat//2], lr, node_mask, cutoff), -5000,5000)
-                    graph.x[:, self.dim_feat//2:] = torch.clamp(self.feat_bounding(graph.x[:, self.dim_feat//2:], clamiter_grad[:, self.dim_feat//2:], lr, node_mask, cutoff), -5000,5000)
-                else:
-                    graph.x = torch.clamp(self.feat_bounding(graph.x, clamiter_grad, lr, node_mask, cutoff), -5000,5000)
+                # if graph.is_directed():
+                #     #! check if here is a problem!!!! 
+                #     graph.x[:, :self.dim_feat//2] = torch.clamp(self.feat_bounding(graph.x[:, :self.dim_feat//2], clamiter_grad[:, :self.dim_feat//2], lr, node_mask, cutoff), -5000,5000)
+                #     graph.x[:, self.dim_feat//2:] = torch.clamp(self.feat_bounding(graph.x[:, self.dim_feat//2:], clamiter_grad[:, self.dim_feat//2:], lr, node_mask, cutoff), -5000,5000)
+                # else:
+                graph.x = torch.clamp(self.feat_bounding(graph.x, clamiter_grad, lr, node_mask, cutoff), -5000,5000)
                 #! loss for directed is s_n @ r_n
                 loss = self.readout(graph)
                 return loss
@@ -791,7 +794,8 @@ class ClamIter(MessagePassing):
                                lorenz=self.lorenz, 
                                init_type=init_type,
                                graph_given=graph_given, 
-                               node_feats_given=node_feats_given, 
+                            #    node_feats_given=node_feats_given,
+                               node_feats_given=graph_given.x, 
                                device=self.device,
                                directed=self.directed)
     

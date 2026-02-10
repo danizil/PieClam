@@ -159,7 +159,7 @@ def plot_2dgraph(graph,
         
         edge_color = 'black' 
         if draw_edges:
-            width = 15/num_edges
+            width = 35/num_edges
         else:
             width = 0.0
          # Draw edges first
@@ -168,9 +168,9 @@ def plot_2dgraph(graph,
         # # Draw nodes with specified alpha
         # alpha_value = 0.5  # Adjust this value between 0 and 1 as needed
         # nx.draw_networkx_nodes(G, pos=node_positions_dict, node_color=node_colors, node_size=node_sizes, alpha=alpha_value, ax=ax)
-        arrows = True if graph.is_directed() else False
+        arrows = True if graph.is_directed() and num_nodes < 20 else False
         
-        nx.draw(G, pos=node_positions_dict, node_color=node_colors, node_size=node_sizes*40, arrows=False, edge_color=edge_color, width=width, alpha=alpha, ax=ax)
+        nx.draw(G, pos=node_positions_dict, node_color=node_colors, node_size=node_sizes*40, arrows=arrows, edge_color=edge_color, width=width, alpha=alpha, ax=ax)
      
         #* add the axes (nx doesn't use them ever)
         ax.axis('on')

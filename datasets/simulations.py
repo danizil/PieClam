@@ -6,7 +6,8 @@ from torch_geometric.data import Data
 import matplotlib.pyplot as plt
 
 from utils.utils import clam_edges_from_feats
-from torch.nn.functional import relu
+from torch.nn.functional import relu, one_hot
+
 
 from datasets.data_utils import intersecting_tensor_from_non_intersecting_vec
 from transformation import relu_lightcone_pts
@@ -110,6 +111,18 @@ def sample_normflows_dist(num_samples, name_shape, lorenz=False, device='cpu', d
     graph.name = name_shape
     graph.edge_attr = torch.ones(graph.edge_index.shape[1], dtype=torch.bool)
     graph.edge_attr = graph.edge_attr.to(device)
+
+    if name_shape == 'TwoMoons':
+        mean_x_2moons = graph.x[:, 0].mean(dim=0)
+        graph.y = (graph.x[:, 0] > mean_x_2moons).int()
+        
+        graph.y = one_hot(graph.y.long().squeeze(), num_classes=2)
+
+    if name_shape == 'ChubGaus':
+        graph.y = graph.x[:, 0] > graph.x[:, 1]
+        #?^^ the sender nodes are true (sender node is bigger than receiver node)
+        graph.y = one_hot(graph.y.long().squeeze(), num_classes=2)
+        #? ^^ one hot encoding sends true to [0,1] and false to [1,0]!!
     return graph, dist
 
 #todo: need to have an option for directed graphs. the import dataset function makes them undirected and we check for that everywhere.
