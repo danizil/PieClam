@@ -15,6 +15,7 @@ import math
 
 def create_sbm_directed(num_samples_per_comm, interaction_probs):
     num_comms = math.sqrt(len(interaction_probs))
+    #todo: make a table of num receiver comms and num sender comms
     assert num_comms == int(num_comms), 'num_comms is not an integer'
     num_comms = int(num_comms)
     probs = torch.zeros([num_comms, num_comms])

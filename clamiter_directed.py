@@ -70,7 +70,8 @@ class ClamIter(MessagePassing):
                 #  forward_message=True,
                  lr=0.01,
                  aggr='add', 
-                 device=torch.device('cpu')):
+                 device=torch.device('cpu'),
+                 **kwargs):
         '''clamiter is the message passing network that runs the clam process'''
         #todo: it should have both the forward and reverse messages? or maybe should make a class that has both? also there is the prior. 
         #todo: in order to make the prior work i need both passes to happen at the same time. 
@@ -88,7 +89,7 @@ class ClamIter(MessagePassing):
         self.directed = directed
         self.s_reg = s_reg if self.lorenz else 0
         self.feat_bounding = relu_lightcone if self.lorenz else relu_transform
-
+        self.normalize_degree = kwargs.get('normalize_degree', True)
         # ====== safeguards ======
         if self.lorenz or self.directed:
             if not dim_feat//2 == dim_feat/2:
@@ -280,6 +281,8 @@ class ClamIter(MessagePassing):
             update = (aggr_out - global_term)@self.B + global_features - self.s_reg*s_feats - self.l1_reg*torch.sign(x)
         #! abuse of notation: s_feats are space features and not sender features
         
+        # if self.normalize_degree:
+        #     update
         return update
 
     def readout(self, graph):

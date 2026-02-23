@@ -566,6 +566,7 @@ def cross_val_link(
         metric='auc',
         attr_opt=False,
         acc_every=20,
+        grid=None,
         plot_every=10000,
         to_undirected=True,
         remove_self_loops=True,
@@ -650,8 +651,10 @@ def cross_val_link(
                             ds_test_omitted.edge_attr,
                             val_dyads_to_omit)
 
-      
-        grid = list(itertools.product(*[triplet[2] for triplet in range_triplets]))
+        if grid is None:
+            grid = list(itertools.product(*[triplet[2] for triplet in range_triplets]))
+        else:
+            grid = grid
         if random_search:
             if random_seed is not None:
                 random.seed(random_seed)
@@ -659,6 +662,7 @@ def cross_val_link(
             grid = grid[:num_draws_random]
     
         # for values in tqdm(grid, desc="Grid search"):
+        #todo: make it possible to give the grid 
         for values in grid:
             # for i in tqdm(range(n_reps), leave=False, desc="Repetitions"): 
             for i in range(n_reps):
