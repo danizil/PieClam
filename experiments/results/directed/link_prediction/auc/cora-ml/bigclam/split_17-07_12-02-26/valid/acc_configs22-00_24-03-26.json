@@ -1,0 +1,115 @@
+{
+    "date_time": "2026-03-24 22:00:23",
+    "ds_name": "cora-ml",
+    "model_name": "bigclam",
+    "task": "link_prediction",
+    "metric": "auc",
+    "config_ranges": [
+        [
+            "clamiter_init",
+            "l1_reg",
+            [
+                0.0
+            ]
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            [
+                8,
+                16,
+                32
+            ]
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            [
+                10000
+            ]
+        ],
+        [
+            "feat_opt",
+            "lr",
+            [
+                3e-05
+            ]
+        ]
+    ],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 48,
+            "l1_reg": 1
+        },
+        "feat_opt": {
+            "lr": 2e-06,
+            "n_iter": 7000
+        }
+    },
+    "(None, 0.8375200238660447)": [
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            8
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            10000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            3e-05
+        ]
+    ],
+    "(None, 0.8345820119584719)": [
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            16
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            10000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            3e-05
+        ]
+    ],
+    "(None, 0.8216741295185365)": [
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            10000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            3e-05
+        ]
+    ]
+}

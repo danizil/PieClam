@@ -1,0 +1,69 @@
+{
+    "date_time": "2026-03-01 14:46:05",
+    "ds_name": "cora-ml",
+    "model_name": "bigclam",
+    "task": "link_prediction",
+    "metric": "auc",
+    "config_ranges": [
+        [
+            "clamiter_init",
+            "l1_reg",
+            [
+                0.1
+            ]
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            [
+                32
+            ]
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            [
+                10000
+            ]
+        ],
+        [
+            "feat_opt",
+            "lr",
+            [
+                5e-05
+            ]
+        ]
+    ],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 48,
+            "l1_reg": 1
+        },
+        "feat_opt": {
+            "lr": 2e-06,
+            "n_iter": 7000
+        }
+    },
+    "(None, 0.8280287467074614)": [
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.1
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            10000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-05
+        ]
+    ]
+}

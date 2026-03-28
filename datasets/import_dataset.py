@@ -155,27 +155,50 @@ def import_dataset(dataset_name=None, data=None, test_dyads_path=None, val_dyads
 
         data = Data(edge_index=edge_index, x=None)
         # data.raw_attr = raw_attr
-        data.edge_index = remove_self_loops(data.edge_index)[0]
-        data.edge_index = remove_isolated_nodes(data.edge_index)[0]
-        data.edge_index = to_undirected(data.edge_index)
+        data.edge_index = upyg.remove_self_loops(data.edge_index)[0]
+        data.edge_index = upyg.remove_isolated_nodes(data.edge_index)[0]
+        data.edge_index = upyg.to_undirected(data.edge_index)
     
     # ANOMALY DETECTION
 
     elif dataset_name == 'photo':
         data = load_data_('photo')
-        data.edge_index = remove_self_loops(data.edge_index)[0]
-        data.edge_index = to_undirected(data.edge_index)
+        if remove_self_loops:
+            data.edge_index = upyg.remove_self_loops(data.edge_index)[0]
+        if to_undirected:
+            data.edge_index = upyg.to_undirected(data.edge_index)
     
     elif dataset_name == 'reddit':
         data = load_data_('reddit')
-        data.edge_index = remove_self_loops(data.edge_index)[0]
-        data.edge_index = to_undirected(data.edge_index)
+        if remove_self_loops:
+            data.edge_index = upyg.remove_self_loops(data.edge_index)[0]
+        if to_undirected:
+            data.edge_index = upyg.to_undirected(data.edge_index)
 
     elif dataset_name == 'elliptic':
-        data = load_data_('elliptic')
-        data.edge_index = remove_self_loops(data.edge_index)[0]
-        data.edge_index = to_undirected(data.edge_index)
-    
+        if to_undirected:    
+            data = load_data_('elliptic')
+            if remove_self_loops:
+                data.edge_index = upyg.remove_self_loops(data.edge_index)[0]
+            if to_undirected:
+                data.edge_index = upyg.to_undirected(data.edge_index)
+        else:
+            data = torch.load("../datasets/anomaly_detection/directed/elliptic-data-set/elliptic_bitcoin_dataset/elliptic_labeled_directed_pyg.pt")
+            edge_index2, edge_attr2, node_mask = upyg.remove_isolated_nodes(
+                data.edge_index, data.edge_attr, num_nodes=data.num_nodes
+            )
+
+            data.edge_index = edge_index2
+            data.edge_attr = edge_attr2
+            data.x = data.x[node_mask]
+            data.y = data.y[node_mask]
+            data.num_nodes = int(node_mask.sum())
+            #todo: now we need to have the same test set that we use in anomaly detection
+            data.gt_nomalous = (1 - data.y).bool()
+            data.raw_attr = data.x
+            data.x = None
+
+
 
     # elif dataset_name == 'BlogCatalog':
     #     data = load_data_matlab_format('anomaly', 'BlogCatalog')

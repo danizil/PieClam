@@ -79,7 +79,8 @@ class Trainer():
                  inflation_flow_name=None, #for the normalizing flows
                  optimizer=None, 
                  metric = None,
-                 scheduler=None):
+                 scheduler=None,
+                 **kwargs):
         
         ''' trainer class takes care of the different settings i.e. configs, results, tasks and metrics. 
         tasks are anomaly_unsupervised, link_prediction, distance, or losses. Anything else will default to losses.
@@ -181,7 +182,8 @@ class Trainer():
                 attr_opt=self.attr_opt,
                 device=self.device, 
                 inflation_flow_name=inflation_flow_name,
-                **self.configs_dict['clamiter_init'])
+                **self.configs_dict['clamiter_init'],
+                **kwargs)
         
         if prior is not None:
             self.add_prior(prior)

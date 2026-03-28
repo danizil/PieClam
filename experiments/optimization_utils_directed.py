@@ -498,7 +498,8 @@ def cross_val_link_splits(
         reverse_test_set_order=False,
         verbose_in_funcs=False,
         to_undirected=False,
-        remove_self_loops=False):
+        remove_self_loops=False,
+        **kwargs):
     
     '''Get the path to the folder in which this file is located'''
     current_file_path = os.path.abspath(__file__)
@@ -537,6 +538,7 @@ def cross_val_link_splits(
             to_undirected=to_undirected,
             remove_self_loops=remove_self_loops,
             verbose_in_funcs=verbose_in_funcs,
+            **kwargs
         )
     
 #todo: cancel time consuming jobs.
@@ -571,7 +573,8 @@ def cross_val_link(
         to_undirected=True,
         remove_self_loops=True,
         verbose=False,
-        verbose_in_funcs=False):
+        verbose_in_funcs=False,
+        **kwargs):
     
     ds = None
     ds_test_omitted = None
@@ -683,6 +686,7 @@ def cross_val_link(
 
                 if densify:
                     ds_test_val_omitted.edge_index, ds_test_val_omitted.edge_attr = up.two_hop_link(ds_test_val_omitted)
+                    # ds_test_val_omitted.edge_index, ds_test_val_omitted.edge_attr = up.two_hop_link(ds_test_val_omitted)
                     printd('Densifyed the graph (link prediction)')
                     print(f'Number of edges: {ds_test_val_omitted.edge_index.shape[1]}')
                     print(f'Number of nodes: {ds_test_val_omitted.num_nodes}')
@@ -706,7 +710,8 @@ def cross_val_link(
                             use_global_config_base=use_global_config_base,
                             attr_opt=False,
                             metric=metric,
-                            device=device
+                            device=device,
+                            **kwargs
                 )
 
                 losses, acc_test, acc_val = trainer.train(
