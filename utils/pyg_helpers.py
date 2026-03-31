@@ -357,7 +357,8 @@ def edge_mask_drop_and_rearange(edge_index, p, directed):
 import torch
 
 def two_hop_link(data):
-    '''densify the edges with with attr 1. if one of the edges with attr 0 is produced, set it's attr to 1'''
+    '''densify the edges with with attr 1. if one of the edges with attr 0 is produced, set it's attr to 1. the auc is tested on omitted dyads array and are not affected by the densification. 
+    '''
     assert data.edge_index is not None
     edge_index, edge_attr = data.edge_index, data.edge_attr
     N = data.num_nodes

@@ -1,0 +1,135 @@
+{
+    "date_time": "2026-03-30 20:23:13",
+    "ds_name": "cora-ml",
+    "model_name": "bigclam",
+    "task": "link_prediction",
+    "metric": "auc",
+    "config_ranges": [
+        [
+            "clamiter_init",
+            "l1_reg",
+            [
+                0.0
+            ]
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            [
+                16
+            ]
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            [
+                7000
+            ]
+        ],
+        [
+            "feat_opt",
+            "lr",
+            [
+                1e-05
+            ]
+        ]
+    ],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 48,
+            "l1_reg": 1
+        },
+        "feat_opt": {
+            "lr": 2e-06,
+            "n_iter": 7000
+        }
+    },
+    "(None, 0.8247810983187728)": [
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            16
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            7000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            1e-05
+        ]
+    ],
+    "(None, 0.8451061176533796)": [
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            16
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            7000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            1e-05
+        ]
+    ],
+    "(None, 0.8280845943832791)": [
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            16
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            7000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            1e-05
+        ]
+    ],
+    "(None, 0.8195024325550949)": [
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            16
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            7000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            1e-05
+        ]
+    ]
+}

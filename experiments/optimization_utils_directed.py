@@ -14,6 +14,7 @@ import random
 import traceback
 from tqdm import tqdm
 import sys
+import traceback
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 if os.path.join(current_dir, '..') not in sys.path:
@@ -768,6 +769,8 @@ def multi_ds_anomaly(
         densifiable_ds=['reddit', 'photo'],
         attr_opt=True,
         acc_every=200,
+        to_undirected=True,
+        remove_self_loops=True,
         plot_every=10000,
         random_search=False,
         random_seed=42):
@@ -814,7 +817,7 @@ def multi_ds_anomaly(
             for i in range(n_reps): 
                 printd(f'Repetition no. {i}')
                 for i, ds_name in enumerate(ds_names):
-                    ds = import_dataset(ds_name)
+                    ds = import_dataset(ds_name, to_undirected=to_undirected, remove_self_loops=remove_self_loops)
                     ds_to_use = ds
                     
                     if ds_name in densifiable_ds:
@@ -835,7 +838,7 @@ def multi_ds_anomaly(
                                 metric='auc',
                                 config_triplets_to_change=config_triplets,
                                 use_global_config_base=use_global_config_base,
-                                attr_opt=attr_opt,
+                                remove_self_loops=remove_self_loops,
                                 device=device,
                     )
 
@@ -859,6 +862,7 @@ def multi_ds_anomaly(
                     
 
     except Exception as e:
+        traceback.print_exc()
         raise e
     
     finally:

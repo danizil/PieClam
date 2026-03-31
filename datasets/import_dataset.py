@@ -400,7 +400,10 @@ def transform_attributes(attr, transform='auto', n_components=32, normalize=True
     if normalize:
         attr = scaler.fit_transform(attr)
     
-    density_ratio = attr.nnz/(attr.shape[0]*attr.shape[1]) 
+    if isinstance(attr, sp.csr_matrix):
+        density_ratio = attr.nnz/(attr.shape[0]*attr.shape[1]) 
+    else:
+        density_ratio = 1 
     
     if transform == 'auto':
         if density_ratio < 0.4:
@@ -415,7 +418,9 @@ def transform_attributes(attr, transform='auto', n_components=32, normalize=True
         attr = svd.fit_transform(attr)
 
     elif transform == 'pca':
-        attr = attr.toarray()
+        
+        if isinstance(attr, sp.csr_matrix):
+            attr = attr.toarray()
         pca = PCA(n_components=n_components)
         attr = pca.fit_transform(attr)
     
