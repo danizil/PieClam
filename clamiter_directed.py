@@ -253,10 +253,10 @@ class ClamIter(MessagePassing):
         return tbr
 
     #todo: WE CAN NORMALIZE THE NEIGHBORS BY THE DEGREE AND THE SUM ON NON NEIGHBORS BY E-D   
-    def message(self, x_j, x_i, edge_attr, deg_in, deg_out, pow_in, pow_out):
+    def message(self, x_j, x_i, edge_attr, deg_in, deg_out, pow_in, pow_out, reverse):
         '''returns the message from node j to node i. this is only for edges. the global sum is preprocessed in the forward function, and will be added in the update function.
         #! is the message added to x_j or x_i?             
-        x_j[num_edges X dim_feat//2] is the sender and x_i[num_edges X dim_feat//2] is the receiver.
+        x_j[num_edges X dim_feat//2] is the SENDER and x_i[num_edges X dim_feat//2] is the RECEIVER. this means that the CENTER node on which aggregation is done is the x_i
         x_j and x_i are arranged like the edges so that x_j[0] and x_i[0] correspond to edge_index[0].
         If i were to choose i would call them x_i = x_sender and x_j = x_receiver
 
@@ -268,6 +268,7 @@ class ClamIter(MessagePassing):
         deg_omitted_j = deg_in[1]
         deg_ret_i = deg_out[0]
         deg_omitted_i = deg_out[1]
+        #? the next is INVERTIBLE (i and j) so it works when flipping. 
         inner_product_nm = torch.einsum('ij,jk,ik->i', x_i[:, :self.dim_feat//2], self.B, x_j[:, self.dim_feat//2:]) + eps
         
         if (inner_product_nm < 0).any():
@@ -836,8 +837,8 @@ class ClamIter(MessagePassing):
                                lorenz=self.lorenz, 
                                init_type=init_type,
                                graph_given=graph_given, 
-                            #    node_feats_given=node_feats_given,
-                               node_feats_given=graph_given.x, 
+                               node_feats_given=node_feats_given,
+                            #    node_feats_given=graph_given.x, 
                                device=self.device,
                                directed=self.directed)
     
