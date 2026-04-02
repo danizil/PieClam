@@ -202,25 +202,29 @@ class ClamIter(MessagePassing):
                 '''in this case multiply the features in the message by the forward/reverse B.
                 To get the reverse direction, flip the edge_index.'''
                 '''backward direction for sender features: edge_index is flipped and the features aren't'''
-                x_flipped = torch.cat([graph.x[:, self.dim_feat//2:], graph.x[:, :self.dim_feat//2]], dim=1)
                 
                 if self.normalize_degree:
-                    in_degree_ret = degree(graph.edge_index[1, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device) + 1
+                    num_edges = graph.edge_index.shape[1]
+                    num_edges_retained = graph.edge_attr.sum().item()
+                    num_edges_omitted = num_edges - num_edges_retained
+
+                    in_degree_ret = num_edges_retained - degree(graph.edge_index[1, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
+
                     # VV next line to match the edges feats in mpnn
                     # in_degree_ret = torch.where(in_degree_ret == 0, torch.ones_like(in_degree_ret), in_degree_ret)
                     in_degree_ret = in_degree_ret[graph.edge_index[1]]
                     
-                    in_degree_omitted = degree(graph.edge_index[1, graph.edge_attr == 0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device) + 1
+                    in_degree_omitted = num_edges_omitted - degree(graph.edge_index[1, graph.edge_attr == 0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
                     # in_degree_omitted = torch.where(in_degree_omitted == 0, torch.ones_like(in_degree_omitted), in_degree_omitted)
                     # VV next line to match the edges feats in mpnn
                     in_degree_omitted = in_degree_omitted[graph.edge_index[1]]
                     in_degree = [in_degree_ret, in_degree_omitted]
 
-                    out_degree_ret = degree(graph.edge_index[0, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device) + 1
+                    out_degree_ret = num_edges_retained - degree(graph.edge_index[0, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
                     # out_degree_ret = torch.where(out_degree_ret == 0, torch.ones_like(out_degree_ret), out_degree_ret)
                     out_degree_ret = out_degree_ret[graph.edge_index[0]]
                     
-                    out_degree_omitted = degree(graph.edge_index[0, graph.edge_attr==0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device) + 1
+                    out_degree_omitted = num_edges_omitted - degree(graph.edge_index[0, graph.edge_attr==0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
                     # out_degree_omitted = torch.where(out_degree_omitted == 0, torch.ones_like(out_degree_omitted), out_degree_omitted)
                     out_degree_omitted = out_degree_omitted[graph.edge_index[0]]
                     out_degree = [out_degree_ret, out_degree_omitted]
@@ -233,6 +237,7 @@ class ClamIter(MessagePassing):
                     in_degree = [in_degree_ret, in_degree_omitted]
                     out_degree = [out_degree_ret, out_degree_omitted]
 
+                x_flipped = torch.cat([graph.x[:, self.dim_feat//2:], graph.x[:, :self.dim_feat//2]], dim=1)
                 tbr_sender = self.propagate(edge_index=torch.flip(graph.edge_index, dims=[0]), x=graph.x, global_features=(prior_grad[:, :self.dim_feat//2]), edge_attr=graph.edge_attr, deg_in=out_degree, deg_out=in_degree, pow_in=0.0, pow_out=0.6)
                 #! implement the different degree normalization
                 #reverse direction: add the r features to the global features
@@ -253,7 +258,7 @@ class ClamIter(MessagePassing):
         return tbr
 
     #todo: WE CAN NORMALIZE THE NEIGHBORS BY THE DEGREE AND THE SUM ON NON NEIGHBORS BY E-D   
-    def message(self, x_j, x_i, edge_attr, deg_in, deg_out, pow_in, pow_out, reverse):
+    def message(self, x_j, x_i, edge_attr, deg_out, deg_in, pow_out, pow_in):
         '''returns the message from node j to node i. this is only for edges. the global sum is preprocessed in the forward function, and will be added in the update function.
         #! is the message added to x_j or x_i?             
         x_j[num_edges X dim_feat//2] is the SENDER and x_i[num_edges X dim_feat//2] is the RECEIVER. this means that the CENTER node on which aggregation is done is the x_i
@@ -262,14 +267,16 @@ class ClamIter(MessagePassing):
 
         for directed: deg_in is the degree of the 
         '''
-
+        #! can maybe just normalize by the number of edges
         #todo: maybe the degree is not needed as you can calculatet 
-        deg_ret_j = deg_in[0]
-        deg_omitted_j = deg_in[1]
-        deg_ret_i = deg_out[0]
-        deg_omitted_i = deg_out[1]
+        # deg_ret_j = deg_out[0]
+        # deg_omitted_j = deg_out[1]
+        # deg_ret_i = deg_in[0]
+        # deg_omitted_i = deg_in[1]
+        # deg_factor = deg_ret_i**(-pow_in)*deg_ret_j**(-pow_out)
         #? the next is INVERTIBLE (i and j) so it works when flipping. 
-        inner_product_nm = torch.einsum('ij,jk,ik->i', x_i[:, :self.dim_feat//2], self.B, x_j[:, self.dim_feat//2:]) + eps
+        # inner_product_nm = (torch.einsum('ij,jk,ik->i', x_i[:, :self.dim_feat//2], self.B, x_j[:, self.dim_feat//2:]) + eps)*deg_factor
+        inner_product_nm = (torch.einsum('ij,jk,ik->i', x_i[:, :self.dim_feat//2], self.B, x_j[:, self.dim_feat//2:]) + eps)
         
         if (inner_product_nm < 0).any():
             raise ValueError('x_inner_product is negative for neighbors')
@@ -295,13 +302,14 @@ class ClamIter(MessagePassing):
         return msg
 
 
-    def update(self, aggr_out, x, global_features, edge_attr, deg_in, deg_out, pow_in, pow_out):
+    def update(self, aggr_out, x, global_features, edge_attr, deg_out, deg_in, pow_out, pow_in):
         '''returns the gradient of the loss with respect to the node features
         regularization: self.s_reg and self.l1_reg
         global: global_features[0] is the sum of the node features, global_features[1] is the prior grad
         Directed: 
         in directed the propagation is done once with the features in the order s,t and then with the flipped version t,s. The update function is the same for both cases.'''
        #TODO: add in degree and out degree to aggr out as a parameter
+        # deg_factor = deg_inp**(-pow_in)*deg_out**(-pow_out)
         if self.directed:
             global_term = torch.sum(x[:, self.dim_feat//2:], dim=0)
             if self.lorenz:
@@ -318,11 +326,12 @@ class ClamIter(MessagePassing):
             s_feats = x[:, self.dim_feat//2:]
             s_feats = torch.concatenate([torch.zeros([x.shape[0], self.dim_feat//2]).to(s_feats.device), s_feats], dim=1)
             
-            update = (aggr_out - global_term)@self.B + global_features - self.s_reg*s_feats - self.l1_reg*torch.sign(x)
+            update = ((aggr_out - global_term)@self.B)*deg_factor + global_features - self.s_reg*s_feats - self.l1_reg*torch.sign(x)
         #! abuse of notation: s_feats are space features and not sender features
         
         # if self.normalize_degree:
         #     update
+
         return update
 
     def readout(self, graph):
