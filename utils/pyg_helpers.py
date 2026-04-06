@@ -379,6 +379,7 @@ def get_in_out_degree(graph):
     # out_degree_omitted = torch.where(out_degree_omitted == 0, torch.ones_like(out_degree_omitted), out_degree_omitted)
     # out_degree_omitted = out_degree_omitted[graph.edge_index[0]]
     out_degree = [out_degree_ret, out_degree_omitted]
+    return in_degree, out_degree
 
 def two_hop_link(data):
     '''densify the edges with with attr 1. if one of the edges with attr 0 is produced, set it's attr to 1. the auc is tested on omitted dyads array and are not affected by the densification. 
