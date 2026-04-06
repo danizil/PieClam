@@ -312,7 +312,8 @@ class SaveRun:
 
         # Load your configuration. Either use global config for all datasets or use a dataset specific configuration
         curr_file_dir = os.path.dirname(os.path.abspath(__file__))
-        hypers_path = os.path.join(curr_file_dir, '..', 'hypers', 'hypers_'+ task + '.yaml')
+        dir_or_un = 'directed' if directed else 'undirected'
+        hypers_path = os.path.join(curr_file_dir, '..', 'hypers', dir_or_un,'hypers_'+ task + '.yaml')
         with open(hypers_path, 'r') as hypers_file:
             params_dict = yaml.safe_load(hypers_file)
         if self.use_global_config_base:

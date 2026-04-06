@@ -59,6 +59,8 @@ class ClamIter(MessagePassing):
                  dim_attr=0, 
                  attr_opt=False,
                  l1_reg=1, 
+                 pow_in=0.0,
+                 pow_out=0.0,
                  reg_inr=0, 
                  s_reg=0, 
                  T=1,
@@ -83,13 +85,14 @@ class ClamIter(MessagePassing):
         self.vanilla = vanilla 
         self.l1_reg = l1_reg
         self.reg_inr = reg_inr
+        self.pow_in = pow_in
+        self.pow_out = pow_out
         self.s_reg = s_reg
         self.device = device
         self.T = T
         self.directed = directed
         self.s_reg = s_reg if self.lorenz else 0
         self.feat_bounding = relu_lightcone if self.lorenz else relu_transform
-        self.normalize_degree = kwargs.get('normalize_degree', False)
         # ====== safeguards ======
         if self.lorenz or self.directed:
             if not dim_feat//2 == dim_feat/2:
@@ -203,48 +206,64 @@ class ClamIter(MessagePassing):
                 To get the reverse direction, flip the edge_index.'''
                 '''backward direction for sender features: edge_index is flipped and the features aren't'''
                 
-                if self.normalize_degree:
-                    num_edges = graph.edge_index.shape[1]
-                    num_edges_retained = graph.edge_attr.sum().item()
-                    num_edges_omitted = num_edges - num_edges_retained
+            # if self.normalize_degree:
+                num_edges = graph.edge_index.shape[1]
+                num_edges_retained = graph.edge_attr.sum().item()
+                num_edges_omitted = num_edges - num_edges_retained
 
-                    in_degree_ret = num_edges_retained - degree(graph.edge_index[1, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
+                in_degree_ret = num_edges_retained - degree(graph.edge_index[1, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
 
-                    # VV next line to match the edges feats in mpnn
-                    # in_degree_ret = torch.where(in_degree_ret == 0, torch.ones_like(in_degree_ret), in_degree_ret)
-                    in_degree_ret = in_degree_ret[graph.edge_index[1]]
-                    
-                    in_degree_omitted = num_edges_omitted - degree(graph.edge_index[1, graph.edge_attr == 0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
-                    # in_degree_omitted = torch.where(in_degree_omitted == 0, torch.ones_like(in_degree_omitted), in_degree_omitted)
-                    # VV next line to match the edges feats in mpnn
-                    in_degree_omitted = in_degree_omitted[graph.edge_index[1]]
-                    in_degree = [in_degree_ret, in_degree_omitted]
+                # VV next line to match the edges feats in mpnn
+                # in_degree_ret = torch.where(in_degree_ret == 0, torch.ones_like(in_degree_ret), in_degree_ret)
+                # in_degree_ret = in_degree_ret[graph.edge_index[1]]
+                
+                in_degree_omitted = num_edges_omitted - degree(graph.edge_index[1, graph.edge_attr == 0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
+                # in_degree_omitted = torch.where(in_degree_omitted == 0, torch.ones_like(in_degree_omitted), in_degree_omitted)
+                # VV next line to match the edges feats in mpnn
+                # in_degree_omitted = in_degree_omitted[graph.edge_index[1]]
+                in_degree = [in_degree_ret, in_degree_omitted]
 
-                    out_degree_ret = num_edges_retained - degree(graph.edge_index[0, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
-                    # out_degree_ret = torch.where(out_degree_ret == 0, torch.ones_like(out_degree_ret), out_degree_ret)
-                    out_degree_ret = out_degree_ret[graph.edge_index[0]]
-                    
-                    out_degree_omitted = num_edges_omitted - degree(graph.edge_index[0, graph.edge_attr==0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
-                    # out_degree_omitted = torch.where(out_degree_omitted == 0, torch.ones_like(out_degree_omitted), out_degree_omitted)
-                    out_degree_omitted = out_degree_omitted[graph.edge_index[0]]
-                    out_degree = [out_degree_ret, out_degree_omitted]
+                out_degree_ret = num_edges_retained - degree(graph.edge_index[0, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
+                # out_degree_ret = torch.where(out_degree_ret == 0, torch.ones_like(out_degree_ret), out_degree_ret)
+                # out_degree_ret = out_degree_ret[graph.edge_index[0]]
+                
+                out_degree_omitted = num_edges_omitted - degree(graph.edge_index[0, graph.edge_attr==0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
+                # out_degree_omitted = torch.where(out_degree_omitted == 0, torch.ones_like(out_degree_omitted), out_degree_omitted)
+                # out_degree_omitted = out_degree_omitted[graph.edge_index[0]]
+                out_degree = [out_degree_ret, out_degree_omitted]
 
-                else:
-                    in_degree_ret = torch.ones([graph.num_edges, self.dim_feat//2])
-                    in_degree_omitted = torch.ones([graph.num_edges, self.dim_feat//2])
-                    out_degree_ret = torch.ones([graph.num_edges, self.dim_feat//2])
-                    out_degree_omitted = torch.ones([graph.num_edges, self.dim_feat//2])
-                    in_degree = [in_degree_ret, in_degree_omitted]
-                    out_degree = [out_degree_ret, out_degree_omitted]
+            # else:
+            #     in_degree_ret = torch.ones([graph.num_nodes, self.dim_feat//2])
+            #     in_degree_omitted = torch.ones([graph.num_nodes, self.dim_feat//2])
+            #     out_degree_ret = torch.ones([graph.num_nodes, self.dim_feat//2])
+            #     out_degree_omitted = torch.ones([graph.num_nodes, self.dim_feat//2])
+            #     in_degree = [in_degree_ret, in_degree_omitted]
+            #     out_degree = [out_degree_ret, out_degree_omitted]
+                
+                # in_degree_ret = torch.ones([graph.num_edges, self.dim_feat//2])
+                # in_degree_omitted = torch.ones([graph.num_edges, self.dim_feat//2])
+                # out_degree_ret = torch.ones([graph.num_edges, self.dim_feat//2])
+                # out_degree_omitted = torch.ones([graph.num_edges, self.dim_feat//2])
+                # in_degree = [in_degree_ret, in_degree_omitted]
+                # out_degree = [out_degree_ret, out_degree_omitted]
+            # ! make the deg_factor according to edges and pass that down
+            #!  also the msg 0 needs to multiply by the deg factor. 
+            #todo: In TRAINER calculate the degrees once and then in the forward pass the deg_factor. now try and find good values...
+            # deg_factor_ret = out_degree_ret**(-0.0)*in_degree_ret**(-0.6)
+            #? texas: 0.0001 for both in normalize degree. dataset not densified, result 0.85
+            #? cora is between 0.001 and 0.0001, right now it's 0.0005
+                
+                graph.x[:,:self.dim_feat//2] = graph.x[:, :self.dim_feat//2]*out_degree_ret**(-self.pow_out)
+                graph.x[:,self.dim_feat//2:] = graph.x[:, self.dim_feat//2:]*in_degree_ret**(-self.pow_in)
 
                 x_flipped = torch.cat([graph.x[:, self.dim_feat//2:], graph.x[:, :self.dim_feat//2]], dim=1)
-                tbr_sender = self.propagate(edge_index=torch.flip(graph.edge_index, dims=[0]), x=graph.x, global_features=(prior_grad[:, :self.dim_feat//2]), edge_attr=graph.edge_attr, deg_in=out_degree, deg_out=in_degree, pow_in=0.0, pow_out=0.6)
+                tbr_sender = self.propagate(edge_index=torch.flip(graph.edge_index, dims=[0]), x=graph.x, global_features=(prior_grad[:, :self.dim_feat//2]), edge_attr=graph.edge_attr)
                 #! implement the different degree normalization
                 #reverse direction: add the r features to the global features
                 '''forward direction for receiver features: edge_index is not flipped and the features are'''
                 # x_flipped = graph.x
 
-                tbr_receiver = self.propagate(edge_index=graph.edge_index, x=x_flipped, global_features=(prior_grad[:, self.dim_feat//2:]), edge_attr=graph.edge_attr, deg_in=in_degree, deg_out=out_degree, pow_in=0.6, pow_out=0.0)
+                tbr_receiver = self.propagate(edge_index=graph.edge_index, x=x_flipped, global_features=(prior_grad[:, self.dim_feat//2:]), edge_attr=graph.edge_attr)
 
                 tbr = torch.cat([tbr_sender, tbr_receiver], dim=1)
                 
@@ -258,7 +277,7 @@ class ClamIter(MessagePassing):
         return tbr
 
     #todo: WE CAN NORMALIZE THE NEIGHBORS BY THE DEGREE AND THE SUM ON NON NEIGHBORS BY E-D   
-    def message(self, x_j, x_i, edge_attr, deg_out, deg_in, pow_out, pow_in):
+    def message(self, x_j, x_i, edge_attr):
         '''returns the message from node j to node i. this is only for edges. the global sum is preprocessed in the forward function, and will be added in the update function.
         #! is the message added to x_j or x_i?             
         x_j[num_edges X dim_feat//2] is the SENDER and x_i[num_edges X dim_feat//2] is the RECEIVER. this means that the CENTER node on which aggregation is done is the x_i
@@ -274,8 +293,8 @@ class ClamIter(MessagePassing):
         # deg_ret_i = deg_in[0]
         # deg_omitted_i = deg_in[1]
         # deg_factor = deg_ret_i**(-pow_in)*deg_ret_j**(-pow_out)
-        #? the next is INVERTIBLE (i and j) so it works when flipping. 
         # inner_product_nm = (torch.einsum('ij,jk,ik->i', x_i[:, :self.dim_feat//2], self.B, x_j[:, self.dim_feat//2:]) + eps)*deg_factor
+        #? the next is COMMUTATIVE (i and j) so it works when flipping. 
         inner_product_nm = (torch.einsum('ij,jk,ik->i', x_i[:, :self.dim_feat//2], self.B, x_j[:, self.dim_feat//2:]) + eps)
         
         if (inner_product_nm < 0).any():
@@ -302,7 +321,7 @@ class ClamIter(MessagePassing):
         return msg
 
 
-    def update(self, aggr_out, x, global_features, edge_attr, deg_out, deg_in, pow_out, pow_in):
+    def update(self, aggr_out, x, global_features, edge_attr):
         '''returns the gradient of the loss with respect to the node features
         regularization: self.s_reg and self.l1_reg
         global: global_features[0] is the sum of the node features, global_features[1] is the prior grad
@@ -318,7 +337,7 @@ class ClamIter(MessagePassing):
             else:
                 s_feats = torch.zeros_like(global_features)
             #todo: there is some problem with the global term. it's much bigger than the other terms.
-            #! EXPERIMENTAL!!!! test if the degree should multiply the whole sum because right now i dont think it's doing much,,,, it's a really big addition so the nodes change not much at all
+        
             update = (aggr_out - global_term)@self.B + global_features - self.s_reg*s_feats - self.l1_reg*torch.sign(x[:, self.dim_feat//2:])
             
         else:
@@ -326,7 +345,7 @@ class ClamIter(MessagePassing):
             s_feats = x[:, self.dim_feat//2:]
             s_feats = torch.concatenate([torch.zeros([x.shape[0], self.dim_feat//2]).to(s_feats.device), s_feats], dim=1)
             
-            update = ((aggr_out - global_term)@self.B)*deg_factor + global_features - self.s_reg*s_feats - self.l1_reg*torch.sign(x)
+            update = ((aggr_out - global_term)@self.B) + global_features - self.s_reg*s_feats - self.l1_reg*torch.sign(x)
         #! abuse of notation: s_feats are space features and not sender features
         
         # if self.normalize_degree:
@@ -1168,8 +1187,12 @@ class StarProb(MessagePassing):
 
         else: # if self.directed 
             with torch.no_grad():
-                tbr = self.propagate(edge_index=graph.edge_index, x=graph.x, global_features=())
-                
+                x_flipped = torch.cat([graph.x[:, graph.x.shape[1]//2:], graph.x[:, :graph.x.shape[1]//2]], dim=1)
+                dim_feat = graph.x.shape[1]//2
+
+                tbr_receiver = self.propagate(edge_index=graph.edge_index, x=x_flipped, global_features=())
+                tbr_sender = self.propagate(edge_index=graph.edge_index.flip(0), x=graph.x, global_features=())
+                #! should also include degree normalization?
                 if self.prior is not None:
                     self.prior.eval()
                     if self.prior.attr_opt:
@@ -1177,10 +1200,10 @@ class StarProb(MessagePassing):
                     else:
                         feats_for_prior = graph.x
             
-                    tbr = tbr + self.prior.forward_ll(feats_for_prior, sum=False)
+                    tbr = tbr_receiver + tbr_sender + self.prior.forward_ll(feats_for_prior, sum=False)
 
         return tbr
-    #! it might seem intuitive to use the neighbors' priors as well, but it will be just reusing the priors 
+    #? it might seem intuitive to use the neighbors' priors as well, but it will be just reusing the priors 
     def message(self, x_j, x_i):
         '''the operation from every neighbor to the central node.
         x_i is the sender node and x_j is the receiver. x_i will be updated from this message'''
@@ -1195,7 +1218,7 @@ class StarProb(MessagePassing):
             x_inner_product = torch.einsum('ij,ij->i', x_i[:, :dim_feat], x_j[:, dim_feat:])
             M = torch.max(x_inner_product)
             msg = torch.log(torch.exp(x_inner_product - M) - torch.exp(-M) + eps).unsqueeze(1) + M
-            #! this doesnt include the incident features
+            #! sould add degree normalization?
 
         return msg
 

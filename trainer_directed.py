@@ -148,7 +148,8 @@ class Trainer():
             hypers_file_name = self.task
         else:
             hypers_file_name = 'losses'
-        self.configs_path = os.path.join(dir_path, 'hypers', 'hypers_'+ hypers_file_name + '.yaml')
+        dir_or_un = 'directed' if self.data.is_directed() else 'undirected'
+        self.configs_path = os.path.join(dir_path, 'hypers', dir_or_un, 'hypers_'+ hypers_file_name + '.yaml')
         
         if configs_dict is None:
             if use_global_config_base:
@@ -237,9 +238,7 @@ class Trainer():
     
 
     def configs_dict_from_top_list(self, config_triplets=None):
-        
-        # dir_path = os.path.dirname(os.path.realpath(__file__))
-        # with open(os.path.join(dir_path, 'hypers.yaml'), 'r') as file:
+        '''this loads the config delta from the list in hypers_{task}.yaml. The data specific config is loaded and updates the global config and the config triplets update that. This way any config not provided is supplied by the global config second, and the data specific config first.'''
         with open(self.configs_path, 'r') as file:
             params_dict = yaml.safe_load(file)
         

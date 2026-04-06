@@ -7,7 +7,7 @@ from torch_geometric import EdgeIndex
 from torch_geometric.data import Data
 from torch_geometric.data.datapipes import functional_transform
 from torch_geometric.transforms import BaseTransform
-from torch_geometric.utils import coalesce, remove_self_loops
+from torch_geometric.utils import coalesce, remove_self_loops, degree
 from torch_geometric import utils
 
 from utils.printing_utils import printd
@@ -354,7 +354,31 @@ def edge_mask_drop_and_rearange(edge_index, p, directed):
 
 #     return edge_index, edge_attr
 
-import torch
+def get_in_out_degree(graph):
+    num_edges = graph.edge_index.shape[1]   
+    num_edges_retained = graph.edge_attr.sum().item()
+    num_edges_omitted = num_edges - num_edges_retained
+
+    in_degree_ret = num_edges_retained - degree(graph.edge_index[1, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
+
+    # VV next line to match the edges feats in mpnn
+    # in_degree_ret = torch.where(in_degree_ret == 0, torch.ones_like(in_degree_ret), in_degree_ret)
+    # in_degree_ret = in_degree_ret[graph.edge_index[1]]
+    
+    in_degree_omitted = num_edges_omitted - degree(graph.edge_index[1, graph.edge_attr == 0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
+    # in_degree_omitted = torch.where(in_degree_omitted == 0, torch.ones_like(in_degree_omitted), in_degree_omitted)
+    # VV next line to match the edges feats in mpnn
+    # in_degree_omitted = in_degree_omitted[graph.edge_index[1]]
+    in_degree = [in_degree_ret, in_degree_omitted]
+
+    out_degree_ret = num_edges_retained - degree(graph.edge_index[0, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
+    # out_degree_ret = torch.where(out_degree_ret == 0, torch.ones_like(out_degree_ret), out_degree_ret)
+    # out_degree_ret = out_degree_ret[graph.edge_index[0]]
+    
+    out_degree_omitted = num_edges_omitted - degree(graph.edge_index[0, graph.edge_attr==0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
+    # out_degree_omitted = torch.where(out_degree_omitted == 0, torch.ones_like(out_degree_omitted), out_degree_omitted)
+    # out_degree_omitted = out_degree_omitted[graph.edge_index[0]]
+    out_degree = [out_degree_ret, out_degree_omitted]
 
 def two_hop_link(data):
     '''densify the edges with with attr 1. if one of the edges with attr 0 is produced, set it's attr to 1. the auc is tested on omitted dyads array and are not affected by the densification. 
