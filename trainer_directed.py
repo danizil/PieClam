@@ -17,6 +17,7 @@ import utils.link_prediction as lp
 from utils.plotting import plot_optimization_stage, plot_2dgraph
 from utils.printing_utils import *
 from utils import utils
+from utils import pyg_helpers as pu
 # from tests import tests
 import json
 import yaml
@@ -350,6 +351,14 @@ class Trainer():
                                             graph_given=self.data, 
                                             init_type=init_type, 
                                             node_feats_given=node_feats_for_init) #GPU nothing significant
+            
+            # in_degree, out_degree = pu.get_in_out_degree(self.data)
+            # in_degree_ret, out_degree_ret = in_degree[0], out_degree[0]
+            # dim_feat = self.data.x.shape[1]
+            # pow_in = self.configs_dict['clamiter_init']['pow_in']
+            # pow_out = self.configs_dict['clamiter_init']['pow_out']
+            # self.data.x[:,:dim_feat//2] = self.data.x[:, :dim_feat//2]*out_degree_ret**(-pow_out)/2
+            # self.data.x[:,dim_feat//2:] = self.data.x[:, dim_feat//2:]*in_degree_ret**(-pow_in)/2
             
             if verbose:
                 printd(f'\n init_node_feats took {time.time() - t} seconds')
