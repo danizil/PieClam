@@ -369,15 +369,22 @@ def get_in_out_degree(graph):
     # in_degree_omitted = torch.where(in_degree_omitted == 0, torch.ones_like(in_degree_omitted), in_degree_omitted)
     # VV next line to match the edges feats in mpnn
     # in_degree_omitted = in_degree_omitted[graph.edge_index[1]]
+    
+    #! VV TEST for dividing by degree also
+    # in_degree_ret = in_degree_ret*degree(graph.edge_index[1, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
+    # in_degree_omitted = in_degree_omitted*(degree(graph.edge_index[1, graph.edge_attr == 0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device) + 1)
+    #! ^^^ TEST for dividing by degree also
+
+
     in_degree = [in_degree_ret, in_degree_omitted]
 
     out_degree_ret = num_edges_retained - degree(graph.edge_index[0, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
-    # out_degree_ret = torch.where(out_degree_ret == 0, torch.ones_like(out_degree_ret), out_degree_ret)
-    # out_degree_ret = out_degree_ret[graph.edge_index[0]]
     
     out_degree_omitted = num_edges_omitted - degree(graph.edge_index[0, graph.edge_attr==0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
-    # out_degree_omitted = torch.where(out_degree_omitted == 0, torch.ones_like(out_degree_omitted), out_degree_omitted)
-    # out_degree_omitted = out_degree_omitted[graph.edge_index[0]]
+    #! VV TEST for dividing by degree also VV
+    # out_degree_ret = out_degree_ret*degree(graph.edge_index[0, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
+    # out_degree_omitted = out_degree_omitted*(degree(graph.edge_index[0, graph.edge_attr == 0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device) + 1)
+    #!^^ TEST dividing by degree ^^
     out_degree = [out_degree_ret, out_degree_omitted]
     return in_degree, out_degree
 

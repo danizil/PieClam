@@ -1,0 +1,19 @@
+{
+    "date_time": "2026-04-10 23:03:50",
+    "ds_name": "texas",
+    "model_name": "bigclam",
+    "task": "link_prediction",
+    "metric": "auc",
+    "config_ranges": [],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 16,
+            "l1_reg": 0.0,
+            "T": 1
+        },
+        "feat_opt": {
+            "lr": 9e-06,
+            "n_iter": 1500
+        }
+    }
+}

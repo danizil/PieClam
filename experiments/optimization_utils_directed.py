@@ -115,7 +115,7 @@ def print_folder(ds_name,
                     if file_name.endswith('.json'):
                         # Extract the timestamp from the file name
                         if from_date is not None:    
-                            file_timestamp = datetime.strptime(file_name[17:-5], '%d-%m-%y')
+                            file_timestamp = datetime.strptime(file_name[17:25], '%d-%m-%y')
                             input_date = datetime.strptime(from_date, '%d-%m-%y')
                             if file_timestamp < input_date:
                                 continue
@@ -163,7 +163,7 @@ def print_folder(ds_name,
                     # Extract the timestamp from the file name
                     if from_date is not None:    
                         try:
-                            file_timestamp = datetime.strptime(file_name[17:-5], '%d-%m-%y')
+                            file_timestamp = datetime.strptime(file_name[17:25], '%d-%m-%y')
                         except ValueError:
                             continue
 
@@ -252,7 +252,7 @@ def perturb_config(task, model_name, deltas, use_global_config, ds_name=None):
 class SaveRun:
     '''we save the a base config (either model specific or global) and change it with deltas. each experiment result is the config delta and the result of the experiment in a json file. to gather all of the results together there is an analysis.py in every results folder.'''
     
-    def __init__(self, model_name, ds_name, task, metric=None, omitted_test_dyads=None, test_or_valid=None, use_global_config_base=True, config_ranges=None, directed=False):
+    def __init__(self, model_name, ds_name, task, metric=None, omitted_test_dyads=None, test_or_valid=None, use_global_config_base=True, config_ranges=None, directed=False, name=None):
         self.model_name = model_name
         self.task = task
         self.ds_name = ds_name
@@ -295,12 +295,14 @@ class SaveRun:
             self.test_or_val_path = os.path.join(self.split_save_path, test_or_valid)
             os.makedirs(self.test_or_val_path, exist_ok=True) 
 
-            self.acc_configs_path = os.path.join(self.test_or_val_path, f"acc_configs{timestamp}.json")
+            suffix = f'_{name}' if name else ''
+            self.acc_configs_path = os.path.join(self.test_or_val_path, f"acc_configs{timestamp}{suffix}.json")
 
         elif task == 'anomaly_unsupervised':
             self.model_path = os.path.join(base_results_dir, task, model_name, ds_name)
             os.makedirs(self.model_path, exist_ok=True)
-            self.acc_configs_path = os.path.join(self.model_path, f'acc_configs{timestamp}.json')
+            suffix = f'_{name}' if name else ''
+            self.acc_configs_path = os.path.join(self.model_path, f'acc_configs{timestamp}{suffix}.json')
             
 
         os.makedirs(os.path.dirname(self.acc_configs_path), exist_ok=True)
@@ -576,8 +578,9 @@ def cross_val_link(
         remove_self_loops=True,
         verbose=False,
         verbose_in_funcs=False,
+        name=None,
         **kwargs):
-    
+
     ds = None
     ds_test_omitted = None
     ds_test_val_omitted = None
@@ -633,15 +636,16 @@ def cross_val_link(
             if triplet[2] == []:
                 range_triplets.remove(triplet)
 
-        run_saver = SaveRun(model_name, 
-                            ds_name, 
-                            'link_prediction', 
+        run_saver = SaveRun(model_name,
+                            ds_name,
+                            'link_prediction',
                             metric=metric,
-                            omitted_test_dyads=ds_test_omitted.omitted_dyads_test, 
-                            test_or_valid=test_or_valid, 
-                            use_global_config_base=use_global_config_base, 
+                            omitted_test_dyads=ds_test_omitted.omitted_dyads_test,
+                            test_or_valid=test_or_valid,
+                            use_global_config_base=use_global_config_base,
                             directed=ds.is_directed(),
-                            config_ranges=range_triplets)
+                            config_ranges=range_triplets,
+                            name=name)
         
         printd(f'RunSaver defined to acc_configs path {run_saver.acc_configs_path}')
 

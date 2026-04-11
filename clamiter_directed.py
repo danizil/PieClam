@@ -222,10 +222,10 @@ class ClamIter(MessagePassing):
 
                 x_flipped = torch.cat([graph.x[:, self.dim_feat//2:], graph.x[:, :self.dim_feat//2]], dim=1)
                 '''forward direction for receiver features: edge_index is not flipped and the features are'''
-                tbr_sender = self.propagate(edge_index=torch.flip(graph.edge_index, dims=[0]), x=graph.x, global_features=(prior_grad[:, :self.dim_feat//2]), edge_attr=graph.edge_attr) #* in_degree_ret**(-self.pow_in)
+                tbr_sender = self.propagate(edge_index=torch.flip(graph.edge_index, dims=[0]), x=x_flipped, global_features=(prior_grad[:, :self.dim_feat//2]), edge_attr=graph.edge_attr) #* in_degree_ret**(-self.pow_in)
                 
-                tbr_receiver = self.propagate(edge_index=graph.edge_index, x=x_flipped, global_features=(prior_grad[:, self.dim_feat//2:]), edge_attr=graph.edge_attr) #* out_degree_ret**(-self.pow_out)
-                #! i switched the degree factors
+                tbr_receiver = self.propagate(edge_index=graph.edge_index, x=graph.x, global_features=(prior_grad[:, self.dim_feat//2:]), edge_attr=graph.edge_attr) #* out_degree_ret**(-self.pow_out)
+                #! add the degree to
 
                 tbr = torch.cat([tbr_sender, tbr_receiver], dim=1)
                 
@@ -257,7 +257,7 @@ class ClamIter(MessagePassing):
         # deg_factor = deg_ret_i**(-pow_in)*deg_ret_j**(-pow_out)
         # inner_product_nm = (torch.einsum('ij,jk,ik->i', x_i[:, :self.dim_feat//2], self.B, x_j[:, self.dim_feat//2:]) + eps)*deg_factor
         #? the next is COMMUTATIVE (i and j) so it works when flipping. 
-        inner_product_nm = (torch.einsum('ij,jk,ik->i', x_i[:, :self.dim_feat//2], self.B, x_j[:, self.dim_feat//2:]) + eps)
+        inner_product_nm = (torch.einsum('ij,jk,ik->i', x_j[:, :self.dim_feat//2], self.B, x_i[:, self.dim_feat//2:]) + eps)
         
         if (inner_product_nm < 0).any():
             raise ValueError('x_inner_product is negative for neighbors')
@@ -265,7 +265,7 @@ class ClamIter(MessagePassing):
             raise ValueError('x_inner_product is 0 for neighbors')
         #* don't worry about B not appearing, it multiplies everything in the update function.
         
-        msg_1 = x_j[:, self.dim_feat//2:] / (1 - torch.exp(-inner_product_nm) + eps).unsqueeze(1) 
+        msg_1 = x_j[:, :self.dim_feat//2] / (1 - torch.exp(-inner_product_nm) + eps).unsqueeze(1) 
         # msg_1 = msg_1 * deg_ret_j**(-pow_in)*deg_ret_i**(-pow_out)
          
         #? VARIFIED the expression: 1/(1 - e^...) although the loss has 1/(e^... - 1 + eps) because the derivative has an e^... term.
@@ -273,7 +273,7 @@ class ClamIter(MessagePassing):
         # msg_1 = x_j[:, self.dim_feat//2:] / (1 - torch.exp(-inner_product_nm)).unsqueeze(1) 
         # msg_1 = x_j[:, self.dim_feat//2:] / (torch.exp(inner_product_nm) - 1 + eps).unsqueeze(1) 
         # msg_0 = x_j[:, self.dim_feat//2:]@self.B
-        msg_0 = x_j[:, self.dim_feat//2:]
+        msg_0 = x_j[:, :self.dim_feat//2]
         # edge attr is 0 for omitted dyads
         #todo: the degree add to entire message maybe improve
         msg = edge_attr.unsqueeze(1)*msg_1 + (~edge_attr).unsqueeze(1)*msg_0
@@ -292,7 +292,7 @@ class ClamIter(MessagePassing):
        #TODO: add in degree and out degree to aggr out as a parameter
         # deg_factor = deg_inp**(-pow_in)*deg_out**(-pow_out)
         if self.directed:
-            global_term = torch.sum(x[:, self.dim_feat//2:], dim=0)
+            global_term = torch.sum(x[:, :self.dim_feat//2], dim=0)
             if self.lorenz:
                 s_feats = x[:, self.dim_feat//2:self.dim_feat//2+self.dim_feat//4]
                 s_feats = torch.concatenate([torch.zeros([x.shape[0], self.dim_feat//4]).to(s_feats.device), s_feats], dim=1)
@@ -300,7 +300,7 @@ class ClamIter(MessagePassing):
                 s_feats = torch.zeros_like(global_features)
             #todo: there is some problem with the global term. it's much bigger than the other terms.
         
-            update = (aggr_out - global_term)@self.B + global_features - self.s_reg*s_feats - self.l1_reg*torch.sign(x[:, self.dim_feat//2:])
+            update = (aggr_out - global_term)@self.B + global_features - self.s_reg*s_feats - self.l1_reg*torch.sign(x[:, :self.dim_feat//2])
             
         else:
             global_term = torch.sum(x, dim=0)
