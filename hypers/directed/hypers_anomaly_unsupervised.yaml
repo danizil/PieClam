@@ -272,6 +272,8 @@ GlobalConfigs_bigclam:
         s_reg: 0.0
         l1_reg: 1
         T: 1
+        pow_in: 0.0001
+        pow_out: 0.0001
         hidden_dim: 64
         num_coupling_blocks: 32
         num_layers_mlp: 2
@@ -287,6 +289,8 @@ GlobalConfigs_pclam:
         dim_attr: 100
         s_reg: 0.0
         l1_reg: 1
+        pow_in: 0.0001
+        pow_out: 0.0001
         T: 1
         hidden_dim: 64
         num_coupling_blocks: 32

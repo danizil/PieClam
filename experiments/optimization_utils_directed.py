@@ -59,10 +59,11 @@ def pooled_mean_std(means, stds, ns=None):
     return mean_total, np.sqrt(variance_total)                                           
                                                 
 
-def load_hyper_config(task, model_name, use_global_config_base=True, ds_name=None):
+def load_hyper_config(task, model_name, use_global_config_base=True, ds_name=None, direted=True):
+    directed_str = 'directed' if direted else 'undirected'
     '''load the hyperparameters for the model and the dataset'''
     curr_file_dir = os.path.dirname(os.path.abspath(__file__))
-    hypers_path = os.path.join(curr_file_dir, '..', 'hypers', 'hypers_'+ task + '.yaml')
+    hypers_path = os.path.join(curr_file_dir, '..', 'hypers', directed_str, 'hypers_'+ task + '.yaml')
     with open(hypers_path, 'r') as hypers_file:
         params_dict = yaml.safe_load(hypers_file)
     if use_global_config_base:

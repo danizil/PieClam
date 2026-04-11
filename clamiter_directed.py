@@ -1152,9 +1152,10 @@ class StarProb(MessagePassing):
                 x_flipped = torch.cat([graph.x[:, graph.x.shape[1]//2:], graph.x[:, :graph.x.shape[1]//2]], dim=1)
                 dim_feat = graph.x.shape[1]//2
 
-                tbr_receiver = self.propagate(edge_index=graph.edge_index, x=x_flipped, global_features=())
-                tbr_sender = self.propagate(edge_index=graph.edge_index.flip(0), x=graph.x, global_features=())
+                tbr_receiver = self.propagate(edge_index=graph.edge_index, x=graph.x, global_features=())
+                tbr_sender = self.propagate(edge_index=graph.edge_index.flip(0), x=x_flipped, global_features=())
                 #! should also include degree normalization?
+                tbr = tbr_receiver + tbr_sender
                 if self.prior is not None:
                     self.prior.eval()
                     if self.prior.attr_opt:
@@ -1162,7 +1163,7 @@ class StarProb(MessagePassing):
                     else:
                         feats_for_prior = graph.x
             
-                    tbr = tbr_receiver + tbr_sender + self.prior.forward_ll(feats_for_prior, sum=False)
+                    tbr = tbr + self.prior.forward_ll(feats_for_prior, sum=False)
 
         return tbr
     #? it might seem intuitive to use the neighbors' priors as well, but it will be just reusing the priors 
@@ -1177,7 +1178,7 @@ class StarProb(MessagePassing):
 
         else: # if self.directed
             dim_feat = x_i.shape[1]//2
-            x_inner_product = torch.einsum('ij,ij->i', x_i[:, :dim_feat], x_j[:, dim_feat:])
+            x_inner_product = torch.einsum('ij,ij->i', x_j[:, :dim_feat], x_i[:, dim_feat:])
             M = torch.max(x_inner_product)
             msg = torch.log(torch.exp(x_inner_product - M) - torch.exp(-M) + eps).unsqueeze(1) + M
             #! sould add degree normalization?
