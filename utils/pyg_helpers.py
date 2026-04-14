@@ -1,4 +1,5 @@
 import os
+from datasets.import_dataset import import_dataset
 import scipy.sparse as sp
 import scipy.io
 import torch
@@ -9,6 +10,8 @@ from torch_geometric.data.datapipes import functional_transform
 from torch_geometric.transforms import BaseTransform
 from torch_geometric.utils import coalesce, remove_self_loops, degree
 from torch_geometric import utils
+import matplotlib.pyplot as plt
+
 
 from utils.printing_utils import printd
 
@@ -388,6 +391,31 @@ def get_in_out_degree(graph):
     # !^^ EXPERIMENTAL dividing by degree ^^
     out_degree = [out_degree_ret, out_degree_omitted]
     return in_degree, out_degree
+
+def plot_degree_distribution(data):
+    deg_out = degree(data.edge_index[0], num_nodes=data.num_nodes).cpu().numpy()
+    deg_in = degree(data.edge_index[1], num_nodes=data.num_nodes).cpu().numpy()
+
+    min_out, max_out = int(deg_out.min()), int(deg_out.max())
+    min_in, max_in = int(deg_in.min()), int(deg_in.max())
+    bins_out = np.arange(min_out - 0.5, max_out + 1.5, 1.0)  # [-0.5,0.5,1.5,2.5,...]
+    bins_in = np.arange(min_in - 0.5, max_in + 1.5, 1.0)  # [-0.5,0.5,1.5,2.5,...]
+    plt.figure(figsize=(4,3))
+    plt.hist(deg_out, bins=bins_out, edgecolor='black')
+    plt.xticks(np.arange(min_out, max_out + 1))
+    plt.xlabel('out degree')
+    plt.ylabel('count')
+    plt.tight_layout()
+    plt.show()
+
+    plt.figure(figsize=(4,3))
+    plt.hist(deg_in, bins=bins_in, edgecolor='black')
+    plt.xticks(np.arange(min_in, max_in + 1))
+    plt.xlabel('in degree')
+    plt.ylabel('count')
+    plt.tight_layout()
+    plt.show()
+    
 
 def two_hop_link(data):
     '''densify the edges with with attr 1. if one of the edges with attr 0 is produced, set it's attr to 1. the auc is tested on omitted dyads array and are not affected by the densification. 

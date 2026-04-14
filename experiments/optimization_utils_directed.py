@@ -575,6 +575,7 @@ def cross_val_link(
         acc_every=20,
         grid=None,
         plot_every=10000,
+        init_type='small_gaus',
         to_undirected=True,
         remove_self_loops=True,
         verbose=False,
@@ -722,7 +723,7 @@ def cross_val_link(
                 )
 
                 losses, acc_test, acc_val = trainer.train(
-                            init_type='small_gaus',
+                            init_type=init_type,
                             init_feats=True,
                             acc_every=acc_every,
                             plot_every=plot_every,
@@ -771,6 +772,7 @@ def multi_ds_anomaly(
         n_reps,
         use_global_config_base,
         device,
+        init_type='small_gaus',
         ds_names=['reddit', 'photo', 'elliptic'], 
         densifiable_ds=['reddit', 'photo'],
         attr_opt=True,
@@ -849,7 +851,7 @@ def multi_ds_anomaly(
                     )
 
                     losses, acc_test, acc_val = trainer.train(
-                                init_type='small_gaus',
+                                init_type=init_type,
                                 init_feats=True,
                                 acc_every=acc_every,
                                 plot_every=plot_every,

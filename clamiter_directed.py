@@ -14,6 +14,8 @@ from torch_geometric.data import Data
 
 from sklearn.metrics import roc_auc_score, roc_curve, average_precision_score
 from sklearn.cluster import KMeans
+from sklearn.decomposition import TruncatedSVD
+
 import time
 import os
 import json
@@ -217,14 +219,19 @@ class ClamIter(MessagePassing):
                 in_degree_ret = in_degree[0]
                 out_degree_ret = out_degree[0]
 
-                graph.x[:,:self.dim_feat//2] = graph.x[:, :self.dim_feat//2]*out_degree_ret**(-self.pow_out)
-                graph.x[:,self.dim_feat//2:] = graph.x[:, self.dim_feat//2:]*in_degree_ret**(-self.pow_in)
+                # graph.x[:,:self.dim_feat//2] = graph.x[:, :self.dim_feat//2]*out_degree_ret**(-self.pow_out)
+                # graph.x[:,self.dim_feat//2:] = graph.x[:, self.dim_feat//2:]*in_degree_ret**(-self.pow_in)
+                x_for_pass = graph.x.clone()
+                x_for_pass[:, :self.dim_feat//2] = graph.x[:, :self.dim_feat//2]*out_degree_ret**(-self.pow_out)
+                x_for_pass[:, self.dim_feat//2:] = graph.x[:, self.dim_feat//2:]*in_degree_ret**(-self.pow_in)
 
-                x_flipped = torch.cat([graph.x[:, self.dim_feat//2:], graph.x[:, :self.dim_feat//2]], dim=1)
+                # x_flipped = torch.cat([graph.x[:, self.dim_feat//2:], graph.x[:, :self.dim_feat//2]], dim=1)
+                x_flipped = torch.cat([x_for_pass[:, self.dim_feat//2:], x_for_pass[:, :self.dim_feat//2]], dim=1)
                 '''forward direction for receiver features: edge_index is not flipped and the features are'''
-                tbr_sender = self.propagate(edge_index=torch.flip(graph.edge_index, dims=[0]), x=x_flipped, global_features=(prior_grad[:, :self.dim_feat//2]), edge_attr=graph.edge_attr) #* in_degree_ret**(-self.pow_in)
+                tbr_sender = self.propagate(edge_index=torch.flip(graph.edge_index, dims=[0]), x=x_flipped, global_features=(prior_grad[:, :self.dim_feat//2]), edge_attr=graph.edge_attr)* in_degree_ret**(-self.pow_in)
                 
-                tbr_receiver = self.propagate(edge_index=graph.edge_index, x=graph.x, global_features=(prior_grad[:, self.dim_feat//2:]), edge_attr=graph.edge_attr) #* out_degree_ret**(-self.pow_out)
+                # tbr_receiver = self.propagate(edge_index=graph.edge_index, x=graph.x, global_features=(prior_grad[:, self.dim_feat//2:]), edge_attr=graph.edge_attr) #* out_degree_ret**(-self.pow_out)
+                tbr_receiver = self.propagate(edge_index=graph.edge_index, x=x_for_pass, global_features=(prior_grad[:, self.dim_feat//2:]), edge_attr=graph.edge_attr)* out_degree_ret**(-self.pow_out)
                 #! add the degree to
 
                 tbr = torch.cat([tbr_sender, tbr_receiver], dim=1)
@@ -1095,8 +1102,53 @@ def init_node_feats(num_feats, lorenz, init_type, device, num_nodes=None, graph_
             if node_feats_given.shape[0] != num_nodes:
                 raise ValueError(f'in init_node_feats: node_feats_given has {node_feats_given.shape[0]} nodes but should have {num_nodes}')
             node_feats = node_feats_given
+
+        elif init_type == 'from_attr':
+            if graph_given is None:
+                raise ValueError('from_attr requires graph_given')
+            
+            attr_src = None
+            if hasattr(graph_given, 'attr') and graph_given.attr is not None:
+                attr_src = graph_given.attr
+            elif hasattr(graph_given, 'raw_attr') and graph_given.raw_attr is not None:
+                attr_src = graph_given.raw_attr
+            elif hasattr(graph_given, 'x') and graph_given.x is not None:
+                attr_src = graph_given.x
+            else:
+                raise ValueError('from_attr requested but no node attributes found')
+
+            if torch.is_tensor(attr_src):
+                attr_np = attr_src.detach().cpu().numpy()
+            elif hasattr(attr_src, 'toarray'):
+                attr_np = attr_src
+            else:
+                attr_np = np.asarray(attr_src)
+
+            target_dim = num_feats // 2 if directed else num_feats
+            n_components = min(target_dim, attr_np.shape[1])
+            if n_components < 1:
+                raise ValueError('from_attr: invalid n_components')
+
+            z = TruncatedSVD(n_components=n_components).fit_transform(attr_np)
+            z = torch.from_numpy(z).float()
+
+            z = z - z.min(dim=0, keepdim=True).values
+            z = z + 1e-8
+
+            if z.shape[1] < target_dim:
+                pad = torch.zeros(z.shape[0], target_dim - z.shape[1], dtype=z.dtype)
+                z = torch.cat([z, pad], dim=1)
+            elif z.shape[1] > target_dim:
+                z = z[:, :target_dim]
+
+            if directed:
+                node_feats = torch.cat([z, z], dim=1)
+            else:
+                node_feats = z
         else:
             raise NotImplementedError('init_type not implemented')
+        
+
         
         return node_feats.to(device) 
 

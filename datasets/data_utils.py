@@ -1,5 +1,7 @@
 import torch
-
+from torch_geometric.utils import degree
+import matplotlib.pyplot as plt
+import numpy as np
 
 def intersecting_tensor_from_non_intersecting_vec(y):
     '''convert a non intersecting community vector to an intersecting community tensor'''
@@ -10,5 +12,4 @@ def intersecting_tensor_from_non_intersecting_vec(y):
     for i in range(num_nodes):
         y_intersecting[i, int(y[i].item())] = 1
     return y_intersecting.int()
-
 

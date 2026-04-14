@@ -201,8 +201,8 @@ class Trainer():
               
                 self.data.attr = transform_attributes(self.data.raw_attr, self.attr_transform, self.configs_dict['clamiter_init']['dim_attr'])
         #* delete raw_attr 
-        if hasattr(self.data, 'raw_attr'):
-            delattr(self.data, 'raw_attr')
+        # if hasattr(self.data, 'raw_attr'):
+        #     delattr(self.data, 'raw_attr')
     
         # =====================================================
 

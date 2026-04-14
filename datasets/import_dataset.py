@@ -5,7 +5,7 @@ from torch_geometric.data import Data, HeteroData
 import matplotlib.pyplot as plt
 import networkx as nx
 from torch_geometric.datasets import SNAPDataset, WebKB
-from torch_geometric.utils import to_networkx, to_dense_adj, remove_self_loops, is_undirected, contains_self_loops, remove_isolated_nodes, contains_isolated_nodes, subgraph
+from torch_geometric.utils import to_networkx, to_dense_adj, remove_self_loops, is_undirected, contains_self_loops, remove_isolated_nodes, degree, contains_isolated_nodes, subgraph
 import torch_geometric.utils as upyg
 from sklearn.decomposition import TruncatedSVD, PCA
 from sklearn.preprocessing import MaxAbsScaler
@@ -26,7 +26,6 @@ from datasets.simulations import simulate_dataset
 from datasets.data_utils import intersecting_tensor_from_non_intersecting_vec
 from utils.printing_utils import printd
 from utils import utils
-
 
 
 def import_dataset(dataset_name=None, data=None, test_dyads_path=None, val_dyads_path=None, remove_data_feats=True, verbose=False, to_undirected=False, remove_self_loops=False):
@@ -219,10 +218,12 @@ def import_dataset(dataset_name=None, data=None, test_dyads_path=None, val_dyads
     # PLANETOID
     elif dataset_name == 'cora-ml':
         data = load_data_from_npz('cora-ml')
+        data.raw_attr = data.x
         data.x = None
 
     elif dataset_name == 'citeseer':
         data = load_data_from_npz('citeseer')
+        data.raw_attr = data.x
         data.x = None
     
     # SYNTHETIC
