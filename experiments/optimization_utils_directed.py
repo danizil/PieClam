@@ -300,7 +300,7 @@ class SaveRun:
             self.acc_configs_path = os.path.join(self.test_or_val_path, f"acc_configs{timestamp}{suffix}.json")
 
         elif task == 'anomaly_unsupervised':
-            self.model_path = os.path.join(base_results_dir, task, model_name, ds_name)
+            self.model_path = os.path.join(base_results_dir, 'directed' if directed else 'undirected', task, model_name, ds_name)
             os.makedirs(self.model_path, exist_ok=True)
             suffix = f'_{name}' if name else ''
             self.acc_configs_path = os.path.join(self.model_path, f'acc_configs{timestamp}{suffix}.json')
@@ -781,6 +781,7 @@ def multi_ds_anomaly(
         remove_self_loops=True,
         plot_every=10000,
         random_search=False,
+        name=None,
         random_seed=42):
     
     '''here we test a single configuration for a list of datasets since the setting is unsupervised. '''
@@ -796,12 +797,16 @@ def multi_ds_anomaly(
         curr_file_dir = os.path.dirname(os.path.abspath(__file__))
         # save_paths = [os.path.join(curr_file_dir, 'results', 'anomaly_unsupervised', model_name, ds_name, 'acc_configs.json')for ds_name in ds_names]
         # a different run saver for every dataset
+        directed = not to_undirected
         run_savers = [SaveRun(model_name, 
                               ds_name,
                               task='anomaly_unsupervised', 
                               use_global_config_base=use_global_config_base, 
                             #   save_path=save_paths[i], 
-                              config_ranges=range_triplets) for i, ds_name in enumerate(ds_names)]
+                              config_ranges=range_triplets, 
+                              name=name,
+                              directed=directed) 
+                              for i, ds_name in enumerate(ds_names)]
         grid = list(itertools.product(*[triplet[2] for triplet in range_triplets]))
         if random_search:
             if random_seed is not None:
