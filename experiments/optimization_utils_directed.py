@@ -91,6 +91,8 @@ def print_folder(ds_name,
     printd(f'Printing results for {task} on {ds_name} with {model_name} model.')
     if not show_empty_files:
         print('Not showing empty files!\n')
+
+
     if task == 'link_prediction':   
         model_path = os.path.join(metric, ds_name, model_name)
         existing_splits = os.listdir(model_path)
@@ -153,9 +155,13 @@ def print_folder(ds_name,
                 print(f'Path {path} does not exist. Skipping.\n')
 
     elif task == 'anomaly_unsupervised':
-        model_path = os.path.join('anomaly_unsupervised', model_name, ds_name)
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        path = os.path.join(current_dir, 'results', model_path)
+        if sort_by == 'val_acc':
+            sort_by = 'vanilla_star'
+        
+        model_path = os.path.join(metric, ds_name, model_name)
+        # current_dir = os.path.dirname(os.path.abspath(__file__))
+        # path = os.path.join(current_dir, 'results', model_path)
+        path = model_path
         grouped_tups = []
         if os.path.exists(path):
             for file_name in os.listdir(path):
@@ -203,7 +209,7 @@ def print_folder(ds_name,
             
             if return_dataframes:
                 return grouped_tups
-        
+       
         else:
             print(f'Path {path} does not exist. Skipping.\n')
 
@@ -300,7 +306,7 @@ class SaveRun:
             self.acc_configs_path = os.path.join(self.test_or_val_path, f"acc_configs{timestamp}{suffix}.json")
 
         elif task == 'anomaly_unsupervised':
-            self.model_path = os.path.join(base_results_dir, 'directed' if directed else 'undirected', task, model_name, ds_name)
+            self.model_path = os.path.join(base_results_dir, 'directed' if directed else 'undirected', task, metric, ds_name, model_name)
             os.makedirs(self.model_path, exist_ok=True)
             suffix = f'_{name}' if name else ''
             self.acc_configs_path = os.path.join(self.model_path, f'acc_configs{timestamp}{suffix}.json')
@@ -772,6 +778,7 @@ def multi_ds_anomaly(
         n_reps,
         use_global_config_base,
         device,
+        metric='auc',
         init_type='small_gaus',
         ds_names=['reddit', 'photo', 'elliptic'], 
         densifiable_ds=['reddit', 'photo'],
@@ -805,6 +812,7 @@ def multi_ds_anomaly(
                             #   save_path=save_paths[i], 
                               config_ranges=range_triplets, 
                               name=name,
+                              metric=metric,
                               directed=directed) 
                               for i, ds_name in enumerate(ds_names)]
         grid = list(itertools.product(*[triplet[2] for triplet in range_triplets]))
