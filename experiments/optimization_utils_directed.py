@@ -779,7 +779,7 @@ def multi_ds_anomaly(
         use_global_config_base,
         device,
         metric='auc',
-        init_type='small_gaus',
+        # init_type='small_gaus',
         ds_names=['reddit', 'photo', 'elliptic'], 
         densifiable_ds=['reddit', 'photo'],
         attr_opt=True,
@@ -864,7 +864,7 @@ def multi_ds_anomaly(
                     )
 
                     losses, acc_test, acc_val = trainer.train(
-                                init_type=init_type,
+                                # init_type=init_type,
                                 init_feats=True,
                                 acc_every=acc_every,
                                 plot_every=plot_every,

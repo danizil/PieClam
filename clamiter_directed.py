@@ -8,6 +8,7 @@ from torch.nn.functional import relu
 from torch.autograd import grad as a_grad
 
 from torch_geometric.nn import MessagePassing
+from torch.nn.functional import softplus
 # from torch_geometric.utils import to_dense_adj, is_undirected, dropout_edge, sort_edge_index, contains_self_loops, k_hop_subgraph, remove_isolated_nodes
 
 from torch_geometric.data import Data
@@ -1104,6 +1105,7 @@ def init_node_feats(num_feats, lorenz, init_type, device, num_nodes=None, graph_
             node_feats = node_feats_given
 
         elif init_type == 'from_attr':
+            #todo: you can take all of the features, multiply by 2 and
             if graph_given is None:
                 raise ValueError('from_attr requires graph_given')
             
@@ -1134,6 +1136,12 @@ def init_node_feats(num_feats, lorenz, init_type, device, num_nodes=None, graph_
 
             z = z - z.min(dim=0, keepdim=True).values
             z = z + 1e-8
+            # z = torch.sigmoid(z)
+
+            #! positive dimensions into negative
+            # z = TruncatedSVD(n_components=n_components//2).fit_transform(attr_np)
+            # z = torch.from_numpy(z).float()
+            # z = torch.stack([softplus(z), softplus(-z)], dim=-1).flatten(-2)
 
             if z.shape[1] < target_dim:
                 pad = torch.zeros(z.shape[0], target_dim - z.shape[1], dtype=z.dtype)

@@ -293,15 +293,14 @@ class Trainer():
 #   88   88  Yb dP""""Yb 88 88  Y8 
     #todo: make a train more function
     def train(self,
-            init_type='small_gaus', 
-            init_feats=False, 
+            # init_type='small_gaus', 
+            init_feats=False,  # pre made feats to init with
             acc_every=200, 
             prior_fit_mask=None, 
             plot_every=-1, 
             verbose=False, 
             verbose_in_funcs=False,
             node_feats_for_init=None,
-            attr_init=False,
             **kwargs):
         
         '''train one of the 4 models (bool vanilla, bool lorenz) on the given parameters. 
@@ -342,14 +341,14 @@ class Trainer():
           
         if init_feats or (self.data.x is None):
             if verbose:
-                printd(f'\n train_model_on_params, initializing feats with {init_type}')
+                printd(f'\n train_model_on_params, initializing feats with {self.configs_dict['clamiter_init']['init_type']}')
             t = time.time()
 
             # if attr_init is true, initialize the nodes with the attributes plus some noise
             
             self.data.x = self.clamiter.init_node_feats(
                                             graph_given=self.data, 
-                                            init_type=init_type, 
+                                            init_type=self.configs_dict['clamiter_init']['init_type'], 
                                             node_feats_given=node_feats_for_init) #GPU nothing significant
             
             # in_degree, out_degree = pu.get_in_out_degree(self.data)

@@ -271,6 +271,7 @@ GlobalConfigs_bigclam:
         dim_attr: 100
         s_reg: 0.0
         l1_reg: 1
+        init_type: "small_gaus"
         T: 1
         pow_in: 0.0001
         pow_out: 0.0001
@@ -292,6 +293,7 @@ GlobalConfigs_pclam:
         pow_in: 0.0001
         pow_out: 0.0001
         T: 1
+        init_type: "small_gaus"
         hidden_dim: 64
         num_coupling_blocks: 32
         num_layers_mlp: 2
