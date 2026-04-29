@@ -1,7 +1,8 @@
 
 import torch
 from torch_geometric.datasets import KarateClub, Actor, IMDB, Amazon
-from torch_geometric.data import Data, HeteroData
+import pygod
+from torch_geometric.data import Data
 import matplotlib.pyplot as plt
 import networkx as nx
 from torch_geometric.datasets import SNAPDataset, WebKB
@@ -197,7 +198,26 @@ def import_dataset(dataset_name=None, data=None, test_dyads_path=None, val_dyads
             data.raw_attr = data.x
             data.x = None
 
-
+    elif dataset_name == 'disney':
+        data = pygod.utils.load_data('disney')
+        data.gt_nomalous = (1-data.y).bool()
+        data.raw_attr = data.x
+        data.x = None
+    elif dataset_name == 'enron':
+        data = pygod.utils.load_data('enron')
+        data.gt_nomalous = (1-data.y).bool()
+        data.raw_attr = data.x
+        data.x = None
+    elif dataset_name == 'books':
+        data = pygod.utils.load_data('books')
+        data.gt_nomalous = (1-data.y).bool()
+        data.raw_attr = data.x
+        data.x = None
+    elif dataset_name == 'amazon':
+        data = pygod.utils.load_data('amazon')
+        data.gt_nomalous = (1-data.y).bool()
+        data.raw_attr = data.x
+        data.x = None
 
     # elif dataset_name == 'BlogCatalog':
     #     data = load_data_matlab_format('anomaly', 'BlogCatalog')

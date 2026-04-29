@@ -25,7 +25,7 @@ import experiments.optimization_utils_directed as ou
 from tests import tests
 from utils import utils
 from utils.plotting import *
-import anomaly_detection as ad
+# import anomaly_detection as ad
 from scripting_utils import print_prior_training_stats
 from datasets.import_dataset import import_dataset
 import link_prediction as lp

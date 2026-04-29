@@ -341,7 +341,7 @@ class Trainer():
           
         if init_feats or (self.data.x is None):
             if verbose:
-                printd(f'\n train_model_on_params, initializing feats with {self.configs_dict['clamiter_init']['init_type']}')
+                printd(f'\n train_model_on_params, initializing feats with {self.configs_dict["clamiter_init"]["init_type"]}')
             t = time.time()
 
             # if attr_init is true, initialize the nodes with the attributes plus some noise
