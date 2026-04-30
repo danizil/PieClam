@@ -43,14 +43,15 @@ def main():
     parser.add_argument('--ds_name', type=str, default='squirrel', help='name of the dataset')
 
     # feat config triplet range
+    #todo: make the values default to the global config values
     parser.add_argument('--dim_feats', nargs='+', type=int, default=[], help='community dimension')
-    parser.add_argument('--l1_regs', nargs='+', type=float, default=[], help='l1 regularization')
-    parser.add_argument('--s_regs', nargs='+', type=float, default=[], help='s regularization')
+    parser.add_argument('--l1_regs', nargs='+', type=float, default=[0.0], help='l1 regularization')
+    parser.add_argument('--s_regs', nargs='+', type=float, default=[0.0], help='s regularization')
     parser.add_argument('--n_iters_feats', nargs='+', type=int, default=[], help='number of iterations in fit feats')
-    parser.add_argument('--lr_feats', nargs='+', type=float, default=[], help='lr feats')
+    parser.add_argument('--lr_feats', nargs='+', type=float, default=[2000], help='lr feats')
     
     #prior config triplet range
-    parser.add_argument('--dim_attr', nargs='+', type=int, default=[], help='attribute dimension')
+    parser.add_argument('--dim_attr', nargs='+', type=int, default=[100], help='attribute dimension')
     parser.add_argument('--n_iters_prior', nargs='+', type=int, default=[], help='number of iterations in fit prior')
     parser.add_argument('--lr_prior', nargs='+', type=float, default=[], help='lr prior')
     parser.add_argument('--noise_amps', nargs='+', type=float, default=[], help='noise amplitudes')
@@ -67,11 +68,11 @@ def main():
     parser.add_argument('--random_search', action='store_true', help='whether to use random search')
     parser.add_argument('--test_only', action='store_true', help='whether to test only')
     parser.add_argument('--n_reps', type=int, default=3, help='number of repetitions')
-    parser.add_argument('--to_undirected', action='store_false', help='whether to use undirected data')
-    parser.add_argument('--remove_self_loops', action='store_false', help='whether to remove self loops')
+    parser.add_argument('--to_undirected', action='store_true', help='whether to use undirected data')
+    parser.add_argument('--remove_self_loops', action='store_true', help='whether to remove self loops')
 
     # task selection
-    parser.add_argument('--task', type=str, default='link_prediction', choices=['link_prediction', 'anomaly_detection'], help='task to run')
+    # parser.add_argument('--task', type=str, default='link_prediction', choices=['link_prediction', 'anomaly_detection'], help='task to run')
 
     # anomaly-only args
     # parser.add_argument('--ds_names', nargs='+', type=str, default=['reddit', 'photo', 'elliptic'], help='datasets for multi_ds_anomaly')
@@ -112,45 +113,23 @@ def main():
         ]
     # Create the file if it doesn't exist
     #todo: test the datasets: photo, texas, facebook, squirrel and crocodile
-    if args.task == 'link_prediction':
-        ou.cross_val_link(
-            ds_name=args.ds_name,
-            model_name=args.model_name,
-            range_triplets=range_triplets,
-            use_global_config_base=args.use_global_config_base,
-            densify=args.densify,
-            attr_opt=args.attr_opt,
-            test_p=args.test_p,
-            val_p=args.val_p,
-            random_search=args.random_search,
-            val_dyads_path=args.val_dyads_path,
-            test_dyads_path=args.test_dyads_path,
-            test_only=args.test_only,
-            n_reps=args.n_reps,
-            device=device,
-            plot_every=100000,
-            acc_every=-1,
-            to_undirected=args.to_undirected,
-            remove_self_loops=args.remove_self_loops
-            )
 
-    elif args.task == 'anomaly_detection':
-        ou.multi_ds_anomaly(
-            model_name=args.model_name,
-            range_triplets=range_triplets,
-            n_reps=args.n_reps,
-            use_global_config_base=args.use_global_config_base,
-            device=device,
-            metric='auc',
-            ds_names=[args.ds_name],
-            densifiable_ds=[args.ds_name if args.densify else None],
-            attr_opt=args.attr_opt,
-            acc_every=args.acc_every,
-            to_undirected=args.to_undirected,
-            remove_self_loops=args.remove_self_loops,
-            random_search=args.random_search,
-            name=args.name,
-            )
+    ou.multi_ds_anomaly(
+        model_name=args.model_name,
+        range_triplets=range_triplets,
+        n_reps=args.n_reps,
+        use_global_config_base=args.use_global_config_base,
+        device=device,
+        metric='auc',
+        ds_names=[args.ds_name],
+        densifiable_ds=[args.ds_name if args.densify else None],
+        attr_opt=args.attr_opt,
+        acc_every=args.acc_every,
+        to_undirected=args.to_undirected,
+        remove_self_loops=args.remove_self_loops,
+        random_search=args.random_search,
+        name=args.name,
+        )
 
 if __name__ == "__main__":
     main()

@@ -183,7 +183,8 @@ def import_dataset(dataset_name=None, data=None, test_dyads_path=None, val_dyads
             if to_undirected:
                 data.edge_index = upyg.to_undirected(data.edge_index)
         else:
-            data = torch.load("../datasets/anomaly_detection/directed/elliptic-data-set/elliptic_bitcoin_dataset/elliptic_labeled_directed_pyg.pt")
+            # data = torch.load("../datasets/anomaly_detection/directed/elliptic-data-set/elliptic_bitcoin_dataset/elliptic_labeled_directed_pyg.pt")
+            data = torch.load(os.path.join(current_dir, "anomaly_detection/directed/elliptic-data-set/elliptic_bitcoin_dataset/elliptic_labeled_directed_pyg.pt"))
             edge_index2, edge_attr2, node_mask = upyg.remove_isolated_nodes(
                 data.edge_index, data.edge_attr, num_nodes=data.num_nodes
             )

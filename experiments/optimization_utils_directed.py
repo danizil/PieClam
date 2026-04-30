@@ -784,15 +784,15 @@ def multi_ds_anomaly(
         densifiable_ds=['reddit', 'photo'],
         attr_opt=True,
         acc_every=200,
-        to_undirected=True,
-        remove_self_loops=True,
+        to_undirected=False,
+        remove_self_loops=False,
         plot_every=10000,
         random_search=False,
         name=None,
         random_seed=42):
     
     '''here we test a single configuration for a list of datasets since the setting is unsupervised. '''
-    
+
     ds = None
     ds_for_optimization = None
     trainer_anomaly = None
@@ -815,6 +815,9 @@ def multi_ds_anomaly(
                               metric=metric,
                               directed=directed) 
                               for i, ds_name in enumerate(ds_names)]
+        
+        for triplet in range_triplets:
+            assert triplet[2] != [], f'range_triplets has empty value list for {triplet[:2]}'
         grid = list(itertools.product(*[triplet[2] for triplet in range_triplets]))
         if random_search:
             if random_seed is not None:

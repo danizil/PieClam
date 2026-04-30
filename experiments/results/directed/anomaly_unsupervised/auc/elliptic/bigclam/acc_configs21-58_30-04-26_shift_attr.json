@@ -1,0 +1,85 @@
+{
+    "date_time": "2026-04-30 21:58:01",
+    "ds_name": "elliptic",
+    "model_name": "bigclam",
+    "task": "anomaly_unsupervised",
+    "metric": "auc",
+    "config_ranges": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            [
+                64
+            ]
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            [
+                0.0
+            ]
+        ],
+        [
+            "feat_opt",
+            "lr",
+            [
+                1e-05,
+                1e-06,
+                1e-07,
+                0.0001
+            ]
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            [
+                0.5,
+                0.1,
+                0
+            ]
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            [
+                0.5,
+                0.1,
+                0
+            ]
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            [
+                10000
+            ]
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            [
+                "from_attr"
+            ]
+        ]
+    ],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 24,
+            "dim_attr": 100,
+            "s_reg": 0.0,
+            "l1_reg": 0.0,
+            "init_type": "small_gaus",
+            "T": 1,
+            "pow_in": 0.0001,
+            "pow_out": 0.0001,
+            "hidden_dim": 64,
+            "num_coupling_blocks": 32,
+            "num_layers_mlp": 2
+        },
+        "feat_opt": {
+            "lr": 1e-06,
+            "n_iter": 2200,
+            "early_stop": 0
+        }
+    }
+}

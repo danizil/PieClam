@@ -270,7 +270,7 @@ GlobalConfigs_bigclam:
         dim_feat: 24
         dim_attr: 100
         s_reg: 0.0
-        l1_reg: 1
+        l1_reg: 0.0
         init_type: "small_gaus"
         T: 1
         pow_in: 0.0001
