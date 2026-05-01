@@ -57,6 +57,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_name', type=str, default='ieclam', help='name of the model')
     parser.add_argument('--ds_name', type=str, default='squirrel', help='name of the dataset')
+    parser.add_argument('--init_type', type=str, default='small_gaus', help='type of initialization')
 
     # feat config triplet range
     parser.add_argument('--dim_feats', nargs='+', type=int, default=[], help='community dimension')
