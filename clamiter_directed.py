@@ -233,7 +233,6 @@ class ClamIter(MessagePassing):
                 
                 # tbr_receiver = self.propagate(edge_index=graph.edge_index, x=graph.x, global_features=(prior_grad[:, self.dim_feat//2:]), edge_attr=graph.edge_attr) #* out_degree_ret**(-self.pow_out)
                 tbr_receiver = self.propagate(edge_index=graph.edge_index, x=x_for_pass, global_features=(prior_grad[:, self.dim_feat//2:]), edge_attr=graph.edge_attr)* out_degree_ret**(-self.pow_out)
-                #! add the degree to
 
                 tbr = torch.cat([tbr_sender, tbr_receiver], dim=1)
        

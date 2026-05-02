@@ -358,17 +358,26 @@ def edge_mask_drop_and_rearange(edge_index, p, directed):
 #     return edge_index, edge_attr
 
 def get_in_out_degree(graph):
-    num_edges = graph.edge_index.shape[1]   
+    
+    num_edges = graph.edge_index.shape[1]
+    num_dyads = graph.num_nodes**2 
+    num_non_edges = graph.num_nodes**2 - num_edges  
     num_edges_retained = graph.edge_attr.sum().item()
     num_edges_omitted = num_edges - num_edges_retained
 
-    in_degree_ret = num_edges_retained - degree(graph.edge_index[1, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
+    num_dyads_omitted = torch.logical_not(graph.edge_attr).sum().item()
+    num_dyads_retained = num_dyads - num_dyads_omitted
+    
+    num_non_edges_retained = num_dyads_retained - num_edges_retained
+    num_non_edges_omitted = num_dyads_omitted - num_edges_omitted
+    #! wait this is not what i wanted... i wanted the non degree of each node not the number of all the edges in the graph...
+    in_degree_ret = num_non_edges_retained - degree(graph.edge_index[1, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
 
     # VV next line to match the edges feats in mpnn
     # in_degree_ret = torch.where(in_degree_ret == 0, torch.ones_like(in_degree_ret), in_degree_ret)
     # in_degree_ret = in_degree_ret[graph.edge_index[1]]
     
-    in_degree_omitted = num_edges_omitted - degree(graph.edge_index[1, graph.edge_attr == 0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
+    in_degree_omitted = num_non_edges_omitted - degree(graph.edge_index[1, graph.edge_attr == 0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
     # in_degree_omitted = torch.where(in_degree_omitted == 0, torch.ones_like(in_degree_omitted), in_degree_omitted)
     # VV next line to match the edges feats in mpnn
     # in_degree_omitted = in_degree_omitted[graph.edge_index[1]]
@@ -382,9 +391,9 @@ def get_in_out_degree(graph):
 
     in_degree = [in_degree_ret, in_degree_omitted]
 
-    out_degree_ret = num_edges_retained - degree(graph.edge_index[0, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
+    out_degree_ret = num_non_edges_retained - degree(graph.edge_index[0, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
     
-    out_degree_omitted = num_edges_omitted - degree(graph.edge_index[0, graph.edge_attr==0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
+    out_degree_omitted = num_non_edges_omitted - degree(graph.edge_index[0, graph.edge_attr==0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device)
     #! VV EXPERIMENTAL for dividing by degree also VV
     # out_degree_ret = out_degree_ret*(degree(graph.edge_index[0, graph.edge_attr == 1], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device) + 1)
     # out_degree_omitted = out_degree_omitted*(degree(graph.edge_index[0, graph.edge_attr == 0], num_nodes=graph.num_nodes).unsqueeze(1).to(graph.x.device) + 1)

@@ -41,6 +41,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_name', type=str, default='ieclam', help='name of the model')
     parser.add_argument('--ds_name', type=str, default='squirrel', help='name of the dataset')
+    parser.add_argument('--init_types', nargs='+', type=str, default=['small_gaus'], help='type of initialization')
 
     # feat config triplet range
     #todo: make the values default to the global config values
@@ -98,6 +99,7 @@ def main():
         ['clamiter_init','s_reg', args.s_regs],
         ['clamiter_init','l1_reg', args.l1_regs],
         ['clamiter_init', 'dim_feat', args.dim_feats],
+        ['clamiter_init', 'init_type', args.init_types],
         ['feat_opt','n_iter', args.n_iters_feats],
         ['feat_opt','lr', args.lr_feats],
     ]
