@@ -75,18 +75,19 @@ def load_hyper_config(task, model_name, use_global_config_base=True, ds_name=Non
 
 
 
-def print_folder(ds_name, 
-                 model_name, 
+def print_folder(ds_name,
+                 model_name,
                  task='link_prediction',
-                 metric='auc', 
-                 splits=None, 
-                 test_or_valid ='test',  
+                 metric='auc',
+                 splits=None,
+                 test_or_valid='test',
                  top_num_to_print=20,
                  from_date=None,
-                 sort_by='val_acc', 
+                 sort_by='val_acc',
                  show_empty_files=True,
                  print_base_config=True,
-                 return_dataframes=False):
+                 return_dataframes=False,
+                 filter_dict=None):
     '''print the results of an experiment on a dataset with one of the Clam models. The results are arranged into a metric (auc or hits@20) and test/validation experiments.'''
     printd(f'Printing results for {task} on {ds_name} with {model_name} model.')
     if not show_empty_files:
@@ -134,12 +135,17 @@ def print_folder(ds_name,
                             base_config = grouped_tup[1]
                         else:
                             grouped_df = grouped_tup
-                        if not grouped_df.empty:  
+                        if filter_dict is not None:
+                            for col, val in filter_dict.items():
+                                if col in grouped_df.columns:
+                                    vals = val if isinstance(val, list) else [val]
+                                    grouped_df = grouped_df[grouped_df[col].isin(vals)]
+                        if not grouped_df.empty:
                             print("    " + file_name + '\n    ==================')
                             if print_base_config:
                                 print('    Base config:')
                                 print(json.dumps(base_config, indent=4))
-                                print('    ==================') 
+                                print('    ==================')
                             if top_num_to_print == -1:
                                 print(grouped_df)
                             else:
