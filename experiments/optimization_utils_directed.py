@@ -381,7 +381,7 @@ class SaveRun:
             metric = data.pop("metric")
 
         base_config = data.pop("base_config")
-        if data == {}:
+        if data == {} or data == []:
             grouped = pd.DataFrame()
 
         # List to hold processed data for DataFrame

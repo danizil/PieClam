@@ -211,7 +211,7 @@ def import_dataset(dataset_name=None, data=None, test_dyads_path=None, val_dyads
         data.x = None
     elif dataset_name == 'books':
         data = pygod.utils.load_data('books')
-        data.gt_nomalous = (1-data.y).bool()
+        data.gt_nomalous = (1-data.y.int()).bool()
         data.raw_attr = data.x
         data.x = None
     elif dataset_name == 'amazon':

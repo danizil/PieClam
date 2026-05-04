@@ -106,12 +106,12 @@
         [
             "feat_opt",
             "lr",
-            1e-06
+            5e-07
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.1
+            0.01
         ],
         [
             "clamiter_init",
@@ -577,7 +577,7 @@
         [
             "clamiter_init",
             "dim_feat",
-            16
+            32
         ],
         [
             "clamiter_init",
@@ -587,17 +587,17 @@
         [
             "feat_opt",
             "lr",
-            1e-05
+            0.0001
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.0
+            0.5
         ],
         [
             "clamiter_init",
             "pow_out",
-            0.1
+            0.05
         ],
         [
             "feat_opt",
@@ -614,7 +614,7 @@
         [
             "clamiter_init",
             "dim_feat",
-            16
+            32
         ],
         [
             "clamiter_init",
@@ -629,7 +629,7 @@
         [
             "clamiter_init",
             "pow_in",
-            0.01
+            0.1
         ],
         [
             "clamiter_init",
@@ -799,7 +799,7 @@
         [
             "clamiter_init",
             "dim_feat",
-            8
+            32
         ],
         [
             "clamiter_init",
@@ -809,7 +809,7 @@
         [
             "feat_opt",
             "lr",
-            1e-05
+            0.0001
         ],
         [
             "clamiter_init",
@@ -819,7 +819,7 @@
         [
             "clamiter_init",
             "pow_out",
-            0.0
+            0.001
         ],
         [
             "feat_opt",
@@ -846,17 +846,17 @@
         [
             "feat_opt",
             "lr",
-            1e-06
+            0.0001
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.1
+            0.005
         ],
         [
             "clamiter_init",
             "pow_out",
-            0.01
+            0.001
         ],
         [
             "feat_opt",
@@ -947,7 +947,7 @@
         [
             "clamiter_init",
             "dim_feat",
-            8
+            32
         ],
         [
             "clamiter_init",
@@ -957,17 +957,17 @@
         [
             "feat_opt",
             "lr",
-            1e-05
+            0.0001
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.01
+            0.005
         ],
         [
             "clamiter_init",
             "pow_out",
-            0.01
+            0.005
         ],
         [
             "feat_opt",
@@ -1058,7 +1058,7 @@
         [
             "clamiter_init",
             "dim_feat",
-            8
+            32
         ],
         [
             "clamiter_init",
@@ -1073,7 +1073,7 @@
         [
             "clamiter_init",
             "pow_in",
-            0.005
+            0.0
         ],
         [
             "clamiter_init",
@@ -1576,7 +1576,7 @@
         [
             "clamiter_init",
             "dim_feat",
-            8
+            32
         ],
         [
             "clamiter_init",
@@ -1586,17 +1586,17 @@
         [
             "feat_opt",
             "lr",
-            1e-05
+            0.0001
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.001
+            0.0
         ],
         [
             "clamiter_init",
             "pow_out",
-            0.0
+            0.05
         ],
         [
             "feat_opt",
@@ -1845,12 +1845,12 @@
         [
             "feat_opt",
             "lr",
-            1e-06
+            5e-07
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.01
+            0.0
         ],
         [
             "clamiter_init",
@@ -1882,17 +1882,17 @@
         [
             "feat_opt",
             "lr",
-            1e-06
+            5e-07
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.01
+            0.0
         ],
         [
             "clamiter_init",
             "pow_out",
-            0.5
+            0.1
         ],
         [
             "feat_opt",
@@ -1993,17 +1993,17 @@
         [
             "feat_opt",
             "lr",
-            1e-06
+            5e-07
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.01
+            0.0
         ],
         [
             "clamiter_init",
             "pow_out",
-            0.005
+            0.05
         ],
         [
             "feat_opt",
@@ -2067,7 +2067,7 @@
         [
             "feat_opt",
             "lr",
-            1e-06
+            5e-07
         ],
         [
             "clamiter_init",
@@ -2104,17 +2104,17 @@
         [
             "feat_opt",
             "lr",
-            1e-06
+            5e-07
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.05
+            0.0
         ],
         [
             "clamiter_init",
             "pow_out",
-            0.05
+            0.5
         ],
         [
             "feat_opt",
@@ -2178,12 +2178,12 @@
         [
             "feat_opt",
             "lr",
-            1e-06
+            5e-07
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.05
+            0.1
         ],
         [
             "clamiter_init",
@@ -2205,7 +2205,7 @@
         [
             "clamiter_init",
             "dim_feat",
-            16
+            32
         ],
         [
             "clamiter_init",
@@ -2215,17 +2215,17 @@
         [
             "feat_opt",
             "lr",
-            5e-07
+            0.0001
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.1
+            0.5
         ],
         [
             "clamiter_init",
             "pow_out",
-            0.5
+            0.001
         ],
         [
             "feat_opt",
@@ -2242,7 +2242,7 @@
         [
             "clamiter_init",
             "dim_feat",
-            16
+            32
         ],
         [
             "clamiter_init",
@@ -2316,7 +2316,7 @@
         [
             "clamiter_init",
             "dim_feat",
-            16
+            32
         ],
         [
             "clamiter_init",
@@ -2871,7 +2871,7 @@
         [
             "clamiter_init",
             "dim_feat",
-            8
+            32
         ],
         [
             "clamiter_init",
@@ -2886,12 +2886,12 @@
         [
             "clamiter_init",
             "pow_in",
-            0.05
+            0.01
         ],
         [
             "clamiter_init",
             "pow_out",
-            0.001
+            0.5
         ],
         [
             "feat_opt",
@@ -4055,7 +4055,7 @@
         [
             "clamiter_init",
             "dim_feat",
-            16
+            32
         ],
         [
             "clamiter_init",
@@ -4065,17 +4065,17 @@
         [
             "feat_opt",
             "lr",
-            1e-05
+            0.0001
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.5
+            0.01
         ],
         [
             "clamiter_init",
             "pow_out",
-            0.0
+            0.001
         ],
         [
             "feat_opt",
@@ -4092,7 +4092,7 @@
         [
             "clamiter_init",
             "dim_feat",
-            16
+            32
         ],
         [
             "clamiter_init",
@@ -4102,12 +4102,12 @@
         [
             "feat_opt",
             "lr",
-            1e-05
+            0.0001
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.1
+            0.0
         ],
         [
             "clamiter_init",
@@ -4277,7 +4277,7 @@
         [
             "clamiter_init",
             "dim_feat",
-            16
+            32
         ],
         [
             "clamiter_init",
@@ -4287,7 +4287,7 @@
         [
             "feat_opt",
             "lr",
-            1e-05
+            0.0001
         ],
         [
             "clamiter_init",
@@ -4297,7 +4297,7 @@
         [
             "clamiter_init",
             "pow_out",
-            0.0
+            0.005
         ],
         [
             "feat_opt",
@@ -4869,7 +4869,7 @@
         [
             "clamiter_init",
             "dim_feat",
-            16
+            32
         ],
         [
             "clamiter_init",
@@ -4879,17 +4879,17 @@
         [
             "feat_opt",
             "lr",
-            1e-05
+            0.0001
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.005
+            0.05
         ],
         [
             "clamiter_init",
             "pow_out",
-            0.001
+            0.1
         ],
         [
             "feat_opt",
@@ -5175,17 +5175,17 @@
         [
             "feat_opt",
             "lr",
-            1e-06
+            5e-07
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.01
+            0.05
         ],
         [
             "clamiter_init",
             "pow_out",
-            0.05
+            0.0
         ],
         [
             "feat_opt",
@@ -6164,7 +6164,7 @@
         [
             "clamiter_init",
             "dim_feat",
-            16
+            32
         ],
         [
             "clamiter_init",
@@ -6460,7 +6460,7 @@
         [
             "clamiter_init",
             "dim_feat",
-            16
+            32
         ],
         [
             "clamiter_init",
@@ -6475,12 +6475,12 @@
         [
             "clamiter_init",
             "pow_in",
-            0.0
+            0.001
         ],
         [
             "clamiter_init",
             "pow_out",
-            0.0
+            0.01
         ],
         [
             "feat_opt",
@@ -6507,17 +6507,17 @@
         [
             "feat_opt",
             "lr",
-            1e-05
+            0.0001
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.5
+            0.005
         ],
         [
             "clamiter_init",
             "pow_out",
-            0.1
+            0.5
         ],
         [
             "feat_opt",
@@ -6914,17 +6914,17 @@
         [
             "feat_opt",
             "lr",
-            1e-05
+            0.0001
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.05
+            0.01
         ],
         [
             "clamiter_init",
             "pow_out",
-            0.005
+            0.1
         ],
         [
             "feat_opt",
@@ -7062,17 +7062,17 @@
         [
             "feat_opt",
             "lr",
-            1e-05
+            0.0001
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.01
+            0.1
         ],
         [
             "clamiter_init",
             "pow_out",
-            0.001
+            0.5
         ],
         [
             "feat_opt",
@@ -7506,17 +7506,17 @@
         [
             "feat_opt",
             "lr",
-            1e-05
+            0.0001
         ],
         [
             "clamiter_init",
             "pow_in",
-            0.0
+            0.001
         ],
         [
             "clamiter_init",
             "pow_out",
-            0.1
+            0.005
         ],
         [
             "feat_opt",
@@ -7544,6 +7544,1042 @@
             "feat_opt",
             "lr",
             1e-05
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.3870076497175141, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.5
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.1
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.594634768361582, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.05
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.5607364632768362, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.5
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.005
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.4788155593220339, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.5
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.5409624519774012, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.1
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.1
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.4689285536723163, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.1
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.05
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.5324878757062148, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.1
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.01
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.43926753672316377, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.1
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.001
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.37712064406779655, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.05
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.5
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.28531273446327676, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.05
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.05
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.49788335593220334, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.05
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.01
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.34745962711864403, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.05
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.005
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.24717714124293783, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.05
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.37570821468926546, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.01
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.2669511525423728, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.005
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.36793985310734456, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.34251612429378525, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.005
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.1
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.47740312994350276, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.005
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.05
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.48022798870056493, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.005
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.01
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.614408779661017, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.005
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.5805104745762713, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.001
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.5
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.38065171751412424, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.001
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.1
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.32768561581920896, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.001
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.001
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.5593240338983052, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.001
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.4470358983050847, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.1
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.29731838418079093, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.01
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.5861601920903955, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.005
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ]
+    ],
+    "(0.3312166892655367, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
         ],
         [
             "clamiter_init",
