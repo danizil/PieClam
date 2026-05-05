@@ -1,6 +1,6 @@
 
 import torch
-from torch_geometric.datasets import KarateClub, Actor, IMDB, Amazon
+from torch_geometric.datasets import KarateClub, Actor, IMDB
 import pygod
 from torch_geometric.data import Data
 import matplotlib.pyplot as plt
@@ -215,7 +215,8 @@ def import_dataset(dataset_name=None, data=None, test_dyads_path=None, val_dyads
         data.raw_attr = data.x
         data.x = None
     elif dataset_name == 'amazon':
-        data = pygod.utils.load_data('amazon')
+        pygod_cache = os.path.join(current_dir, 'anomaly_detection', 'directed')
+        data = pygod.utils.load_data('amazon', cache_dir=pygod_cache)
         data.gt_nomalous = (1-data.y).bool()
         data.raw_attr = data.x
         data.x = None
