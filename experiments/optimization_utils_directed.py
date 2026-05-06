@@ -7,6 +7,7 @@ import os
 import shutil
 from copy import deepcopy
 import itertools
+from collections import Counter
 from torch_geometric.transforms import TwoHop
 from torch_geometric import utils
 import numpy as np
@@ -354,8 +355,13 @@ class SaveRun:
         with open(self.acc_configs_path, 'w') as file:
             json.dump(loaded_acc_configs, file, indent=4)
 
-    
-    
+    @classmethod
+    def from_existing(cls, file_path):
+        '''Point a SaveRun at an existing JSON file without reinitializing it.'''
+        obj = cls.__new__(cls)
+        obj.acc_configs_path = _resolve_results_path(file_path)
+        return obj
+
     @staticmethod
     def load_saved(task, file_path, sort_by, metric='auc', print_base=False, print_config_ranges=False, print_date_time=False, return_base_config=True):
 
@@ -485,10 +491,41 @@ class SaveRun:
    
 
 
-#  dP""b8 88""Yb  dP"Yb  .dP"Y8 .dP"Y8 88     88 88b 88 88  dP 
-# dP   `" 88__dP dP   Yb `Ybo." `Ybo." 88     88 88Yb88 88odP  
-# Yb      88"Yb  Yb   dP o.`Y8b o.`Y8b 88  .o 88 88 Y88 88"Yb  
-#  YboodP 88  Yb  YbodP  8bodP' 8bodP' 88ood8 88 88  Y8 88  Yb 
+def _resolve_results_path(file_path):
+    '''If file_path is not absolute and doesn't exist as-is, try resolving it
+    relative to the experiments/results directory next to this file.'''
+    if not os.path.isabs(file_path) and not os.path.exists(file_path):
+        base = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'results')
+        file_path = os.path.join(base, file_path)
+    return file_path
+
+
+def remaining_configs_from_file(file_path, n_reps=1):
+    '''Load a results JSON and return (config_ranges, remaining_grid).
+    remaining_grid contains only configs completed fewer than n_reps times.
+    Each element of remaining_grid is a tuple of values matching config_ranges order.'''
+    file_path = _resolve_results_path(file_path)
+    _meta_keys = {'date_time', 'ds_name', 'model_name', 'task', 'metric', 'config_ranges', 'base_config'}
+    with open(file_path) as f:
+        data = json.load(f)
+    config_ranges = data['config_ranges']  # [[section, key, [vals]], ...]
+    full_grid = list(itertools.product(*[t[2] for t in config_ranges]))
+    # each result entry: key=str(acc), value=config_triplets [[s,k,v],...]
+    done_configs = [
+        tuple(triplet[2] for triplet in v)
+        for k, v in data.items()
+        if k not in _meta_keys
+    ]
+    counts = Counter(done_configs)
+    remaining = [vals for vals in full_grid if counts[vals] < n_reps]
+    printd(f'remaining_configs_from_file: {len(full_grid)} total, {len(full_grid)-len(remaining)} done, {len(remaining)} remaining')
+    return config_ranges, remaining
+
+
+#  dP""b8 88""Yb  dP"Yb  .dP"Y8 .dP"Y8 88     88 88b 88 88  dP
+# dP   `" 88__dP dP   Yb `Ybo." `Ybo." 88     88 88Yb88 88odP
+# Yb      88"Yb  Yb   dP o.`Y8b o.`Y8b 88  .o 88 88 Y88 88"Yb
+#  YboodP 88  Yb  YbodP  8bodP' 8bodP' 88ood8 88 88  Y8 88  Yb
 
 
 
@@ -567,10 +604,11 @@ def cross_val_link_splits(
 def cross_val_link(
         ds_name, 
         model_name,
-        range_triplets,
         n_reps,
         use_global_config_base,
         device,
+        range_triplets=None,
+        config_list=None,
         densify=False,
         test_p=0.0,
         val_p=0.0,
@@ -585,7 +623,6 @@ def cross_val_link(
         metric='auc',
         attr_opt=False,
         acc_every=20,
-        grid=None,
         plot_every=10000,
         init_type='small_gaus',
         to_undirected=True,
@@ -593,6 +630,7 @@ def cross_val_link(
         verbose=False,
         verbose_in_funcs=False,
         name=None,
+        from_file=None,
         **kwargs):
 
     ds = None
@@ -603,6 +641,8 @@ def cross_val_link(
     If there are data splits that already exist it's better to use the function cross_val_link_splits defined above.'''
     # ============ OMIT TEST =============
     '''The dyad omitting process for the algorithm is described in the paper. if a test set is provided it's used and if not the test set is taken randomly with the percentage given and 5X the number of negative samples. The same goes to the val set: if it is not given it is sampled from the dyad set for every parameter configuration.'''
+    assert range_triplets is not None or config_list is not None, 'either range_triplets or config_list should be given'
+
 #todo: what a
     #todo: add option for doing it in random
     try:
@@ -646,20 +686,23 @@ def cross_val_link(
              
         
         
-        for triplet in range_triplets[:]:
-            if triplet[2] == []:
-                range_triplets.remove(triplet)
-
-        run_saver = SaveRun(model_name,
-                            ds_name,
-                            'link_prediction',
-                            metric=metric,
-                            omitted_test_dyads=ds_test_omitted.omitted_dyads_test,
-                            test_or_valid=test_or_valid,
-                            use_global_config_base=use_global_config_base,
-                            directed=ds.is_directed(),
-                            config_ranges=range_triplets,
-                            name=name)
+        if from_file is not None:
+            range_triplets, config_list = remaining_configs_from_file(from_file, n_reps=n_reps)
+            run_saver = SaveRun.from_existing(from_file)
+        else:
+            for triplet in range_triplets[:]:
+                if triplet[2] == []:
+                    range_triplets.remove(triplet)
+            run_saver = SaveRun(model_name,
+                                ds_name,
+                                'link_prediction',
+                                metric=metric,
+                                omitted_test_dyads=ds_test_omitted.omitted_dyads_test,
+                                test_or_valid=test_or_valid,
+                                use_global_config_base=use_global_config_base,
+                                directed=ds.is_directed(),
+                                config_ranges=range_triplets,
+                                name=name)
         
         printd(f'RunSaver defined to acc_configs path {run_saver.acc_configs_path}')
 
@@ -674,10 +717,10 @@ def cross_val_link(
                             ds_test_omitted.edge_attr,
                             val_dyads_to_omit)
 
-        if grid is None:
-            grid = list(itertools.product(*[triplet[2] for triplet in range_triplets]))
+        if config_list is not None:
+            grid = config_list
         else:
-            grid = grid
+            grid = list(itertools.product(*[triplet[2] for triplet in range_triplets]))
         if random_search:
             if random_seed is not None:
                 random.seed(random_seed)
@@ -780,10 +823,11 @@ def cross_val_link(
 
 def multi_ds_anomaly(
         model_name,
-        range_triplets,
         n_reps,
         use_global_config_base,
         device,
+        range_triplets=None,
+        config_list=None,
         metric='auc',
         # init_type='small_gaus',
         ds_names=['reddit', 'photo', 'elliptic'], 
@@ -795,36 +839,48 @@ def multi_ds_anomaly(
         plot_every=10000,
         random_search=False,
         name=None,
-        random_seed=42):
-    
-    '''here we test a single configuration for a list of datasets since the setting is unsupervised. '''
+        random_seed=42,
+        from_files=None):
+
+    '''here we test a single configuration for a list of datasets since the setting is unsupervised.
+    from_files: list of existing JSON paths, one per ds_name. If given, resumes from those files
+    instead of creating new ones. range_triplets and config_list are ignored.'''
 
     ds = None
     ds_for_optimization = None
     trainer_anomaly = None
 
     assert model_name in ['ieclam', 'bigclam', 'pieclam', 'pclam']
+    assert from_files is not None or range_triplets is not None or config_list is not None, \
+        'one of from_files, range_triplets, or config_list must be given'
 
     try:
-        
+
         curr_file_dir = os.path.dirname(os.path.abspath(__file__))
-        # save_paths = [os.path.join(curr_file_dir, 'results', 'anomaly_unsupervised', model_name, ds_name, 'acc_configs.json')for ds_name in ds_names]
-        # a different run saver for every dataset
         directed = not to_undirected
-        run_savers = [SaveRun(model_name, 
-                              ds_name,
-                              task='anomaly_unsupervised', 
-                              use_global_config_base=use_global_config_base, 
-                            #   save_path=save_paths[i], 
-                              config_ranges=range_triplets, 
-                              name=name,
-                              metric=metric,
-                              directed=directed) 
-                              for i, ds_name in enumerate(ds_names)]
-        
-        for triplet in range_triplets:
-            assert triplet[2] != [], f'range_triplets has empty value list for {triplet[:2]}'
-        grid = list(itertools.product(*[triplet[2] for triplet in range_triplets]))
+
+        if from_files is not None:
+            assert len(from_files) == len(ds_names), 'from_files must have one path per ds_name'
+            # all files share the same config_ranges — use the first one
+            range_triplets, config_list = remaining_configs_from_file(from_files[0], n_reps=n_reps)
+            run_savers = [SaveRun.from_existing(fp) for fp in from_files]
+        else:
+            run_savers = [SaveRun(model_name,
+                                  ds_name,
+                                  task='anomaly_unsupervised',
+                                  use_global_config_base=use_global_config_base,
+                                  config_ranges=range_triplets,
+                                  name=name,
+                                  metric=metric,
+                                  directed=directed)
+                                  for i, ds_name in enumerate(ds_names)]
+
+        if config_list is not None:
+            grid = config_list
+        else:
+            for triplet in range_triplets:
+                assert triplet[2] != [], f'range_triplets has empty value list for {triplet[:2]}'
+            grid = list(itertools.product(*[triplet[2] for triplet in range_triplets]))
         if random_search:
             if random_seed is not None:
                 random.seed(random_seed)
