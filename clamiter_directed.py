@@ -1126,12 +1126,19 @@ def init_node_feats(num_feats, lorenz, init_type, device, num_nodes=None, graph_
                 attr_np = np.asarray(attr_src)
 
             target_dim = num_feats // 2 if directed else num_feats
-            n_components = min(target_dim, attr_np.shape[1])
-            if n_components < 1:
-                raise ValueError('from_attr: invalid n_components')
+            if target_dim > attr_np.shape[1]:
+                raise ValueError('from_attr: target_dim is greater than the number of available attributes')
+            # n_components = min(target_dim, attr_np.shape[1])
+            n_components = target_dim
+            # if n_components < 1:
+            #     raise ValueError('from_attr: invalid n_components')
 
+            # z = TruncatedSVD(n_components=n_components).fit_transform(attr_np)
+            # z = torch.from_numpy(z).float()
             z = TruncatedSVD(n_components=n_components).fit_transform(attr_np)
+            z = (z - z.mean(axis=0)) / (z.std(axis=0) + 1e-8)
             z = torch.from_numpy(z).float()
+
 
             z = z - z.min(dim=0, keepdim=True).values
             z = z + 1e-8

@@ -500,6 +500,35 @@ def _resolve_results_path(file_path):
     return file_path
 
 
+def top_configs_from_file(file_path, top_n=5):
+    '''Load a results JSON and return (config_ranges, config_list) for the top_n configs by acc.
+    Currently sorts by vanilla_star (first element of acc tuple) for anomaly_unsupervised.
+    #todo: make sort_by configurable (vanilla_star, prior, prior_star for anomaly; val_acc/test_acc for link_prediction)
+    #todo: handle the case where acc is a float (link prediction test-only) not a tuple
+    Each element of config_list is a tuple of values matching config_ranges order.'''
+    file_path = _resolve_results_path(file_path)
+    _meta_keys = {'date_time', 'ds_name', 'model_name', 'task', 'metric', 'config_ranges', 'base_config'}
+    with open(file_path) as f:
+        data = json.load(f)
+    config_ranges = data['config_ranges']
+    result_entries = [(eval(k), v) for k, v in data.items() if k not in _meta_keys]
+    # sort by vanilla_star (first element of acc tuple)
+    # #todo: generalize sort key
+    result_entries.sort(key=lambda x: x[0][0] if isinstance(x[0], tuple) else x[0], reverse=True)
+    seen = []
+    config_list = []
+    for acc, triplets in result_entries:
+        vals = tuple(t[2] for t in triplets)
+        if vals not in seen:
+            seen.append(vals)
+            config_list.append(vals)
+        if len(config_list) >= top_n:
+            break
+    printd(f'top_configs_from_file: returning top {len(config_list)} configs')
+    printd(f'top config: {config_list[0] if config_list else None}')
+    return config_ranges, config_list
+
+
 def remaining_configs_from_file(file_path, n_reps=1):
     '''Load a results JSON and return (config_ranges, remaining_grid).
     remaining_grid contains only configs completed fewer than n_reps times.
@@ -517,8 +546,10 @@ def remaining_configs_from_file(file_path, n_reps=1):
         if k not in _meta_keys
     ]
     counts = Counter(done_configs)
-    remaining = [vals for vals in full_grid if counts[vals] < n_reps]
-    printd(f'remaining_configs_from_file: {len(full_grid)} total, {len(full_grid)-len(remaining)} done, {len(remaining)} remaining')
+    remaining = [vals for vals in full_grid if counts[vals] == 0]
+    last_config = done_configs[-1] if done_configs else None
+    printd(f'remaining_configs_from_file: {len(full_grid)} total, {len(done_configs)} done, {len(remaining)} remaining')
+    printd(f'last config done: {last_config}')
     return config_ranges, remaining
 
 
@@ -840,7 +871,9 @@ def multi_ds_anomaly(
         random_search=False,
         name=None,
         random_seed=42,
-        from_files=None):
+        from_files=None,
+        from_files_mode='top',
+        from_files_top_n=5):
 
     '''here we test a single configuration for a list of datasets since the setting is unsupervised.
     from_files: list of existing JSON paths, one per ds_name. If given, resumes from those files
@@ -860,10 +893,21 @@ def multi_ds_anomaly(
         directed = not to_undirected
 
         if from_files is not None:
-            assert len(from_files) == len(ds_names), 'from_files must have one path per ds_name'
+            assert len(from_files) == len(ds_names), 'from_files must have one filename per ds_name'
+            assert from_files_mode in ('remaining', 'top'), "from_files_mode must be 'remaining' or 'top'"
+            base_results_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'results')
+            dir_str = 'directed' if directed else 'undirected'
+            # build full paths from filename + other params (one dir per ds_name)
+            resolved = [
+                os.path.join(base_results_dir, dir_str, 'anomaly_unsupervised', metric, ds_name, model_name, fname)
+                for ds_name, fname in zip(ds_names, from_files)
+            ]
             # all files share the same config_ranges — use the first one
-            range_triplets, config_list = remaining_configs_from_file(from_files[0], n_reps=n_reps)
-            run_savers = [SaveRun.from_existing(fp) for fp in from_files]
+            if from_files_mode == 'remaining':
+                range_triplets, config_list = remaining_configs_from_file(resolved[0], n_reps=n_reps)
+            else:  # 'top'
+                range_triplets, config_list = top_configs_from_file(resolved[0], top_n=from_files_top_n)
+            run_savers = [SaveRun.from_existing(fp) for fp in resolved]
         else:
             run_savers = [SaveRun(model_name,
                                   ds_name,

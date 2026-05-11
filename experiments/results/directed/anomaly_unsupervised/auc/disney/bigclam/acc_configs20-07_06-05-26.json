@@ -1,0 +1,298 @@
+{
+    "date_time": "2026-05-06 20:07:39",
+    "ds_name": "disney",
+    "model_name": "bigclam",
+    "task": "anomaly_unsupervised",
+    "metric": "auc",
+    "config_ranges": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            [
+                8
+            ]
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            [
+                0.0
+            ]
+        ],
+        [
+            "feat_opt",
+            "lr",
+            [
+                0.0001,
+                5e-05,
+                0.0002
+            ]
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            [
+                0.01
+            ]
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            [
+                0.01
+            ]
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            [
+                1000,
+                2000
+            ]
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            [
+                "from_attr"
+            ]
+        ],
+        [
+            "clamiter_init",
+            "num_coupling_blocks",
+            [
+                8
+            ]
+        ]
+    ],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 24,
+            "dim_attr": 100,
+            "s_reg": 0.0,
+            "l1_reg": 0.0,
+            "init_type": "small_gaus",
+            "T": 1,
+            "pow_in": 0.0001,
+            "pow_out": 0.0001,
+            "hidden_dim": 64,
+            "num_coupling_blocks": 32,
+            "num_layers_mlp": 2
+        },
+        "feat_opt": {
+            "lr": 1e-06,
+            "n_iter": 2200,
+            "early_stop": 0
+        }
+    },
+    "(0.17231838418079098, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            8
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-05
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.01
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            2000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ],
+        [
+            "clamiter_init",
+            "num_coupling_blocks",
+            8
+        ]
+    ],
+    "(0.16101894915254236, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            8
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0001
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.01
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            2000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ],
+        [
+            "clamiter_init",
+            "num_coupling_blocks",
+            8
+        ]
+    ],
+    "(0.35734663276836154, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            8
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-05
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.01
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            1000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ],
+        [
+            "clamiter_init",
+            "num_coupling_blocks",
+            8
+        ]
+    ],
+    "(0.4830528474576271, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            8
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0002
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.01
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            1000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ],
+        [
+            "clamiter_init",
+            "num_coupling_blocks",
+            8
+        ]
+    ],
+    "(0.31497375141242934, None, None)": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            8
+        ],
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "feat_opt",
+            "lr",
+            0.0002
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.01
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.01
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            2000
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            "from_attr"
+        ],
+        [
+            "clamiter_init",
+            "num_coupling_blocks",
+            8
+        ]
+    ]
+}
