@@ -3,23 +3,54 @@
 # 88__dP dP   Yb dP   Yb 88odP  `Ybo." 
 # 88""Yb Yb   dP Yb   dP 88"Yb  o.`Y8b 
 # 88oodP  YbodP   YbodP  88  Yb 8bodP' 
-clamiter_init: 
-    dim_feat: 16
-    dim_attr: 21
-    s_reg: 0.0
-    l1_reg: 0.0
-    init_type: "from_attr"
-    T: 1
-    pow_in: 0.0
-    pow_out: 0.005
-    hidden_dim: 64
-    num_coupling_blocks: 32
-    num_layers_mlp: 2
+books_bigclam:    
+    clamiter_init: 
+        dim_feat: 16
+        dim_attr: 21
+        s_reg: 0.0
+        l1_reg: 0.0
+        init_type: "from_attr"
+        T: 1
+        pow_in: 0.0
+        pow_out: 0.005
+        hidden_dim: 64
+        num_coupling_blocks: 32
+        num_layers_mlp: 2
 
-feat_opt: 
-    lr: 5e-06
-    n_iter: 5000
-    early_stop: 0
+    feat_opt: 
+        lr: 5e-06
+        n_iter: 5000
+        early_stop: 0
+
+books_pclam:    
+    clamiter_init: 
+        dim_feat: 16
+        dim_attr: 21
+        s_reg: 0.0
+        l1_reg: 0.0
+        init_type: "from_attr"
+        T: 1
+        pow_in: 0.0
+        pow_out: 0.005
+        hidden_dim: 64
+        num_coupling_blocks: 32
+        num_layers_mlp: 2
+
+    feat_opt: 
+        lr: 5e-06
+        n_iter: 2000
+        early_stop: 0
+    prior_opt:
+        n_iter: 10000
+        lr: 0.0001
+        noise_amp: 0.005
+        weight_decay: 0.1
+        
+    back_forth:
+        n_back_forth: 20
+        scheduler_step_size: 1
+        scheduler_gamma: 0.5
+        first_func_in_fit: 'fit_prior'
 
 
 # 88""Yb 888888 8888b.  8888b.  88 888888 

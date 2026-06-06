@@ -1220,15 +1220,16 @@ class StarProb(MessagePassing):
 
                 tbr_receiver = self.propagate(edge_index=graph.edge_index, x=graph.x, global_features=())
                 tbr_sender = self.propagate(edge_index=graph.edge_index.flip(0), x=x_flipped, global_features=())
-                #! should also include degree normalization?
                 tbr = tbr_receiver + tbr_sender
+                    
+                #! maybe i should sum the priors of the other nodes?
+                
                 if self.prior is not None:
                     self.prior.eval()
                     if self.prior.attr_opt:
                         feats_for_prior = torch.cat([graph.x, graph.attr], dim=1)
                     else:
                         feats_for_prior = graph.x
-            
                     tbr = tbr + self.prior.forward_ll(feats_for_prior, sum=False)
 
         return tbr
