@@ -41,13 +41,16 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_name', type=str, default='ieclam', help='name of the model')
     parser.add_argument('--ds_name', type=str, default='squirrel', help='name of the dataset')
-    parser.add_argument('--init_types', nargs='+', type=str, default=['small_gaus'], help='type of initialization')
+    parser.add_argument('--init_types', nargs='+', type=str, default=['from_attr'], help='type of initialization')
 
     # feat config triplet range
     #todo: make the values default to the global config values
     parser.add_argument('--dim_feats', nargs='+', type=int, default=[], help='community dimension')
+    parser.add_argument('--pow_in', type=float, default=0.05, help='power to raise the non degree of nodes')
+    parser.add_argument('--pow_out', type=float, default=0.05, help='power to raise the non degree of nodes')
     parser.add_argument('--l1_regs', nargs='+', type=float, default=[0.0], help='l1 regularization')
     parser.add_argument('--s_regs', nargs='+', type=float, default=[0.0], help='s regularization')
+    parser.add_argument('--num_coupling_blocks', nargs='+', type=int, default=[8], help='number of coupling blocks in the flow')
     parser.add_argument('--n_iters_feats', nargs='+', type=int, default=[], help='number of iterations in fit feats')
     parser.add_argument('--lr_feats', nargs='+', type=float, default=[2000], help='lr feats')
     
