@@ -1,0 +1,85 @@
+{
+    "date_time": "2026-07-12 21:09:06",
+    "ds_name": "citeseer",
+    "model_name": "bigclam",
+    "task": "link_prediction",
+    "metric": "auc",
+    "config_ranges": [
+        [
+            "clamiter_init",
+            "l1_reg",
+            [
+                0.0,
+                0.0001
+            ]
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            [
+                32,
+                50,
+                60
+            ]
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            [
+                0.1,
+                0.05,
+                0.01,
+                0.005,
+                0.001,
+                0.0005,
+                0.0001,
+                5e-05,
+                0.0
+            ]
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            [
+                0.1,
+                0.05,
+                0.01,
+                0.005,
+                0.001,
+                0.0005,
+                0.0001,
+                5e-05,
+                0.0
+            ]
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            [
+                5000
+            ]
+        ],
+        [
+            "feat_opt",
+            "lr",
+            [
+                1e-05,
+                5e-06,
+                2e-05
+            ]
+        ],
+        "clamiter_init",
+        "init_type",
+        "from_attr"
+    ],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 48,
+            "l1_reg": 1
+        },
+        "feat_opt": {
+            "lr": 2e-06,
+            "n_iter": 7000
+        }
+    }
+}

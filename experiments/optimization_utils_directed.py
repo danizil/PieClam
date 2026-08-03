@@ -500,33 +500,60 @@ def _resolve_results_path(file_path):
     return file_path
 
 
-def top_configs_from_file(file_path, top_n=5):
+def top_configs_from_file(file_path, top_n=5, return_scores=False, sort_by='test', agg='mean'):
     '''Load a results JSON and return (config_ranges, config_list) for the top_n configs by acc.
-    Currently sorts by vanilla_star (first element of acc tuple) for anomaly_unsupervised.
-    #todo: make sort_by configurable (vanilla_star, prior, prior_star for anomaly; val_acc/test_acc for link_prediction)
-    #todo: handle the case where acc is a float (link prediction test-only) not a tuple
-    Each element of config_list is a tuple of values matching config_ranges order.'''
+    sort_by: 'test' uses acc[0] (test acc / vanilla_star), 'val' uses acc[1] (val acc).
+             Falls back to the other element if the chosen one is None.
+    agg: 'mean' sorts by average across reps (matches print_folder); 'best' sorts by best single rep.
+    If return_scores=True, returns (config_ranges, config_list, scores) where scores are the aggregated values.'''
     file_path = _resolve_results_path(file_path)
     _meta_keys = {'date_time', 'ds_name', 'model_name', 'task', 'metric', 'config_ranges', 'base_config'}
     with open(file_path) as f:
         data = json.load(f)
     config_ranges = data['config_ranges']
     result_entries = [(eval(k), v) for k, v in data.items() if k not in _meta_keys]
-    # sort by vanilla_star (first element of acc tuple)
-    # #todo: generalize sort key
-    result_entries.sort(key=lambda x: x[0][0] if isinstance(x[0], tuple) else x[0], reverse=True)
-    seen = []
-    config_list = []
+
+    def _scalar(acc):
+        if isinstance(acc, (list, tuple)):
+            primary, secondary = (acc[0], acc[1]) if sort_by == 'test' else (acc[1], acc[0])
+            val = primary if primary is not None else secondary
+        else:
+            val = acc
+        return val if val is not None else -float('inf')
+
+    # group scalar scores by config tuple across all reps
+    config_scores = {}
     for acc, triplets in result_entries:
         vals = tuple(t[2] for t in triplets)
-        if vals not in seen:
-            seen.append(vals)
-            config_list.append(vals)
-        if len(config_list) >= top_n:
-            break
-    printd(f'top_configs_from_file: returning top {len(config_list)} configs')
-    printd(f'top config: {config_list[0] if config_list else None}')
+        s = _scalar(acc)
+        if s != -float('inf'):
+            config_scores.setdefault(vals, []).append(s)
+
+    agg_fn = (lambda xs: sum(xs) / len(xs)) if agg == 'mean' else max
+    sorted_configs = sorted(config_scores.items(), key=lambda x: agg_fn(x[1]), reverse=True)
+    config_list = [vals for vals, _ in sorted_configs[:top_n]]
+    agg_scores = [agg_fn(sc) for _, sc in sorted_configs[:top_n]]
+
+    printd(f'top_configs_from_file: returning top {len(config_list)} configs (agg={agg})')
+    printd(f'top config: {config_list[0] if config_list else None}, score: {agg_scores[0] if agg_scores else None}')
+    if return_scores:
+        return config_ranges, config_list, agg_scores
     return config_ranges, config_list
+
+
+def _count_config_reps(file_path):
+    '''Returns dict of config_vals tuple → number of existing reps in file. Empty dict if file doesn't exist.'''
+    _meta_keys = {'date_time', 'ds_name', 'model_name', 'task', 'metric', 'config_ranges', 'base_config'}
+    if not os.path.exists(file_path):
+        return {}
+    with open(file_path) as f:
+        data = json.load(f)
+    counts = {}
+    for k, triplets in data.items():
+        if k not in _meta_keys:
+            vals = tuple(t[2] for t in triplets)
+            counts[vals] = counts.get(vals, 0) + 1
+    return counts
 
 
 def remaining_configs_from_file(file_path, n_reps=1):
@@ -662,6 +689,11 @@ def cross_val_link(
         verbose_in_funcs=False,
         name=None,
         from_file=None,
+        from_file_mode='remaining',
+        from_file_top_n=5,
+        from_file_sort_by='val',
+        from_file_agg='mean',
+        max_reps=None,
         **kwargs):
 
     ds = None
@@ -672,7 +704,13 @@ def cross_val_link(
     If there are data splits that already exist it's better to use the function cross_val_link_splits defined above.'''
     # ============ OMIT TEST =============
     '''The dyad omitting process for the algorithm is described in the paper. if a test set is provided it's used and if not the test set is taken randomly with the percentage given and 5X the number of negative samples. The same goes to the val set: if it is not given it is sampled from the dyad set for every parameter configuration.'''
-    assert range_triplets is not None or config_list is not None, 'either range_triplets or config_list should be given'
+    if from_file is not None:
+        assert from_file_mode in ('remaining', 'top'), "from_file_mode must be 'remaining' or 'top'"
+        if from_file_mode == 'remaining':
+            range_triplets, config_list = remaining_configs_from_file(from_file, n_reps=n_reps)
+        else:
+            range_triplets, config_list = top_configs_from_file(from_file, top_n=from_file_top_n, sort_by=from_file_sort_by, agg=from_file_agg)
+    assert range_triplets is not None or config_list is not None, 'either range_triplets, config_list, or from_file should be given'
 
 #todo: what a
     #todo: add option for doing it in random
@@ -718,7 +756,6 @@ def cross_val_link(
         
         
         if from_file is not None:
-            range_triplets, config_list = remaining_configs_from_file(from_file, n_reps=n_reps)
             run_saver = SaveRun.from_existing(from_file)
         else:
             for triplet in range_triplets[:]:
@@ -758,11 +795,18 @@ def cross_val_link(
             random.shuffle(grid)
             grid = grid[:num_draws_random]
     
+        rep_counts = _count_config_reps(run_saver.acc_configs_path) if max_reps is not None else {}
+        if max_reps is not None:
+            printd(f'max_reps={max_reps}: found {len(rep_counts)} configs with existing reps in file')
+
         # for values in tqdm(grid, desc="Grid search"):
-        #todo: make it possible to give the grid 
+        #todo: make it possible to give the grid
         for values in grid:
-            # for i in tqdm(range(n_reps), leave=False, desc="Repetitions"): 
-            for i in range(n_reps):
+            effective_reps = min(n_reps, max_reps - rep_counts.get(tuple(values), 0)) if max_reps is not None else n_reps
+            if effective_reps <= 0:
+                continue
+            # for i in tqdm(range(n_reps), leave=False, desc="Repetitions"):
+            for i in range(effective_reps):
                 printd(f'Repetition no. {i}')
                 ds_test_val_omitted = ds_test_omitted.clone()
                 
@@ -873,7 +917,8 @@ def multi_ds_anomaly(
         random_seed=42,
         from_files=None,
         from_files_mode='top',
-        from_files_top_n=5):
+        from_files_top_n=5,
+        max_reps=None):
 
     '''here we test a single configuration for a list of datasets since the setting is unsupervised.
     from_files: list of existing JSON paths, one per ds_name. If given, resumes from those files
@@ -931,6 +976,8 @@ def multi_ds_anomaly(
             random.shuffle(grid)
 
                
+        rep_counts = _count_config_reps(run_savers[0].acc_configs_path) if max_reps is not None else {}
+
         # for values in tqdm(grid, desc="Grid search"):
         for values in grid:
             '''for each configuration run all of the datasets and save the results in the corresponding folder'''
@@ -939,12 +986,15 @@ def multi_ds_anomaly(
             for i in range(len(range_triplets)):
                 outers.append(range_triplets[i][0])
                 inners.append(range_triplets[i][1])
-                
+
             config_triplets = [
                 [outers[i], inners[i], values[i]] for i in range(len(range_triplets))]
-            
-            # for i in tqdm(range(n_reps), leave=False, desc="Repetitions"): 
-            for i in range(n_reps): 
+
+            effective_reps = min(n_reps, max_reps - rep_counts.get(tuple(values), 0)) if max_reps is not None else n_reps
+            if effective_reps <= 0:
+                continue
+            # for i in tqdm(range(n_reps), leave=False, desc="Repetitions"):
+            for i in range(effective_reps):
                 printd(f'Repetition no. {i}')
                 for i, ds_name in enumerate(ds_names):
                     ds = import_dataset(ds_name, to_undirected=to_undirected, remove_self_loops=remove_self_loops)

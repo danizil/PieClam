@@ -111,13 +111,11 @@ def import_dataset(dataset_name=None, data=None, test_dyads_path=None, val_dyads
         #     data.edge_index = remove_isolated_nodes(data.edge_index)[0]
         if to_undirected:
             data.edge_index = upyg.to_undirected(data.       edge_index)
-        
-        # dense_attr_np = data.x.numpy()
-        # data.raw_attr = sp.lil_matrix(dense_attr_np)
-        
+
         if hasattr(data, 'y'):
             data.y = intersecting_tensor_from_non_intersecting_vec(data.y)
 
+        data.raw_attr = data.x
         data.x = None
 
     elif dataset_name == 'wisconsin':
@@ -128,13 +126,11 @@ def import_dataset(dataset_name=None, data=None, test_dyads_path=None, val_dyads
         #     data.edge_index = remove_isolated_nodes(data.edge_index)[0]
         if to_undirected:
             data.edge_index = upyg.to_undirected(data.       edge_index)
-        
-        # dense_attr_np = data.x.numpy()
-        # data.raw_attr = sp.lil_matrix(dense_attr_np)
-        
+
         if hasattr(data, 'y'):
             data.y = intersecting_tensor_from_non_intersecting_vec(data.y)
 
+        data.raw_attr = data.x
         data.x = None
 
     elif dataset_name == 'cornell':
@@ -143,7 +139,11 @@ def import_dataset(dataset_name=None, data=None, test_dyads_path=None, val_dyads
             data.edge_index = upyg.remove_self_loops(data.edge_index)[0]
         if to_undirected:
             data.edge_index = upyg.to_undirected(data.edge_index)
-        
+
+        if hasattr(data, 'y'):
+            data.y = intersecting_tensor_from_non_intersecting_vec(data.y)
+
+        data.raw_attr = data.x
         data.x = None
 
     elif dataset_name == 'JohnsHopkins55':

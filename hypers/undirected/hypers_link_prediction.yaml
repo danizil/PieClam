@@ -7,11 +7,11 @@
 
 cora-ml_bigclam:
     clamiter_init:
-        dim_feat: 48
-        l1_reg: 1
+        dim_feat: 64
+        l1_reg: 0
     feat_opt:
-        lr: 0.000002
-        n_iter: 7000
+        lr: 0.00001
+        n_iter: 1000
 
 cora-ml_ieclam:
     clamiter_init:
@@ -19,41 +19,19 @@ cora-ml_ieclam:
         dim_attr: 500
         s_reg: 0.0
         l1_reg: 1
+        pow_in: 0.1
+        pow_out: 0.1
     feat_opt:
         lr: 0.000001
         n_iter: 10000
 
-cora-ml_pieclam:
-    clamiter_init:
-        dim_feat: 48
-        dim_attr: 100
-        s_reg: 0.0
-        l1_reg: 1
-        T: 1
-        hidden_dim: 64
-        num_coupling_blocks: 32
-        num_layers_mlp: 2
-    feat_opt:
-        lr: 0.000003
-        n_iter: 500
-        early_stop: 0
-    prior_opt:
-        n_iter: 1300
-        lr: 0.000002
-        noise_amp: 0.05
-        weight_decay: 0.1
-        early_stop: 0
-    back_forth:
-        n_back_forth: 7
-        scheduler_step_size: 3
-        scheduler_gamma: 0.5
-        early_stop_fit: 0
-        first_func_in_fit: "fit_feats"
 
 cora-ml_pclam:
     clamiter_init:
-        dim_feat: 24
-        l1_reg: 1
+        dim_feat: 32
+        l1_reg: 0
+        pow_in: 0.1
+        pow_out: 0.1
     feat_opt:
         lr: 0.000003
         n_iter: 1000
