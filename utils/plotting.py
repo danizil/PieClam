@@ -1,6 +1,7 @@
 import os
 import math
 import torch
+import atexit
 
 import numpy as np
 
@@ -10,7 +11,11 @@ from sklearn.decomposition import PCA
 import seaborn as sns
 import networkx as nx
 
+import matplotlib
+if os.environ.get('PIECLAM_HEADLESS'):
+    matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.cm import get_cmap
 from matplotlib.colors import ListedColormap, Normalize
 
@@ -19,6 +24,93 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 from utils.utils import get_prob_graph
 from utils.printing_utils import printd
+
+
+_current_config_label = None
+_headless_page_count = 0
+
+def set_current_config_label(config_triplets):
+    '''Called by the sweep driver before each fit so headless plot pages can be stamped with the
+    hyperparameter config that produced them. config_triplets is the [[section, key, value], ...] list.'''
+    global _current_config_label
+    if config_triplets is None:
+        _current_config_label = None
+    else:
+        _current_config_label = ', '.join(f'{key}={value}' for _, key, value in config_triplets)
+
+
+def _headless_pages_dir():
+    '''Directory for headless-mode plot pages (PIECLAM_HEADLESS=1). Set via PIECLAM_PLOT_DIR;
+    defaults to /tmp/lp_search_agent/loss_sheet_pages. Legacy PNG-per-page dumping ground -- see
+    merge_headless_pages() to combine any PNGs still sitting in one of these into a PDF.'''
+    d = os.environ.get('PIECLAM_PLOT_DIR', '/tmp/lp_search_agent/loss_sheet_pages')
+    os.makedirs(d, exist_ok=True)
+    return d
+
+
+def _headless_combined_pdf_path():
+    '''Path to the single growing PDF for headless batch runs (PIECLAM_HEADLESS=1). Set via
+    PIECLAM_PLOT_PDF; defaults to /tmp/lp_search_agent/loss_sheet.pdf.'''
+    p = os.environ.get('PIECLAM_PLOT_PDF', '/tmp/lp_search_agent/loss_sheet.pdf')
+    os.makedirs(os.path.dirname(p), exist_ok=True)
+    return p
+
+
+def _append_page_to_pdf(new_page_pdf_path, combined_pdf_path):
+    '''Appends the (single-page) PDF at new_page_pdf_path onto combined_pdf_path, writing to a
+    temp file and atomically renaming over it -- combined_pdf_path is never in a partially-written
+    state under its real name, so this is safe even if the process is killed mid-append.'''
+    from pypdf import PdfReader, PdfWriter
+    writer = PdfWriter()
+    if os.path.exists(combined_pdf_path):
+        for page in PdfReader(combined_pdf_path).pages:
+            writer.add_page(page)
+    for page in PdfReader(new_page_pdf_path).pages:
+        writer.add_page(page)
+    tmp_path = combined_pdf_path + f'.tmp{os.getpid()}'
+    with open(tmp_path, 'wb') as f:
+        writer.write(f)
+    os.replace(tmp_path, combined_pdf_path)
+
+
+def _show_or_save():
+    '''Drop-in replacement for plt.show(): in headless mode (PIECLAM_HEADLESS=1), appends the
+    current figure as a new page onto the single growing PDF (PIECLAM_PLOT_PDF) and discards the
+    intermediate single-page file, so nothing but one combined PDF accumulates on disk. Otherwise
+    shows interactively as before.'''
+    global _headless_page_count
+    if os.environ.get('PIECLAM_HEADLESS'):
+        fig = plt.gcf()
+        if _current_config_label:
+            fig.suptitle(_current_config_label, fontsize=7, wrap=True)
+            fig.tight_layout(rect=[0, 0, 1, 0.92])
+        _headless_page_count += 1
+        combined_path = _headless_combined_pdf_path()
+        new_page_path = combined_path + f'.newpage{os.getpid()}_{_headless_page_count}'
+        fig.savefig(new_page_path, format='pdf')
+        plt.close(fig)
+        _append_page_to_pdf(new_page_path, combined_path)
+        os.remove(new_page_path)
+    else:
+        plt.show()
+
+
+def merge_headless_pages(pages_dir, out_pdf):
+    '''Combines whatever page_*.png files currently exist in pages_dir into one multi-page PDF at
+    out_pdf. Safe to run at any time, including while a sweep is still writing new pages -- it
+    only reads files that are already fully written, and each call produces a fresh, complete
+    PDF from the pages present at that moment.'''
+    import glob
+    pages = sorted(glob.glob(os.path.join(pages_dir, 'page_*.png')))
+    with PdfPages(out_pdf) as pdf:
+        for page in pages:
+            img = plt.imread(page)
+            fig = plt.figure(figsize=(img.shape[1] / 110, img.shape[0] / 110), dpi=110)
+            plt.imshow(img)
+            plt.axis('off')
+            pdf.savefig(fig, dpi=110)
+            plt.close(fig)
+    return len(pages)
 
 
 def plot_feats(graph, lorenz):
@@ -667,7 +759,7 @@ def plot_test_accuracies(
                 # axes[i].plot(stop, acc_test[key][stop], 'ro', markersize=7)  
 
     plt.tight_layout()
-    plt.show()
+    _show_or_save()
 
 
 

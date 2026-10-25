@@ -266,16 +266,19 @@ GlobalConfigs_pieclam:
 
 
 GlobalConfigs_bigclam:
-    clamiter_init: 
+    clamiter_init:
         dim_feat: 24
         dim_attr: 100
         s_reg: 0.0
         l1_reg: 1
+        init_type: small_gaus
+        pow_in: 0.0001
+        pow_out: 0.0001
         T: 1
         hidden_dim: 64
         num_coupling_blocks: 32
         num_layers_mlp: 2
-    feat_opt: 
+    feat_opt:
         lr: 0.000001
         n_iter: 2200
         early_stop: 0

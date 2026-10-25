@@ -1,0 +1,85 @@
+{
+    "date_time": "2026-08-10 00:25:57",
+    "ds_name": "cornell",
+    "model_name": "bigclam",
+    "task": "link_prediction",
+    "metric": "auc",
+    "config_ranges": [
+        [
+            "clamiter_init",
+            "dim_feat",
+            [
+                24,
+                32,
+                40
+            ]
+        ],
+        [
+            "clamiter_init",
+            "init_type",
+            [
+                "small_gaus"
+            ]
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            [
+                0.0,
+                0.001,
+                0.01,
+                0.05,
+                0.1
+            ]
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            [
+                0.0,
+                0.001,
+                0.01,
+                0.05,
+                0.1
+            ]
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            [
+                1000,
+                5000,
+                7000
+            ]
+        ],
+        [
+            "feat_opt",
+            "lr",
+            [
+                1e-06,
+                5e-06,
+                1e-05
+            ]
+        ]
+    ],
+    "base_config": {
+        "clamiter_init": {
+            "dim_feat": 40,
+            "dim_attr": 100,
+            "s_reg": 0.0,
+            "l1_reg": 1,
+            "init_type": "from_attr",
+            "T": 1,
+            "hidden_dim": 64,
+            "num_coupling_blocks": 32,
+            "num_layers_mlp": 2,
+            "pow_in": 0.0001,
+            "pow_out": 0.0001
+        },
+        "feat_opt": {
+            "lr": 1e-06,
+            "n_iter": 7000,
+            "early_stop": 0
+        }
+    }
+}

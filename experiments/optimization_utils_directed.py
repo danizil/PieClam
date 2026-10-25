@@ -16,6 +16,7 @@ import traceback
 from tqdm import tqdm
 import sys
 import traceback
+import uuid
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 if os.path.join(current_dir, '..') not in sys.path:
@@ -31,6 +32,7 @@ from utils.path_utils import get_project_root
 from datasets.import_dataset import import_dataset
 import utils.link_prediction as lp
 from trainer_directed import Trainer
+from utils import plotting as pt
 from datetime import datetime
 import os
 
@@ -350,7 +352,9 @@ class SaveRun:
         with open(self.acc_configs_path, 'r') as file:
             loaded_acc_configs = json.load(file)
 
-        loaded_acc_configs.update({str(acc): config_triplets})
+        # unique suffix so two runs landing on the same accuracy don't overwrite each other
+        key = f'{acc}__{uuid.uuid4().hex[:8]}'
+        loaded_acc_configs.update({key: config_triplets})
 
         with open(self.acc_configs_path, 'w') as file:
             json.dump(loaded_acc_configs, file, indent=4)
@@ -395,7 +399,7 @@ class SaveRun:
 
         # Iterate through each run acc
         for acc_str, changes in data.items():
-            acc = eval(acc_str)
+            acc = eval(_parse_acc_key(acc_str))
             row = {}
             if type(acc) == float:
                     row['acc'] = acc
@@ -500,6 +504,14 @@ def _resolve_results_path(file_path):
     return file_path
 
 
+def _parse_acc_key(k):
+    '''Recovers the eval-able accuracy string from a result-JSON key. Current keys are
+    "{acc}__{unique suffix}" (see SaveRun.update_file) so identical accuracies don't collide and
+    overwrite each other; legacy keys (no suffix) were just str(acc) directly. str(acc) itself
+    never contains "__", so splitting on the last occurrence is unambiguous either way.'''
+    return k.rsplit('__', 1)[0] if '__' in k else k
+
+
 def top_configs_from_file(file_path, top_n=5, return_scores=False, sort_by='test', agg='mean'):
     '''Load a results JSON and return (config_ranges, config_list) for the top_n configs by acc.
     sort_by: 'test' uses acc[0] (test acc / vanilla_star), 'val' uses acc[1] (val acc).
@@ -511,7 +523,7 @@ def top_configs_from_file(file_path, top_n=5, return_scores=False, sort_by='test
     with open(file_path) as f:
         data = json.load(f)
     config_ranges = data['config_ranges']
-    result_entries = [(eval(k), v) for k, v in data.items() if k not in _meta_keys]
+    result_entries = [(eval(_parse_acc_key(k)), v) for k, v in data.items() if k not in _meta_keys]
 
     def _scalar(acc):
         if isinstance(acc, (list, tuple)):
@@ -573,7 +585,7 @@ def remaining_configs_from_file(file_path, n_reps=1):
         if k not in _meta_keys
     ]
     counts = Counter(done_configs)
-    remaining = [vals for vals in full_grid if counts[vals] == 0]
+    remaining = [vals for vals in full_grid if counts[vals] < n_reps]
     last_config = done_configs[-1] if done_configs else None
     printd(f'remaining_configs_from_file: {len(full_grid)} total, {len(done_configs)} done, {len(remaining)} remaining')
     printd(f'last config done: {last_config}')
@@ -805,6 +817,15 @@ def cross_val_link(
             effective_reps = min(n_reps, max_reps - rep_counts.get(tuple(values), 0)) if max_reps is not None else n_reps
             if effective_reps <= 0:
                 continue
+
+            values_by_key = {range_triplets[i][1]: values[i] for i in range(len(range_triplets))}
+            if values_by_key.get('init_type') == 'from_attr' and 'dim_feat' in values_by_key:
+                n_attrs = up.get_attr_dim(ds)
+                target_dim = values_by_key['dim_feat'] // 2 if ds.is_directed() else values_by_key['dim_feat']
+                if n_attrs is not None and target_dim > n_attrs:
+                    printd(f'Skipping config: from_attr needs {target_dim} components but {ds_name} only has {n_attrs} attributes. config={values_by_key}')
+                    continue
+
             # for i in tqdm(range(n_reps), leave=False, desc="Repetitions"):
             for i in range(effective_reps):
                 printd(f'Repetition no. {i}')
@@ -839,6 +860,8 @@ def cross_val_link(
                 config_triplets = [
                     [outers[i], inners[i], values[i]] for i in range(len(range_triplets))
                             ]
+
+                pt.set_current_config_label(config_triplets)
 
                 trainer = Trainer(
                             dataset=ds_test_val_omitted,
@@ -913,6 +936,7 @@ def multi_ds_anomaly(
         remove_self_loops=False,
         plot_every=10000,
         random_search=False,
+        num_draws_random=50,
         name=None,
         random_seed=42,
         from_files=None,
@@ -974,8 +998,9 @@ def multi_ds_anomaly(
             if random_seed is not None:
                 random.seed(random_seed)
             random.shuffle(grid)
+            grid = grid[:num_draws_random]
 
-               
+
         rep_counts = _count_config_reps(run_savers[0].acc_configs_path) if max_reps is not None else {}
 
         # for values in tqdm(grid, desc="Grid search"):
@@ -998,8 +1023,18 @@ def multi_ds_anomaly(
                 printd(f'Repetition no. {i}')
                 for i, ds_name in enumerate(ds_names):
                     ds = import_dataset(ds_name, to_undirected=to_undirected, remove_self_loops=remove_self_loops)
+
+                    dim_feat_val = next((v for s, k, v in config_triplets if k == 'dim_feat'), None)
+                    init_type_val = next((v for s, k, v in config_triplets if k == 'init_type'), None)
+                    if init_type_val == 'from_attr' and dim_feat_val is not None:
+                        n_attrs = up.get_attr_dim(ds)
+                        target_dim = dim_feat_val // 2 if ds.is_directed() else dim_feat_val
+                        if n_attrs is not None and target_dim > n_attrs:
+                            printd(f'Skipping config for {ds_name}: from_attr needs {target_dim} components but only {n_attrs} attributes available. config={config_triplets}')
+                            continue
+
                     ds_to_use = ds
-                    
+
                     if ds_name in densifiable_ds:
                         fat_ds = TwoHop()(ds)
                         fat_ds.edge_attr = torch.ones(fat_ds.edge_index.shape[1]).bool()

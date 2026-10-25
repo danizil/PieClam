@@ -26,35 +26,61 @@ Ask the user (with AskUserQuestion) for any parameters not already given:
 - `model_name`: bigclam / pclam / ieclam / pieclam
 - `n_reps`: repetitions per config for the broad search (default 2)
 - `threshold`: val AUC to notify at (e.g. 0.85)
-- `top_n`: how many top configs to run in the refinement phase (default 5)
+- `top_n`: how many top configs to run in the refinement phase (default 20)
+- `time_budget_seconds`: hard wall-clock cap on the broad search (default 86400 = 24h); after this the broad search is killed regardless of progress and refinement runs on whatever completed
 - `range_triplets`: search grid — if not given, use sensible defaults for the dataset
 
 Default range_triplets (broad search):
 ```json
 [
   ["clamiter_init", "dim_feat",  [24, 32, 40]],
-  ["clamiter_init", "init_type", ["from_attr"]],
+  ["clamiter_init", "init_type", ["small_gaus"]],
   ["clamiter_init", "pow_in",    [0.0, 0.001, 0.01, 0.05, 0.1]],
   ["clamiter_init", "pow_out",   [0.0, 0.001, 0.01, 0.05, 0.1]],
-  ["feat_opt",      "n_iter",    [5000, 7000]],
+  ["feat_opt",      "n_iter",    [1000, 5000, 7000]],
   ["feat_opt",      "lr",        [1e-6, 5e-6, 1e-5]]
 ]
 ```
+Add `"random_search": true` and `"num_draws_random": <grid size>` to the config so the grid is visited in random (not sequential) order with no duplicate draws — this matters because the search is time-boxed and won't always finish the full grid.
 
-### Step 2 — Write config and start search
+If the dataset already has a split folder with `omitted_test_dyads.pt`, reuse it via `"test_dyads_path"` in the config rather than generating a new split, so results accumulate in the same split folder as prior runs.
+
+### Step 2 — Write config and start search (broad + auto-chained refinement)
 Write the config JSON to `/tmp/lp_search_agent/{ds_name}_{model_name}_config.json`.
 
-Start the search as a background process:
+Launch a wrapper that time-boxes the broad search and then automatically runs the top-N refinement on whatever completed — this way the day-long run doesn't require the agent to stay alive or keep polling:
 ```bash
 mkdir -p /tmp/lp_search_agent
-nohup /Users/danielzilberg/anaconda3/envs/pyg/bin/python3 \
-  /Users/danielzilberg/Documents/Learned_Graphon/ICML_PieClam_020425/experiments/scripts/link_prediction/run_cross_val_link.py \
-  --config /tmp/lp_search_agent/{ds_name}_{model_name}_config.json \
+cat > /tmp/lp_search_agent/{ds_name}_{model_name}_chain.sh << 'CHAINEOF'
+#!/bin/bash
+set -e
+PY=/Users/danielzilberg/anaconda3/envs/pyg/bin/python3
+ROOT=/Users/danielzilberg/Documents/Learned_Graphon/ICML_PieClam_020425
+timeout {time_budget_seconds} "$PY" "$ROOT/experiments/scripts/link_prediction/run_cross_val_link.py" \
+  --config /tmp/lp_search_agent/{ds_name}_{model_name}_config.json
+LATEST=$(ls -t "$ROOT"/experiments/results/directed/link_prediction/auc/{ds_name}/{model_name}/split_*/valid/acc_configs*.json | head -1)
+"$PY" << PYEOF
+import sys, os, torch
+sys.path.insert(0, "$ROOT")
+os.chdir("$ROOT/experiments")
+import experiments.optimization_utils_directed as ou
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+ou.cross_val_link(
+    ds_name='{ds_name}', model_name='{model_name}', use_global_config_base=False,
+    device=device, metric='auc', n_reps=10, max_reps=10, acc_every=20, plot_every=-1,
+    test_p=0.0, val_p=0.1, to_undirected=False, remove_self_loops=False,
+    from_file="$LATEST", from_file_mode='top', from_file_top_n={top_n},
+    from_file_sort_by='val', from_file_agg='mean', name='small_gaus'
+)
+PYEOF
+CHAINEOF
+chmod +x /tmp/lp_search_agent/{ds_name}_{model_name}_chain.sh
+nohup /tmp/lp_search_agent/{ds_name}_{model_name}_chain.sh \
   > /tmp/lp_search_agent/{ds_name}_{model_name}.log 2>&1 &
 echo "PID: $!"
 ```
 
-Save the PID. Tell the user the search has started and what file to watch.
+Save the PID. Tell the user the search has started, that it will auto-chain into top-N refinement after the time budget, and what log file to watch.
 
 ### Step 3 — Monitor results
 Every check, find the latest results file and read the top configs:
@@ -139,7 +165,7 @@ tail -50 /tmp/lp_search_agent/{ds_name}_{model_name}.log
 ```
 
 ## Important notes
-- Always use `init_type: from_attr` — never small_gaus
+- As of 2026-08-09: use `init_type: small_gaus` for new broad searches (this reverses an earlier from_attr-only rule — see project memory `feedback_init_type.md`). **Before treating any existing `acc_configs*.json` as a completed broad search, open it and check `config_ranges` for `['clamiter_init', 'init_type', ['small_gaus']]`.** Files with `from_attr` or no `init_type` key at all predate this switch and are stale for this purpose — don't skip the broad search based on them.
 - Results path is relative to `experiments/` directory
 - `val_p=0.1`, `test_p=0.0` for link prediction (val-only mode)
 - `to_undirected=False`, `remove_self_loops=False` for directed datasets

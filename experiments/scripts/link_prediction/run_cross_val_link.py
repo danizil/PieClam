@@ -28,7 +28,7 @@ The config JSON has the same keys as cross_val_link kwargs, e.g.:
 import sys, os, json, argparse
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
-for _ in range(4):
+for _ in range(3):
     script_dir = os.path.dirname(script_dir)
     if script_dir not in sys.path:
         sys.path.insert(0, script_dir)
@@ -50,7 +50,7 @@ def main():
     print(f'Using device: {device}', flush=True)
 
     ou.cross_val_link(
-        use_global_config_base=False,
+        use_global_config_base=cfg.pop('use_global_config_base', False),
         device=device,
         metric='auc',
         acc_every=cfg.pop('acc_every', 20),

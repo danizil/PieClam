@@ -357,6 +357,22 @@ def edge_mask_drop_and_rearange(edge_index, p, directed):
 
 #     return edge_index, edge_attr
 
+def get_attr_dim(graph_given):
+    '''Number of raw attribute columns available on graph_given (checks attr, then raw_attr, then
+    x, same preference order as init_node_feats' from_attr branch), or None if none are present.
+    Used to pre-check whether a from_attr init at a given dim_feat is even possible.'''
+    attr_src = None
+    if hasattr(graph_given, 'attr') and graph_given.attr is not None:
+        attr_src = graph_given.attr
+    elif hasattr(graph_given, 'raw_attr') and graph_given.raw_attr is not None:
+        attr_src = graph_given.raw_attr
+    elif hasattr(graph_given, 'x') and graph_given.x is not None:
+        attr_src = graph_given.x
+    else:
+        return None
+    return attr_src.shape[1]
+
+
 def get_in_out_degree(graph):
     
     num_edges = graph.edge_index.shape[1]

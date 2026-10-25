@@ -1,1 +1,29 @@
 datasets/anomaly_detection/directed/elliptic-data-set.zip
+experiments/results/notebook_archives/
+
+# raw / processed dataset files -- regenerable via datasets/dataset_downloads.py
+# (see import_dataset.py, which calls ensure_dataset_files() before loading)
+datasets/Planetoid/*/*.npz
+datasets/WebKB/*/raw/
+datasets/WebKB/*/processed/
+datasets/anomaly_detection/GGAD_datasets/*.mat
+datasets/anomaly_detection/directed/elliptic-data-set/elliptic_bitcoin_dataset/*.csv
+datasets/anomaly_detection/directed/elliptic-data-set/elliptic_bitcoin_dataset/*.pt
+datasets/facebook100/*.mat
+datasets/wikipedia/squirrel/musae_squirrel_*.csv
+datasets/wikipedia/squirrel/musae_squirrel_*.json
+# accidental dataset cache that ended up under results/ instead of datasets/
+experiments/results/directed/anomaly_unsupervised/data/
+
+# headless sweep diagnostics (PIECLAM_HEADLESS loss sheets) -- regenerable, large
+experiments/results/**/loss_sheet*.pdf
+experiments/results/**/loss_sheet_pages*/
+
+# credentials / machine-local settings
+.vscode/sftp.json
+.claude/settings.local.json
+
+# python cache / OS cruft
+__pycache__/
+*.pyc
+.DS_Store

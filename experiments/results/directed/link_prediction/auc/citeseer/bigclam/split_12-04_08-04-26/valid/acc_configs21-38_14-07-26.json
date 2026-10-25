@@ -20430,5 +20430,37 @@
             "lr",
             5e-06
         ]
+    ],
+    "(None, 0.8577325530614028)__0c1d1ec0": [
+        [
+            "clamiter_init",
+            "l1_reg",
+            0.0
+        ],
+        [
+            "clamiter_init",
+            "dim_feat",
+            32
+        ],
+        [
+            "clamiter_init",
+            "pow_in",
+            0.1
+        ],
+        [
+            "clamiter_init",
+            "pow_out",
+            0.001
+        ],
+        [
+            "feat_opt",
+            "n_iter",
+            5000
+        ],
+        [
+            "feat_opt",
+            "lr",
+            5e-06
+        ]
     ]
 }

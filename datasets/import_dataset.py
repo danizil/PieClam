@@ -25,6 +25,7 @@ from collections import Counter
 
 from datasets.simulations import simulate_dataset
 from datasets.data_utils import intersecting_tensor_from_non_intersecting_vec
+from datasets.dataset_downloads import ensure_dataset_files
 from utils.printing_utils import printd
 from utils import utils
 
@@ -32,6 +33,12 @@ from utils import utils
 def import_dataset(dataset_name=None, data=None, test_dyads_path=None, val_dyads_path=None, remove_data_feats=True, verbose=False, to_undirected=False, remove_self_loops=False):
     '''will import a dataset with the same name as the dataset_name parameter'''
     current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    if data is None and dataset_name is not None:
+        # downloads whatever raw files dataset_name needs, if missing; no-op for dataset
+        # names it doesn't know about (synthetic/simulated ones, OGB, etc). Per-dataset
+        # download logic lives in datasets/dataset_downloads.py, not here.
+        ensure_dataset_files(dataset_name, to_undirected=to_undirected)
 
     if data is not None:
        data = data
@@ -316,7 +323,11 @@ def import_dataset(dataset_name=None, data=None, test_dyads_path=None, val_dyads
                 data.train_normal_idx = utils.mask_index(data.train_normal_idx, non_isolated_mask)
         if hasattr(data, 'raw_attr'):
             if data.raw_attr is not None:
-                data.raw_attr = data.raw_attr[non_isolated_mask]
+                if torch.is_tensor(data.raw_attr):
+                    data.raw_attr = data.raw_attr[non_isolated_mask]
+                else:
+                    # scipy sparse (e.g. the .mat-loaded datasets) can't be indexed by a torch tensor
+                    data.raw_attr = data.raw_attr[non_isolated_mask.cpu().numpy()]
     # LINK PREDICTION
     if test_dyads_path is not None:
         test_dyads_path = os.path.join(current_dir, '..', test_dyads_path)

@@ -15,6 +15,18 @@ wisconsin_bigclam:
         lr: 0.000009
         n_iter: 2000
 
+# best small_gaus config found so far (2026-08); cornell had no dedicated block before this,
+# was falling back to GlobalConfigs_bigclam
+cornell_bigclam:
+    clamiter_init:
+        dim_feat: 24
+        l1_reg: 1
+        pow_in: 0.01
+        pow_out: 0.05
+    feat_opt:
+        lr: 0.00001
+        n_iter: 7000
+
 cora-ml_bigclam:
     clamiter_init:
         dim_feat: 32
